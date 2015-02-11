@@ -2,7 +2,17 @@
 <resources>
 
     <string name="app_name">Giskaland</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Tmp text -->
+    <string name="tmpText">Hér kemur mynd af Giska</string>
+
+    <!-- Difficulty levels -->
+    <string name="fourYear">4 ára</string>
+    <string name="fiveYear">5 ára</string>
+    <string name="sixYear">6 ára</string>
+    <string name="sevenYear">7 ára</string>
+    <string name="eightYear">8 ára</string>
+
 
 </resources>
