@@ -6,6 +6,7 @@
 
     <!-- Tmp text -->
     <string name="tmpText">Hér kemur mynd af Giska</string>
+    <string name="tmpGamesText">Leikir og þrautir</string>
 
     <!-- Difficulty levels -->
     <string name="fourYear">4 ára</string>
@@ -13,6 +14,16 @@
     <string name="sixYear">6 ára</string>
     <string name="sevenYear">7 ára</string>
     <string name="eightYear">8 ára</string>
+
+    <!-- Games, just example -->
+    <string name="gameOne">Leikur 1</string>
+    <string name="gameTwo">Leikur 2</string>
+    <string name="gameThree">Leikur 3</string>
+    <string name="gameFour">Leikur 4</string>
+
+    <string name="title_activity_four_year">FourYearActivity</string>
+    <string name="hello_world">Hello world!</string>
+
 
 
 </resources>

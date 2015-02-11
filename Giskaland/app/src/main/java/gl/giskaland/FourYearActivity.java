@@ -1,34 +1,24 @@
 package gl.giskaland;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class Upphafsglugginn extends ActionBarActivity {
+public class FourYearActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upphafsglugginn);
-    }
-
-    // Opens up the FourYearActivity
-    // The Button with the id 'buttonFourYear' triggers
-    // this function.
-    public void openFourYearActivity (View view) {
-        Intent intent = new Intent(this, FourYearActivity.class);
-        startActivity(intent);
+        setContentView(R.layout.activity_fouryear);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_upphafsglugginn, menu);
+        getMenuInflater().inflate(R.menu.menu_four_year, menu);
         return true;
     }
 
