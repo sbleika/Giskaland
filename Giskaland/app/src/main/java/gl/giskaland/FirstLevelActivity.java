@@ -6,19 +6,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class FourYearActivity extends ActionBarActivity {
+public class FirstLevelActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fouryear);
+        setContentView(R.layout.activity_firstlevel);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_four_year, menu);
+        getMenuInflater().inflate(R.menu.menu_firstlevel, menu);
         return true;
     }
 

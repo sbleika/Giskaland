@@ -19,8 +19,8 @@ public class Upphafsglugginn extends ActionBarActivity {
     // Opens up the FourYearActivity
     // The Button with the id 'buttonFourYear' triggers
     // this function.
-    public void openFourYearActivity (View view) {
-        Intent intent = new Intent(this, FourYearActivity.class);
+    public void openFirstLevelActivity (View view) {
+        Intent intent = new Intent(this, FirstLevelActivity.class);
         startActivity(intent);
     }
 

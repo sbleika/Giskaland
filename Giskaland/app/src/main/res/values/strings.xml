@@ -9,11 +9,9 @@
     <string name="tmpGamesText">Leikir og þrautir</string>
 
     <!-- Difficulty levels -->
-    <string name="fourYear">4 ára</string>
-    <string name="fiveYear">5 ára</string>
-    <string name="sixYear">6 ára</string>
-    <string name="sevenYear">7 ára</string>
-    <string name="eightYear">8 ára</string>
+    <string name="firstLevel">4 - 5 ára</string>
+    <string name="secondLevel">6 - 7 ára</string>
+    <string name="thirdLevel">8 - 9 ára</string>
 
     <!-- Games, just example -->
     <string name="gameOne">Leikur 1</string>

@@ -18,40 +18,25 @@
     <!-- Buttons for 4-8 years old -->
 
     <Button
-        android:id="@+id/buttonFourYear"
-        android:text="@string/fourYear"
-        android:onClick="openFourYearActivity"
+        android:id="@+id/buttonFirstLevel"
+        android:text="@string/firstLevel"
+        android:onClick="openFirstLevelActivity"
         style="@style/button_style"
         android:layout_below="@+id/tmpText"/>
 
     <Button
-        android:id="@+id/buttonFiveYear"
-        android:text="@string/fiveYear"
-        android:onClick="openFiveYearActivity"
+        android:id="@+id/buttonSecondLevel"
+        android:text="@string/secondLevel"
+        android:onClick="openFirstLevelActivity"
         style="@style/button_style"
-        android:layout_below="@+id/tmpText"
-        android:layout_toRightOf="@+id/buttonFourYear"/>
+        android:layout_below="@+id/buttonFirstLevel"/>
 
     <Button
-        android:id="@+id/buttonSixYear"
-        android:text="@string/sixYear"
-        android:onClick="openSixYearActivity"
+        android:id="@+id/buttonThirdLevel"
+        android:text="@string/thirdLevel"
+        android:onClick="openFirstLevelActivity"
         style="@style/button_style"
-        android:layout_below="@+id/buttonFourYear"/>
+        android:layout_below="@+id/buttonSecondLevel"/>
 
-    <Button
-        android:id="@+id/buttonSevenYear"
-        android:text="@string/sevenYear"
-        android:onClick="openSevenYearActivity"
-        style="@style/button_style"
-        android:layout_below="@+id/buttonFiveYear"
-        android:layout_toRightOf="@+id/buttonSixYear"/>
-
-    <Button
-        android:id="@+id/buttonEightYear"
-        android:text="@string/eightYear"
-        android:onClick="openEightYearActivity"
-        style="@style/button_style"
-        android:layout_below="@+id/buttonSixYear"/>
 
 </RelativeLayout>
