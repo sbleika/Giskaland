@@ -21,7 +21,7 @@
 
     <string name="title_activity_four_year">FourYearActivity</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="a_string">Hello world!</string>
 
 
 </resources>

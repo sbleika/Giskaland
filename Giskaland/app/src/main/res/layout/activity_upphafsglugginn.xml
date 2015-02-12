@@ -5,16 +5,10 @@
     android:layout_height="fill_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:background="@drawable/bak"
+    android:background="@drawable/upphaf_bak"
     tools:context=".Upphafsglugginn">
     
     <!-- Temporary text view -->
-    <TextView
-        android:id="@+id/tmpText"
-        android:text="@string/tmpText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="70sp"/>
 
     <!-- Buttons for 4-8 years old -->
 
@@ -23,21 +17,33 @@
         android:text="@string/firstLevel"
         android:onClick="openFirstLevelActivity"
         style="@style/button_style"
-        android:layout_below="@+id/tmpText"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonSecondLevel"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/buttonSecondLevel"
         android:text="@string/secondLevel"
         android:onClick="openFirstLevelActivity"
         style="@style/button_style"
-        android:layout_below="@+id/buttonFirstLevel"/>
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_above="@+id/buttonThirdLevel"
+        android:layout_alignLeft="@+id/buttonFirstLevel"
+        android:layout_alignStart="@+id/buttonFirstLevel" />
 
     <Button
         android:id="@+id/buttonThirdLevel"
         android:text="@string/thirdLevel"
         android:onClick="openFirstLevelActivity"
         style="@style/button_style"
-        android:layout_below="@+id/buttonSecondLevel"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/buttonSecondLevel"
+        android:layout_alignStart="@+id/buttonSecondLevel"
+        android:layout_marginBottom="108dp" />
 
 
 </RelativeLayout>

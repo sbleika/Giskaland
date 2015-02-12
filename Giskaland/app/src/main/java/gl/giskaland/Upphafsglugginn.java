@@ -6,14 +6,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+//import android.app.ActionBar;
+//import android.support.v7.app.ActionBar;
+
+
 
 
 public class Upphafsglugginn extends ActionBarActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upphafsglugginn);
+
     }
 
     // Opens up the FourYearActivity
@@ -30,6 +36,8 @@ public class Upphafsglugginn extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_upphafsglugginn, menu);
         return true;
+
+
     }
 
     @Override
