@@ -18,10 +18,10 @@
     <string name="gameTwo">Leikur 2</string>
     <string name="gameThree">Leikur 3</string>
     <string name="gameFour">Leikur 4</string>
-
     <string name="title_activity_four_year">FourYearActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="a_string">Hello world!</string>
-
+    <string name="title_activity_second_level">SecondLevel</string>
+    <string name="title_activity_third_level">ThirdLevel</string>
 
 </resources>

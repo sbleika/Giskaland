@@ -15,7 +15,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
            android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
         </activity>
@@ -23,7 +22,14 @@
             android:name=".FirstLevelActivity"
             android:label="@string/title_activity_four_year" >
         </activity>
-
+        <activity
+            android:name=".SecondLevel"
+            android:label="@string/title_activity_second_level" >
+        </activity>
+        <activity
+            android:name=".ThirdLevel"
+            android:label="@string/title_activity_third_level" >
+        </activity>
     </application>
 
 </manifest>

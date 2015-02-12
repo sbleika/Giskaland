@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 //import android.app.ActionBar;
 //import android.support.v7.app.ActionBar;
 
@@ -19,6 +20,16 @@ public class Upphafsglugginn extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upphafsglugginn);
+
+        ImageButton FirstButton;
+        ImageButton SecondButton;
+        ImageButton ThirdButton;
+        FirstButton = (ImageButton) findViewById(R.id.buttonFirstLevel);
+        FirstButton.setOnClickListener(gotoFirstClickListener);
+        SecondButton = (ImageButton) findViewById(R.id.buttonSecondLevel);
+        SecondButton.setOnClickListener(gotoSecondClickListener);
+        ThirdButton = (ImageButton) findViewById(R.id.buttonThirdLevel);
+        ThirdButton.setOnClickListener(gotoThirdClickListener);
 
     }
 
@@ -54,4 +65,73 @@ public class Upphafsglugginn extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+   /** takki 1
+     *
+     */
+    View.OnClickListener gotoFirstClickListener  = new View.OnClickListener() {
+                /**
+                 * ef smellt er a nemandi takkan er kallad a fallid firstbutton()
+                 * @param v view
+                 */
+                @Override
+                public void onClick(View v) {
+
+                    firstbutton();
+                }
+            };
+
+    /**
+     * opnar nyja gluggan nothafi
+     */
+    private void firstbutton(){
+        startActivity(new Intent(this, FirstLevelActivity.class));
+
+    };
+
+    /** takki 2
+     *
+     */
+    View.OnClickListener gotoSecondClickListener  = new View.OnClickListener() {
+        /**
+         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+
+            secondbutton();
+        }
+    };
+
+    /**
+     * opnar nyja gluggan nothafi
+     */
+    private void secondbutton(){
+        startActivity(new Intent(this, SecondLevel.class));
+
+    };
+
+    /** takki 3
+     *
+     */
+    View.OnClickListener gotoThirdClickListener  = new View.OnClickListener() {
+        /**
+         * ef smellt er a nemandi takkan er kallad a fallid thirdbutton()
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+
+            thirdbutton();
+        }
+    };
+
+    /**
+     * opnar nyja gluggan
+     */
+    private void thirdbutton(){
+        startActivity(new Intent(this, SecondLevel.class));
+
+    };
 }
