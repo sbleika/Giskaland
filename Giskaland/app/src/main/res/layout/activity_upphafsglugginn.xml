@@ -1,43 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
+    android:layout_width="wrap_content"
     android:layout_height="fill_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:background="@drawable/bak"
+    android:background="@drawable/upphaf_bak"
     tools:context=".Upphafsglugginn">
     
     <!-- Temporary text view -->
-    <TextView
-        android:id="@+id/tmpText"
-        android:text="@string/tmpText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="70sp"/>
 
     <!-- Buttons for 4-8 years old -->
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonFirstLevel"
         android:text="@string/firstLevel"
         android:onClick="openFirstLevelActivity"
         style="@style/button_style"
-        android:layout_below="@+id/tmpText"/>
 
-    <Button
+        android:src="@drawable/takkar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
         android:id="@+id/buttonSecondLevel"
         android:text="@string/secondLevel"
-        android:onClick="openFirstLevelActivity"
+        android:onClick="openSecondLevel"
         style="@style/button_style"
-        android:layout_below="@+id/buttonFirstLevel"/>
 
-    <Button
+        android:src="@drawable/takkar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonFirstLevel"
+        android:layout_alignLeft="@+id/buttonFirstLevel"
+        android:layout_alignStart="@+id/buttonFirstLevel"
+        android:layout_centerInParent="true" />
+
+    <ImageButton
         android:id="@+id/buttonThirdLevel"
         android:text="@string/thirdLevel"
-        android:onClick="openFirstLevelActivity"
+        android:onClick="openThirdLevel"
         style="@style/button_style"
-        android:layout_below="@+id/buttonSecondLevel"/>
+
+        android:src="@drawable/takkar3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonSecondLevel"
+        android:layout_alignLeft="@+id/buttonSecondLevel"
+        android:layout_alignStart="@+id/buttonSecondLevel"
+        android:layout_centerInParent="true" />
 
 
 </RelativeLayout>
