@@ -65,12 +65,12 @@ public class SecondLevel extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** takki 1
+    /**
      *
      */
     View.OnClickListener Math_level_2_ClickListener  = new View.OnClickListener() {
         /**
-         * ef smellt er a nemandi takkan er kallad a fallid firstbutton()
+         * ef smellt er a
          * @param v view
          */
         @Override
@@ -81,19 +81,19 @@ public class SecondLevel extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan nothafi
+     *
      */
     private void Math_Level_2(){
         startActivity(new Intent(this, Math_Level_2.class));
 
     };
 
-    /** takki 2
+    /**
      *
      */
     View.OnClickListener SpellThePicLevel2_ClickListener  = new View.OnClickListener() {
         /**
-         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
+         * ef smellt er a
          * @param v view
          */
         @Override
@@ -104,19 +104,19 @@ public class SecondLevel extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan nothafi
+     *
      */
     private void SpellThePicLevel2(){
         startActivity(new Intent(this, Spelling_level_2.class));
 
     };
 
-    /** takki 3
+    /**
      *
      */
     View.OnClickListener BrainPuzzleClickListener  = new View.OnClickListener() {
         /**
-         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
+         * ef smellt er a
          * @param v view
          */
         @Override
@@ -126,7 +126,7 @@ public class SecondLevel extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan nothafi
+     *
      */
     private void BrainPuzzle(){
         startActivity(new Intent(this, Quiz_Level_2.class));
@@ -138,7 +138,7 @@ public class SecondLevel extends ActionBarActivity {
      */
     View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
         /**
-         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
+         * ef smellt er a
          * @param v view
          */
         @Override

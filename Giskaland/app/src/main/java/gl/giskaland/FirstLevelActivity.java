@@ -60,7 +60,7 @@ public class FirstLevelActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** takki 1
+    /** takki fyrir stardfradi
      *
      */
     View.OnClickListener Math_level_1_ClickListener  = new View.OnClickListener() {
@@ -76,14 +76,14 @@ public class FirstLevelActivity extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan nothafi
+     * opnar nyja gluggan fyrir stardfradi
      */
     private void Math_Level_1(){
         startActivity(new Intent(this, Math_level_1.class));
 
     };
 
-    /** takki 2
+    /** takki fyrir stafaleikinn
      *
      */
     View.OnClickListener What_Letter_ClickListener  = new View.OnClickListener() {
@@ -99,7 +99,7 @@ public class FirstLevelActivity extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan nothafi
+     * opnar nyja gluggan fyrir stafaleikinn
      */
     private void What_Letter(){
         startActivity(new Intent(this, Spelling_level_1.class));

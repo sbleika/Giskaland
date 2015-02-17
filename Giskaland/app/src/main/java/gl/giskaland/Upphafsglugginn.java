@@ -10,9 +10,6 @@ import android.widget.ImageButton;
 //import android.app.ActionBar;
 //import android.support.v7.app.ActionBar;
 
-
-
-
 public class Upphafsglugginn extends ActionBarActivity {
 
 
@@ -33,8 +30,8 @@ public class Upphafsglugginn extends ActionBarActivity {
 
     }
 
-    // Opens up the FourYearActivity
-    // The Button with the id 'buttonFourYear' triggers
+    // Opens up the FirstLevel
+    // The Button with the id 'buttonFirstLevel' triggers
     // this function.
     public void openFirstLevelActivity (View view) {
         Intent intent = new Intent(this, FirstLevelActivity.class);
@@ -66,7 +63,7 @@ public class Upphafsglugginn extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-   /** takki 1
+   /** takki fyrir fyrsta hop
      *
      */
     View.OnClickListener gotoFirstClickListener  = new View.OnClickListener() {
@@ -82,14 +79,14 @@ public class Upphafsglugginn extends ActionBarActivity {
             };
 
     /**
-     * opnar nyja gluggan nothafi
+     * opnar nyja gluggan fyrir fyrsta hop
      */
     private void firstbutton(){
         startActivity(new Intent(this, FirstLevelActivity.class));
 
     };
 
-    /** takki 2
+    /** takki fyrir annan hop
      *
      */
     View.OnClickListener gotoSecondClickListener  = new View.OnClickListener() {
@@ -105,14 +102,14 @@ public class Upphafsglugginn extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan nothafi
+     * opnar nyja gluggan fyrir annan hop
      */
     private void secondbutton(){
         startActivity(new Intent(this, SecondLevel.class));
 
     };
 
-    /** takki 3
+    /** takki fyrir tridja hop
      *
      */
     View.OnClickListener gotoThirdClickListener  = new View.OnClickListener() {
@@ -128,7 +125,7 @@ public class Upphafsglugginn extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan
+     * opnar nyja gluggan fyrir tridja hop
      */
     private void thirdbutton(){
         startActivity(new Intent(this, SecondLevel.class));
