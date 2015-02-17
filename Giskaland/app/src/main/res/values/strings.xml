@@ -14,10 +14,10 @@
     <string name="thirdLevel">8 - 9 ára</string>
 
     <!-- Games, just example -->
-    <string name="gameOne">Leikur 1</string>
-    <string name="gameTwo">Leikur 2</string>
-    <string name="gameThree">Leikur 3</string>
-    <string name="gameFour">Leikur 4</string>
+    <string name="gameOne">Stærðfræði</string>
+    <string name="gameTwo">Lestur</string>
+    <string name="gameThree">Leikur 1</string>
+    <string name="gameFour">Leikur 2</string>
     <string name="title_activity_four_year">FourYearActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="a_string">Hello world!</string>

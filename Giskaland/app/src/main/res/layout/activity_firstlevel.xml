@@ -5,6 +5,7 @@
     android:layout_height="fill_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:background="@drawable/bak1"
     tools:context="gl.giskaland.FirstLevelActivity">
 
     <!-- Temporary text view -->
