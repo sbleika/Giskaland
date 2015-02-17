@@ -31,7 +31,7 @@
             android:label="@string/title_activity_third_level" >
         </activity>
         <activity
-<<<<<<< HEAD
+
             android:name=".Math_level_1"
             android:label="@string/title_activity_math_level_1" >
         </activity>
@@ -57,11 +57,12 @@
         </activity>
         <activity
             android:name=".Quiz_Level_2"
-            android:label="@string/title_activity_quiz__level_2" >
-=======
+            android:label="@string/title_activity_quiz__level_2">
+    </activity>
+
+        <activity
             android:name=".Quiz_Level_3"
-            android:label="@string/title_activity_quiz__level_3" >
->>>>>>> 1769c52099eb7ae106cbda189cd1bc5a486644c9
+            android:label="@string/title_activity_quiz__level_3">
         </activity>
     </application>
 
