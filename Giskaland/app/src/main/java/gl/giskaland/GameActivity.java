@@ -8,24 +8,19 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class ThirdLevel extends ActionBarActivity {
+public class GameActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third_level);
-    }
-
-    public void openGameActivity (View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        startActivity(intent);
+        setContentView(R.layout.activity_game);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_third_level, menu);
+        getMenuInflater().inflate(R.menu.menu_game, menu);
         return true;
     }
 
