@@ -21,24 +21,28 @@
         android:id="@+id/buttonGameOne"
         android:text="@string/gameOne"
         style="@style/button_style_two"
+        android:onClick="openGameActivity"
         android:layout_below="@+id/tmpGamesText"/>
 
     <Button
         android:id="@+id/buttonGameTwo"
         android:text="@string/gameTwo"
         style="@style/button_style_two"
+        android:onClick="openGameActivity"
         android:layout_below="@+id/tmpGamesText"
         android:layout_toRightOf="@+id/buttonGameOne"/>
 
     <Button
         android:id="@+id/buttonGameThree"
         android:text="@string/gameThree"
+        android:onClick="openGameActivity"
         style="@style/button_style_two"
         android:layout_below="@+id/buttonGameOne"/>
 
     <Button
         android:id="@+id/buttonGameFour"
         android:text="@string/gameFour"
+        android:onClick="openGameActivity"
         style="@style/button_style_two"
         android:layout_below="@+id/buttonGameOne"
         android:layout_toRightOf="@+id/buttonGameThree"/>
