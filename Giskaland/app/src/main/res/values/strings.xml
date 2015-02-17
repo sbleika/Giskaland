@@ -28,6 +28,7 @@
     <string name="a_string">Hello world!</string>
     <string name="title_activity_second_level">SecondLevel</string>
     <string name="title_activity_third_level">ThirdLevel</string>
+<<<<<<< HEAD
     <string name="title_activity_math_level_1">Math_level_1</string>
     <string name="title_activity_math__level_2">Math_Level_2</string>
     <string name="title_activity_math__level_3">Math_Level_3</string>
@@ -35,5 +36,8 @@
     <string name="title_activity_spelling_level_2">Spelling_level_2</string>
     <string name="title_activity_spelling_level_3">Spelling_level_3</string>
     <string name="title_activity_quiz__level_2">Quiz_Level_2</string>
+=======
+    <string name="title_activity_quiz_level_3">Quiz_Level_3</string>
+>>>>>>> 1769c52099eb7ae106cbda189cd1bc5a486644c9
 
 </resources>

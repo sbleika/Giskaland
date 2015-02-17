@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.Button;
+=======
+>>>>>>> 1769c52099eb7ae106cbda189cd1bc5a486644c9
 
 
 public class ThirdLevel extends ActionBarActivity {
@@ -29,7 +32,15 @@ public class ThirdLevel extends ActionBarActivity {
         //ButtongameTwo = (Button) findViewById(R.id.buttonGameTwo);
         //ButtongameTwo.setOnClickListener(gotoThirdClickListener);
 
+<<<<<<< HEAD
     }
+=======
+    public void openGameActivity (View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
+
+>>>>>>> 1769c52099eb7ae106cbda189cd1bc5a486644c9
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
