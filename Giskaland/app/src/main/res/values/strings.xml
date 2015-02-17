@@ -23,5 +23,6 @@
     <string name="a_string">Hello world!</string>
     <string name="title_activity_second_level">SecondLevel</string>
     <string name="title_activity_third_level">ThirdLevel</string>
+    <string name="title_activity_quiz__level_3">Quiz_Level_3</string>
 
 </resources>
