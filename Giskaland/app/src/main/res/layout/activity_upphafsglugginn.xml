@@ -17,7 +17,6 @@
         android:text="@string/firstLevel"
         android:onClick="openFirstLevelActivity"
         style="@style/button_style"
-
         android:src="@drawable/takkar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +28,6 @@
         android:text="@string/secondLevel"
         android:onClick="openSecondLevel"
         style="@style/button_style"
-
         android:src="@drawable/takkar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +41,6 @@
         android:text="@string/thirdLevel"
         android:onClick="openThirdLevel"
         style="@style/button_style"
-
         android:src="@drawable/takkar3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

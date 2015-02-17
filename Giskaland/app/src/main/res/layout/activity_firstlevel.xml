@@ -12,36 +12,52 @@
     <TextView
         android:id="@+id/tmpGamesText"
         android:text="@string/tmpGamesText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="70sp"/>
+        android:textSize="70sp"
+        android:layout_marginTop="188dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <!-- Some games, example, no onclick -->
+
+    <Button
+        android:id="@+id/buttonMathLevel1"
+        android:text="@string/gameMath"
+        style="@style/button_style_two"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/buttonWhatLetter"
+        android:text="@string/WhatLetter"
+        style="@style/button_style_two"
+        android:layout_below="@+id/buttonMathLevel1"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content" />
 
     <Button
         android:id="@+id/buttonGameOne"
         android:text="@string/gameOne"
         style="@style/button_style_two"
-        android:layout_below="@+id/tmpGamesText"/>
+        android:layout_below="@+id/buttonWhatLetter"
+        android:layout_centerHorizontal="true" />
+
 
     <Button
         android:id="@+id/buttonGameTwo"
         android:text="@string/gameTwo"
         style="@style/button_style_two"
-        android:layout_below="@+id/tmpGamesText"
-        android:layout_toRightOf="@+id/buttonGameOne"/>
-
-    <Button
-        android:id="@+id/buttonGameThree"
-        android:text="@string/gameThree"
-        style="@style/button_style_two"
-        android:layout_below="@+id/buttonGameOne"/>
-
-    <Button
-        android:id="@+id/buttonGameFour"
-        android:text="@string/gameFour"
-        style="@style/button_style_two"
         android:layout_below="@+id/buttonGameOne"
-        android:layout_toRightOf="@+id/buttonGameThree"/>
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/returnback"
+        android:id="@+id/buttonReturn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

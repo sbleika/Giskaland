@@ -30,6 +30,34 @@
             android:name=".ThirdLevel"
             android:label="@string/title_activity_third_level" >
         </activity>
+        <activity
+            android:name=".Math_level_1"
+            android:label="@string/title_activity_math_level_1" >
+        </activity>
+        <activity
+            android:name=".Math_Level_2"
+            android:label="@string/title_activity_math__level_2" >
+        </activity>
+        <activity
+            android:name=".Math_Level_3"
+            android:label="@string/title_activity_math__level_3" >
+        </activity>
+        <activity
+            android:name=".Spelling_level_1"
+            android:label="@string/title_activity_spelling_level_1" >
+        </activity>
+        <activity
+            android:name=".Spelling_level_2"
+            android:label="@string/title_activity_spelling_level_2" >
+        </activity>
+        <activity
+            android:name=".Spelling_level_3"
+            android:label="@string/title_activity_spelling_level_3" >
+        </activity>
+        <activity
+            android:name=".Quiz_Level_2"
+            android:label="@string/title_activity_quiz__level_2" >
+        </activity>
     </application>
 
 </manifest>

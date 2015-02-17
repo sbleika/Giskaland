@@ -14,14 +14,26 @@
     <string name="thirdLevel">8 - 9 ára</string>
 
     <!-- Games, just example -->
-    <string name="gameOne">Stærðfræði</string>
-    <string name="gameTwo">Lestur</string>
-    <string name="gameThree">Leikur 1</string>
-    <string name="gameFour">Leikur 2</string>
+    <string name="gameOne">Leikur 1</string>
+    <string name="gameTwo">Leikur 2</string>
+
+    <string name="gameMath">Stærðfræði</string>
+    <string name="gameBrainPuzzle">Spurningarleikuinn</string>
+    <string name="SpellThePic">Hvernig á að skrifa...</string>
+    <string name="WhatLetter">Stafaleikurinn</string>
+
+    <string name="returnback">TIL BAKA</string>
     <string name="title_activity_four_year">FourYearActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="a_string">Hello world!</string>
     <string name="title_activity_second_level">SecondLevel</string>
     <string name="title_activity_third_level">ThirdLevel</string>
+    <string name="title_activity_math_level_1">Math_level_1</string>
+    <string name="title_activity_math__level_2">Math_Level_2</string>
+    <string name="title_activity_math__level_3">Math_Level_3</string>
+    <string name="title_activity_spelling_level_1">Spelling_level_1</string>
+    <string name="title_activity_spelling_level_2">Spelling_level_2</string>
+    <string name="title_activity_spelling_level_3">Spelling_level_3</string>
+    <string name="title_activity_quiz__level_2">Quiz_Level_2</string>
 
 </resources>
