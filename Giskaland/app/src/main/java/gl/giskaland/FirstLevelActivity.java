@@ -16,15 +16,15 @@ public class FirstLevelActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firstlevel);
-        Button ButtonMath;
-        Button ButtonSpelling;
+        Button uttonMathLevel1;
+        Button ButtonWhatLetter;
         Button ButtongameOne;
         Button ButtongameTwo;
 
-        ButtonMath = (Button) findViewById(R.id.buttonMathLevel1);
-        ButtonMath.setOnClickListener(Math_level_1_ClickListener);
-        ButtonSpelling = (Button) findViewById(R.id.buttonWhatLetter);
-        ButtonSpelling.setOnClickListener(What_Letter_ClickListener);
+        uttonMathLevel1 = (Button) findViewById(R.id.buttonMathLevel1);
+        uttonMathLevel1.setOnClickListener(Math_level_1_ClickListener);
+        ButtonWhatLetter = (Button) findViewById(R.id.buttonWhatLetter);
+        ButtonWhatLetter.setOnClickListener(What_Letter_ClickListener);
         //ButtongameOne = (Button) findViewById(R.id.buttonGameOne);
         //ButtongameOne.setOnClickListener(gotoThirdClickListener);
         //ButtongameTwo = (Button) findViewById(R.id.buttonGameTwo);
