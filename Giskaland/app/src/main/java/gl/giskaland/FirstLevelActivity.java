@@ -16,13 +16,13 @@ public class FirstLevelActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firstlevel);
-        Button uttonMathLevel1;
+        Button ButtonMathLevel1;
         Button ButtonWhatLetter;
         Button ButtongameOne;
         Button ButtongameTwo;
 
-        uttonMathLevel1 = (Button) findViewById(R.id.buttonMathLevel1);
-        uttonMathLevel1.setOnClickListener(Math_level_1_ClickListener);
+        ButtonMathLevel1 = (Button) findViewById(R.id.buttonMathLevel1);
+        ButtonMathLevel1.setOnClickListener(Math_level_1_ClickListener);
         ButtonWhatLetter = (Button) findViewById(R.id.buttonWhatLetter);
         ButtonWhatLetter.setOnClickListener(What_Letter_ClickListener);
         //ButtongameOne = (Button) findViewById(R.id.buttonGameOne);
@@ -30,7 +30,11 @@ public class FirstLevelActivity extends ActionBarActivity {
         //ButtongameTwo = (Button) findViewById(R.id.buttonGameTwo);
         //ButtongameTwo.setOnClickListener(gotoThirdClickListener);
 
-    }
+
+        Button ButtonReturn;
+        ButtonReturn = (Button) findViewById(R.id.buttonReturn);
+        ButtonReturn.setOnClickListener(Return_ClickListener);
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,6 +103,29 @@ public class FirstLevelActivity extends ActionBarActivity {
      */
     private void What_Letter(){
         startActivity(new Intent(this, Spelling_level_1.class));
+
+    };
+
+    /** takki til að fara a upphafskja
+     *
+     */
+    View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
+        /**
+         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+
+            Return();
+        }
+    };
+
+    /**
+     * fer til baka i upphafsskja
+     */
+    private void Return(){
+        startActivity(new Intent(this, Upphafsglugginn.class));
 
     };
 

@@ -29,6 +29,10 @@ public class SecondLevel extends ActionBarActivity {
         //ButtongameTwo = (Button) findViewById(R.id.buttonGameTwo);
         //ButtongameTwo.setOnClickListener(gotoThirdClickListener);
 
+        Button ButtonReturn;
+        ButtonReturn = (Button) findViewById(R.id.buttonReturn);
+        ButtonReturn.setOnClickListener(Return_ClickListener);
+
     }
 
     public void openGameActivity (View view) {
@@ -126,6 +130,29 @@ public class SecondLevel extends ActionBarActivity {
      */
     private void BrainPuzzle(){
         startActivity(new Intent(this, Quiz_Level_2.class));
+
+    };
+
+    /** takki til að fara a upphafskja
+     *
+     */
+    View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
+        /**
+         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+
+            Return();
+        }
+    };
+
+    /**
+     * fer til baka i upphafsskja
+     */
+    private void Return(){
+        startActivity(new Intent(this, Upphafsglugginn.class));
 
     };
 

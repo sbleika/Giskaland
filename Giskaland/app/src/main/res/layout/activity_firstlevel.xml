@@ -27,7 +27,7 @@
         style="@style/button_style_two"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:onClick="openGameActivity"/>
+       />
 
     <Button
         android:id="@+id/buttonWhatLetter"
@@ -40,7 +40,6 @@
     <Button
         android:id="@+id/buttonGameOne"
         android:text="@string/gameOne"
-        android:onClick="openGameActivity"
         android:layout_below="@+id/buttonWhatLetter"
         android:layout_centerHorizontal="true"
         style="@style/button_style_two"
@@ -50,7 +49,6 @@
     <Button
         android:id="@+id/buttonGameTwo"
         android:text="@string/gameTwo"
-        android:onClick="openGameActivity"
         style="@style/button_style_two"
         android:layout_below="@+id/buttonGameOne"
         android:layout_centerHorizontal="true"
