@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -20,7 +22,7 @@ public class Math_Level_3 extends ActionBarActivity {
     Boolean Divide;
 
     int last_num;
-
+    String MyAns;
     int SCORE;
 
     @Override
@@ -28,8 +30,132 @@ public class Math_Level_3 extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_level_3);
 
+        Button reset;
+        reset = (Button) findViewById(R.id.Newbutton);
+        reset.setOnClickListener(rest);
+        Button clear;
+        clear = (Button) findViewById(R.id.Clearbutton);
+        clear.setOnClickListener(clearnum);
+        Button Answer;
+        Answer = (Button) findViewById(R.id.Answerbutton);
+        Answer.setOnClickListener(AnswerQ);
+
         makeRandom(); // new numbers Restart
+        // set up the buttons
+        //********************************************************************
+        ImageButton zero;
+        zero = (ImageButton) findViewById(R.id.zerobutton_0);
+        zero.setOnClickListener(Numlistner);
+        ImageButton one;
+        one = (ImageButton) findViewById(R.id.onebutton_1);
+        one.setOnClickListener(Numlistner);
+        ImageButton two;
+        two = (ImageButton) findViewById(R.id.twobutton_2);
+        two.setOnClickListener(Numlistner);
+        ImageButton tree;
+        tree = (ImageButton) findViewById(R.id.treebutton_3);
+        tree.setOnClickListener(Numlistner);
+        ImageButton four;
+        four = (ImageButton) findViewById(R.id.fourbutton_4);
+        four.setOnClickListener(Numlistner);
+        ImageButton five;
+        five = (ImageButton) findViewById(R.id.fivebutton_5);
+        five.setOnClickListener(Numlistner);
+        ImageButton six;
+        six = (ImageButton) findViewById(R.id.sixbutton_6);
+        six.setOnClickListener(Numlistner);
+        ImageButton seven;
+        seven = (ImageButton) findViewById(R.id.sevenbutton_7);
+        seven.setOnClickListener(Numlistner);
+        ImageButton eigth;
+        eigth = (ImageButton) findViewById(R.id.eigthbutton_8);
+        eigth.setOnClickListener(Numlistner);
+        ImageButton nine;
+        nine = (ImageButton) findViewById(R.id.ninebutton_9);
+        nine.setOnClickListener(Numlistner);
+
+        //********************************************************************
     }
+
+    /**
+     *
+     */
+    View.OnClickListener AnswerQ = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+            EditText editText;
+            editText = (EditText) findViewById(R.id.answerView);
+
+            int Ans = Integer.parseInt(editText.getText().toString());
+            if(Ans == IBnum1value*IBnum2value || Ans == IBnum1value/IBnum2value){
+                makeRandom();
+            }
+            System.out.println("answer");
+        }
+    };
+    /**
+     *
+     */
+    View.OnClickListener rest = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+
+            makeRandom();
+            System.out.println("newwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+        }
+    };
+    /**
+     *
+     */
+    View.OnClickListener clearnum = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+            ClearText();
+        }
+    };
+
+    public void ClearText(){
+        EditText editText;
+        editText = (EditText) findViewById(R.id.answerView);
+
+        editText.setText("0");
+
+        System.out.println("clear");
+    }
+    /**
+     *
+     */
+    View.OnClickListener Numlistner = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+            EditText editText;
+            editText = (EditText) findViewById(R.id.answerView);
+
+            String viewId = view.getResources().getResourceName(view.getId());
+            String ID = viewId.substring(viewId.lastIndexOf('_') + 1);
+
+            MyAns = editText.getText().toString();
+            if(MyAns.equals("0")){
+                editText.setText(ID);
+            }else if (Integer.parseInt(MyAns)<200 && MyAns.length()<3){
+                editText.append(ID);
+            }
+            System.out.println(ID);
+        }
+    };
+
 
     /**
      * put new numbers to the buttons
@@ -42,7 +168,7 @@ public class Math_Level_3 extends ActionBarActivity {
         Multiply = false;
         Divide = false;
         //********************************************************************
-
+        ClearText();
         // set up the buttons
         //********************************************************************
         ImageButton IBnum1;
@@ -78,8 +204,14 @@ public class Math_Level_3 extends ActionBarActivity {
      * @param view
      */
     public void setRandomnum1(ImageView view){
+        int randomNum = -1;
         // random from 0 to 10
-        int randomNum = ((int) (Math.random()*11));
+        if(Multiply){
+            randomNum = ((int) (Math.random()*11));
+        }
+        else if(Divide){
+            randomNum = ((int) Math.ceil(Math.random() * (10)));
+        }
 
         IBnum1value = randomNum;
 
@@ -104,10 +236,10 @@ public class Math_Level_3 extends ActionBarActivity {
             last_num = (IBnum1value * randomNum);
         } else if (Divide) {
             // from 0 to 10-the nub-mber we are adding to
-            randomNum = ((int) (Math.random() * (11)));
+            randomNum = ((int) Math.ceil(Math.random() * (10)));
             // we dont want the same outcome 2x in a row
             while (((IBnum1value + randomNum) == last_num) || (IBnum1value % randomNum != 0)) {
-                randomNum = ((int) (Math.random() * (11)));
+                randomNum = ((int) Math.ceil(Math.random() * (10)));
             }
             last_num = (IBnum1value + randomNum);
         }
