@@ -7,7 +7,133 @@
     android:background="@drawable/bak1"
     tools:context="gl.giskaland.Math_Level_3">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/zerobutton"
+        android:src="@drawable/zero"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/onebutton"
+        android:src="@drawable/one"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/zerobutton"
+        android:layout_toEndOf="@+id/zerobutton" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/twobutton"
+        android:src="@drawable/two"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/onebutton"
+        android:layout_toEndOf="@+id/zerobutton" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/treebutton"
+        android:src="@drawable/tree"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/twobutton"
+        android:layout_toEndOf="@+id/zerobutton" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fourbutton"
+        android:src="@drawable/four"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/treebutton"
+        android:layout_toEndOf="@+id/zerobutton" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fivebutton"
+        android:src="@drawable/five"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/fourbutton"
+        android:layout_toEndOf="@+id/zerobutton" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sixbutton"
+        android:src="@drawable/six"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/fivebutton"
+        android:layout_toEndOf="@+id/zerobutton" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sevenbutton"
+        android:src="@drawable/seven"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/sixbutton"
+        android:layout_toEndOf="@+id/zerobutton" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eigthbutton"
+        android:src="@drawable/eigth"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/sevenbutton"
+        android:layout_toEndOf="@+id/zerobutton" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ninebutton"
+        android:src="@drawable/nine"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/eigthbutton"
+        android:layout_toEndOf="@+id/zerobutton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/answerView"
+        android:layout_above="@+id/fourbutton"
+        android:layout_centerHorizontal="true"
+        android:textSize="100dp"
+        android:textIsSelectable="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/OPbutton"
+        android:src="@drawable/multiply"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/num1button"
+        android:src="@drawable/nine"
+        android:layout_alignTop="@+id/OPbutton"
+        android:layout_alignLeft="@+id/answerView"
+        android:layout_alignStart="@+id/answerView" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/num2button"
+        android:src="@drawable/nine"
+        android:layout_alignTop="@+id/OPbutton"
+        android:layout_alignRight="@+id/answerView"
+        android:layout_alignEnd="@+id/answerView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/score"
+        android:id="@+id/TextMathLevel3score"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

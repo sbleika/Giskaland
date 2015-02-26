@@ -28,7 +28,6 @@
     <ImageButton
         android:id="@+id/buttonSecondLevel"
         android:text="@string/secondLevel"
-        android:onClick="openSecondLevel"
         style="@style/button_style"
         android:src="@drawable/takkar2"
         android:layout_width="wrap_content"
@@ -41,7 +40,6 @@
     <ImageButton
         android:id="@+id/buttonThirdLevel"
         android:text="@string/thirdLevel"
-        android:onClick="openThirdLevel"
         style="@style/button_style"
         android:src="@drawable/takkar3"
         android:layout_width="wrap_content"
