@@ -11,7 +11,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/zerobutton"
+        android:id="@+id/zerobutton_0"
         android:src="@drawable/zero"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -20,83 +20,83 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/onebutton"
+        android:id="@+id/onebutton_1"
         android:src="@drawable/one"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/zerobutton"
-        android:layout_toEndOf="@+id/zerobutton" />
+        android:layout_toRightOf="@+id/zerobutton_0"
+        android:layout_toEndOf="@+id/zerobutton_0" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/twobutton"
+        android:id="@+id/twobutton_2"
         android:src="@drawable/two"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/onebutton"
-        android:layout_toEndOf="@+id/zerobutton" />
+        android:layout_toRightOf="@+id/onebutton_1"
+        android:layout_toEndOf="@+id/zerobutton_0" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/treebutton"
+        android:id="@+id/treebutton_3"
         android:src="@drawable/tree"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/twobutton"
-        android:layout_toEndOf="@+id/zerobutton" />
+        android:layout_toRightOf="@+id/twobutton_2"
+        android:layout_toEndOf="@+id/zerobutton_0" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fourbutton"
+        android:id="@+id/fourbutton_4"
         android:src="@drawable/four"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/treebutton"
-        android:layout_toEndOf="@+id/zerobutton" />
+        android:layout_toRightOf="@+id/treebutton_3"
+        android:layout_toEndOf="@+id/zerobutton_0" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fivebutton"
+        android:id="@+id/fivebutton_5"
         android:src="@drawable/five"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/fourbutton"
-        android:layout_toEndOf="@+id/zerobutton" />
+        android:layout_toRightOf="@+id/fourbutton_4"
+        android:layout_toEndOf="@+id/zerobutton_0" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sixbutton"
+        android:id="@+id/sixbutton_6"
         android:src="@drawable/six"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/fivebutton"
-        android:layout_toEndOf="@+id/zerobutton" />
+        android:layout_toRightOf="@+id/fivebutton_5"
+        android:layout_toEndOf="@+id/zerobutton_0" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sevenbutton"
+        android:id="@+id/sevenbutton_7"
         android:src="@drawable/seven"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/sixbutton"
-        android:layout_toEndOf="@+id/zerobutton" />
+        android:layout_toRightOf="@+id/sixbutton_6"
+        android:layout_toEndOf="@+id/zerobutton_0" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/eigthbutton"
+        android:id="@+id/eigthbutton_8"
         android:src="@drawable/eigth"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/sevenbutton"
-        android:layout_toEndOf="@+id/zerobutton" />
+        android:layout_toRightOf="@+id/sevenbutton_7"
+        android:layout_toEndOf="@+id/zerobutton_0" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ninebutton"
+        android:id="@+id/ninebutton_9"
         android:src="@drawable/nine"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/eigthbutton"
-        android:layout_toEndOf="@+id/zerobutton" />
+        android:layout_toRightOf="@+id/eigthbutton_8"
+        android:layout_toEndOf="@+id/zerobutton_0" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/Ans"
         android:id="@+id/answerView"
-        android:layout_above="@+id/fourbutton"
+        android:layout_above="@+id/fourbutton_4"
         android:layout_centerHorizontal="true"
         android:textSize="100dp"
         android:textIsSelectable="true" />
@@ -136,4 +136,34 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Answer"
+        android:id="@+id/Answerbutton"
+        android:layout_above="@+id/ninebutton_9"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="50dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Clear"
+        android:id="@+id/Clearbutton"
+        android:layout_above="@+id/Answerbutton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="25dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/newQ"
+        android:id="@+id/Newbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="25dp" />
 </RelativeLayout>
