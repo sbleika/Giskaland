@@ -128,7 +128,7 @@ public class Upphafsglugginn extends ActionBarActivity {
      * opnar nyja gluggan fyrir tridja hop
      */
     private void thirdbutton(){
-        startActivity(new Intent(this, SecondLevel.class));
+        startActivity(new Intent(this, ThirdLevel.class));
 
     };
 }
