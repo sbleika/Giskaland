@@ -29,3 +29,7 @@ proguard/
 *.log
 
 
+Giskaland/Giskaland.iml
+Giskaland/.idea/gradle.xml
+Giskaland/app/app.iml
+Giskaland/.idea/misc.xml
