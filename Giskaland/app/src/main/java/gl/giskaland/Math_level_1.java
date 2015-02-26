@@ -183,6 +183,8 @@ public class Math_level_1 extends ActionBarActivity {
             IBout4value = num;
         }
 
+
+
         if (num == 1) {
             view.setImageResource(R.drawable.one);
             //String viewId = view.getResources().getResourceName(view.getId());
