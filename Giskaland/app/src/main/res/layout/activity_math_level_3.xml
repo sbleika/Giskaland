@@ -15,7 +15,8 @@
         android:src="@drawable/zero"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -24,7 +25,9 @@
         android:src="@drawable/one"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/zerobutton_0"
-        android:layout_toEndOf="@+id/zerobutton_0" />
+        android:layout_toEndOf="@+id/zerobutton_0"
+        android:background="@android:color/transparent"/>
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +35,8 @@
         android:src="@drawable/two"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/onebutton_1"
-        android:layout_toEndOf="@+id/zerobutton_0" />
+        android:layout_toEndOf="@+id/zerobutton_0"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -41,7 +45,9 @@
         android:src="@drawable/tree"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/twobutton_2"
-        android:layout_toEndOf="@+id/zerobutton_0" />
+        android:layout_toEndOf="@+id/zerobutton_0"
+        android:background="@android:color/transparent"/>
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +63,9 @@
         android:src="@drawable/five"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/fourbutton_4"
-        android:layout_toEndOf="@+id/zerobutton_0" />
+        android:layout_toEndOf="@+id/zerobutton_0"
+        android:background="@android:color/transparent"/>
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,7 +73,9 @@
         android:src="@drawable/six"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/fivebutton_5"
-        android:layout_toEndOf="@+id/zerobutton_0" />
+        android:layout_toEndOf="@+id/zerobutton_0"
+        android:background="@android:color/transparent"/>
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +83,9 @@
         android:src="@drawable/seven"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/sixbutton_6"
-        android:layout_toEndOf="@+id/zerobutton_0" />
+        android:layout_toEndOf="@+id/zerobutton_0"
+        android:background="@android:color/transparent"/>
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,7 +93,9 @@
         android:src="@drawable/eigth"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/sevenbutton_7"
-        android:layout_toEndOf="@+id/zerobutton_0" />
+        android:layout_toEndOf="@+id/zerobutton_0"
+        android:background="@android:color/transparent"/>
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,7 +103,8 @@
         android:src="@drawable/nine"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/eigthbutton_8"
-        android:layout_toEndOf="@+id/zerobutton_0" />
+        android:layout_toEndOf="@+id/zerobutton_0"
+        android:background="@android:color/transparent"/>
 
     <EditText
         android:layout_width="300dp"
@@ -107,7 +122,8 @@
         android:id="@+id/OPbutton"
         android:src="@drawable/multiply"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -116,7 +132,8 @@
         android:src="@drawable/nine"
         android:layout_alignTop="@+id/OPbutton"
         android:layout_alignLeft="@+id/answerView"
-        android:layout_alignStart="@+id/answerView" />
+        android:layout_alignStart="@+id/answerView"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -125,7 +142,8 @@
         android:src="@drawable/nine"
         android:layout_alignTop="@+id/OPbutton"
         android:layout_alignRight="@+id/answerView"
-        android:layout_alignEnd="@+id/answerView" />
+        android:layout_alignEnd="@+id/answerView"
+        android:background="@android:color/transparent"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -135,7 +153,8 @@
         android:id="@+id/TextMathLevel3score"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -145,7 +164,8 @@
         android:layout_above="@+id/ninebutton_9"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="50dp" />
+        android:textSize="50dp"
+        android:background="@android:color/transparent"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -155,7 +175,8 @@
         android:layout_above="@+id/Answerbutton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:background="@android:color/transparent"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -165,5 +186,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:background="@android:color/transparent"/>
 </RelativeLayout>
