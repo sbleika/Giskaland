@@ -20,8 +20,10 @@
         android:src="@drawable/takkar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:background="@android:color/transparent"
+        android:layout_above="@+id/buttonSecondLevel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp" />
 
     <ImageButton
         android:id="@+id/buttonSecondLevel"
@@ -30,10 +32,10 @@
         android:src="@drawable/takkar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonFirstLevel"
-        android:layout_alignLeft="@+id/buttonFirstLevel"
-        android:layout_alignStart="@+id/buttonFirstLevel"
-        android:layout_centerInParent="true" />
+        android:background="@android:color/transparent"
+        android:layout_above="@+id/buttonThirdLevel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp" />
 
     <ImageButton
         android:id="@+id/buttonThirdLevel"
@@ -42,10 +44,10 @@
         android:src="@drawable/takkar3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonSecondLevel"
-        android:layout_alignLeft="@+id/buttonSecondLevel"
-        android:layout_alignStart="@+id/buttonSecondLevel"
-        android:layout_centerInParent="true" />
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp" />
 
 
 </RelativeLayout>

@@ -10,6 +10,38 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+        android:id="@+id/IBplusmin"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/plus"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IBnum1"
+        android:src="@drawable/one"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/IBplusmin"
+        android:layout_toStartOf="@+id/IBplusmin"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IBnum2"
+        android:src="@drawable/two"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/IBplusmin"
+        android:layout_toEndOf="@+id/IBplusmin"
+        android:background="@android:color/transparent"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+>>>>>>> fc4656f768aeba90002a0e6c3239a7c1c3989025
         android:id="@+id/IBout1"
         android:src="@drawable/nine"
         android:layout_marginBottom="74dp"
