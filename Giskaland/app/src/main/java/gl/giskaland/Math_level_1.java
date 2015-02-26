@@ -1,5 +1,7 @@
 package gl.giskaland;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,11 +31,14 @@ public class Math_level_1 extends ActionBarActivity {
 
     int last_num;
 
+    int SCORE;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_level_1);
+
         makeRandom(); // new numbers Restart
     }
 
@@ -233,21 +238,21 @@ public class Math_level_1 extends ActionBarActivity {
                 IBout3value == randomNum ||
                 IBout4value == randomNum){
 
-            System.out.println(randomNum);
+            //System.out.println(randomNum);
             randomNum = ((int) Math.ceil(Math.random()*11)) - 1;
-            System.out.println(IBout1value);
-            System.out.println(IBout2value);
-            System.out.println(IBout3value);
-            System.out.println(IBout4value);
-            System.out.println(randomNum);
+            //System.out.println(IBout1value);
+            //System.out.println(IBout2value);
+            //System.out.println(IBout3value);
+            //System.out.println(IBout4value);
+            //System.out.println(randomNum);
         }
 
         String viewId = view.getResources().getResourceName(view.getId());
         String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
 
-        System.out.println("randomnum  for ");
-        System.out.println(ID);
-        System.out.println(randomNum);
+        //System.out.println("randomnum  for ");
+        //System.out.println(ID);
+        //System.out.println(randomNum);
 
         if(ID.equals("IBout1")) {
             IBout1value = randomNum;
@@ -406,6 +411,13 @@ public class Math_level_1 extends ActionBarActivity {
         }
     }
 
+    public void saveScore(){
+
+    }
+
+    public void getScore(){
+
+    }
     /**
      *
      */
@@ -417,7 +429,12 @@ public class Math_level_1 extends ActionBarActivity {
         public void onClick(View view) {
             if(isIBout1){
                 makeRandom();
+                SCORE++;
+                saveScore();
             }
+            else SCORE--;
+
+            System.out.println(SCORE);
         }
     };
 
@@ -432,7 +449,12 @@ public class Math_level_1 extends ActionBarActivity {
         public void onClick(View view) {
             if(isIBout2){
                 makeRandom();
+                SCORE++;
+                saveScore();
             }
+            else SCORE--;
+
+            System.out.println(SCORE);
         }
     };
 
@@ -447,7 +469,12 @@ public class Math_level_1 extends ActionBarActivity {
         public void onClick(View view) {
             if(isIBout3){
                 makeRandom();
+                SCORE++;
+                saveScore();
             }
+            else SCORE--;
+
+            System.out.println(SCORE);
         }
     };
 
@@ -462,7 +489,12 @@ public class Math_level_1 extends ActionBarActivity {
         public void onClick(View view) {
             if(isIBout4){
                 makeRandom();
+                SCORE++;
+                saveScore();
             }
+            else SCORE--;
+
+            System.out.println(SCORE);
         }
     };
 
