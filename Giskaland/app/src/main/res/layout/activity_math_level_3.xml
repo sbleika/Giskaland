@@ -117,7 +117,10 @@
         android:layout_alignTop="@+id/OPbutton"
         android:layout_alignLeft="@+id/answerView"
         android:layout_alignStart="@+id/answerView"
+<<<<<<< HEAD
         android:scaleType="fitXY" />
+        android:background="@android:color/transparent"/>
+>>>>>>> origin/master
 
     <ImageButton
         android:layout_width="wrap_content"

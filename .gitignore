@@ -37,3 +37,5 @@ Giskaland/.idea/gradle.xml
 Giskaland/app/app.iml
 Giskaland/.idea/misc.xml
 >>>>>>> origin/master
+*.iml
+Giskaland/app/app.iml
