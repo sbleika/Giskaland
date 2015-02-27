@@ -237,14 +237,8 @@ public class Math_Level_2 extends ActionBarActivity {
                 IBout2value == randomNum ||
                 IBout3value == randomNum ||
                 IBout4value == randomNum){
-
             //System.out.println(randomNum);
             randomNum = ((int) Math.ceil(Math.random()*11)) - 1;
-            //System.out.println(IBout1value);
-            //System.out.println(IBout2value);
-            //System.out.println(IBout3value);
-            //System.out.println(IBout4value);
-            //System.out.println(randomNum);
         }
 
         String viewId = view.getResources().getResourceName(view.getId());
@@ -267,39 +261,7 @@ public class Math_Level_2 extends ActionBarActivity {
             IBout4value = randomNum;
         }
 
-        if (randomNum == 0) {
-            view.setImageResource(R.drawable.zero);
-        }
-        else if (randomNum == 1) {
-            view.setImageResource(R.drawable.one);
-        }
-        else if (randomNum == 2) {
-            view.setImageResource(R.drawable.two);
-        }
-        else if (randomNum == 3) {
-            view.setImageResource(R.drawable.tree);
-        }
-        else if (randomNum == 4) {
-            view.setImageResource(R.drawable.four);
-        }
-        else if (randomNum == 5) {
-            view.setImageResource(R.drawable.five);
-        }
-        else if (randomNum == 6) {
-            view.setImageResource(R.drawable.six);
-        }
-        else if (randomNum == 7) {
-            view.setImageResource(R.drawable.seven);
-        }
-        else if (randomNum == 8) {
-            view.setImageResource(R.drawable.eigth);
-        }
-        else if (randomNum == 9) {
-            view.setImageResource(R.drawable.nine);
-        }
-        else if (randomNum == 10) {
-            view.setImageResource(R.drawable.ten);
-        }
+        setIMG(randomNum, view);
     }
 
     /**

@@ -98,7 +98,7 @@
         android:id="@+id/answerView"
         android:layout_above="@+id/fourbutton_4"
         android:layout_centerHorizontal="true"
-        android:textSize="100dp"
+        android:textSize="100sp"
         android:textIsSelectable="true" />
 
     <ImageButton
@@ -116,7 +116,8 @@
         android:src="@drawable/nine"
         android:layout_alignTop="@+id/OPbutton"
         android:layout_alignLeft="@+id/answerView"
-        android:layout_alignStart="@+id/answerView" />
+        android:layout_alignStart="@+id/answerView"
+        android:scaleType="fitXY" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -145,7 +146,7 @@
         android:layout_above="@+id/ninebutton_9"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="50dp" />
+        android:textSize="50sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -155,7 +156,7 @@
         android:layout_above="@+id/Answerbutton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -165,5 +166,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 </RelativeLayout>
