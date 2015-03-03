@@ -1,7 +1,5 @@
 package gl.giskaland;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -81,7 +79,7 @@ public class Math_Level_2 extends ActionBarActivity {
         IBout4 = (ImageButton) findViewById(R.id.IBout4);
         IBout4.setOnClickListener(checkIfRightAnsout4);
         ImageButton IBplus_min;
-        IBplus_min = (ImageButton) findViewById(R.id.IBplusmin);
+        IBplus_min = (ImageButton) findViewById(R.id.IMG);
         //********************************************************************
 
         // set the operator to plus or minus

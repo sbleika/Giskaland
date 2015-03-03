@@ -10,7 +10,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/IBplusmin"
+        android:id="@+id/IMG"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/plus"/>
@@ -21,8 +21,8 @@
         android:id="@+id/IBnum1"
         android:src="@drawable/zero"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/IBplusmin"
-        android:layout_toStartOf="@+id/IBplusmin" />
+        android:layout_toLeftOf="@+id/IMG"
+        android:layout_toStartOf="@+id/IMG" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -30,8 +30,8 @@
         android:id="@+id/IBnum2"
         android:src="@drawable/zero"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/IBplusmin"
-        android:layout_toEndOf="@+id/IBplusmin" />
+        android:layout_toRightOf="@+id/IMG"
+        android:layout_toEndOf="@+id/IMG" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -60,8 +60,8 @@
         android:id="@+id/IBout3"
         android:src="@drawable/zero"
         android:layout_alignTop="@+id/IBout2"
-        android:layout_toRightOf="@+id/IBplusmin"
-        android:layout_toEndOf="@+id/IBplusmin" />
+        android:layout_toRightOf="@+id/IMG"
+        android:layout_toEndOf="@+id/IMG" />
 
     <ImageButton
         android:layout_width="wrap_content"

@@ -10,33 +10,11 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/IBplusmin"
+        android:id="@+id/IMG"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/plus"
+        android:src="@drawable/zero"
         android:background="@android:color/transparent"/>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/IBnum1"
-        android:src="@drawable/one"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/IBplusmin"
-        android:layout_toStartOf="@+id/IBplusmin"
-        android:background="@android:color/transparent"
-        android:layout_marginRight="10dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/IBnum2"
-        android:src="@drawable/two"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/IBplusmin"
-        android:layout_toEndOf="@+id/IBplusmin"
-        android:background="@android:color/transparent"
-        android:layout_marginLeft="10dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -56,33 +34,29 @@
         android:layout_height="wrap_content"
         android:id="@+id/IBout2"
         android:src="@drawable/seven"
+        android:background="@android:color/transparent"
         android:layout_alignTop="@+id/IBout1"
-        android:layout_alignLeft="@+id/IBnum1"
-        android:layout_alignStart="@+id/IBnum1"
-        android:background="@android:color/transparent"/>
+        android:layout_alignRight="@+id/TextMathLevel1score"
+        android:layout_alignEnd="@+id/TextMathLevel1score" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IBout3"
         android:src="@drawable/six"
-        android:layout_alignTop="@+id/IBout2"
-        android:layout_toRightOf="@+id/IBplusmin"
-        android:layout_toEndOf="@+id/IBplusmin"
         android:background="@android:color/transparent"
-        android:layout_marginLeft="10dp" />
+        android:layout_alignTop="@+id/IBout4"
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IBout4"
         android:src="@drawable/five"
-        android:layout_alignTop="@+id/IBout3"
-        android:layout_toRightOf="@+id/IBnum2"
-        android:layout_toEndOf="@+id/IBnum2"
-        android:layout_marginLeft="60dp"
-        android:layout_marginStart="121dp"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/IBout2"
+        android:layout_toRightOf="@+id/IMG"
+        android:layout_toEndOf="@+id/IMG" />
 
     <TextView
         android:layout_width="wrap_content"
