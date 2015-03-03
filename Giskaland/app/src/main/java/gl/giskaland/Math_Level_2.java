@@ -189,41 +189,7 @@ public class Math_Level_2 extends ActionBarActivity {
             IBout4value = num;
         }
 
-
-
-        if (num == 1) {
-            view.setImageResource(R.drawable.one);
-        }
-        else if (num == 2) {
-            view.setImageResource(R.drawable.two);
-        }
-        else if (num == 3) {
-            view.setImageResource(R.drawable.tree);
-        }
-        else if (num == 4) {
-            view.setImageResource(R.drawable.four);
-        }
-        else if (num == 5) {
-            view.setImageResource(R.drawable.five);
-        }
-        else if (num == 6) {
-            view.setImageResource(R.drawable.six);
-        }
-        else if (num == 7) {
-            view.setImageResource(R.drawable.seven);
-        }
-        else if (num == 8) {
-            view.setImageResource(R.drawable.eigth);
-        }
-        else if (num == 9) {
-            view.setImageResource(R.drawable.nine);
-        }
-        else if (num == 10) {
-            view.setImageResource(R.drawable.ten);
-        }
-        else if (num == 0) {
-            view.setImageResource(R.drawable.zero);
-        }
+        setIMG(num, view);
     }
 
     /**
@@ -232,21 +198,17 @@ public class Math_Level_2 extends ActionBarActivity {
      */
     public void setRandom(ImageView view){
         // random from 0 to 10
-        int randomNum = ((int) Math.ceil(Math.random()*11)) - 1;
+        int randomNum = ((int) (Math.random()*11));
         while ( IBout1value == randomNum ||
                 IBout2value == randomNum ||
                 IBout3value == randomNum ||
                 IBout4value == randomNum){
             //System.out.println(randomNum);
-            randomNum = ((int) Math.ceil(Math.random()*11)) - 1;
+            randomNum = ((int)(Math.random()*11));
         }
 
         String viewId = view.getResources().getResourceName(view.getId());
         String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
-
-        //System.out.println("randomnum  for ");
-        //System.out.println(ID);
-        //System.out.println(randomNum);
 
         if(ID.equals("IBout1")) {
             IBout1value = randomNum;
@@ -279,33 +241,31 @@ public class Math_Level_2 extends ActionBarActivity {
 
     /**
      *
+     * @param randomNum
+     * @return
+     */
+    public int cal(int randomNum) {
+        if(Minus)return IBnum1value - randomNum;
+        else return IBnum1value + randomNum;//PLUS
+
+    }
+
+    /**
+     *
      * @param view
      */
     public void setRandomnum2(ImageView view){
         int randomNum = -1;
         // the second number can not be larger than the first number if ew have minus
-        if(Minus){
-            // the second number can not be larger than the first number if we have minus
-            // from 0 to the number we are subtracting from
+        // from 0 to the number we are subtracting from
+        randomNum = ((int) (Math.random()* (IBnum1value+1)));
+        // we dont want the same outcome 2x in a row
+        while(cal(randomNum) == last_num){
             randomNum = ((int) (Math.random()* (IBnum1value+1)));
-            // we dont want the same outcome 2x in a row
-            while((IBnum1value - randomNum)== last_num){
-                randomNum = ((int) (Math.random()* (IBnum1value+1)));
-            }
+        }
+        last_num = cal(randomNum);
 
-            last_num = (IBnum1value - randomNum);
-        }
-        else if (Plus) {
-            // from 0 to 10-the nub-mber we are adding to
-            randomNum = ((int) (Math.random()*(10-IBnum1value+1)));
-            // we dont want the same outcome 2x in a row
-            while((IBnum1value + randomNum)== last_num){
-                randomNum = ((int) (Math.random()*(10-IBnum1value+1)));
-            }
-            last_num = (IBnum1value + randomNum);
-        }
         IBnum2value = randomNum;
-
         setIMG(randomNum, view);
     }
 
