@@ -49,13 +49,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/IBout1"
         android:src="@drawable/zero"
+        android:layout_marginBottom="40dp"
+        android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/TextMathLevel2score"
-        android:layout_alignEnd="@+id/TextMathLevel2score"
-        android:layout_marginRight="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="35dp"
-        android:background="@android:color/transparent"/>
+        android:layout_toRightOf="@+id/TextMathLevel2score"
+        android:layout_toEndOf="@+id/TextMathLevel2score" />
 
     <ImageButton
         android:layout_width="wrap_content"

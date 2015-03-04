@@ -2,14 +2,29 @@ package gl.giskaland;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 
 public class Math_Level_2 extends ActionBarActivity {
+
+    PopupWindow popUp;
+    LinearLayout layout;
+    TextView tv;
+    RadioGroup.LayoutParams params;
+    LinearLayout mainLayout;
+    Button but;
+    boolean POPupINACTIVE = true;
+
     // the numbers that we are working with
     int IBnum1value;
     int IBnum2value;
@@ -35,6 +50,28 @@ public class Math_Level_2 extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        popUp = new PopupWindow(this);
+        layout = new LinearLayout(this);
+        tv = new TextView(this);
+        but = new Button(this);
+        but.setText("Reyna aftur");
+        but.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                popUp.dismiss();
+                POPupINACTIVE = true;
+            }
+        });
+        params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT,
+                RadioGroup.LayoutParams.WRAP_CONTENT);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        tv.setText("RANGT svar !!");
+        tv.setTextSize(48.0F);
+        tv.setTextColor(0xFFFFFFFF);
+        layout.addView(tv, params);
+        layout.addView(but, params);
+        popUp.setContentView(layout);
+
         setContentView(R.layout.activity_math__level_2);
 
         makeRandom(); // new numbers Restart
@@ -256,10 +293,12 @@ public class Math_Level_2 extends ActionBarActivity {
         int randomNum = -1;
         // the second number can not be larger than the first number if ew have minus
         // from 0 to the number we are subtracting from
-        randomNum = ((int) (Math.random()* (IBnum1value+1)));
+        if(Minus)randomNum = ((int) (Math.random()* (IBnum1value+1)));
+        else if(Plus)randomNum = ((int) (Math.random()*(10-IBnum1value+1)));
         // we dont want the same outcome 2x in a row
         while(cal(randomNum) == last_num){
-            randomNum = ((int) (Math.random()* (IBnum1value+1)));
+            if(Minus)randomNum = ((int) (Math.random()* (IBnum1value+1)));
+            else if(Plus)randomNum = ((int) (Math.random()*(10-IBnum1value+1)));;
         }
         last_num = cal(randomNum);
 
@@ -324,13 +363,21 @@ public class Math_Level_2 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout1){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
+            if (POPupINACTIVE) {
+                if (isIBout1) {
+                    makeRandom();
+                    SCORE++;
+                    saveScore();
+                } else {
+                    SCORE--;
 
+                    if (POPupINACTIVE) {
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+            }
             System.out.println(SCORE);
         }
     };
@@ -344,12 +391,21 @@ public class Math_Level_2 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout2){
-                makeRandom();
-                SCORE++;
-                saveScore();
+            if (POPupINACTIVE) {
+                if (isIBout2) {
+                    makeRandom();
+                    SCORE++;
+                    saveScore();
+                } else {
+                    SCORE--;
+
+                    if (POPupINACTIVE) {
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
             }
-            else SCORE--;
 
             System.out.println(SCORE);
         }
@@ -364,13 +420,21 @@ public class Math_Level_2 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout3){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
+            if (POPupINACTIVE) {
+                if (isIBout3) {
+                    makeRandom();
+                    SCORE++;
+                    saveScore();
+                } else {
+                    SCORE--;
 
+                    if (POPupINACTIVE) {
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+            }
             System.out.println(SCORE);
         }
     };
@@ -384,14 +448,23 @@ public class Math_Level_2 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout4){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
+            if (POPupINACTIVE) {
+                if (isIBout4) {
+                    makeRandom();
+                    SCORE++;
+                    saveScore();
+                } else {
+                    SCORE--;
 
-            System.out.println(SCORE);
+                    if (POPupINACTIVE) {
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+
+                System.out.println(SCORE);
+            }
         }
     };
 
