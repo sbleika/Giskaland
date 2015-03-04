@@ -4,55 +4,70 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@drawable/bak1"
+    android:background="@drawable/bakstae"
     tools:context="gl.giskaland.Math_Level_2">
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IMG"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/plus"/>
+        android:src="@drawable/plus"
+        android:layout_marginRight="67dp"
+        android:layout_marginEnd="67dp"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/IBnum1"
+        android:layout_toLeftOf="@+id/IBnum2"
+        android:layout_toStartOf="@+id/IBnum2" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IBnum1"
         android:src="@drawable/zero"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/IMG"
-        android:layout_toStartOf="@+id/IMG" />
+        android:layout_marginRight="59dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginTop="190dp"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/TextMathLevel2score"
+        android:layout_toLeftOf="@+id/IBout3"
+        android:layout_toStartOf="@+id/IBout3" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IBnum2"
         android:src="@drawable/zero"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/IMG"
-        android:layout_toEndOf="@+id/IMG" />
+        android:layout_marginRight="102dp"
+        android:layout_marginEnd="102dp"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/IMG"
+        android:layout_toLeftOf="@+id/IBout4"
+        android:layout_toStartOf="@+id/IBout4" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IBout1"
         android:src="@drawable/zero"
-        android:layout_marginBottom="88dp"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/IBnum1"
-        android:layout_toStartOf="@+id/IBnum1"
-        android:layout_marginRight="94dp"
-        android:layout_marginEnd="94dp" />
+        android:layout_alignRight="@+id/TextMathLevel2score"
+        android:layout_alignEnd="@+id/TextMathLevel2score"
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="35dp"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IBout2"
         android:src="@drawable/zero"
+        android:layout_marginRight="156dp"
+        android:layout_marginEnd="156dp"
+        android:background="@android:color/transparent"
         android:layout_alignTop="@+id/IBout1"
-        android:layout_alignLeft="@+id/IBnum1"
-        android:layout_alignStart="@+id/IBnum1" />
+        android:layout_toLeftOf="@+id/IBnum1"
+        android:layout_toStartOf="@+id/IBnum1" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -60,19 +75,23 @@
         android:id="@+id/IBout3"
         android:src="@drawable/zero"
         android:layout_alignTop="@+id/IBout2"
-        android:layout_toRightOf="@+id/IMG"
-        android:layout_toEndOf="@+id/IMG" />
+        android:layout_alignRight="@+id/IMG"
+        android:layout_alignEnd="@+id/IMG"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IBout4"
         android:src="@drawable/zero"
+        android:layout_marginRight="151dp"
+        android:layout_marginEnd="151dp"
+        android:background="@android:color/transparent"
         android:layout_alignTop="@+id/IBout3"
-        android:layout_toRightOf="@+id/IBnum2"
-        android:layout_toEndOf="@+id/IBnum2"
-        android:layout_marginLeft="121dp"
-        android:layout_marginStart="121dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -82,6 +101,7 @@
         android:id="@+id/TextMathLevel2score"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"/>
 
 </RelativeLayout>
