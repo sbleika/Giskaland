@@ -46,7 +46,10 @@ public class Math_Level_2 extends ActionBarActivity {
 
     int SCORE;
 
-
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,7 +161,7 @@ public class Math_Level_2 extends ActionBarActivity {
         IBout4 = (ImageButton) findViewById(R.id.IBout4);
         //********************************************************************
 
-        // random number from 1 to 4
+        // random number from one to four
         int randomOut = (int) Math.ceil(Math.random()*4);
 
         // set one of four to the correct value
@@ -280,7 +283,7 @@ public class Math_Level_2 extends ActionBarActivity {
      * @return
      */
     public int cal(int randomNum) {
-        if(Minus)return IBnum1value - randomNum;
+        if(Minus)return IBnum1value - randomNum;//Minus
         else return IBnum1value + randomNum;//PLUS
 
     }
