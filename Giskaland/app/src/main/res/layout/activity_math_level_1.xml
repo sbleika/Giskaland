@@ -13,7 +13,7 @@
         android:id="@+id/IMG"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/zero"
+        android:src="@drawable/img_2_ring_3"
         android:background="@android:color/transparent"/>
 
     <ImageButton

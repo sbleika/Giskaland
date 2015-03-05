@@ -7,7 +7,66 @@
     android:background="@drawable/bak1"
     tools:context="gl.giskaland.Spelling_level_1">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IMGspelling"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/api"
+        android:background="@android:color/transparent"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SpellingOut1"
+        android:src="@drawable/sa"
+        android:layout_marginBottom="88dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/IBnum1"
+        android:layout_toStartOf="@+id/IBnum1"
+        android:layout_marginRight="60dp"
+        android:layout_marginEnd="94dp"
+        android:background="@android:color/transparent"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IBout2"
+        android:src="@drawable/sb"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/IBout1"
+        android:layout_alignRight="@+id/TextMathLevel1score"
+        android:layout_alignEnd="@+id/TextMathLevel1score" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IBout3"
+        android:src="@drawable/sd"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/IBout4"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IBout4"
+        android:src="@drawable/sf"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/IBout2"
+        android:layout_toRightOf="@+id/IMG"
+        android:layout_toEndOf="@+id/IMG" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/score"
+        android:id="@+id/TextMathLevel1score"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"/>
 
 </RelativeLayout>
