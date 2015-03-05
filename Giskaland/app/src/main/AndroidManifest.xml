@@ -2,18 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="gl.giskaland" >
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
         android:screenOrientation="landscape"
-        >
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".Upphafsglugginn"
             android:label="@string/app_name"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,63 +20,64 @@
            android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
         </activity>
-
         <activity
             android:name=".FirstLevelActivity"
             android:label="@string/title_activity_four_year"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".SecondLevel"
             android:label="@string/title_activity_second_level"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".ThirdLevel"
             android:label="@string/title_activity_third_level"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
-
             android:name=".Math_level_1"
             android:label="@string/title_activity_math_level_1"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".Math_Level_2"
             android:label="@string/title_activity_math__level_2"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".Math_Level_3"
             android:label="@string/title_activity_math__level_3"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".Spelling_level_1"
             android:label="@string/title_activity_spelling_level_1"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".Spelling_level_2"
             android:label="@string/title_activity_spelling_level_2"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".Spelling_level_3"
             android:label="@string/title_activity_spelling_level_3"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".Quiz_Level_2"
             android:label="@string/title_activity_quiz__level_2"
-            android:screenOrientation="landscape">
-    </activity>
-
+            android:screenOrientation="landscape" >
+        </activity>
         <activity
             android:name=".Quiz_Level_3"
             android:label="@string/title_activity_quiz__level_3"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".TestDbManager"
+            android:label="@string/title_activity_test_db_manager" >
         </activity>
     </application>
 

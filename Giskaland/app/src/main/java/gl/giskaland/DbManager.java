@@ -1,82 +1,136 @@
 package gl.giskaland;
 
-import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by tumsgis on 26.2.2015.
  *
  * DbManager.
- * Currently including a table for Questions and a
- * method to add new questions.
+ * Provides access to the giskaland database.
  */
 public class DbManager extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "giskalandDb";
-    private static final int DB_VERSION = 1;
+    private static String DB_PATH;
+    private static String DB_NAME = "giskaland.db";
+    private SQLiteDatabase myDb;
+    private final Context myContext;
 
-    private static final String TABLE_QUESTIONS = "Questions";
+    public DbManager(Context context) {
+        super(context, DB_NAME, null, 1);
+        this.myContext = context;
 
-    // Database attributes.
-    // private static final String KEY_ID = "id";
-    private static final String KEY_QUESTION = "question";
-    private static final String KEY_ANSWER = "answer";  // The right option
-
-    // Answer options a-d
-    private static final String KEY_OPTA = "opta";
-    private static final String KEY_OPTB = "optb";
-    private static final String KEY_OPTC = "optc";
-    private static final String KEY_OPTD = "optd";
-
-    public DbManager (Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+        String packageName = context.getPackageName();
+        DB_PATH = "/data/data/" + packageName + "/databases/";
     }
 
-    @ Override
-    public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE_QUESTIONS = ""  +
-                "CREATE TABLE IF NOT EXISTS Questions ("      +
-                "question varhar(300),"         +
-                "answer varchar(10),"           +
-                "opta varchar(100),"            +
-                "optb varchar(100),"            +
-                "optc varchar(100),"            +
-                "optd varchar(100),"            +
-                "PRIMARY KEY(question)"         +
-                ");";
+    public void createDatabase() throws IOException {
+        boolean dbExist = checkDatabase();
 
-        db.execSQL(CREATE_TABLE_QUESTIONS);
+        if (dbExist) {
+            // nothing, already exists
+        } else {
+            this.getReadableDatabase();
+
+            try {
+                copyDatabase();
+            } catch (IOException e) {
+                throw new Error("Error copying database");
+            }
+        }
     }
 
-    // Inputs: options is a String array of length 4, containing the
-    //         answering options.
-    public void addQuestions(String question, String answer, String[] options) {
+    private boolean checkDatabase() {
+        SQLiteDatabase db = null;
 
-        if (options.length != 4)
-            throw new IllegalArgumentException("Number of options must be 4.");
+        try {
+            String myPath = DB_PATH + DB_NAME;
+            db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        } catch (SQLiteException e) {
+            System.out.println(DB_PATH + DB_NAME);
+            //throw new Error("Database doesn't exist yet");
+        }
 
-        // Add reference to the database
+        if (db != null) {
+            db.close();
+        }
+
+        return db != null ? true : false;
+    }
+
+    private void copyDatabase() throws IOException {
+        InputStream myInput = myContext.getAssets().open(DB_NAME);
+        String outFileName = DB_PATH + DB_NAME;
+
+        OutputStream myOutput = new FileOutputStream(outFileName);
+
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myInput.read(buffer)) > 0) {
+            myOutput.write(buffer, 0, length);
+        }
+
+        myOutput.flush();
+        myOutput.close();
+        myInput.close();
+    }
+
+    public void openDatabase() throws SQLiteException {
+        // Open database
+        String myPath = DB_PATH + DB_NAME;
+        myDb = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+    }
+
+    // Pre : The Questions table exists in the database.
+    // Return value : An array of Strings containing all the
+    //                elements from the Questions table that have the
+    //                _id id.
+    public List<String> getQuestion(int id) {
+        List<String> data = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT * FROM Questions", null);
+        } catch (SQLiteException e) {
+            System.out.println(e.getMessage());
+        }
 
-        // Handler for inuput values
-        ContentValues values = new ContentValues();
+        System.out.println("PAST THE CURSOR");
 
-        values.put(KEY_QUESTION, question);
-        values.put(KEY_ANSWER, answer);
-        values.put(KEY_OPTA, options[0]);
-        values.put(KEY_OPTB, options[1]);
-        values.put(KEY_OPTC, options[2]);
-        values.put(KEY_OPTD, options[3]);
-
-        db.insert(TABLE_QUESTIONS, null, values);
+        // Maybe populate the data array
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                for (int i = 0; i < 7; i++)
+                    data.add(cursor.getString(i));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return data;
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
-        // Drop older table and make a new version that includes the new updates.
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTIONS);
-        onCreate(db);
+    public synchronized void close() {
+        if (myDb != null)
+            myDb.close();
+
+        super.close();
+
     }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {/*nothing*/}
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {/*nothing*/}
 }
