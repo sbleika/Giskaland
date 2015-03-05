@@ -11,65 +11,68 @@ import android.widget.ImageView;
 
 public class Spelling_level_1 extends ActionBarActivity {
 
-    // to make sure we only get one of each
-    int IBout1value;
-    int IBout2value;
-    int IBout3value;
-    int IBout4value;
+    // to make sure we only get one of each letter
 
-    int IMGvalue;
+    String[] SpellingOut = new String[5];
+
+    String IMGvalue;
 
     // to know where the right answer is
-    Boolean isIBout1 = false;
-    Boolean isIBout2 = false;
-    Boolean isIBout3 = false;
-    Boolean isIBout4 = false;
+    Boolean SpellingOut1 = false;
+    Boolean SpellingOut2 = false;
+    Boolean SpellingOut3 = false;
+    Boolean SpellingOut4 = false;
 
+    // to keep score
     int SCORE;
 
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spelling_level_1);
 
-        makeRandom(); // new numbers Restart
+        makeRandom(); // new letters Restart
     }
 
     /**
-     * put new numbers to the buttons
+     * put new letters to the buttons
      */
     public void makeRandom(){
         // reset all the global values
         //********************************************************************
 
-        IBout1value = -1;
-        IBout2value = -1;
-        IBout3value = -1;
-        IBout4value = -1;
-        IMGvalue = -1;
-        isIBout1 = false;
-        isIBout2 = false;
-        isIBout3 = false;
-        isIBout4 = false;
+        SpellingOut[1] = "1";
+        SpellingOut[2] = "2";
+        SpellingOut[3] = "3";
+        SpellingOut[4] = "4";
+        IMGvalue = "-1";
+        SpellingOut1 = false;
+        SpellingOut2 = false;
+        SpellingOut3 = false;
+        SpellingOut4 = false;
         //********************************************************************
 
         // set up the buttons
         //********************************************************************
         ImageButton IBout1;
-        IBout1 = (ImageButton) findViewById(R.id.IBout1);
+        IBout1 = (ImageButton) findViewById(R.id.SpellingOut1);
         IBout1.setOnClickListener(checkIfRightAnsout1);
         ImageButton IBout2;
-        IBout2 = (ImageButton) findViewById(R.id.IBout2);
+        IBout2 = (ImageButton) findViewById(R.id.SpellingOut2);
         IBout2.setOnClickListener(checkIfRightAnsout2);
         ImageButton IBout3;
-        IBout3 = (ImageButton) findViewById(R.id.IBout3);
+        IBout3 = (ImageButton) findViewById(R.id.SpellingOut3);
         IBout3.setOnClickListener(checkIfRightAnsout3);
         ImageButton IBout4;
-        IBout4 = (ImageButton) findViewById(R.id.IBout4);
+        IBout4 = (ImageButton) findViewById(R.id.SpellingOut4);
         IBout4.setOnClickListener(checkIfRightAnsout4);
         ImageButton IMG;
-        IMG = (ImageButton) findViewById(R.id.IMG);
+        IMG = (ImageButton) findViewById(R.id.IMGspelling);
         //********************************************************************
 
         setRandomnumIMG(IMG);
@@ -86,13 +89,13 @@ public class Spelling_level_1 extends ActionBarActivity {
         // load in buttons
         //********************************************************************
         ImageButton IBout1;
-        IBout1 = (ImageButton) findViewById(R.id.IBout1);
+        IBout1 = (ImageButton) findViewById(R.id.SpellingOut1);
         ImageButton IBout2;
-        IBout2 = (ImageButton) findViewById(R.id.IBout2);
+        IBout2 = (ImageButton) findViewById(R.id.SpellingOut2);
         ImageButton IBout3;
-        IBout3 = (ImageButton) findViewById(R.id.IBout3);
+        IBout3 = (ImageButton) findViewById(R.id.SpellingOut3);
         ImageButton IBout4;
-        IBout4 = (ImageButton) findViewById(R.id.IBout4);
+        IBout4 = (ImageButton) findViewById(R.id.SpellingOut4);
         //********************************************************************
 
         // random number from 1 to 4
@@ -101,7 +104,7 @@ public class Spelling_level_1 extends ActionBarActivity {
         // set one of four to the correct value
         if(randomOut == 1){
             setAnswer(IBout1);
-            isIBout1 = true;
+            SpellingOut1 = true;
             setRandom(IBout4);
             setRandom(IBout2);
             setRandom(IBout3);
@@ -109,7 +112,7 @@ public class Spelling_level_1 extends ActionBarActivity {
 
         if(randomOut == 2){
             setAnswer(IBout2);
-            isIBout2 = true;
+            SpellingOut2 = true;
             setRandom(IBout1);
             setRandom(IBout4);
             setRandom(IBout3);
@@ -117,7 +120,7 @@ public class Spelling_level_1 extends ActionBarActivity {
 
         if(randomOut == 3){
             setAnswer(IBout3);
-            isIBout3 = true;
+            SpellingOut3 = true;
             setRandom(IBout1);
             setRandom(IBout2);
             setRandom(IBout4);
@@ -125,7 +128,7 @@ public class Spelling_level_1 extends ActionBarActivity {
 
         if(randomOut == 4){
             setAnswer(IBout4);
-            isIBout4 = true;
+            SpellingOut4 = true;
             setRandom(IBout1);
             setRandom(IBout2);
             setRandom(IBout3);
@@ -141,20 +144,20 @@ public class Spelling_level_1 extends ActionBarActivity {
         String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
 
         if(ID.equals("IBout1")) {
-            isIBout1 = true;
-            IBout1value = IMGvalue;
+            SpellingOut1 = true;
+            SpellingOut[1] = IMGvalue;
         }
         else if (ID.equals("IBout2")){
-            isIBout2 = true;
-            IBout2value = IMGvalue;
+            SpellingOut2 = true;
+            SpellingOut[2] = IMGvalue;
         }
         else if (ID.equals("IBout3")){
-            isIBout3 = true;
-            IBout3value = IMGvalue;
+            SpellingOut3 = true;
+            SpellingOut[3] = IMGvalue;
         }
         else if (ID.equals("IBout4")){
-            isIBout4 = true;
-            IBout4value = IMGvalue;
+            SpellingOut4 = true;
+            SpellingOut[4] = IMGvalue;
         }
 
         setIMG(IMGvalue, view);
@@ -165,34 +168,53 @@ public class Spelling_level_1 extends ActionBarActivity {
      * @param view
      */
     public void setRandom(ImageView view){
-        // random from 0 to 10
-        int randomNum = ((int) (Math.random()*11));
-        while ( IBout1value == randomNum ||
-                IBout2value == randomNum ||
-                IBout3value == randomNum ||
-                IBout4value == randomNum){
+        // random from a to z
+
+        String letter = getRandomLetter();
+
+        while ( SpellingOut[1].equals(letter) ||
+                SpellingOut[2].equals(letter) ||
+                SpellingOut[3].equals(letter) ||
+                SpellingOut[4].equals(letter)){
             //System.out.println(randomNum);
-            randomNum = ((int)(Math.random()*11));
+            letter = getRandomLetter();
         }
 
-        String viewId = view.getResources().getResourceName(view.getId());
-        String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
+        String ID = getID(view);
 
         if(ID.equals("IBout1")) {
-            IBout1value = randomNum;
+            SpellingOut[1] = letter;
         }
         else if (ID.equals("IBout2")){
-            IBout2value = randomNum;
+            SpellingOut[2] = letter;
         }
         else if (ID.equals("IBout3")){
-            IBout3value = randomNum;
+            SpellingOut[3] = letter;
         }
         else if (ID.equals("IBout4")){
-            IBout4value = randomNum;
+            SpellingOut[4] = letter;
         }
 
-        setIMG(randomNum, view);
+        setIMG(letter, view);
     }
+
+    public String getRandomLetter(){
+        int randomNum = ((int) (Math.random()*32));
+        String randomLetter = Integer.toString(randomNum);
+        String nestnum = Integer.toString(randomNum + 1);
+        String alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10sh_11si_12sii_13sj_14sk_15sl_16sm_17sn_18so_19soo_20sooo_21sp_22sr_23ss_24st_25sth_26su_27suu_28sv_29sx_30sy_31syy_32";
+
+        String letter = alphabet.substring(	alphabet.indexOf(randomLetter) + 2,alphabet.indexOf(nestnum) - 1);
+        System.out.println(letter);
+        return letter;
+    }
+
+    public String getID(View view){
+        String viewId = view.getResources().getResourceName(view.getId());
+        String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
+        return ID;
+    }
+
 
     /**
      *
@@ -200,70 +222,36 @@ public class Spelling_level_1 extends ActionBarActivity {
      */
     public void setRandomnumIMG(ImageView view){
         // random from 0 to 10
-        int IMGnum = ((int) Math.ceil(Math.random()*4));
-        String viewId = view.getResources().getResourceName(view.getId());
-        String ID = viewId.substring(viewId.lastIndexOf('_') + 1);
-        System.out.println(ID);
-        if (IMGnum == 1) {
-            view.setImageResource(R.drawable.img_1_line_2);
-            IMGvalue = 2;
-        }
-        else if (IMGnum == 2) {
-            view.setImageResource(R.drawable.img_2_ring_3);
-            IMGvalue = 3;
-        }
-        else if (IMGnum == 3) {
-            view.setImageResource(R.drawable.img_3_balls_5);
-            IMGvalue = 5;
-        }
-        else if (IMGnum == 4) {
-            view.setImageResource(R.drawable.img_4_hex_6);
-            IMGvalue = 6;
-        }
+        int randomNum = ((int) Math.ceil(Math.random()*5));
+        String randomLetter = Integer.toString(randomNum);
+        String nestnum = Integer.toString(randomNum + 1);
+        String imagies = "1 api_2 balls_3 line_4 hex_5 ring_6";
+        String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nestnum) - 1);
+        System.out.println("letter");
+        System.out.println(letter);
 
+        int resID = getResources().getIdentifier(letter , "drawable", "gl.giskaland");
+        view.setImageResource(resID);
+        System.out.println("resID");
+        System.out.println(resID);
+        IMGvalue = "s" + imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(randomLetter) + 3);
+        System.out.println("IMGvalue");
+        System.out.println(IMGvalue);
     }
 
     /**
      *
-     * @param randomNum
+     * @param randomLetter
      * @param view
      */
-    public void setIMG(int randomNum, ImageView view){
-        System.out.println("randim in set img");
-        System.out.println(randomNum);
-        if (randomNum == 0) {
-            view.setImageResource(R.drawable.zero);
-        }
-        else if (randomNum == 1) {
-            view.setImageResource(R.drawable.one);
-        }
-        else if (randomNum == 2) {
-            view.setImageResource(R.drawable.two);
-        }
-        else if (randomNum == 3) {
-            view.setImageResource(R.drawable.tree);
-        }
-        else if (randomNum == 4) {
-            view.setImageResource(R.drawable.four);
-        }
-        else if (randomNum == 5) {
-            view.setImageResource(R.drawable.five);
-        }
-        else if (randomNum == 6) {
-            view.setImageResource(R.drawable.six);
-        }
-        else if (randomNum == 7) {
-            view.setImageResource(R.drawable.seven);
-        }
-        else if (randomNum == 8) {
-            view.setImageResource(R.drawable.eigth);
-        }
-        else if (randomNum == 9) {
-            view.setImageResource(R.drawable.nine);
-        }
-        else if (randomNum == 10) {
-            view.setImageResource(R.drawable.ten);
-        }
+    public void setIMG(String randomLetter, ImageView view){
+        System.out.println("letter to print");
+        System.out.println(randomLetter);
+
+        int resID = getResources().getIdentifier(randomLetter , "drawable", "gl.giskaland");
+        view.setImageResource(resID);
+        System.out.println();
+
     }
 
     public void saveScore(){
@@ -282,7 +270,7 @@ public class Spelling_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout1){
+            if(SpellingOut1){
                 makeRandom();
                 SCORE++;
                 saveScore();
@@ -302,7 +290,7 @@ public class Spelling_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout2){
+            if(SpellingOut2){
                 makeRandom();
                 SCORE++;
                 saveScore();
@@ -322,7 +310,7 @@ public class Spelling_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout3){
+            if(SpellingOut3){
                 makeRandom();
                 SCORE++;
                 saveScore();
@@ -342,7 +330,7 @@ public class Spelling_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout4){
+            if(SpellingOut4){
                 makeRandom();
                 SCORE++;
                 saveScore();
