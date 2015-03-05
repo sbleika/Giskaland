@@ -74,7 +74,7 @@ public class Math_level_1 extends ActionBarActivity {
 
         setRandomnumIMG(IMG);
 
-        // set random numbers to the 4 options
+        // set random numbers to the four options
         setTheOptions();
     }
 
@@ -133,7 +133,7 @@ public class Math_level_1 extends ActionBarActivity {
     }
 
     /**
-     *
+     *Setting correct value to the button used to call the function
      * @param view
      */
     public void setAnswer(ImageView view){
@@ -161,7 +161,7 @@ public class Math_level_1 extends ActionBarActivity {
     }
 
     /**
-     *
+     *Random numbers
      * @param view
      */
     public void setRandom(ImageView view){
@@ -177,7 +177,7 @@ public class Math_level_1 extends ActionBarActivity {
 
         String viewId = view.getResources().getResourceName(view.getId());
         String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
-
+        //checking randomness
         if(ID.equals("IBout1")) {
             IBout1value = randomNum;
         }
@@ -195,7 +195,7 @@ public class Math_level_1 extends ActionBarActivity {
     }
 
     /**
-     *
+     *pictures and correct answers for counting
      * @param view
      */
     public void setRandomnumIMG(ImageView view){
@@ -274,7 +274,7 @@ public class Math_level_1 extends ActionBarActivity {
 
     }
     /**
-     *
+     *checking for correct answer and adding to score
      */
     View.OnClickListener checkIfRightAnsout1 = new View.OnClickListener() {
         /**
