@@ -34,10 +34,15 @@ public class TestDbManager extends ActionBarActivity {
             throw sqle;
         }
 
-        List<String> list = dbManager.getQuestion(0);
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("TestDbManager " + list.get(i));
-        }
+        List<String> list = dbManager.getData("Questions", 0, 7);
+        for (int i = 0; i < list.size(); i++)
+            System.out.println("Questions " + list.get(i));
+
+        dbManager.updateScore("MathScores", 0, 1, 100);
+
+        list = dbManager.getData("MathScores", 0, 7);
+        for (int i = 0; i < list.size(); i++)
+            System.out.println("MathScores " + list.get(i));
     }
 
 
