@@ -12,7 +12,6 @@ import android.widget.ImageView;
 public class Spelling_level_1 extends ActionBarActivity {
 
     // to make sure we only get one of each letter
-
     String[] SpellingOut = new String[5];
     // the rigth answer
     String IMGvalue;
@@ -25,11 +24,11 @@ public class Spelling_level_1 extends ActionBarActivity {
 
     // to keep score
     int SCORE;
-    // the last outcome
+    // the last outcome in the game before
     int LASTans;
 
     /**
-     *
+     * on opening the activity
      * @param savedInstanceState
      */
     @Override
@@ -37,16 +36,15 @@ public class Spelling_level_1 extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spelling_level_1);
 
-        makeRandom(); // new letters Restart
+        makeRandom(); // start the game
     }
 
     /**
-     * put new letters to the buttons
+     * put new letters to the buttons and a new image to guess on
      */
     public void makeRandom(){
         // reset all the global values
         //********************************************************************
-
         SpellingOut[1] = "1";
         SpellingOut[2] = "2";
         SpellingOut[3] = "3";
@@ -76,8 +74,8 @@ public class Spelling_level_1 extends ActionBarActivity {
         IMG = (ImageButton) findViewById(R.id.IMGspelling);
         //********************************************************************
 
+        // set the image to a random image
         setRandomnumIMG(IMG);
-
         // set random numbers to the 4 options
         setTheOptions();
     }
@@ -137,58 +135,45 @@ public class Spelling_level_1 extends ActionBarActivity {
     }
 
     /**
-     *
+     *  set the rigth answer to one of the buttons
      * @param view
      */
     public void setAnswer(ImageView view){
-        String viewId = view.getResources().getResourceName(view.getId());
-        String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
-        System.out.println("IMGvalue");
-        System.out.println(IMGvalue);
-
-        if(ID.equals("SpellingOut1")) {
-            SpellingOut1 = true;
-            SpellingOut[1] = IMGvalue;
-        }
-        else if (ID.equals("SpellingOut2")){
-            SpellingOut2 = true;
-            SpellingOut[2] = IMGvalue;
-        }
-        else if (ID.equals("SpellingOut3")){
-            SpellingOut3 = true;
-            SpellingOut[3] = IMGvalue;
-        }
-        else if (ID.equals("SpellingOut4")){
-            SpellingOut4 = true;
-            SpellingOut[4] = IMGvalue;
-        }
-
+        //get the id of the button
+        String ID = getID(view);
+        //save the value of the answer to the rigth array place
+        setValue(ID, IMGvalue);
+        //set the rigth image(the letter) to one of the buttons
         setIMG(IMGvalue, view);
     }
 
     /**
-     *
+     *  set a random wrong answer to one of the buttons
      * @param view
      */
     public void setRandom(ImageView view){
-        // random from a to z
-
         String letter = getRandomLetter();
-
+        // make sure we only get the letters once
         while ( SpellingOut[1].equals(letter) ||
                 SpellingOut[2].equals(letter) ||
                 SpellingOut[3].equals(letter) ||
                 SpellingOut[4].equals(letter)){
-            //System.out.println(randomNum);
             letter = getRandomLetter();
         }
-
+        // get the id of the button we are working with
         String ID = getID(view);
-        System.out.println("ID");
-        System.out.println(ID);
-        System.out.println("letter");
-        System.out.println(letter);
+        // save the value of the answer to the rigth array place
+        setValue(ID, letter);
+        // set the rigth image(the letter) to one of the buttons
+        setIMG(letter, view);
+    }
 
+    /**
+     * set a letter to the right place
+     * @param ID id of the button
+     * @param letter the letter to be set
+     */
+    public void setValue(String ID, String letter){
         if(ID.equals("SpellingOut1")) {
             SpellingOut[1] = letter;
         }
@@ -201,21 +186,31 @@ public class Spelling_level_1 extends ActionBarActivity {
         else if (ID.equals("SpellingOut4")){
             SpellingOut[4] = letter;
         }
-
-        setIMG(letter, view);
     }
 
+    /**
+     * returns a random letter
+     * @return a random letter
+     */
     public String getRandomLetter(){
+        // ranom number from 0 to 31
         int randomNum = ((int) (Math.random()*32));
+
         String randomLetter = Integer.toString(randomNum);
         String nestnum = Integer.toString(randomNum + 1);
+        // all the letters
         String alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10sh_11si_12sii_13sj_14sk_15sl_16sm_17sn_18so_19soo_20sooo_21sp_22sr_23ss_24st_25sth_26su_27suu_28sv_29sx_30sy_31syy_32";
-
+        // tke one of the letters
         String letter = alphabet.substring(	alphabet.indexOf(randomLetter) + 2,alphabet.indexOf(nestnum) - 1);
-        System.out.println(letter);
+        //System.out.println(letter);
         return letter;
     }
 
+    /**
+     * to get a id of a view
+     * @param view the button id
+     * @return the id of the button
+     */
     public String getID(View view){
         String viewId = view.getResources().getResourceName(view.getId());
         String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
@@ -246,26 +241,20 @@ public class Spelling_level_1 extends ActionBarActivity {
         String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nextNUMafter) - 1);
         // make the view have the random image
         int resID = getResources().getIdentifier(letter , "drawable", "gl.giskaland");
-
+        // set the letter to the button
         view.setImageResource(resID);
         //set the fyrst letter of the thing on the image to IMGvalue
         IMGvalue = "s" + letter.substring(0,1);
-
     }
 
     /**
-     *
-     * @param randomLetter
-     * @param view
+     * set the image to the button
+     * @param randomLetter a name of the letter to be used
+     * @param view the view
      */
     public void setIMG(String randomLetter, ImageView view){
-        System.out.println("letter to print");
-        System.out.println(randomLetter);
-
         int resID = getResources().getIdentifier(randomLetter , "drawable", "gl.giskaland");
         view.setImageResource(resID);
-        System.out.println();
-
     }
 
     public void saveScore(){
