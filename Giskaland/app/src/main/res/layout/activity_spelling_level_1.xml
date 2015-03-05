@@ -21,42 +21,40 @@
         android:layout_height="wrap_content"
         android:id="@+id/SpellingOut1"
         android:src="@drawable/sa"
-        android:layout_marginBottom="88dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/IBnum1"
-        android:layout_toStartOf="@+id/IBnum1"
-        android:layout_marginRight="60dp"
-        android:layout_marginEnd="94dp"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/IMGspelling"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/IBout2"
+        android:id="@+id/SpellingOut2"
         android:src="@drawable/sb"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/IBout1"
-        android:layout_alignRight="@+id/TextMathLevel1score"
-        android:layout_alignEnd="@+id/TextMathLevel1score" />
+        android:layout_alignTop="@+id/SpellingOut1"
+        android:layout_toLeftOf="@+id/IMGspelling"
+        android:layout_toStartOf="@+id/IMGspelling" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/IBout3"
-        android:src="@drawable/sd"
+        android:id="@+id/SpellingOut3"
+        android:src="@drawable/sg"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/IBout4"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/SpellingOut2"
+        android:layout_toRightOf="@+id/IMGspelling"
+        android:layout_toEndOf="@+id/IMGspelling" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/IBout4"
+        android:id="@+id/SpellingOut4"
         android:src="@drawable/sf"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/IBout2"
-        android:layout_toRightOf="@+id/IMG"
-        android:layout_toEndOf="@+id/IMG" />
+        android:layout_below="@+id/IMGspelling"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
