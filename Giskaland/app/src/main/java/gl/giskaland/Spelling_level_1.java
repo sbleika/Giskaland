@@ -14,7 +14,7 @@ public class Spelling_level_1 extends ActionBarActivity {
     // to make sure we only get one of each letter
 
     String[] SpellingOut = new String[5];
-
+    // the rigth answer
     String IMGvalue;
 
     // to know where the right answer is
@@ -25,7 +25,8 @@ public class Spelling_level_1 extends ActionBarActivity {
 
     // to keep score
     int SCORE;
-
+    // the last outcome
+    int LASTans;
 
     /**
      *
@@ -142,20 +143,22 @@ public class Spelling_level_1 extends ActionBarActivity {
     public void setAnswer(ImageView view){
         String viewId = view.getResources().getResourceName(view.getId());
         String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
+        System.out.println("IMGvalue");
+        System.out.println(IMGvalue);
 
-        if(ID.equals("IBout1")) {
+        if(ID.equals("SpellingOut1")) {
             SpellingOut1 = true;
             SpellingOut[1] = IMGvalue;
         }
-        else if (ID.equals("IBout2")){
+        else if (ID.equals("SpellingOut2")){
             SpellingOut2 = true;
             SpellingOut[2] = IMGvalue;
         }
-        else if (ID.equals("IBout3")){
+        else if (ID.equals("SpellingOut3")){
             SpellingOut3 = true;
             SpellingOut[3] = IMGvalue;
         }
-        else if (ID.equals("IBout4")){
+        else if (ID.equals("SpellingOut4")){
             SpellingOut4 = true;
             SpellingOut[4] = IMGvalue;
         }
@@ -181,17 +184,21 @@ public class Spelling_level_1 extends ActionBarActivity {
         }
 
         String ID = getID(view);
+        System.out.println("ID");
+        System.out.println(ID);
+        System.out.println("letter");
+        System.out.println(letter);
 
-        if(ID.equals("IBout1")) {
+        if(ID.equals("SpellingOut1")) {
             SpellingOut[1] = letter;
         }
-        else if (ID.equals("IBout2")){
+        else if (ID.equals("SpellingOut2")){
             SpellingOut[2] = letter;
         }
-        else if (ID.equals("IBout3")){
+        else if (ID.equals("SpellingOut3")){
             SpellingOut[3] = letter;
         }
-        else if (ID.equals("IBout4")){
+        else if (ID.equals("SpellingOut4")){
             SpellingOut[4] = letter;
         }
 
@@ -217,26 +224,33 @@ public class Spelling_level_1 extends ActionBarActivity {
 
 
     /**
-     *
+     * set a random image to the view
      * @param view
      */
     public void setRandomnumIMG(ImageView view){
-        // random from 0 to 10
-        int randomNum = ((int) Math.ceil(Math.random()*5));
+        int numberOFimages = 5;
+        // random image from 0 to 5
+        int randomNum = ((int) Math.ceil(Math.random()*numberOFimages));
+        // make sure we get new image
+        while (LASTans == randomNum){
+            randomNum = ((int) Math.ceil(Math.random()*numberOFimages));
+        }
+        //make it the lastans so we dont get it next time
+        LASTans = randomNum;
+        //make it string and one number higher
         String randomLetter = Integer.toString(randomNum);
-        String nestnum = Integer.toString(randomNum + 1);
+        String nextNUMafter = Integer.toString(randomNum + 1);
+        // all the images that are avalible
         String imagies = "1 api_2 balls_3 line_4 hex_5 ring_6";
-        String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nestnum) - 1);
-        System.out.println("letter");
-        System.out.println(letter);
-
+        // take one of the names from imagies
+        String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nextNUMafter) - 1);
+        // make the view have the random image
         int resID = getResources().getIdentifier(letter , "drawable", "gl.giskaland");
+
         view.setImageResource(resID);
-        System.out.println("resID");
-        System.out.println(resID);
-        IMGvalue = "s" + imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(randomLetter) + 3);
-        System.out.println("IMGvalue");
-        System.out.println(IMGvalue);
+        //set the fyrst letter of the thing on the image to IMGvalue
+        IMGvalue = "s" + letter.substring(0,1);
+
     }
 
     /**
