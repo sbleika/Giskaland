@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import java.util.List;
+
 
 public class Spelling_level_1 extends ActionBarActivity {
 
@@ -26,6 +28,9 @@ public class Spelling_level_1 extends ActionBarActivity {
     int SCORE;
     // the last outcome in the game before
     int LASTans;
+
+    // DbManager for usage inside this activity
+    private DbManager dbManager = new DbManager(this);
 
     /**
      * on opening the activity
@@ -258,11 +263,20 @@ public class Spelling_level_1 extends ActionBarActivity {
     }
 
     public void saveScore(){
-
+        // TODO : Make SpellingScores table in giskaland.db
+        dbManager.updateScore("SpellingScores", 0, 1, SCORE);
     }
 
-    public void getScore(){
-
+    // Return value : An array of string of length 2 containing
+    //               the tmp score and the total score.
+    public String[] getScore(){
+        // TODO : Make SpellingScores table in giskaland.db
+        List<String> allSpellingScores = dbManager.getData("SpellingScores", 0, 7);
+        String[] score = {
+                allSpellingScores.get(1),   // Tmp score
+                allSpellingScores.get(2)    // Total score
+        };
+        return score;
     }
     /**
      *
@@ -278,9 +292,15 @@ public class Spelling_level_1 extends ActionBarActivity {
                 SCORE++;
                 saveScore();
             }
-            else SCORE--;
+            else {
+                SCORE--;
+                if (SCORE < 0) SCORE = 0;   // The score of an ongoing session never goes below 0.
+                saveScore();
+            }
 
-            System.out.println(SCORE);
+            String[] newScores = getScore();
+            System.out.println("TmpScore: " + newScores[0]);
+            System.out.println("TotalScore" + newScores[1]);
         }
     };
 
