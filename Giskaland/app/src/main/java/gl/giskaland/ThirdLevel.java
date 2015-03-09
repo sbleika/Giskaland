@@ -19,7 +19,6 @@ public class ThirdLevel extends ActionBarActivity {
         Button ButtonMath;
         Button ButtonSpelling;
         Button ButtonBrainPuzzle;
-        Button ButtongameTwo;
 
         ButtonMath = (Button) findViewById(R.id.buttonMathLevel3);
         ButtonMath.setOnClickListener(Math_level_3_ClickListener);
@@ -27,18 +26,11 @@ public class ThirdLevel extends ActionBarActivity {
         ButtonSpelling.setOnClickListener(SpellThePicLevel3_ClickListener);
         ButtonBrainPuzzle = (Button) findViewById(R.id.buttonBrainPuzzlelv3);
         ButtonBrainPuzzle.setOnClickListener(BrainPuzzleLv3ClickListener);
-        //ButtongameTwo = (Button) findViewById(R.id.buttonGameTwo);
-        //ButtongameTwo.setOnClickListener(gotoThirdClickListener);
 
         Button ButtonReturn;
         ButtonReturn = (Button) findViewById(R.id.buttonReturn);
         ButtonReturn.setOnClickListener(Return_ClickListener);
     }
-    public void openGameActivity (View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        startActivity(intent);
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

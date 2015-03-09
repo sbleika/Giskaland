@@ -18,7 +18,6 @@ public class SecondLevel extends ActionBarActivity {
         Button ButtonMath;
         Button ButtonSpelling;
         Button ButtonBrainPuzzle;
-        Button ButtongameTwo;
 
         ButtonMath = (Button) findViewById(R.id.buttonMathLevel2);
         ButtonMath.setOnClickListener(Math_level_2_ClickListener);
@@ -26,18 +25,11 @@ public class SecondLevel extends ActionBarActivity {
         ButtonSpelling.setOnClickListener(SpellThePicLevel2_ClickListener);
         ButtonBrainPuzzle = (Button) findViewById(R.id.buttonBrainPuzzle);
         ButtonBrainPuzzle.setOnClickListener(BrainPuzzleClickListener);
-        //ButtongameTwo = (Button) findViewById(R.id.buttonGameTwo);
-        //ButtongameTwo.setOnClickListener(gotoThirdClickListener);
 
         Button ButtonReturn;
         ButtonReturn = (Button) findViewById(R.id.buttonReturn);
         ButtonReturn.setOnClickListener(Return_ClickListener);
 
-    }
-
-    public void openGameActivity (View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        startActivity(intent);
     }
 
 

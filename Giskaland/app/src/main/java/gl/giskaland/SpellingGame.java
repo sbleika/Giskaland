@@ -1,7 +1,9 @@
 package gl.giskaland;
 
+import android.database.sqlite.SQLiteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -46,11 +49,28 @@ public class SpellingGame extends ActionBarActivity {
         Bundle b = getIntent().getExtras();
         lvl = b.getInt("key");
 
-        dbManager = new DbManager(this);
-        initScores();
-        showScores();
+        initDbManager();
 
         makeRandom(); // start the game
+    }
+
+    public void initDbManager() {
+        dbManager = new DbManager(this);
+
+        try {
+            dbManager.createDatabase();
+        } catch (IOException ioe) {
+            Log.e("initDbManager()", ioe.getMessage());
+        }
+
+        try {
+            dbManager.openDatabase();
+        } catch (SQLiteException sqle) {
+            Log.e("initDbManager()", sqle.getMessage());
+        }
+
+        initScores();
+        showScores();
     }
 
     /**
