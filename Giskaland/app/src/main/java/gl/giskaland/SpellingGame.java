@@ -270,7 +270,7 @@ public class SpellingGame extends ActionBarActivity {
         String randomLetter = Integer.toString(randomNum);
         String nextNUMafter = Integer.toString(randomNum + 1);
         // all the images that are avalible
-        String imagies = "1 api_2 balls_3 line_4 hex_5 ring_6";
+        String imagies = "1 api_2 letidyr_3 ugla_4 kisa_5 hundur_6";
         // take one of the names from imagies
         String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nextNUMafter) - 1);
         // make the view have the random image

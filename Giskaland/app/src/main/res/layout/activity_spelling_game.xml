@@ -13,9 +13,10 @@
         android:id="@+id/IMGspelling"
         android:src="@drawable/api"
         android:background="@android:color/transparent"
-        android:layout_below="@+id/TextMathLevel1score"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="89dp" />
+        android:layout_marginTop="95dp"
+        android:layout_below="@+id/TextSpellingLevel1Score"
+        android:layout_toLeftOf="@+id/SpellingOut3"
+        android:layout_toStartOf="@+id/SpellingOut3" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -23,10 +24,12 @@
         android:id="@+id/SpellingOut1"
         android:src="@drawable/sa"
         android:background="@android:color/transparent"
+        android:layout_marginBottom="67dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/TextMathLevel1score"
-        android:layout_alignEnd="@+id/TextMathLevel1score"
-        android:layout_marginBottom="61dp" />
+        android:layout_toRightOf="@+id/TextSpellingLevel1Score"
+        android:layout_toEndOf="@+id/TextSpellingLevel1Score"
+        android:layout_marginLeft="102dp"
+        android:layout_marginStart="102dp" />
 
     <ImageButton
         android:layout_width="wrap_content"

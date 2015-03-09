@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:background="@drawable/upphafbak"
+    android:background="@drawable/bakupphaf"
     tools:context=".Upphafsglugginn">
     
     <!-- Temporary text view -->
