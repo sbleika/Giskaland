@@ -30,7 +30,7 @@ public class Spelling_level_1 extends ActionBarActivity {
     int LASTans;
 
     // DbManager for usage inside this activity
-    private DbManager dbManager = new DbManager(this);
+    DbManager dbManager;
 
     /**
      * on opening the activity
@@ -40,6 +40,8 @@ public class Spelling_level_1 extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spelling_level_1);
+
+        dbManager = new DbManager(this);
 
         makeRandom(); // start the game
     }
@@ -278,6 +280,22 @@ public class Spelling_level_1 extends ActionBarActivity {
         };
         return score;
     }
+
+    public void handleScore(int index) {
+        Boolean[] allSpellingOut = {SpellingOut1, SpellingOut2, SpellingOut3, SpellingOut4};
+        if (allSpellingOut[index]) {
+            makeRandom();
+            SCORE++;
+            saveScore();
+        }
+        else {
+            SCORE--;
+            if (SCORE < 0) SCORE = 0;   // clamp score to zero
+            saveScore();
+        }
+        System.out.println(SCORE);
+    }
+
     /**
      *
      */
@@ -287,20 +305,7 @@ public class Spelling_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(SpellingOut1){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else {
-                SCORE--;
-                if (SCORE < 0) SCORE = 0;   // The score of an ongoing session never goes below 0.
-                saveScore();
-            }
-
-            String[] newScores = getScore();
-            System.out.println("TmpScore: " + newScores[0]);
-            System.out.println("TotalScore" + newScores[1]);
+            handleScore(0);
         }
     };
 
@@ -313,14 +318,7 @@ public class Spelling_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(SpellingOut2){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
-
-            System.out.println(SCORE);
+            handleScore(1);
         }
     };
 
@@ -333,14 +331,7 @@ public class Spelling_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(SpellingOut3){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
-
-            System.out.println(SCORE);
+            handleScore(2);
         }
     };
 
@@ -353,14 +344,7 @@ public class Spelling_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(SpellingOut4){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
-
-            System.out.println(SCORE);
+            handleScore(3);
         }
     };
 
