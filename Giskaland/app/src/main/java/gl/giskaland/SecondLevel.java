@@ -76,7 +76,7 @@ public class SecondLevel extends ActionBarActivity {
      *
      */
     private void Math_Level_2(){
-        startActivity(new Intent(this, Math_Level_2.class));
+        startActivity(new Intent(this, MathLevel2.class));
 
     };
 
@@ -125,7 +125,7 @@ public class SecondLevel extends ActionBarActivity {
      *
      */
     private void BrainPuzzle(){
-        startActivity(new Intent(this, Quiz_Level_2.class));
+        startActivity(new Intent(this, QuizLevel2.class));
 
     };
 

@@ -13,7 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 
-public class Quiz_Level_2 extends ActionBarActivity {
+public class QuizLevel2 extends ActionBarActivity {
     PopupWindow popUp;
     LinearLayout layout;
     TextView tv;

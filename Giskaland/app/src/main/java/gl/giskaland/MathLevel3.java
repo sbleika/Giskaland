@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 
-public class Math_Level_3 extends ActionBarActivity {
+public class MathLevel3 extends ActionBarActivity {
 
     // the numbers that we are working with
     int IBnum1value;

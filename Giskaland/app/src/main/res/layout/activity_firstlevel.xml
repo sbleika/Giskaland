@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:background="@drawable/bak1"
-    tools:context="gl.giskaland.FirstLevelActivity">
+    tools:context="gl.giskaland.FirstLevel">
 
     <!-- Temporary text view -->
     <TextView

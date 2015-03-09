@@ -28,12 +28,14 @@ public class DbManager extends SQLiteOpenHelper {
     private SQLiteDatabase myDb;
     private final Context myContext;
 
-    private String[] tables = {"Questions", "MathScores", "QuestionScores"};
+    private static final int DB_VERSION = 2;
 
-    private static final int DB_VERSION = 1;
+    // In case of backup
+    List<String> oldMathScores;
+    List<String> oldSpellingScores;
 
     public DbManager(Context context) {
-        super(context, DB_NAME, null, 1);
+        super(context, DB_NAME, null, DB_VERSION);
         this.myContext = context;
 
         String packageName = context.getPackageName();
@@ -98,6 +100,11 @@ public class DbManager extends SQLiteOpenHelper {
         myDb = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
     }
 
+    // Deletes the database, along with the database journal.
+    public void deleteDatabase() {
+        myContext.deleteDatabase("giskaland.db");
+    }
+
 
     /*
         Input :table is the name of the table from giskaland.db
@@ -135,16 +142,25 @@ public class DbManager extends SQLiteOpenHelper {
         deleteRow(table, id);
 
         // Add updated score
+        insertRow(table, scoreData);
+    }
+
+    /*
+        Input : table is the name of the table from giskaland.db.
+                rowData holds one row of data, according to table.
+        Post :  rowData has been inserted to table.
+     */
+    public void insertRow (String table, List<String> rowData) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "INSERT INTO " + table + " VALUES(" +
-                              scoreData.get(0) + "," + scoreData.get(1) + "," +
-                              scoreData.get(2) + "," + scoreData.get(3) + "," +
-                              scoreData.get(4) + "," + scoreData.get(5) + "," +
-                              scoreData.get(6) + ")";
+        String sql = "INSERT INTO " + table + " VALUES(";
+        for (int i = 0; i < rowData.size() - 1; i++)
+            sql += rowData.get(i) + ",";
+        sql += rowData.get(rowData.size() - 1) + ")";
+
         try {
             db.execSQL(sql);
         } catch (SQLiteException sqle) {
-            System.out.println(sqle.getMessage());
+            Log.e("dbManager,insertRow()", sqle.getMessage());
         }
     }
 
@@ -212,11 +228,18 @@ public class DbManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*nothing*/
+        try {
+            copyDatabase();
+        } catch (IOException ioe) {
+            Log.e("dbManager,onCreate()", ioe.getMessage());
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        /*nothing for now, we might have to upgrade in new iterations/releases*/
+        if (oldVersion < newVersion) {   // upgrade to version 2 of database
+            // TODO: prevent users from losing their scores!
+            onCreate(db);
+        }
     }
 }

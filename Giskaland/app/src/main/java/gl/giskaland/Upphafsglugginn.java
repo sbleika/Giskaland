@@ -34,7 +34,7 @@ public class Upphafsglugginn extends ActionBarActivity {
     // The Button with the id 'buttonFirstLevel' triggers
     // this function.
     public void openFirstLevelActivity (View view) {
-        Intent intent = new Intent(this, FirstLevelActivity.class);
+        Intent intent = new Intent(this, FirstLevel.class);
         startActivity(intent);
     }
 
@@ -82,7 +82,7 @@ public class Upphafsglugginn extends ActionBarActivity {
      * opnar nyja gluggan fyrir fyrsta hop
      */
     private void firstbutton(){
-        startActivity(new Intent(this, FirstLevelActivity.class));
+        startActivity(new Intent(this, FirstLevel.class));
 
     };
 

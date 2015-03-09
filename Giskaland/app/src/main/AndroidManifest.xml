@@ -21,7 +21,7 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
         </activity>
         <activity
-            android:name=".FirstLevelActivity"
+            android:name=".FirstLevel"
             android:label="@string/title_activity_four_year"
             android:screenOrientation="landscape" >
         </activity>
@@ -36,17 +36,17 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".Math_level_1"
+            android:name=".MathLevel1"
             android:label="@string/title_activity_math_level_1"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".Math_Level_2"
+            android:name=".MathLevel2"
             android:label="@string/title_activity_math__level_2"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".Math_Level_3"
+            android:name=".MathLevel3"
             android:label="@string/title_activity_math__level_3"
             android:screenOrientation="landscape" >
         </activity>
@@ -66,12 +66,12 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".Quiz_Level_2"
+            android:name=".QuizLevel2"
             android:label="@string/title_activity_quiz__level_2"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".Quiz_Level_3"
+            android:name=".QuizLevel3"
             android:label="@string/title_activity_quiz__level_3"
             android:screenOrientation="landscape" >
         </activity>

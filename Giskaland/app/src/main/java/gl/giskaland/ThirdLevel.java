@@ -75,7 +75,7 @@ public class ThirdLevel extends ActionBarActivity {
      * opnar nyja gluggan nothafi
      */
     private void Math_Level_3(){
-        startActivity(new Intent(this, Math_Level_3.class));
+        startActivity(new Intent(this, MathLevel3.class));
 
     };
 
@@ -124,7 +124,7 @@ public class ThirdLevel extends ActionBarActivity {
      * opnar nyja gluggan nothafi
      */
     private void BrainPuzzle(){
-        startActivity(new Intent(this, Quiz_Level_3.class));
+        startActivity(new Intent(this, QuizLevel3.class));
 
     };
 

@@ -1,6 +1,7 @@
 package gl.giskaland;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,17 +22,15 @@ public class TestDbManager extends ActionBarActivity {
 
         DbManager dbManager = new DbManager(this);
 
+        SQLiteDatabase db = dbManager.getReadableDatabase();
+
+        System.out.println(db.getVersion());
+
         // copy assets DB to app DB
         try {
             dbManager.createDatabase();
         } catch (IOException ioe) {
             throw new Error("Unable to create database");
-        }
-
-        try {
-            dbManager.openDatabase();
-        } catch (SQLiteException sqle) {
-            throw sqle;
         }
 
         List<String> list = dbManager.getData("Questions", 0, 7);
@@ -43,6 +42,10 @@ public class TestDbManager extends ActionBarActivity {
         list = dbManager.getData("MathScores", 0, 7);
         for (int i = 0; i < list.size(); i++)
             System.out.println("MathScores " + list.get(i));
+
+
+        dbManager.deleteDatabase();
+
     }
 
 

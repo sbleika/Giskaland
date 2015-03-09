@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class Quiz_Level_3 extends ActionBarActivity {
+public class QuizLevel3 extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

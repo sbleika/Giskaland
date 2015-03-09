@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class Math_level_1 extends ActionBarActivity {
+public class MathLevel1 extends ActionBarActivity {
 
     // to make sure we only get one of each
     int IBout1value;

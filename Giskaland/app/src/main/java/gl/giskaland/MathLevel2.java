@@ -15,7 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 
-public class Math_Level_2 extends ActionBarActivity {
+public class MathLevel2 extends ActionBarActivity {
 
     PopupWindow popUp;
     LinearLayout layout;

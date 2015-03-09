@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class FirstLevelActivity extends ActionBarActivity {
+public class FirstLevel extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class FirstLevelActivity extends ActionBarActivity {
      * opnar nyja gluggan fyrir stardfradi
      */
     private void Math_Level_1(){
-        Intent intent = new Intent(this, Math_level_1.class);
+        Intent intent = new Intent(this, MathLevel1.class);
         Bundle b = new Bundle();
         b.putInt("key", 1); // Indicating level 1
         intent.putExtras(b);
