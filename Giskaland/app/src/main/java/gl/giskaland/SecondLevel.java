@@ -107,8 +107,12 @@ public class SecondLevel extends ActionBarActivity {
      *
      */
     private void SpellThePicLevel2(){
-        startActivity(new Intent(this, Spelling_level_2.class));
-
+        Intent intent = new Intent(this, SpellingGame.class);
+        Bundle b = new Bundle();
+        b.putInt("key", 2); // Indicating level 2
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
     };
 
     /**

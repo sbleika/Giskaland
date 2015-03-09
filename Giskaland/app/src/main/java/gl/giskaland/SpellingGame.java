@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 
-public class Spelling_level_1 extends ActionBarActivity {
+public class SpellingGame extends ActionBarActivity {
 
     // to make sure we only get one of each letter
     String[] SpellingOut = new String[5];
@@ -25,10 +25,10 @@ public class Spelling_level_1 extends ActionBarActivity {
     Boolean SpellingOut3 = false;
     Boolean SpellingOut4 = false;
 
-    // to keep score
-    int SCORE;
     // the last outcome in the game before
     int LASTans;
+
+    int lvl;
 
     // DbManager for usage inside this activity
     DbManager dbManager;
@@ -40,7 +40,11 @@ public class Spelling_level_1 extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spelling_level_1);
+        setContentView(R.layout.activity_spelling_game);
+
+        // Get the lvl
+        Bundle b = getIntent().getExtras();
+        lvl = b.getInt("key");
 
         dbManager = new DbManager(this);
         initScores();
@@ -268,23 +272,22 @@ public class Spelling_level_1 extends ActionBarActivity {
     }
 
     public void saveScore(int change){
-        dbManager.updateScore("SpellingScores", 0, 1, change, false);
+        dbManager.updateScore("SpellingScores", 0, lvl, change, false);
     }
 
     // Return value : An array of string of length 2 containing
     //               the tmp score and the total score.
     public String[] getScore(){
-        // TODO : Make SpellingScores table in giskaland.db
         List<String> allSpellingScores = dbManager.getData("SpellingScores", 0, 7);
         String[] score = {
-                allSpellingScores.get(1),   // Tmp score
-                allSpellingScores.get(2)    // Total score
+                allSpellingScores.get((lvl * 2) - 1),   // Tmp score
+                allSpellingScores.get(lvl * 2)    // Total score
         };
         return score;
     }
 
     public void initScores() {
-        dbManager.updateScore("SpellingScores", 0, 1, 0, true);
+        dbManager.updateScore("SpellingScores", 0, lvl, 0, true);
     }
 
     public void showScores() {
@@ -302,7 +305,6 @@ public class Spelling_level_1 extends ActionBarActivity {
         else {
             saveScore(-1);
         }
-
         showScores();
     }
 

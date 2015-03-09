@@ -51,7 +51,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".Spelling_level_1"
+            android:name=".SpellingGame"
             android:label="@string/title_activity_spelling_level_1"
             android:screenOrientation="landscape" >
         </activity>

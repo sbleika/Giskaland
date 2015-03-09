@@ -106,8 +106,12 @@ public class ThirdLevel extends ActionBarActivity {
      * opnar nyja gluggan nothafi
      */
     private void SpellThePicLevel3(){
-        startActivity(new Intent(this, Spelling_level_3.class));
-
+        Intent intent = new Intent(this, SpellingGame.class);
+        Bundle b = new Bundle();
+        b.putInt("key", 3); // Indicating level 3
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
     };
 
     /** takki 3

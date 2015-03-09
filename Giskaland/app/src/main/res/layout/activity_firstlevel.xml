@@ -31,7 +31,7 @@
 
     <Button
         android:id="@+id/buttonWhatLetter"
-        android:text="@string/WhatLetter"
+        android:text="@string/SpellThePic"
         style="@style/button_style_two"
         android:layout_below="@+id/buttonMathLevel1"
         android:layout_centerHorizontal="true"

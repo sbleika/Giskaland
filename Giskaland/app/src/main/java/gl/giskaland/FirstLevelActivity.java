@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 
 public class FirstLevelActivity extends ActionBarActivity {
@@ -18,17 +17,12 @@ public class FirstLevelActivity extends ActionBarActivity {
         setContentView(R.layout.activity_firstlevel);
         Button ButtonMathLevel1;
         Button ButtonWhatLetter;
-        Button ButtongameOne;
-        Button ButtongameTwo;
 
         ButtonMathLevel1 = (Button) findViewById(R.id.buttonMathLevel1);
         ButtonMathLevel1.setOnClickListener(Math_level_1_ClickListener);
         ButtonWhatLetter = (Button) findViewById(R.id.buttonWhatLetter);
         ButtonWhatLetter.setOnClickListener(What_Letter_ClickListener);
-        //ButtongameOne = (Button) findViewById(R.id.buttonGameOne);
-        //ButtongameOne.setOnClickListener(gotoThirdClickListener);
-        //ButtongameTwo = (Button) findViewById(R.id.buttonGameTwo);
-        //ButtongameTwo.setOnClickListener(gotoThirdClickListener);
+
 
 
         Button ButtonReturn;
@@ -102,8 +96,12 @@ public class FirstLevelActivity extends ActionBarActivity {
      * opnar nyja gluggan fyrir stafaleikinn
      */
     private void What_Letter(){
-        startActivity(new Intent(this, Spelling_level_1.class));
-
+        Intent intent = new Intent(this, SpellingGame.class);
+        Bundle b = new Bundle();
+        b.putInt("key", 1); // Indicating level 1
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
     };
 
     /** takki til að fara a upphafskja
