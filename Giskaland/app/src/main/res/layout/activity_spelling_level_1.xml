@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/score"
-        android:id="@+id/TextMathLevel1score"
+        android:id="@+id/TextSpellingLevel1Score"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

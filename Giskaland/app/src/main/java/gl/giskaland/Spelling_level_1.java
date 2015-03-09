@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -42,6 +43,8 @@ public class Spelling_level_1 extends ActionBarActivity {
         setContentView(R.layout.activity_spelling_level_1);
 
         dbManager = new DbManager(this);
+        initScores();
+        showScores();
 
         makeRandom(); // start the game
     }
@@ -264,9 +267,8 @@ public class Spelling_level_1 extends ActionBarActivity {
         view.setImageResource(resID);
     }
 
-    public void saveScore(){
-        // TODO : Make SpellingScores table in giskaland.db
-        dbManager.updateScore("SpellingScores", 0, 1, SCORE);
+    public void saveScore(int change){
+        dbManager.updateScore("SpellingScores", 0, 1, change, false);
     }
 
     // Return value : An array of string of length 2 containing
@@ -281,19 +283,27 @@ public class Spelling_level_1 extends ActionBarActivity {
         return score;
     }
 
+    public void initScores() {
+        dbManager.updateScore("SpellingScores", 0, 1, 0, true);
+    }
+
+    public void showScores() {
+        String[] newScores = getScore();
+        TextView scoreView = (TextView)findViewById(R.id.TextSpellingLevel1Score);
+        scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
+    }
+
     public void handleScore(int index) {
         Boolean[] allSpellingOut = {SpellingOut1, SpellingOut2, SpellingOut3, SpellingOut4};
         if (allSpellingOut[index]) {
             makeRandom();
-            SCORE++;
-            saveScore();
+            saveScore(2);
         }
         else {
-            SCORE--;
-            if (SCORE < 0) SCORE = 0;   // clamp score to zero
-            saveScore();
+            saveScore(-1);
         }
-        System.out.println(SCORE);
+
+        showScores();
     }
 
     /**

@@ -103,20 +103,33 @@ public class DbManager extends SQLiteOpenHelper {
         Input :table is the name of the table from giskaland.db
                id is the _id of the row to update
                lvl is the difficulty level of the game (1-3)
-               tmpScore is the score of the current game.
+               change is the change of the score (positive or negative)
+               init indicates whether we are initalizing the score or not.
         Post : lvlXTmp in table in giskaland.db has been set to tmpScore
                and lvlXTotal has been increased by tmpScore.
                The number of rows in table are the same as before.
+
+               If init is true then the tmpScore is 0, while the
+               totalScore stays the same.
     */
-    public void updateScore(String table, int id, int lvl, int tmpScore) {
+    public void updateScore(String table, int id, int lvl, int change, boolean init) {
         // Get the old score first
         int scoreAttr = 7;  // holds for all games
         List<String> scoreData = getData(table, id, scoreAttr);
 
-        int oldTotalScore = Integer.parseInt(scoreData.get(lvl*2));
+        int oldTmpScore = Integer.parseInt(scoreData.get((lvl * 2) - 1));
+        int oldTotalScore = Integer.parseInt(scoreData.get(lvl * 2));
 
-        scoreData.set((lvl * 2) - 1, String.valueOf(tmpScore)); // tmp score
-        scoreData.set(lvl * 2, String.valueOf(oldTotalScore + tmpScore)); // total score
+        if(init) {
+            scoreData.set((lvl * 2) - 1, String.valueOf(0)); // tmp score
+        }
+        else if (oldTmpScore + change >= 0) {
+            scoreData.set((lvl * 2) - 1, String.valueOf(oldTmpScore + change)); // tmp score
+            scoreData.set(lvl * 2, String.valueOf(oldTotalScore + change)); // total score
+        }
+        else {
+            return; // don't update score
+        }
 
         // Remove old score
         deleteRow(table, id);

@@ -38,7 +38,7 @@ public class TestDbManager extends ActionBarActivity {
         for (int i = 0; i < list.size(); i++)
             System.out.println("Questions " + list.get(i));
 
-        dbManager.updateScore("MathScores", 0, 1, 100);
+        dbManager.updateScore("MathScores", 0, 1, 100, false);
 
         list = dbManager.getData("MathScores", 0, 7);
         for (int i = 0; i < list.size(); i++)
