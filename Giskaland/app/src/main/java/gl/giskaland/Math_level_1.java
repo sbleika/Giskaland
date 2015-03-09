@@ -1,12 +1,18 @@
 package gl.giskaland;
 
+import android.database.sqlite.SQLiteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.util.List;
 
 
 public class Math_level_1 extends ActionBarActivity {
@@ -25,7 +31,10 @@ public class Math_level_1 extends ActionBarActivity {
     Boolean isIBout3 = false;
     Boolean isIBout4 = false;
 
-    int SCORE;
+    int lvl;
+
+    // DbManager for usage inside this activity
+    DbManager dbManager;
 
 
     @Override
@@ -33,7 +42,32 @@ public class Math_level_1 extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_level_1);
 
+        // Get the lvl
+        Bundle b = getIntent().getExtras();
+        lvl = b.getInt("key");
+
+        initDbManager();
+
         makeRandom(); // new numbers Restart
+    }
+
+    public void initDbManager() {
+        dbManager = new DbManager(this);
+
+        try {
+            dbManager.createDatabase();
+        } catch (IOException ioe) {
+            Log.e("initDbManager()", ioe.getMessage());
+        }
+
+        try {
+            dbManager.openDatabase();
+        } catch (SQLiteException sqle) {
+            Log.e("initDbManager()", sqle.getMessage());
+        }
+
+        initScores();
+        showScores();
     }
 
     /**
@@ -266,12 +300,41 @@ public class Math_level_1 extends ActionBarActivity {
         }
     }
 
-    public void saveScore(){
-
+    public void saveScore(int change){
+        dbManager.updateScore("MathScores", 0, lvl, change, false);
     }
 
-    public void getScore(){
+    // Return value : An array of string of length 2 containing
+    //               the tmp score and the total score.
+    public String[] getScore(){
+        List<String> allSpellingScores = dbManager.getData("MathScores", 0, 7);
+        String[] score = {
+                allSpellingScores.get((lvl * 2) - 1),   // Tmp score
+                allSpellingScores.get(lvl * 2)    // Total score
+        };
+        return score;
+    }
 
+    public void initScores() {
+        dbManager.updateScore("MathScores", 0, lvl, 0, true);
+    }
+
+    public void showScores() {
+        String[] newScores = getScore();
+        TextView scoreView = (TextView)findViewById(R.id.TextMathLevel1score);
+        scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
+    }
+
+    public void handleScore(int index) {
+        Boolean[] allMathOut = {isIBout1, isIBout2, isIBout3, isIBout4};
+        if (allMathOut[index]) {
+            makeRandom();
+            saveScore(2);
+        }
+        else {
+            saveScore(-1);
+        }
+        showScores();
     }
     /**
      *checking for correct answer and adding to score
@@ -282,14 +345,7 @@ public class Math_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout1){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
-
-            System.out.println(SCORE);
+            handleScore(0);
         }
     };
 
@@ -302,14 +358,7 @@ public class Math_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout2){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
-
-            System.out.println(SCORE);
+            handleScore(1);
         }
     };
 
@@ -322,14 +371,7 @@ public class Math_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout3){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
-
-            System.out.println(SCORE);
+            handleScore(2);
         }
     };
 
@@ -342,14 +384,7 @@ public class Math_level_1 extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
-            if(isIBout4){
-                makeRandom();
-                SCORE++;
-                saveScore();
-            }
-            else SCORE--;
-
-            System.out.println(SCORE);
+            handleScore(3);
         }
     };
 
