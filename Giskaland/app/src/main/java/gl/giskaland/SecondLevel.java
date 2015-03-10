@@ -15,6 +15,8 @@ public class SecondLevel extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_level);
+        //**********************************************************************
+        // set up onclicklistners
         Button ButtonMath;
         Button ButtonSpelling;
         Button ButtonBrainPuzzle;
@@ -29,36 +31,12 @@ public class SecondLevel extends ActionBarActivity {
         Button ButtonReturn;
         ButtonReturn = (Button) findViewById(R.id.buttonReturn);
         ButtonReturn.setOnClickListener(Return_ClickListener);
+        //**********************************************************************
 
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_second_level, menu);
-        return true;
-
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /**
-     *
+     * math level 2 listner
      */
     View.OnClickListener Math_level_2_ClickListener  = new View.OnClickListener() {
         /**
@@ -67,21 +45,19 @@ public class SecondLevel extends ActionBarActivity {
          */
         @Override
         public void onClick(View v) {
-
             Math_Level_2();
         }
     };
 
     /**
-     *
+     * opna activty
      */
     private void Math_Level_2(){
         startActivity(new Intent(this, MathLevel2.class));
-
     };
 
     /**
-     *
+     * spelling game
      */
     View.OnClickListener SpellThePicLevel2_ClickListener  = new View.OnClickListener() {
         /**
@@ -96,7 +72,7 @@ public class SecondLevel extends ActionBarActivity {
     };
 
     /**
-     *
+     * open the activity for spelling game
      */
     private void SpellThePicLevel2(){
         Intent intent = new Intent(this, SpellingGame.class);
@@ -108,7 +84,7 @@ public class SecondLevel extends ActionBarActivity {
     };
 
     /**
-     *
+     * brain puzzle lisner
      */
     View.OnClickListener BrainPuzzleClickListener  = new View.OnClickListener() {
         /**
@@ -122,7 +98,7 @@ public class SecondLevel extends ActionBarActivity {
     };
 
     /**
-     *
+     * open activity
      */
     private void BrainPuzzle(){
         startActivity(new Intent(this, QuizLevel2.class));
@@ -152,4 +128,27 @@ public class SecondLevel extends ActionBarActivity {
 
     };
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_second_level, menu);
+        return true;
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

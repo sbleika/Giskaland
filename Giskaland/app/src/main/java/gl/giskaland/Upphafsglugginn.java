@@ -17,7 +17,8 @@ public class Upphafsglugginn extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upphafsglugginn);
-
+        //*****************************************************************
+        // set up OnClickListeners for button
         ImageButton FirstButton;
         ImageButton SecondButton;
         ImageButton ThirdButton;
@@ -28,55 +29,23 @@ public class Upphafsglugginn extends ActionBarActivity {
         ThirdButton = (ImageButton) findViewById(R.id.buttonThirdLevel);
         ThirdButton.setOnClickListener(gotoThirdClickListener);
 
+        //*****************************************************************
     }
 
-    // Opens up the FirstLevel
-    // The Button with the id 'buttonFirstLevel' triggers
-    // this function.
-    public void openFirstLevelActivity (View view) {
-        Intent intent = new Intent(this, FirstLevel.class);
-        startActivity(intent);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_upphafsglugginn, menu);
-        return true;
-
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-   /** takki fyrir fyrsta hop
+    /** takki fyrir fyrsta hop
      *
      */
     View.OnClickListener gotoFirstClickListener  = new View.OnClickListener() {
-                /**
-                 * ef smellt er a nemandi takkan er kallad a fallid firstbutton()
-                 * @param v view
-                 */
-                @Override
-                public void onClick(View v) {
+        /**
+         * ef smellt er a nemandi takkan er kallad a fallid firstbutton()
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
 
-                    firstbutton();
-                }
-            };
+            firstbutton();
+        }
+    };
 
     /**
      * opnar nyja gluggan fyrir fyrsta hop
@@ -131,4 +100,28 @@ public class Upphafsglugginn extends ActionBarActivity {
         startActivity(new Intent(this, ThirdLevel.class));
 
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_upphafsglugginn, menu);
+        return true;
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

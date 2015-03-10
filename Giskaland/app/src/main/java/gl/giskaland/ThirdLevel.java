@@ -16,6 +16,8 @@ public class ThirdLevel extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_level);
+        //**************************************************************************
+        // set up OnClickListeners
         Button ButtonMath;
         Button ButtonSpelling;
         Button ButtonBrainPuzzle;
@@ -30,7 +32,102 @@ public class ThirdLevel extends ActionBarActivity {
         Button ButtonReturn;
         ButtonReturn = (Button) findViewById(R.id.buttonReturn);
         ButtonReturn.setOnClickListener(Return_ClickListener);
+
+        //**************************************************************************
     }
+
+    /** math level 3
+     *
+     */
+    View.OnClickListener Math_level_3_ClickListener  = new View.OnClickListener() {
+        /**
+         * ef smellt er a takkann er kallad a fallid til að opna
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+            Math_Level_3();
+        }
+    };
+
+    /**
+     * opnar nyja gluggan
+     */
+    private void Math_Level_3(){
+        startActivity(new Intent(this, MathLevel3.class));
+
+    };
+
+    /**
+     *  spell the pic
+     */
+    View.OnClickListener SpellThePicLevel3_ClickListener  = new View.OnClickListener() {
+        /**
+         * ef smellt er a takkann er kallad a fallid til að opna
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+
+            SpellThePicLevel3();
+        }
+    };
+
+    /**
+     * opnar nyja gluggan
+     */
+    private void SpellThePicLevel3(){
+        Intent intent = new Intent(this, SpellingGame.class);
+        Bundle b = new Bundle();
+        b.putInt("key", 3); // Indicating level 3
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
+    };
+
+    /** brain puzzle
+     *
+     */
+    View.OnClickListener BrainPuzzleLv3ClickListener  = new View.OnClickListener() {
+        /**
+         * ef smellt er a takkann er kallad a fallid til að opna
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+            BrainPuzzle();
+        }
+    };
+
+    /**
+     * opnar nyja gluggan
+     */
+    private void BrainPuzzle(){
+        startActivity(new Intent(this, QuizLevel3.class));
+
+    };
+
+    /** takki til að fara a upphafskja
+     *
+     */
+    View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
+        /**
+         * ef smellt er a takkann er kallad a fallid til að opna
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+            Return();
+        }
+    };
+
+    /**
+     * fer til baka i upphafsskja
+     */
+    private void Return(){
+        startActivity(new Intent(this, Upphafsglugginn.class));
+
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,100 +152,4 @@ public class ThirdLevel extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    /** takki 1
-     *
-     */
-    View.OnClickListener Math_level_3_ClickListener  = new View.OnClickListener() {
-        /**
-         * ef smellt er a nemandi takkan er kallad a fallid firstbutton()
-         * @param v view
-         */
-        @Override
-        public void onClick(View v) {
-
-            Math_Level_3();
-        }
-    };
-
-    /**
-     * opnar nyja gluggan nothafi
-     */
-    private void Math_Level_3(){
-        startActivity(new Intent(this, MathLevel3.class));
-
-    };
-
-    /** takki 2
-     *
-     */
-    View.OnClickListener SpellThePicLevel3_ClickListener  = new View.OnClickListener() {
-        /**
-         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
-         * @param v view
-         */
-        @Override
-        public void onClick(View v) {
-
-            SpellThePicLevel3();
-        }
-    };
-
-    /**
-     * opnar nyja gluggan nothafi
-     */
-    private void SpellThePicLevel3(){
-        Intent intent = new Intent(this, SpellingGame.class);
-        Bundle b = new Bundle();
-        b.putInt("key", 3); // Indicating level 3
-        intent.putExtras(b);
-        startActivity(intent);
-        finish();
-    };
-
-    /** takki 3
-     *
-     */
-    View.OnClickListener BrainPuzzleLv3ClickListener  = new View.OnClickListener() {
-        /**
-         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
-         * @param v view
-         */
-        @Override
-        public void onClick(View v) {
-            BrainPuzzle();
-        }
-    };
-
-    /**
-     * opnar nyja gluggan nothafi
-     */
-    private void BrainPuzzle(){
-        startActivity(new Intent(this, QuizLevel3.class));
-
-    };
-
-    /** takki til að fara a upphafskja
-     *
-     */
-    View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
-        /**
-         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
-         * @param v view
-         */
-        @Override
-        public void onClick(View v) {
-
-            Return();
-        }
-    };
-
-    /**
-     * fer til baka i upphafsskja
-     */
-    private void Return(){
-        startActivity(new Intent(this, Upphafsglugginn.class));
-
-    };
-
 }
