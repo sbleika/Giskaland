@@ -34,6 +34,10 @@ public class DbManager extends SQLiteOpenHelper {
     List<String> oldMathScores;
     List<String> oldSpellingScores;
 
+    /**
+     *
+     * @param context
+     */
     public DbManager(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.myContext = context;
@@ -42,6 +46,10 @@ public class DbManager extends SQLiteOpenHelper {
         DB_PATH = "/data/data/" + packageName + "/databases/";
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void createDatabase() throws IOException {
         boolean dbExist = checkDatabase();
 
@@ -58,6 +66,10 @@ public class DbManager extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean checkDatabase() {
         SQLiteDatabase db = null;
 
@@ -76,6 +88,10 @@ public class DbManager extends SQLiteOpenHelper {
         return db != null ? true : false;
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     private void copyDatabase() throws IOException {
         InputStream myInput = myContext.getAssets().open(DB_NAME);
         String outFileName = DB_PATH + DB_NAME;
@@ -94,6 +110,10 @@ public class DbManager extends SQLiteOpenHelper {
         myInput.close();
     }
 
+    /**
+     *
+     * @throws SQLiteException
+     */
     public void openDatabase() throws SQLiteException {
         // Open database
         String myPath = DB_PATH + DB_NAME;
@@ -119,6 +139,15 @@ public class DbManager extends SQLiteOpenHelper {
                If init is true then the tmpScore is 0, while the
                totalScore stays the same.
     */
+
+    /**
+     *
+     * @param table
+     * @param id
+     * @param lvl
+     * @param change
+     * @param init
+     */
     public void updateScore(String table, int id, int lvl, int change, boolean init) {
         // Get the old score first
         int scoreAttr = 7;  // holds for all games
@@ -150,6 +179,12 @@ public class DbManager extends SQLiteOpenHelper {
                 rowData holds one row of data, according to table.
         Post :  rowData has been inserted to table.
      */
+
+    /**
+     *
+     * @param table
+     * @param rowData
+     */
     public void insertRow (String table, List<String> rowData) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "INSERT INTO " + table + " VALUES(";
@@ -170,6 +205,12 @@ public class DbManager extends SQLiteOpenHelper {
         Post :  The row with the _id id from table in giskaland.db
                 has been deleted.
      */
+
+    /**
+     *
+     * @param table
+     * @param id
+     */
     public void deleteRow (String table, int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "DELETE FROM " + table + " WHERE _id = " + String.valueOf(id);
@@ -189,6 +230,14 @@ public class DbManager extends SQLiteOpenHelper {
                 to id.
                 If that row does not exist the return value is an
                 ArrayList<String> with attr number of String values of 0.
+     */
+
+    /**
+     *
+     * @param table
+     * @param id
+     * @param attr
+     * @return
      */
     public List<String> getData (String table, int id, int attr) {
         List<String> data = new ArrayList<String>();
@@ -217,6 +266,9 @@ public class DbManager extends SQLiteOpenHelper {
         return data;
     }
 
+    /**
+     *
+     */
     @Override
     public synchronized void close() {
         if (myDb != null)
@@ -226,6 +278,10 @@ public class DbManager extends SQLiteOpenHelper {
 
     }
 
+    /**
+     *
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
@@ -235,6 +291,12 @@ public class DbManager extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     *
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < newVersion) {   // upgrade to version 2 of database
