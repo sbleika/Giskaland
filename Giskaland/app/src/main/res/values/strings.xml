@@ -23,20 +23,20 @@
     <string name="WhatLetter">Stafaleikurinn</string>
 
     <string name="returnback">TIL BAKA</string>
-    <string name="title_activity_four_year">FourYearActivity</string>
+    <string name="title_activity_four_year">4-5 ára</string>
     <string name="hello_world">Hello world!</string>
     <string name="a_string">Hello world!</string>
-    <string name="title_activity_second_level">SecondLevel</string>
-    <string name="title_activity_third_level">ThirdLevel</string>
+    <string name="title_activity_second_level">6-7 ára</string>
+    <string name="title_activity_third_level">8-9 ára</string>
 
-    <string name="title_activity_math_level_1">Math_level_1</string>
-    <string name="title_activity_math__level_2">Math_Level_2</string>
-    <string name="title_activity_math__level_3">Math_Level_3</string>
-    <string name="title_activity_spelling_level_1">Spelling_level_1</string>
-    <string name="title_activity_spelling_level_2">Spelling_level_2</string>
-    <string name="title_activity_spelling_level_3">Spelling_level_3</string>
-    <string name="title_activity_quiz__level_2">Quiz_Level_2</string>
-    <string name="title_activity_quiz__level_3">Quiz_Level_3</string>
+    <string name="title_activity_math_level_1">Stærðfræði 4-5 ára</string>
+    <string name="title_activity_math__level_2">Stærðfræði 6-7 ára</string>
+    <string name="title_activity_math__level_3">Stærðfræði 8-9 ára</string>
+    <string name="title_activity_spelling_level_1">Stafaleikur 4-5 ára</string>
+    <string name="title_activity_spelling_level_2">Stafaleikur 6-7 ára</string>
+    <string name="title_activity_spelling_level_3">Stafaleikur 8-9 ára</string>
+    <string name="title_activity_quiz__level_2">Spurningaleikur 6-7 ára</string>
+    <string name="title_activity_quiz__level_3">Spurningaleikur 8-9 ára</string>
 
     <string name="score">Stig : </string>
     <string name="Answer">Svara</string>
