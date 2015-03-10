@@ -32,7 +32,8 @@ public class Upphafsglugginn extends ActionBarActivity {
         //*****************************************************************
     }
 
-    /** takki fyrir fyrsta hop
+    /** Button for first age group
+     *
      *
      */
     View.OnClickListener gotoFirstClickListener  = new View.OnClickListener() {
@@ -48,14 +49,14 @@ public class Upphafsglugginn extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan fyrir fyrsta hop
+     * opens new activity for first age group
      */
     private void firstbutton(){
         startActivity(new Intent(this, FirstLevel.class));
 
     };
 
-    /** takki fyrir annan hop
+    /** Button for second age group
      *
      */
     View.OnClickListener gotoSecondClickListener  = new View.OnClickListener() {
@@ -71,14 +72,14 @@ public class Upphafsglugginn extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan fyrir annan hop
+     * opens activity for second age group
      */
     private void secondbutton(){
         startActivity(new Intent(this, SecondLevel.class));
 
     };
 
-    /** takki fyrir tridja hop
+    /** Button for third age group
      *
      */
     View.OnClickListener gotoThirdClickListener  = new View.OnClickListener() {
@@ -94,7 +95,7 @@ public class Upphafsglugginn extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan fyrir tridja hop
+     * opens activity for third age group
      */
     private void thirdbutton(){
         startActivity(new Intent(this, ThirdLevel.class));
