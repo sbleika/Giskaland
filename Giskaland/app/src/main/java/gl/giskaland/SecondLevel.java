@@ -36,7 +36,7 @@ public class SecondLevel extends ActionBarActivity {
     }
 
     /**
-     * math level 2 listner
+     * math level 2 listener
      */
     View.OnClickListener Math_level_2_ClickListener  = new View.OnClickListener() {
         /**
@@ -50,7 +50,7 @@ public class SecondLevel extends ActionBarActivity {
     };
 
     /**
-     * opna activty
+     * opens activity
      */
     private void Math_Level_2(){
         startActivity(new Intent(this, MathLevel2.class));
@@ -84,7 +84,7 @@ public class SecondLevel extends ActionBarActivity {
     };
 
     /**
-     * brain puzzle lisner
+     * brain puzzle listener
      */
     View.OnClickListener BrainPuzzleClickListener  = new View.OnClickListener() {
         /**
@@ -105,7 +105,7 @@ public class SecondLevel extends ActionBarActivity {
 
     };
 
-    /** takki til að fara a upphafskja
+    /** Return button
      *
      */
     View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
@@ -121,7 +121,7 @@ public class SecondLevel extends ActionBarActivity {
     };
 
     /**
-     * fer til baka i upphafsskja
+     * Return to start
      */
     private void Return(){
         startActivity(new Intent(this, Upphafsglugginn.class));
