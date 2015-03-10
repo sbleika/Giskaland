@@ -54,12 +54,8 @@ public class ThirdLevel extends ActionBarActivity {
      * opens new activity
      */
     private void Math_Level_3(){
-        Intent intent = new Intent(this, MathGame.class);
-        Bundle b = new Bundle();
-        b.putInt("key", 3); // Indicating level 3
-        intent.putExtras(b);
-        startActivity(intent);
-        finish();
+        startActivity(new Intent(this, MathLevel3.class));
+
     };
 
     /**

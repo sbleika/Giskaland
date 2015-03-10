@@ -53,12 +53,7 @@ public class SecondLevel extends ActionBarActivity {
      * opens activity
      */
     private void Math_Level_2(){
-        Intent intent = new Intent(this, MathGame.class);
-        Bundle b = new Bundle();
-        b.putInt("key", 2); // Indicating level 2
-        intent.putExtras(b);
-        startActivity(intent);
-        finish();
+        startActivity(new Intent(this, MathLevel2.class));
     };
 
     /**
