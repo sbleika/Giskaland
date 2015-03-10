@@ -30,7 +30,7 @@ public class FirstLevel extends ActionBarActivity {
         //*******************************************************************
         }
 
-    /** takki fyrir stardfradi
+    /** Button for math game
      *
      */
     View.OnClickListener Math_level_1_ClickListener  = new View.OnClickListener() {
@@ -46,7 +46,7 @@ public class FirstLevel extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan fyrir stardfradi
+     * opens new activity for math
      */
     private void Math_Level_1(){
         Intent intent = new Intent(this, MathLevel1.class);
@@ -57,7 +57,7 @@ public class FirstLevel extends ActionBarActivity {
         finish();
     };
 
-    /** takki fyrir stafaleikinn
+    /** Button for Letter game
      *
      */
     View.OnClickListener What_Letter_ClickListener  = new View.OnClickListener() {
@@ -73,7 +73,7 @@ public class FirstLevel extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan fyrir stafaleikinn
+     * opens new activity for Letter game
      */
     private void What_Letter(){
         Intent intent = new Intent(this, SpellingGame.class);
@@ -84,7 +84,7 @@ public class FirstLevel extends ActionBarActivity {
         finish();
     };
 
-    /** takki til að fara a upphafskja
+    /** Return Button
      *
      */
     View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
@@ -100,7 +100,7 @@ public class FirstLevel extends ActionBarActivity {
     };
 
     /**
-     * fer til baka i upphafsskja
+     * Return to start
      */
     private void Return(){
         startActivity(new Intent(this, Upphafsglugginn.class));
