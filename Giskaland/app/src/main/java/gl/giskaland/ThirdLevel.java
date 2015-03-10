@@ -51,7 +51,7 @@ public class ThirdLevel extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan
+     * opens new activity
      */
     private void Math_Level_3(){
         startActivity(new Intent(this, MathLevel3.class));
@@ -74,7 +74,7 @@ public class ThirdLevel extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan
+     * opens new activity
      */
     private void SpellThePicLevel3(){
         Intent intent = new Intent(this, SpellingGame.class);
@@ -100,14 +100,14 @@ public class ThirdLevel extends ActionBarActivity {
     };
 
     /**
-     * opnar nyja gluggan
+     * opens new activity
      */
     private void BrainPuzzle(){
         startActivity(new Intent(this, QuizLevel3.class));
 
     };
 
-    /** takki til að fara a upphafskja
+    /** Return button
      *
      */
     View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
@@ -122,7 +122,7 @@ public class ThirdLevel extends ActionBarActivity {
     };
 
     /**
-     * fer til baka i upphafsskja
+     * Return to start
      */
     private void Return(){
         startActivity(new Intent(this, Upphafsglugginn.class));
