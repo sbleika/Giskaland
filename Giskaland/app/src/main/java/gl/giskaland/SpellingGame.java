@@ -291,12 +291,20 @@ public class SpellingGame extends ActionBarActivity {
         view.setImageResource(resID);
     }
 
+    /**
+     * update the score in the DB
+     * @param change the chnge we want to do to the number
+     */
     public void saveScore(int change){
         dbManager.updateScore("SpellingScores", 0, lvl, change, false);
     }
 
-    // Return value : An array of string of length 2 containing
-    //               the tmp score and the total score.
+    /**
+     * to get the score from the DB
+     * @return An array of string of length 2 containing
+     *         the tmp score and the total score.
+     *
+     */
     public String[] getScore(){
         List<String> allSpellingScores = dbManager.getData("SpellingScores", 0, 7);
         String[] score = {
@@ -306,16 +314,26 @@ public class SpellingGame extends ActionBarActivity {
         return score;
     }
 
+    /**
+     * init the score
+     */
     public void initScores() {
         dbManager.updateScore("SpellingScores", 0, lvl, 0, true);
     }
 
+    /**
+     * Show the score on the screen
+     */
     public void showScores() {
         String[] newScores = getScore();
         TextView scoreView = (TextView)findViewById(R.id.TextSpellingLevel1Score);
         scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
     }
 
+    /**
+     * check if we have the right Answer
+     * @param index the button we are checking
+     */
     public void handleScore(int index) {
         Boolean[] allSpellingOut = {SpellingOut1, SpellingOut2, SpellingOut3, SpellingOut4};
         if (allSpellingOut[index]) {
@@ -329,7 +347,7 @@ public class SpellingGame extends ActionBarActivity {
     }
 
     /**
-     *
+     * OnClickListener for Answer button nr. 1
      */
     View.OnClickListener checkIfRightAnsout1 = new View.OnClickListener() {
         /**
@@ -342,7 +360,7 @@ public class SpellingGame extends ActionBarActivity {
     };
 
     /**
-     *
+     * OnClickListener for Answer button nr. 2
      */
     View.OnClickListener checkIfRightAnsout2 = new View.OnClickListener() {
         /**
@@ -355,7 +373,7 @@ public class SpellingGame extends ActionBarActivity {
     };
 
     /**
-     *
+     * OnClickListener for Answer button nr. 3
      */
     View.OnClickListener checkIfRightAnsout3 = new View.OnClickListener() {
         /**
@@ -368,7 +386,7 @@ public class SpellingGame extends ActionBarActivity {
     };
 
     /**
-     *
+     * OnClickListener for Answer button nr. 4
      */
     View.OnClickListener checkIfRightAnsout4 = new View.OnClickListener() {
         /**
