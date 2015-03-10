@@ -53,7 +53,18 @@ public class MathLevel2 extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // amke the popup
+        PopUp();
 
+        setContentView(R.layout.activity_math__level_2);
+
+        makeRandom(); // new numbers Restart
+    }
+
+    /**
+     *
+     */
+    public void PopUp(){
         popUp = new PopupWindow(this);
         layout = new LinearLayout(this);
         tv = new TextView(this);
@@ -74,10 +85,6 @@ public class MathLevel2 extends ActionBarActivity {
         layout.addView(tv, params);
         layout.addView(but, params);
         popUp.setContentView(layout);
-
-        setContentView(R.layout.activity_math__level_2);
-
-        makeRandom(); // new numbers Restart
     }
 
     /**
@@ -234,6 +241,7 @@ public class MathLevel2 extends ActionBarActivity {
      *
      * @param view
      */
+
     public void setRandom(ImageView view){
         // random from 0 to 10
         int randomNum = ((int) (Math.random()*11));
