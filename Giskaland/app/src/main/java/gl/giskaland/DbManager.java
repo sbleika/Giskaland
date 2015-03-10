@@ -30,13 +30,9 @@ public class DbManager extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 2;
 
-    // In case of backup
-    List<String> oldMathScores;
-    List<String> oldSpellingScores;
-
     /**
-     *
-     * @param context
+     *  Constructor for the DbManager.
+     * @param context This context.
      */
     public DbManager(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -47,7 +43,7 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     /**
-     *
+     * Creates a new database.
      * @throws IOException
      */
     public void createDatabase() throws IOException {
@@ -67,8 +63,8 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     /**
-     *
-     * @return
+     * Checks if the database exists in the /assets folder.
+     * @return True iiff the database exists in the /assets folder.
      */
     private boolean checkDatabase() {
         SQLiteDatabase db = null;
@@ -89,7 +85,7 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     /**
-     *
+     * Copy the database file from the /assets folder.
      * @throws IOException
      */
     private void copyDatabase() throws IOException {
@@ -111,7 +107,7 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     /**
-     *
+     * Opens the database.
      * @throws SQLiteException
      */
     public void openDatabase() throws SQLiteException {
@@ -120,33 +116,14 @@ public class DbManager extends SQLiteOpenHelper {
         myDb = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
     }
 
-    // Deletes the database, along with the database journal.
-    public void deleteDatabase() {
-        myContext.deleteDatabase("giskaland.db");
-    }
-
-
-    /*
-        Input :table is the name of the table from giskaland.db
-               id is the _id of the row to update
-               lvl is the difficulty level of the game (1-3)
-               change is the change of the score (positive or negative)
-               init indicates whether we are initalizing the score or not.
-        Post : lvlXTmp in table in giskaland.db has been set to tmpScore
-               and lvlXTotal has been increased by tmpScore.
-               The number of rows in table are the same as before.
-
-               If init is true then the tmpScore is 0, while the
-               totalScore stays the same.
-    */
-
     /**
-     *
-     * @param table
-     * @param id
-     * @param lvl
-     * @param change
-     * @param init
+     * The scores for level "lvl" in "table" in the database is updated, or set to 0
+     * if init is true.
+     * @param table The name of the table from the database.
+     * @param id The _id of the row to update.
+     * @param lvl The difficulty level of the game (1-3)
+     * @param change The change of the score
+     * @param init Indicates whether we are initializing the score or not.
      */
     public void updateScore(String table, int id, int lvl, int change, boolean init) {
         // Get the old score first
@@ -174,16 +151,10 @@ public class DbManager extends SQLiteOpenHelper {
         insertRow(table, scoreData);
     }
 
-    /*
-        Input : table is the name of the table from giskaland.db.
-                rowData holds one row of data, according to table.
-        Post :  rowData has been inserted to table.
-     */
-
     /**
-     *
-     * @param table
-     * @param rowData
+     * "rowData" is inserted into "table" in the database.
+     * @param table The name of the table from the database
+     * @param rowData One row of data, according to "table".
      */
     public void insertRow (String table, List<String> rowData) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -199,17 +170,10 @@ public class DbManager extends SQLiteOpenHelper {
         }
     }
 
-    /*
-        Input : table is the name of the table from giskaland.db
-                id is the _id of the row to delete
-        Post :  The row with the _id id from table in giskaland.db
-                has been deleted.
-     */
-
     /**
-     *
-     * @param table
-     * @param id
+     * The row with the _id "id" from "table" in the database is deleted.
+     * @param table The name of the table from the database
+     * @param id The _id of the row to update.
      */
     public void deleteRow (String table, int id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -221,23 +185,13 @@ public class DbManager extends SQLiteOpenHelper {
         }
     }
 
-    /*
-        Input : table is the name of the table from giskaland.db
-                id is the _id of the row to get data from
-                attr is the number of attributes table has.
-        Return value :
-                An ArrayList<String> containing the row corresponding
-                to id.
-                If that row does not exist the return value is an
-                ArrayList<String> with attr number of String values of 0.
-     */
-
     /**
      *
-     * @param table
-     * @param id
-     * @param attr
-     * @return
+     * @param table The name of the table from the database
+     * @param id The _id of the row to update.
+     * @param attr The number of attributes "table" has
+     * @return The row corresponding to "id". If that row does not
+     *        exist the return value is a list of 0's.
      */
     public List<String> getData (String table, int id, int attr) {
         List<String> data = new ArrayList<String>();
@@ -267,7 +221,7 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     /**
-     *
+     * Close this database.
      */
     @Override
     public synchronized void close() {
@@ -279,8 +233,8 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     /**
-     *
-     * @param db
+     * Run when the database is created.
+     * @param db This database
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -292,10 +246,10 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     /**
-     *
-     * @param db
-     * @param oldVersion
-     * @param newVersion
+     *  Run when the version number of this database is changed.
+     * @param db This database
+     * @param oldVersion Number of the old version of the database.
+     * @param newVersion Number of the new version of the database.
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
