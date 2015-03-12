@@ -161,7 +161,17 @@ public class MathGame extends ActionBarActivity {
             int Ans = Integer.parseInt(editText.getText().toString());
             if(Ans == IBnum1value*IBnum2value || Ans == IBnum1value/IBnum2value){
                 makeRandom();
+                saveScore(2);
             }
+            else {
+                saveScore(-1);
+                if (POPupINACTIVE) {
+                    popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                    popUp.update(0, 0, 850, 133);
+                    POPupINACTIVE = false;
+                }
+            }
+            showScores(lvl);
             System.out.println("answer");
         }
     };
