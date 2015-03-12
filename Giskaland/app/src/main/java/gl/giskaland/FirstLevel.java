@@ -49,7 +49,7 @@ public class FirstLevel extends ActionBarActivity {
      * opens new activity for math
      */
     private void Math_Level_1(){
-        Intent intent = new Intent(this, MathLevel1.class);
+        Intent intent = new Intent(this, MathGame.class);
         Bundle b = new Bundle();
         b.putInt("key", 1); // Indicating level 1
         intent.putExtras(b);

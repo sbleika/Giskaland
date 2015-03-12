@@ -18,6 +18,7 @@ import android.widget.ImageButton;
         import android.widget.TextView;
 
 import java.io.IOException;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.List;
 
 
@@ -74,14 +75,26 @@ public class MathGame extends ActionBarActivity {
         Bundle b = getIntent().getExtras();
         lvl = b.getInt("key");
 
+        System.out.println("MathGame, onCreate(), HERE!");
+
+        if(lvl == 1)
+            setContentView(R.layout.activity_math_level_1);
+        else if (lvl == 2)
+            setContentView(R.layout.activity_math_level_2);
+        else if (lvl == 3)
+            setContentView(R.layout.activity_math_level_3);
+
+
         initDbManager();
+        showScores(lvl);
+
+        System.out.println("PAST THE initDbManager()");
 
         // amke the popup
         PopUp();
         // Set up buttons for level 3
         if(lvl == 3)SetUpButtons();
 
-        setContentView(R.layout.activity_math__level_2);
 
         makeRandom(); // new numbers Restart
     }
@@ -231,7 +244,6 @@ public class MathGame extends ActionBarActivity {
         }
 
         initScores();
-        showScores();
     }
 
     /**
@@ -698,9 +710,16 @@ public class MathGame extends ActionBarActivity {
         dbManager.updateScore("MathScores", 0, lvl, 0, true);
     }
 
-    public void showScores() {
+    public void showScores(int lvl) {
         String[] newScores = getScore();
+
+        // Default value
         TextView scoreView = (TextView)findViewById(R.id.TextMathLevel1score);
+        if (lvl == 2)
+            scoreView = (TextView)findViewById(R.id.TextMathLevel2score);
+        else if (lvl == 3)
+            scoreView = (TextView)findViewById(R.id.TextMathLevel3score);
+
         scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
     }
 
@@ -719,7 +738,7 @@ public class MathGame extends ActionBarActivity {
                 POPupINACTIVE = false;
             }
         }
-        showScores();
+        showScores(lvl);
     }
     /**
      *

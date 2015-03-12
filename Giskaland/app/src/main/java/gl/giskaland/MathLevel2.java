@@ -56,7 +56,7 @@ public class MathLevel2 extends ActionBarActivity {
         // amke the popup
         PopUp();
 
-        setContentView(R.layout.activity_math__level_2);
+        setContentView(R.layout.activity_math_level_2);
 
         makeRandom(); // new numbers Restart
     }
