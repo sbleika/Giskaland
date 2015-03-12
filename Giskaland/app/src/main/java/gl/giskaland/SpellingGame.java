@@ -17,8 +17,10 @@ import java.util.List;
 
 public class SpellingGame extends ActionBarActivity {
 
-    // to make sure we only get one of each letter
+    // to make sure we only get one of each letter level 1
     String[] SpellingOut = new String[5];
+    // to make sure we only get one of each letter in level 2
+    String[] Spelling2 = new String[10];
     // the rigth answer
     String IMGvalue;
 
@@ -27,6 +29,9 @@ public class SpellingGame extends ActionBarActivity {
     Boolean SpellingOut2 = false;
     Boolean SpellingOut3 = false;
     Boolean SpellingOut4 = false;
+
+    // to know where the right answer is
+    Boolean[] Spelling2Bool = new Boolean[10];
 
     // the last outcome in the game before
     int LASTans;
@@ -77,6 +82,11 @@ public class SpellingGame extends ActionBarActivity {
      * put new letters to the buttons and a new image to guess on
      */
     public void makeRandom(){
+        if(lvl == 1)setUpLevelOne();
+        if(lvl == 2)setUpLevelTwo();
+    }
+
+    public void setUpLevelOne(){
         // reset all the global values
         //********************************************************************
         SpellingOut[1] = "1";
@@ -111,13 +121,24 @@ public class SpellingGame extends ActionBarActivity {
         // set the image to a random image
         setRandomnumIMG(IMG);
         // set random numbers to the 4 options
-        setTheOptions();
+        setTheOptionsLevel1();
     }
 
+    public void setUpLevelTwo(){
+        // reset variables
+        for (int i = 0; i < Spelling2Bool.length; i++){
+            Spelling2Bool[i]=false;
+        }
+        for (int j = 0; j < Spelling2.length; j++){
+            Spelling2[j] = "-1";
+        }
+
+
+    }
     /**
      * set new random numbers to the options and the correct answers
      */
-    public void setTheOptions(){
+    public void setTheOptionsLevel1(){
 
         // load in buttons
         //********************************************************************
@@ -177,7 +198,7 @@ public class SpellingGame extends ActionBarActivity {
         String ID = getID(view);
         //save the value of the answer to the rigth array place
         setValue(ID, IMGvalue);
-        //set the rigth image(the letter) to one of the buttons
+        //set the right image(the letter) to one of the buttons
         setIMG(IMGvalue, view);
     }
 
