@@ -13,8 +13,7 @@
         android:id="@+id/IMGspelling"
         android:src="@drawable/api"
         android:background="@android:color/transparent"
-        android:layout_marginTop="95dp"
-        android:layout_below="@+id/TextSpellingLevel1Score"
+        android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/SpellingOut3"
         android:layout_toStartOf="@+id/SpellingOut3" />
 

@@ -27,7 +27,7 @@ public class SpellingGame extends ActionBarActivity {
     String IMGword;
 
     // to know where the right answer is
-    Boolean[] SpellingOutBool = new Boolean[10];
+    Boolean[] SpellingOutBool = new Boolean[11];
 
     // the last outcome in the game before
     int LASTans;
@@ -388,7 +388,7 @@ public class SpellingGame extends ActionBarActivity {
      * @param view
      */
     public void setRandomnumIMG(ImageView view){
-        int numberOFimages = 5;
+        int numberOFimages = 7;
         // random image from 0 to 5
         int randomNum = ((int) Math.ceil(Math.random()*numberOFimages));
         // make sure we get new image
@@ -401,7 +401,7 @@ public class SpellingGame extends ActionBarActivity {
         String randomLetter = Integer.toString(randomNum);
         String nextNUMafter = Integer.toString(randomNum + 1);
         // all the images that are avalible
-        String imagies = "1 api_2 letidyr_3 ugla_4 kisa_5 hundur_6";
+        String imagies = "1 api_2 letidyr_3 ugla_4 kisa_5 hundur_6 myndavel_7 morgaes_8";
         // take one of the names from imagies
         String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nextNUMafter) - 1);
         // make the view have the random image
