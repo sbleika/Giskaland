@@ -132,6 +132,17 @@ public class SpellingGame extends ActionBarActivity {
         for (int j = 0; j < Spelling2.length; j++){
             Spelling2[j] = "-1";
         }
+        IMGvalue = "-1";
+
+        // set up the buttons
+        //********************************************************************
+        ImageButton button1;
+        IBout1 = (ImageButton) findViewById(R.id.SpellingOut1);
+        IBout1.setOnClickListener(checkIfRightAnsout1);
+
+        ImageButton IMG;
+        IMG = (ImageButton) findViewById(R.id.IMG);
+        //********************************************************************
 
 
     }

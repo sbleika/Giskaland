@@ -99,7 +99,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
+        android:id="@+id/imageOFitem"
         android:src="@drawable/api"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -108,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/textView"
+        android:id="@+id/ScoreForlevelTwo"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -117,8 +117,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/imageView"
+        android:id="@+id/OutPutText"
+        android:layout_below="@+id/imageOFitem"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp" />
 
@@ -127,7 +127,7 @@
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/button"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/OutPutText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>
