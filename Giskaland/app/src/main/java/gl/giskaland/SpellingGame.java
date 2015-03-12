@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +23,9 @@ public class SpellingGame extends ActionBarActivity {
     // to make sure we only get one of each letter in level 2
     //String[] Spelling2 = new String[10];
     // the fyrst letter in the answer
-    String IMGvalueLetter;
+    String IMGvalueLetter = "1";
+    // to know what letter we had last in level 2
+    int IMGvalueLetterNum = 0;
     // ther word in the image
     String IMGword;
 
@@ -137,6 +140,11 @@ public class SpellingGame extends ActionBarActivity {
             SpellingOut[j] = "-1";
         }
         IMGvalueLetter = "-1";
+        IMGvalueLetterNum = 0;
+
+        TextView IMGtext;
+        IMGtext = (TextView) findViewById(R.id.OutPutText);
+        IMGtext.setText("Hvernig skrifaru...");
 
         // set up the buttons
         //********************************************************************
@@ -424,6 +432,25 @@ public class SpellingGame extends ActionBarActivity {
         view.setImageResource(resID);
     }
 
+    public void PutUp(){
+        // get textview
+        TextView Output;
+        Output = (TextView)findViewById(R.id.OutPutText);
+
+        if(Output.getText().equals("Hvernig skrifaru...")){
+            Output.setText(IMGvalueLetter.substring(1,2));
+        }
+        else{
+            Output.append(IMGvalueLetter.substring(1,2));
+        }
+
+        IMGvalueLetterNum++;
+        if(IMGword.length() > IMGvalueLetterNum){
+            IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum));
+        }
+        else setUpLevelTwo();
+    }
+
     /**
      * update the score in the DB
      * @param change the chnge we want to do to the number
@@ -471,11 +498,18 @@ public class SpellingGame extends ActionBarActivity {
      */
     public void handleScore(int index) {
         if (SpellingOutBool[index]) {
-            makeRandom();
+
+            if(lvl == 1)makeRandom();
+            if(lvl == 2){
+                PutUp();
+                setTheOptionsLevel2();
+            }
             saveScore(2);
+
         }
         else {
             saveScore(-1);
+
         }
         showScores();
     }
