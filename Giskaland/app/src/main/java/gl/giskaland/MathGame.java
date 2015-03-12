@@ -149,95 +149,6 @@ public class MathGame extends ActionBarActivity {
     /**
      *
      */
-    View.OnClickListener AnswerQ = new View.OnClickListener() {
-        /**
-         *
-         */
-        @Override
-        public void onClick(View view) {
-            EditText editText;
-            editText = (EditText) findViewById(R.id.answerView);
-
-            int Ans = Integer.parseInt(editText.getText().toString());
-            if(Ans == IBnum1value*IBnum2value || Ans == IBnum1value/IBnum2value){
-                makeRandom();
-                saveScore(2);
-            }
-            else {
-                saveScore(-1);
-                if (POPupINACTIVE) {
-                    popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                    popUp.update(0, 0, 850, 133);
-                    POPupINACTIVE = false;
-                }
-            }
-            showScores(lvl);
-            System.out.println("answer");
-        }
-    };
-    /**
-     *
-     */
-    View.OnClickListener rest = new View.OnClickListener() {
-        /**
-         *
-         */
-        @Override
-        public void onClick(View view) {
-
-            makeRandom();
-            System.out.println("newwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-        }
-    };
-    /**
-     *
-     */
-    View.OnClickListener clearnum = new View.OnClickListener() {
-        /**
-         *
-         */
-        @Override
-        public void onClick(View view) {
-            ClearText();
-        }
-    };
-
-    public void ClearText(){
-        EditText editText;
-        editText = (EditText) findViewById(R.id.answerView);
-
-        editText.setText("0");
-
-        System.out.println("clear");
-    }
-    /**
-     *
-     */
-    View.OnClickListener Numlistner = new View.OnClickListener() {
-        /**
-         *
-         */
-        @Override
-        public void onClick(View view) {
-            EditText editText;
-            editText = (EditText) findViewById(R.id.answerView);
-
-            String viewId = view.getResources().getResourceName(view.getId());
-            String ID = viewId.substring(viewId.lastIndexOf('_') + 1);
-
-            MyAns = editText.getText().toString();
-            if(MyAns.equals("0")){
-                editText.setText(ID);
-            }else if (Integer.parseInt(MyAns)<200 && MyAns.length()<3){
-                editText.append(ID);
-            }
-            System.out.println(ID);
-        }
-    };
-
-    /**
-     *
-     */
     public void initDbManager() {
         dbManager = new DbManager(this);
 
@@ -750,6 +661,94 @@ public class MathGame extends ActionBarActivity {
         }
         showScores(lvl);
     }
+    /**
+     *
+     */
+    View.OnClickListener AnswerQ = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+            EditText editText;
+            editText = (EditText) findViewById(R.id.answerView);
+
+            int Ans = Integer.parseInt(editText.getText().toString());
+            if(Ans == IBnum1value*IBnum2value || Ans == IBnum1value/IBnum2value){
+                makeRandom();
+                saveScore(2);
+            }
+            else {
+                saveScore(-1);
+                if (POPupINACTIVE) {
+                    popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                    popUp.update(0, 0, 850, 133);
+                    POPupINACTIVE = false;
+                }
+            }
+            showScores(lvl);
+            System.out.println("answer");
+        }
+    };
+    /**
+     *
+     */
+    View.OnClickListener rest = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+
+            makeRandom();
+            System.out.println("newwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+        }
+    };
+    /**
+     *
+     */
+    View.OnClickListener clearnum = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+            ClearText();
+        }
+    };
+
+    public void ClearText(){
+        EditText editText;
+        editText = (EditText) findViewById(R.id.answerView);
+
+        editText.setText("0");
+
+        System.out.println("clear");
+    }
+    /**
+     *
+     */
+    View.OnClickListener Numlistner = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+            EditText editText;
+            editText = (EditText) findViewById(R.id.answerView);
+
+            String viewId = view.getResources().getResourceName(view.getId());
+            String ID = viewId.substring(viewId.lastIndexOf('_') + 1);
+
+            MyAns = editText.getText().toString();
+            if(MyAns.equals("0")){
+                editText.setText(ID);
+            }else if (Integer.parseInt(MyAns)<200 && MyAns.length()<3){
+                editText.append(ID);
+            }
+            System.out.println(ID);
+        }
+    };
     /**
      *
      */

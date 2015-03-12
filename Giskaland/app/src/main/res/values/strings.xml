@@ -44,5 +44,6 @@
     <string name="Clear">Þurrka</string>
     <string name="newQ">Ný spurning</string>
     <string name="title_activity_test_db_manager">TestDbManager</string>
+    <string name="title_activity_spelling_game_two">SpellingGameTwo</string>
 
 </resources>

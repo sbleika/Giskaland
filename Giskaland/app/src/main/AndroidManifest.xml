@@ -38,7 +38,7 @@
         <activity
             android:name=".MathGame"
             android:label="MathGame"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".MathLevel1"
@@ -60,7 +60,6 @@
             android:label="@string/title_activity_spelling_level_1"
             android:screenOrientation="landscape" >
         </activity>
-
         <activity
             android:name=".QuizLevel2"
             android:label="@string/title_activity_quiz__level_2"
@@ -70,6 +69,10 @@
             android:name=".QuizLevel3"
             android:label="@string/title_activity_quiz__level_3"
             android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".SpellingGameTwo"
+            android:label="@string/title_activity_spelling_game_two" >
         </activity>
     </application>
 
