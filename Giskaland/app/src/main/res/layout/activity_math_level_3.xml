@@ -110,8 +110,8 @@
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/Ans"
         android:id="@+id/answerView"
+        android:text=""
         android:textSize="100sp"
         android:textIsSelectable="true"
         android:layout_above="@+id/Answerbutton"

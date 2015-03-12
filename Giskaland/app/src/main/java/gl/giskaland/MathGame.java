@@ -170,9 +170,9 @@ public class MathGame extends ActionBarActivity {
                     popUp.update(0, 0, 850, 133);
                     POPupINACTIVE = false;
                 }
+                ClearText();
             }
             showScores(lvl);
-            System.out.println("answer");
         }
     };
     /**

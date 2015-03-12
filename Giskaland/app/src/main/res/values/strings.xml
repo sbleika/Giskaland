@@ -45,4 +45,6 @@
     <string name="newQ">Ný spurning</string>
     <string name="title_activity_test_db_manager">TestDbManager</string>
 
+    <string name="Mathlvl3Placeholder">Svara</string>
+
 </resources>
