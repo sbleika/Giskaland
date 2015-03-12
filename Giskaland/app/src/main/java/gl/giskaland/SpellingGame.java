@@ -18,20 +18,16 @@ import java.util.List;
 public class SpellingGame extends ActionBarActivity {
 
     // to make sure we only get one of each letter level 1
-    String[] SpellingOut = new String[5];
+    String[] SpellingOut = new String[11];
     // to make sure we only get one of each letter in level 2
-    String[] Spelling2 = new String[10];
-    // the rigth answer
-    String IMGvalue;
+    //String[] Spelling2 = new String[10];
+    // the fyrst letter in the answer
+    String IMGvalueLetter;
+    // ther word in the image
+    String IMGword;
 
     // to know where the right answer is
-    Boolean SpellingOut1 = false;
-    Boolean SpellingOut2 = false;
-    Boolean SpellingOut3 = false;
-    Boolean SpellingOut4 = false;
-
-    // to know where the right answer is
-    Boolean[] Spelling2Bool = new Boolean[10];
+    Boolean[] SpellingOutBool = new Boolean[10];
 
     // the last outcome in the game before
     int LASTans;
@@ -41,6 +37,17 @@ public class SpellingGame extends ActionBarActivity {
     // DbManager for usage inside this activity
     DbManager dbManager;
 
+
+    ImageButton button1;
+    ImageButton button2;
+    ImageButton button3;
+    ImageButton button4;
+    ImageButton button5;
+    ImageButton button6;
+    ImageButton button7;
+    ImageButton button8;
+    ImageButton button9;
+    ImageButton button10;
     /**
      * on opening the activity
      * @param savedInstanceState
@@ -48,11 +55,13 @@ public class SpellingGame extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spelling_game);
 
         // Get the lvl
         Bundle b = getIntent().getExtras();
         lvl = b.getInt("key");
+
+        if(lvl == 1)setContentView(R.layout.activity_spelling_game);
+        if(lvl == 2)setContentView(R.layout.activity_spelling_game_two);
 
         initDbManager();
 
@@ -89,31 +98,26 @@ public class SpellingGame extends ActionBarActivity {
     public void setUpLevelOne(){
         // reset all the global values
         //********************************************************************
-        SpellingOut[1] = "1";
-        SpellingOut[2] = "2";
-        SpellingOut[3] = "3";
-        SpellingOut[4] = "4";
-        IMGvalue = "-1";
-        SpellingOut1 = false;
-        SpellingOut2 = false;
-        SpellingOut3 = false;
-        SpellingOut4 = false;
+        for (int i = 0; i < SpellingOutBool.length; i++){
+            SpellingOutBool[i]=false;
+        }
+        for (int j = 0; j < SpellingOut.length; j++){
+            SpellingOut[j] = "-1";
+        }
+        IMGvalueLetter = "-1";
+
         //********************************************************************
 
         // set up the buttons
         //********************************************************************
-        ImageButton IBout1;
-        IBout1 = (ImageButton) findViewById(R.id.SpellingOut1);
-        IBout1.setOnClickListener(checkIfRightAnsout1);
-        ImageButton IBout2;
-        IBout2 = (ImageButton) findViewById(R.id.SpellingOut2);
-        IBout2.setOnClickListener(checkIfRightAnsout2);
-        ImageButton IBout3;
-        IBout3 = (ImageButton) findViewById(R.id.SpellingOut3);
-        IBout3.setOnClickListener(checkIfRightAnsout3);
-        ImageButton IBout4;
-        IBout4 = (ImageButton) findViewById(R.id.SpellingOut4);
-        IBout4.setOnClickListener(checkIfRightAnsout4);
+        button1 = (ImageButton) findViewById(R.id.SpellingOut1);
+        button1.setOnClickListener(checkIfRightAnsout);
+        button2 = (ImageButton) findViewById(R.id.SpellingOut2);
+        button2.setOnClickListener(checkIfRightAnsout);
+        button3 = (ImageButton) findViewById(R.id.SpellingOut3);
+        button3.setOnClickListener(checkIfRightAnsout);
+        button4 = (ImageButton) findViewById(R.id.SpellingOut4);
+        button4.setOnClickListener(checkIfRightAnsout);
         ImageButton IMG;
         IMG = (ImageButton) findViewById(R.id.IMGspelling);
         //********************************************************************
@@ -126,25 +130,45 @@ public class SpellingGame extends ActionBarActivity {
 
     public void setUpLevelTwo(){
         // reset variables
-        for (int i = 0; i < Spelling2Bool.length; i++){
-            Spelling2Bool[i]=false;
+        for (int i = 0; i < SpellingOutBool.length; i++){
+            SpellingOutBool[i]=false;
         }
-        for (int j = 0; j < Spelling2.length; j++){
-            Spelling2[j] = "-1";
+        for (int j = 0; j < SpellingOut.length; j++){
+            SpellingOut[j] = "-1";
         }
-        IMGvalue = "-1";
+        IMGvalueLetter = "-1";
 
         // set up the buttons
         //********************************************************************
-        ImageButton button1;
-        IBout1 = (ImageButton) findViewById(R.id.SpellingOut1);
-        IBout1.setOnClickListener(checkIfRightAnsout1);
+        button1 = (ImageButton) findViewById(R.id.SpellingOut1);
+        button1.setOnClickListener(checkIfRightAnsout);
+        button2 = (ImageButton) findViewById(R.id.SpellingOut2);
+        button2.setOnClickListener(checkIfRightAnsout);
+        button3 = (ImageButton) findViewById(R.id.SpellingOut3);
+        button3.setOnClickListener(checkIfRightAnsout);
+        button4 = (ImageButton) findViewById(R.id.SpellingOut4);
+        button4.setOnClickListener(checkIfRightAnsout);
+        button5 = (ImageButton) findViewById(R.id.SpellingOut5);
+        button5.setOnClickListener(checkIfRightAnsout);
+        button6 = (ImageButton) findViewById(R.id.SpellingOut6);
+        button6.setOnClickListener(checkIfRightAnsout);
+        button7 = (ImageButton) findViewById(R.id.SpellingOut7);
+        button7.setOnClickListener(checkIfRightAnsout);
+        button8 = (ImageButton) findViewById(R.id.SpellingOut8);
+        button8.setOnClickListener(checkIfRightAnsout);
+        button9 = (ImageButton) findViewById(R.id.SpellingOut9);
+        button9.setOnClickListener(checkIfRightAnsout);
+        button10 = (ImageButton) findViewById(R.id.SpellingOut10);
+        button10.setOnClickListener(checkIfRightAnsout);
 
-        ImageButton IMG;
-        IMG = (ImageButton) findViewById(R.id.IMG);
+        ImageView IMG;
+        IMG = (ImageView) findViewById(R.id.imageOFitem);
         //********************************************************************
 
-
+        // set the image to a random image
+        setRandomnumIMG(IMG);
+        // set random numbers to the 4 options
+        setTheOptionsLevel2();
     }
     /**
      * set new random numbers to the options and the correct answers
@@ -153,53 +177,104 @@ public class SpellingGame extends ActionBarActivity {
 
         // load in buttons
         //********************************************************************
-        ImageButton IBout1;
-        IBout1 = (ImageButton) findViewById(R.id.SpellingOut1);
-        ImageButton IBout2;
-        IBout2 = (ImageButton) findViewById(R.id.SpellingOut2);
-        ImageButton IBout3;
-        IBout3 = (ImageButton) findViewById(R.id.SpellingOut3);
-        ImageButton IBout4;
-        IBout4 = (ImageButton) findViewById(R.id.SpellingOut4);
+        button1 = (ImageButton) findViewById(R.id.SpellingOut1);
+        button2 = (ImageButton) findViewById(R.id.SpellingOut2);
+        button3 = (ImageButton) findViewById(R.id.SpellingOut3);
+        button4 = (ImageButton) findViewById(R.id.SpellingOut4);
         //********************************************************************
 
         // random number from 1 to 4
         int randomOut = (int) Math.ceil(Math.random()*4);
 
+        SpellingOutBool[randomOut] = true;
         // set one of four to the correct value
-        if(randomOut == 1){
-            setAnswer(IBout1);
-            SpellingOut1 = true;
-            setRandom(IBout4);
-            setRandom(IBout2);
-            setRandom(IBout3);
-        }
 
-        if(randomOut == 2){
-            setAnswer(IBout2);
-            SpellingOut2 = true;
-            setRandom(IBout1);
-            setRandom(IBout4);
-            setRandom(IBout3);
-        }
+        setRandom(button1);
+        setRandom(button4);
+        setRandom(button2);
+        setRandom(button3);
 
-        if(randomOut == 3){
-            setAnswer(IBout3);
-            SpellingOut3 = true;
-            setRandom(IBout1);
-            setRandom(IBout2);
-            setRandom(IBout4);
-        }
-
-        if(randomOut == 4){
-            setAnswer(IBout4);
-            SpellingOut4 = true;
-            setRandom(IBout1);
-            setRandom(IBout2);
-            setRandom(IBout3);
+        switch (randomOut) {
+            case 1:
+                setAnswer(button1);
+                break;
+            case 2:
+                setAnswer(button2);
+                break;
+            case 3:
+                setAnswer(button3);
+                break;
+            case 4:
+                setAnswer(button4);
+                break;
         }
     }
 
+    public void setTheOptionsLevel2(){
+        // load in buttons
+        //********************************************************************
+        button1 = (ImageButton) findViewById(R.id.SpellingOut1);
+        button2 = (ImageButton) findViewById(R.id.SpellingOut2);
+        button3 = (ImageButton) findViewById(R.id.SpellingOut3);
+        button4 = (ImageButton) findViewById(R.id.SpellingOut4);
+        button5 = (ImageButton) findViewById(R.id.SpellingOut5);
+        button6 = (ImageButton) findViewById(R.id.SpellingOut6);
+        button7 = (ImageButton) findViewById(R.id.SpellingOut7);
+        button8 = (ImageButton) findViewById(R.id.SpellingOut8);
+        button9 = (ImageButton) findViewById(R.id.SpellingOut9);
+        button10 = (ImageButton) findViewById(R.id.SpellingOut10);
+        //********************************************************************
+
+        // random number from 1 to 4
+        int randomOut = (int) Math.ceil(Math.random()*10);
+
+        // set one of four to the correct value
+        SpellingOutBool[randomOut] = true;
+
+        setRandom(button1);
+        setRandom(button2);
+        setRandom(button3);
+        setRandom(button4);
+        setRandom(button5);
+        setRandom(button6);
+        setRandom(button7);
+        setRandom(button8);
+        setRandom(button9);
+        setRandom(button10);
+
+        switch (randomOut) {
+            case 1:
+                setAnswer(button1);
+                break;
+            case 2:
+                setAnswer(button2);
+                break;
+            case 3:
+                setAnswer(button3);
+                break;
+            case 4:
+                setAnswer(button4);
+                break;
+            case 5:
+                setAnswer(button5);
+                break;
+            case 6:
+                setAnswer(button6);
+                break;
+            case 7:
+                setAnswer(button7);
+                break;
+            case 8:
+                setAnswer(button8);
+                break;
+            case 9:
+                setAnswer(button9);
+                break;
+            case 10:
+                setAnswer(button10);
+                break;
+        }
+    }
     /**
      *  set the rigth answer to one of the buttons
      * @param view
@@ -208,9 +283,9 @@ public class SpellingGame extends ActionBarActivity {
         //get the id of the button
         String ID = getID(view);
         //save the value of the answer to the rigth array place
-        setValue(ID, IMGvalue);
+        setValue(ID, IMGvalueLetter);
         //set the right image(the letter) to one of the buttons
-        setIMG(IMGvalue, view);
+        setIMG(IMGvalueLetter, view);
     }
 
     /**
@@ -223,7 +298,13 @@ public class SpellingGame extends ActionBarActivity {
         while ( SpellingOut[1].equals(letter) ||
                 SpellingOut[2].equals(letter) ||
                 SpellingOut[3].equals(letter) ||
-                SpellingOut[4].equals(letter)){
+                SpellingOut[4].equals(letter) ||
+                SpellingOut[5].equals(letter) ||
+                SpellingOut[6].equals(letter) ||
+                SpellingOut[7].equals(letter) ||
+                SpellingOut[8].equals(letter) ||
+                SpellingOut[9].equals(letter) ||
+                SpellingOut[10].equals(letter)){
             letter = getRandomLetter();
         }
         // get the id of the button we are working with
@@ -251,6 +332,24 @@ public class SpellingGame extends ActionBarActivity {
         }
         else if (ID.equals("SpellingOut4")){
             SpellingOut[4] = letter;
+        }
+        else if (ID.equals("SpellingOut5")){
+            SpellingOut[5] = letter;
+        }
+        else if (ID.equals("SpellingOut6")){
+            SpellingOut[6] = letter;
+        }
+        else if (ID.equals("SpellingOut7")){
+            SpellingOut[7] = letter;
+        }
+        else if (ID.equals("SpellingOut8")){
+            SpellingOut[8] = letter;
+        }
+        else if (ID.equals("SpellingOut9")){
+            SpellingOut[9] = letter;
+        }
+        else if (ID.equals("SpellingOut10")){
+            SpellingOut[10] = letter;
         }
     }
 
@@ -309,8 +408,10 @@ public class SpellingGame extends ActionBarActivity {
         int resID = getResources().getIdentifier(letter , "drawable", "gl.giskaland");
         // set the letter to the button
         view.setImageResource(resID);
-        //set the fyrst letter of the thing on the image to IMGvalue
-        IMGvalue = "s" + letter.substring(0,1);
+        //set the fyrst letter of the thing on the image to IMGvalueletter
+        IMGvalueLetter = "s" + letter.substring(0,1);
+        // get the word of the image
+        IMGword = letter;
     }
 
     /**
@@ -358,7 +459,9 @@ public class SpellingGame extends ActionBarActivity {
      */
     public void showScores() {
         String[] newScores = getScore();
-        TextView scoreView = (TextView)findViewById(R.id.TextSpellingLevel1Score);
+        TextView scoreView;
+        if(lvl==1)scoreView = (TextView)findViewById(R.id.TextSpellingLevel1Score);
+        else scoreView = (TextView)findViewById(R.id.TextSpellingLevel2Score);
         scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
     }
 
@@ -367,8 +470,7 @@ public class SpellingGame extends ActionBarActivity {
      * @param index the button we are checking
      */
     public void handleScore(int index) {
-        Boolean[] allSpellingOut = {SpellingOut1, SpellingOut2, SpellingOut3, SpellingOut4};
-        if (allSpellingOut[index]) {
+        if (SpellingOutBool[index]) {
             makeRandom();
             saveScore(2);
         }
@@ -379,54 +481,47 @@ public class SpellingGame extends ActionBarActivity {
     }
 
     /**
-     * OnClickListener for Answer button nr. 1
+     * OnClickListener for Answer buttons
      */
-    View.OnClickListener checkIfRightAnsout1 = new View.OnClickListener() {
+    View.OnClickListener checkIfRightAnsout = new View.OnClickListener() {
         /**
          *
          */
         @Override
         public void onClick(View view) {
-            handleScore(0);
-        }
-    };
-
-    /**
-     * OnClickListener for Answer button nr. 2
-     */
-    View.OnClickListener checkIfRightAnsout2 = new View.OnClickListener() {
-        /**
-         *
-         */
-        @Override
-        public void onClick(View view) {
-            handleScore(1);
-        }
-    };
-
-    /**
-     * OnClickListener for Answer button nr. 3
-     */
-    View.OnClickListener checkIfRightAnsout3 = new View.OnClickListener() {
-        /**
-         *
-         */
-        @Override
-        public void onClick(View view) {
-            handleScore(2);
-        }
-    };
-
-    /**
-     * OnClickListener for Answer button nr. 4
-     */
-    View.OnClickListener checkIfRightAnsout4 = new View.OnClickListener() {
-        /**
-         *
-         */
-        @Override
-        public void onClick(View view) {
-            handleScore(3);
+            String ID = getID(view);
+            switch (ID) {
+                case "SpellingOut1":
+                    handleScore(1);
+                    break;
+                case "SpellingOut2":
+                    handleScore(2);
+                    break;
+                case "SpellingOut3":
+                    handleScore(3);
+                    break;
+                case "SpellingOut4":
+                    handleScore(4);
+                    break;
+                case "SpellingOut5":
+                    handleScore(5);
+                    break;
+                case "SpellingOut6":
+                    handleScore(6);
+                    break;
+                case "SpellingOut7":
+                    handleScore(7);
+                    break;
+                case "SpellingOut8":
+                    handleScore(8);
+                    break;
+                case "SpellingOut9":
+                    handleScore(9);
+                    break;
+                case "SpellingOut10":
+                    handleScore(10);
+                    break;
+            }
         }
     };
 
