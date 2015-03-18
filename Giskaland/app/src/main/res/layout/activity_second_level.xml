@@ -44,14 +44,6 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content" />
 
-
-    <Button
-        android:id="@+id/buttonGameTwo"
-        android:text="@string/gameTwo"
-        style="@style/button_style_two"
-        android:layout_below="@+id/buttonBrainPuzzle"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:text="@string/returnback"
         android:id="@+id/buttonReturn"
