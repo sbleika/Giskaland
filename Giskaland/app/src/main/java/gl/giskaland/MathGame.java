@@ -75,8 +75,6 @@ public class MathGame extends ActionBarActivity {
         Bundle b = getIntent().getExtras();
         lvl = b.getInt("key");
 
-        System.out.println("MathGame, onCreate(), HERE!");
-
         if(lvl == 1)
             setContentView(R.layout.activity_math_level_1);
         else if (lvl == 2)

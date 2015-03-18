@@ -107,7 +107,7 @@ public class ThirdLevel extends ActionBarActivity {
      * opens new activity
      */
     private void BrainPuzzle(){
-        startActivity(new Intent(this, QuizLevel3.class));
+        startActivity(new Intent(this, QuizGame.class));
 
     };
 

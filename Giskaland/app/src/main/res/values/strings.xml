@@ -18,7 +18,7 @@
     <string name="gameTwo">Leikur 2</string>
 
     <string name="gameMath">Stærðfræði</string>
-    <string name="gameBrainPuzzle">Spurningarleikuinn</string>
+    <string name="gameBrainPuzzle">Spurningarleikurinn</string>
     <string name="SpellThePic">Hvernig á að skrifa</string>
     <string name="WhatLetter">Stafaleikurinn</string>
 
@@ -47,5 +47,6 @@
     <string name="title_activity_spelling_game_two">SpellingGameTwo</string>
 
     <string name="Mathlvl3Placeholder">Svara</string>
+    <string name="title_activity_quiz_game">QuizGame</string>
 
 </resources>
