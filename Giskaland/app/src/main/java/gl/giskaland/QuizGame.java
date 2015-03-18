@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 
 public class QuizGame extends ActionBarActivity {
@@ -19,6 +20,7 @@ public class QuizGame extends ActionBarActivity {
 
     DbManager dbManager;
     List<List<String>> allQuestions;
+    int nrQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,30 @@ public class QuizGame extends ActionBarActivity {
         for (List<String> aQuestion : allQuestions)
             for (String elem : aQuestion)
                 System.out.println(elem);
+        System.out.println("Number of questions: " + String.valueOf(allQuestions.size()));
+        /////////////////////
+
+        nrQuestions = allQuestions.size();
+
+        newQuestion();
+    }
+
+    public void newQuestion() {
+        int ind = randomIndex();
+        List<String> aQuestion = allQuestions.get(ind);
+        // The question itself
+        String question = aQuestion.get(1);
+
+        TextView qText = (TextView)findViewById(R.id.QuestionTextLvl3);
+        qText.setText(question);
+    }
+
+    public int randomIndex() {
+        Random rand = new Random();
+        int max = nrQuestions;
+        int min = 0;
+        int randNum = rand.nextInt((max - min) + 1) + min;
+        return randNum;
     }
 
     public void initDbManager() {
