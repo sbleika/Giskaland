@@ -106,8 +106,12 @@ public class SecondLevel extends ActionBarActivity {
      * open activity
      */
     private void BrainPuzzle(){
-        startActivity(new Intent(this, QuizLevel2.class));
-
+        Intent intent = new Intent(this, QuizGame.class);
+        Bundle b = new Bundle();
+        b.putInt("key", 2); // Indicating level 2
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
     };
 
     /** Return button

@@ -107,8 +107,12 @@ public class ThirdLevel extends ActionBarActivity {
      * opens new activity
      */
     private void BrainPuzzle(){
-        startActivity(new Intent(this, QuizGame.class));
-
+        Intent intent = new Intent(this, QuizGame.class);
+        Bundle b = new Bundle();
+        b.putInt("key", 3); // Indicating level 3
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
     };
 
     /** Return button
