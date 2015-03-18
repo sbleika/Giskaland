@@ -18,6 +18,7 @@ public class QuizGame extends ActionBarActivity {
     int lvl;
 
     DbManager dbManager;
+    List<List<String>> allQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,12 @@ public class QuizGame extends ActionBarActivity {
         initDbManager();
         showScores(lvl);
         saveScore(2);
+
+        // Testing : print out all the questions
+        allQuestions = dbManager.getAllQuestions();
+        for (List<String> aQuestion : allQuestions)
+            for (String elem : aQuestion)
+                System.out.println(elem);
     }
 
     public void initDbManager() {
