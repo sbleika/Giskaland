@@ -41,6 +41,8 @@ public class MathGame extends ActionBarActivity {
     int IBnum2value;
     // the right number of items for level 1
     int IMGvalue;
+
+    int LASTans;
     // to make sure we only get one of each
     int IBout1value;
     int IBout2value;
@@ -244,11 +246,13 @@ public class MathGame extends ActionBarActivity {
         //********************************************************************
         int randomOP = (int) Math.ceil(Math.random()*2);
         if (randomOP == 1) {
+            //multiply
             IBplus_min.setImageResource(R.drawable.multiply);
             Multiply = true;
             Divide = false;
         }
         else if (randomOP == 2) {
+            //DIVIDE
             IBplus_min.setImageResource(R.drawable.divide);
             Multiply = false;
             Divide = true;
@@ -435,9 +439,12 @@ public class MathGame extends ActionBarActivity {
      * @param view v
      */
     public void setRandomnumIMG(ImageView view){
-        // random from 0 to 10
+        // random from 1 to 4
         int IMGnum = ((int) Math.ceil(Math.random()*4));
-
+        while(IMGnum == last_num){
+            IMGnum = ((int) Math.ceil(Math.random()*4));
+        }
+        last_num = IMGnum;
         if (IMGnum == 1) {
             view.setImageResource(R.drawable.img_1_line_2);
             IMGvalue = 2;
@@ -500,11 +507,15 @@ public class MathGame extends ActionBarActivity {
     public void setRandomnum1(ImageView view){
         // random from 0 to 10
         int randomNum;
-        if(Divide){
-            randomNum = ((int) Math.ceil(Math.random() * (10)));
-        }
-        else randomNum = ((int) (Math.random()*11));
+        if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)));
 
+        else randomNum = ((int) (Math.random()*11));
+        while (LASTans == randomNum){
+            randomNum = ((int) (Math.random()*11));
+            if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)));
+        }
+        //make it the lastans so we dont get it next time
+        LASTans = randomNum;
         IBnum1value = randomNum;
 
         setIMG(randomNum, view);

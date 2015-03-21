@@ -175,7 +175,7 @@ public class SpellingGame extends ActionBarActivity {
 
         // set the image to a random image
         setRandomnumIMG(IMG);
-        // set random numbers to the 4 options
+        // set random numbers to the 9 options
         setTheOptionsLevel2();
     }
     /**
@@ -233,53 +233,142 @@ public class SpellingGame extends ActionBarActivity {
         button10 = (ImageButton) findViewById(R.id.SpellingOut10);
         //********************************************************************
 
-        // random number from 1 to 4
+        // random number from 1 to 10
         int randomOut = (int) Math.ceil(Math.random()*10);
 
-        // set one of four to the correct value
+        // set one of 10 to the correct value
         SpellingOutBool[randomOut] = true;
-
-        setRandom(button1);
-        setRandom(button2);
-        setRandom(button3);
-        setRandom(button4);
-        setRandom(button5);
-        setRandom(button6);
-        setRandom(button7);
-        setRandom(button8);
-        setRandom(button9);
-        setRandom(button10);
 
         switch (randomOut) {
             case 1:
                 setAnswer(button1);
+
+                setRandom(button2);
+                setRandom(button3);
+                setRandom(button4);
+                setRandom(button5);
+                setRandom(button6);
+                setRandom(button7);
+                setRandom(button8);
+                setRandom(button9);
+                setRandom(button10);
                 break;
             case 2:
                 setAnswer(button2);
+
+                setRandom(button1);
+                setRandom(button3);
+                setRandom(button4);
+                setRandom(button5);
+                setRandom(button6);
+                setRandom(button7);
+                setRandom(button8);
+                setRandom(button9);
+                setRandom(button10);
                 break;
             case 3:
                 setAnswer(button3);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button4);
+                setRandom(button5);
+                setRandom(button6);
+                setRandom(button7);
+                setRandom(button8);
+                setRandom(button9);
+                setRandom(button10);
                 break;
             case 4:
                 setAnswer(button4);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button3);
+                setRandom(button5);
+                setRandom(button6);
+                setRandom(button7);
+                setRandom(button8);
+                setRandom(button9);
+                setRandom(button10);
                 break;
             case 5:
                 setAnswer(button5);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button3);
+                setRandom(button4);
+                setRandom(button6);
+                setRandom(button7);
+                setRandom(button8);
+                setRandom(button9);
+                setRandom(button10);
                 break;
             case 6:
                 setAnswer(button6);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button3);
+                setRandom(button4);
+                setRandom(button5);
+                setRandom(button7);
+                setRandom(button8);
+                setRandom(button9);
+                setRandom(button10);
                 break;
             case 7:
                 setAnswer(button7);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button3);
+                setRandom(button4);
+                setRandom(button5);
+                setRandom(button6);
+                setRandom(button8);
+                setRandom(button9);
+                setRandom(button10);
                 break;
             case 8:
                 setAnswer(button8);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button3);
+                setRandom(button4);
+                setRandom(button5);
+                setRandom(button6);
+                setRandom(button7);
+                setRandom(button9);
+                setRandom(button10);
                 break;
             case 9:
                 setAnswer(button9);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button3);
+                setRandom(button4);
+                setRandom(button5);
+                setRandom(button6);
+                setRandom(button7);
+                setRandom(button8);
+                setRandom(button10);
                 break;
             case 10:
                 setAnswer(button10);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button3);
+                setRandom(button4);
+                setRandom(button5);
+                setRandom(button6);
+                setRandom(button7);
+                setRandom(button8);
+                setRandom(button9);
                 break;
         }
     }
@@ -372,7 +461,7 @@ public class SpellingGame extends ActionBarActivity {
         String randomLetter = Integer.toString(randomNum);
         String nestnum = Integer.toString(randomNum + 1);
         // all the letters
-        String alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10sh_11si_12sii_13sj_14sk_15sl_16sm_17sn_18so_19soo_20sooo_21sp_22sr_23ss_24st_25sth_26su_27suu_28sv_29sx_30sy_31syy_32";
+        String alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10sh_11si_12sii_13sj_14sk_15sl_16sm_17sn_18so_19soo_20sou_21sp_22sr_23ss_24st_25sth_26su_27suu_28sv_29sx_30sy_31syy_32";
         // tke one of the letters
         String letter = alphabet.substring(	alphabet.indexOf(randomLetter) + 2,alphabet.indexOf(nestnum) - 1);
         //System.out.println(letter);
@@ -409,7 +498,7 @@ public class SpellingGame extends ActionBarActivity {
         String randomLetter = Integer.toString(randomNum);
         String nextNUMafter = Integer.toString(randomNum + 1);
         // all the images that are avalible
-        String imagies = "1 api_2 letidyr_3 ugla_4 kisa_5 hundur_6 myndavel_7 morgaes_8";
+        String imagies = "1 api_2 letid0yyr_3 ugla_4 kisa_5 hundur_6 myndav0eel_7 m0ourg0aes_8";
         // take one of the names from imagies
         String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nextNUMafter) - 1);
         // make the view have the random image
@@ -433,22 +522,66 @@ public class SpellingGame extends ActionBarActivity {
     }
 
     public void PutUp(){
+        Append();
+
+        NextLetterForOptions();
+    }
+
+    public void Append(){
         // get textview
         TextView Output;
         Output = (TextView)findViewById(R.id.OutPutText);
-
+        System.out.println(Output.getText());
         if(Output.getText().equals("Hvernig skrifaru...")){
             Output.setText(IMGvalueLetter.substring(1,2));
         }
         else{
-            Output.append(IMGvalueLetter.substring(1,2));
-        }
+            if(IMGvalueLetter.length() > 2){
+                System.out.println(IMGvalueLetter.substring(1,3));
+                if(IMGvalueLetter.substring(1,3).equals("aa")){
+                    Output.append("á");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("ae")){
+                    Output.append("æ");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("dd")){
+                    Output.append("ð");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("ee")){
+                    Output.append("é");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("ii")){
+                    Output.append("í");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("oo")){
+                    Output.append("ó");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("ou")){
+                    Output.append("ö");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("uu")){
+                    Output.append("ú");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("yy")){
+                    Output.append("ý");
+                }
 
+            }
+            else Output.append(IMGvalueLetter.substring(1,2));
+        }
+    }
+
+    public void NextLetterForOptions(){
         IMGvalueLetterNum++;
         if(IMGword.length() > IMGvalueLetterNum){
-            IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum));
+            if(IMGword.charAt(IMGvalueLetterNum) == '0') {
+                System.out.println("serisl stafur kemur her jejjjjjjjjjjjjjjjjjjjjjj");
+                IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum+1)) + IMGword.charAt((IMGvalueLetterNum + 2));
+                IMGvalueLetterNum = IMGvalueLetterNum + 2;
+            }
+            else IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum));
         }
-        else setUpLevelTwo();
+        else setUpLevelTwo();//you have won!!!!!!!!!!!!!!
     }
 
     /**
@@ -496,7 +629,7 @@ public class SpellingGame extends ActionBarActivity {
      * check if we have the right Answer
      * @param index the button we are checking
      */
-    public void handleScore(int index) {
+    public void handleScore(int index, View view) {
         if (SpellingOutBool[index]) {
 
             if(lvl == 1)makeRandom();
@@ -509,7 +642,7 @@ public class SpellingGame extends ActionBarActivity {
         }
         else {
             saveScore(-1);
-
+            // make button diffrent
         }
         showScores();
     }
@@ -526,34 +659,34 @@ public class SpellingGame extends ActionBarActivity {
             String ID = getID(view);
             switch (ID) {
                 case "SpellingOut1":
-                    handleScore(1);
+                    handleScore(1, view);
                     break;
                 case "SpellingOut2":
-                    handleScore(2);
+                    handleScore(2, view);
                     break;
                 case "SpellingOut3":
-                    handleScore(3);
+                    handleScore(3, view);
                     break;
                 case "SpellingOut4":
-                    handleScore(4);
+                    handleScore(4, view);
                     break;
                 case "SpellingOut5":
-                    handleScore(5);
+                    handleScore(5, view);
                     break;
                 case "SpellingOut6":
-                    handleScore(6);
+                    handleScore(6, view);
                     break;
                 case "SpellingOut7":
-                    handleScore(7);
+                    handleScore(7, view);
                     break;
                 case "SpellingOut8":
-                    handleScore(8);
+                    handleScore(8, view);
                     break;
                 case "SpellingOut9":
-                    handleScore(9);
+                    handleScore(9, view);
                     break;
                 case "SpellingOut10":
-                    handleScore(10);
+                    handleScore(10, view);
                     break;
             }
         }
