@@ -51,6 +51,7 @@ public class SpellingGame extends ActionBarActivity {
 
     int lvl;
 
+    boolean NotEnglish = true;
     boolean buttonNotPressed = true;
 
     // DbManager for usage inside this activity
@@ -106,7 +107,7 @@ public class SpellingGame extends ActionBarActivity {
 
         //todo
         //close the db somewhere
-        
+
         initScores();
         showScores();
     }
@@ -134,6 +135,10 @@ public class SpellingGame extends ActionBarActivity {
     public void makeRandom(){
         if(lvl == 1)setUpLevelOne();
         if(lvl == 2)setUpLevelTwo();
+        if(lvl == 3){
+            NotEnglish = false;
+            setUpLevelTwo();
+        }
     }
 
     public void setUpLevelOne(){
@@ -182,8 +187,13 @@ public class SpellingGame extends ActionBarActivity {
 
         TextView IMGtext;
         IMGtext = (TextView) findViewById(R.id.OutPutText);
-        IMGtext.setText("Hvernig skrifar þú...");
-        IMGtext.setTextSize(80);
+        if(NotEnglish) {
+            IMGtext.setText("Hvernig skrifar þú...");
+            IMGtext.setTextSize(70);
+        }else {
+            IMGtext.setText("Hvernig skrifar þú ... á ensku");
+            IMGtext.setTextSize(60);
+        }
         buttonNotPressed = true;
 
         // set up the buttons
@@ -287,6 +297,11 @@ public class SpellingGame extends ActionBarActivity {
         button9 = (ImageButton) findViewById(R.id.SpellingOut9);
         button10 = (ImageButton) findViewById(R.id.SpellingOut10);
         //********************************************************************
+
+        // reset variables
+        for (int i = 0; i < SpellingOutBool.length; i++){
+            SpellingOutBool[i]=false;
+        }
 
         // random number from 1 to 10
         int randomOut = (int) Math.ceil(Math.random()*10);
@@ -513,15 +528,24 @@ public class SpellingGame extends ActionBarActivity {
      */
     public String getRandomLetter(){
         // ranom number from 0 to 31
-        int randomNum = ((int) (Math.random()*32));
+        int randomNum;
+        if(NotEnglish){
+            randomNum = ((int) (Math.random()*32));
+        }else randomNum = ((int) (Math.random()*22));
 
         String randomLetter = Integer.toString(randomNum);
         String nestnum = Integer.toString(randomNum + 1);
+        String alphabet;
         // all the letters
-        String alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10sh_11si_12sii_13sj_14sk_15sl_16sm_17sn_18so_19soo_20sou_21sp_22sr_23ss_24st_25sth_26su_27suu_28sv_29sx_30sy_31syy_32";
+        if(NotEnglish){
+            alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10sh_11si_12sii_13sj_14sk_15sl_16sm_17sn_18so_19soo_20sou_21sp_22sr_23ss_24st_25sth_26su_27suu_28sv_29sx_30sy_31syy_32";
+            //alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10 sh_11 si_12 sii_13 sj_14 sk_15 sl_16 sm_17 sn_18 so_19 soo_20 sou_21 sp_22 sr_23 ss_24 st_25 sth_26 su_27 suu_28 sv_29 sx_30 sy_31 syy_32";
+        }else {
+            alphabet = "0 sa_1 sb_2 sd_3 se_4 sf_5 sg_6 sh_7 si_8 sj_9 sk_10sl_11sm_12sn_13so_14sp_15sr_16ss_17st_18su_19sv_20sx_21sy_22sw_23";
+        }
         // tke one of the letters
         String letter;
-        letter = alphabet.substring(	alphabet.indexOf(randomLetter) + 2,alphabet.indexOf(nestnum) - 1);
+        letter = alphabet.substring(alphabet.indexOf(randomLetter) + 2,alphabet.indexOf(nestnum) - 1);
         //System.out.println(letter);
         return letter;
     }
@@ -537,7 +561,6 @@ public class SpellingGame extends ActionBarActivity {
         ID = viewId.substring(viewId.lastIndexOf('/') + 1);
         return ID;
     }
-
 
     /**
      * set a random image to the view
@@ -556,8 +579,14 @@ public class SpellingGame extends ActionBarActivity {
         //make it string and one number higher
         String randomLetter = Integer.toString(randomNum);
         String nextNUMafter = Integer.toString(randomNum + 1);
+        String imagies = "-1";
         // all the images that are avalible
-        String imagies = "1 api_2 letid0yyr_3 ugla_4 kisa_5 hundur_6 myndav0eel_7 m0ourg0aes_8";
+        if(NotEnglish){
+            imagies = "1 api_2 letid0yyr_3 ugla_4 kisa_5 hundur_6 myndav0eel_7 m0ourg0aes_8";
+        }else{
+            imagies = "1 monkey_2 sloth_3 owl_4 cat_5 dog_6 camera_7 penguin_8";
+        }
+
         // take one of the names from imagies
         String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nextNUMafter) - 1);
         // make the view have the random image
@@ -690,7 +719,7 @@ public class SpellingGame extends ActionBarActivity {
     public void handleScore(int index, View view) {
         if (SpellingOutBool[index]) {
             if(lvl == 1)makeRandom();
-            if(lvl == 2){
+            if(lvl == 2 || lvl == 3){
                 PutUp();
                 setTheOptionsLevel2();
             }

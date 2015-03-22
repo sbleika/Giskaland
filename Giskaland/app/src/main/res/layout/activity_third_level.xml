@@ -30,7 +30,7 @@
 
     <Button
         android:id="@+id/buttonSpellThePicLevel3"
-        android:text="@string/SpellThePic"
+        android:text="@string/SpellThePicEnglish"
         style="@style/button_style_two"
         android:layout_below="@+id/buttonMathLevel3"
         android:layout_centerHorizontal="true"
