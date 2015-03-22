@@ -28,9 +28,6 @@ public class SecondLevel extends ActionBarActivity {
         ButtonBrainPuzzle = (Button) findViewById(R.id.buttonBrainPuzzle);
         ButtonBrainPuzzle.setOnClickListener(BrainPuzzleClickListener);
 
-        Button ButtonReturn;
-        ButtonReturn = (Button) findViewById(R.id.buttonReturn);
-        ButtonReturn.setOnClickListener(Return_ClickListener);
         //**********************************************************************
 
     }
@@ -112,29 +109,6 @@ public class SecondLevel extends ActionBarActivity {
         intent.putExtras(b);
         startActivity(intent);
         finish();
-    };
-
-    /** Return button
-     *
-     */
-    View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
-        /**
-         * ef smellt er a
-         * @param v view
-         */
-        @Override
-        public void onClick(View v) {
-
-            Return();
-        }
-    };
-
-    /**
-     * Return to start
-     */
-    private void Return(){
-        startActivity(new Intent(this, Upphafsglugginn.class));
-
     };
 
     @Override

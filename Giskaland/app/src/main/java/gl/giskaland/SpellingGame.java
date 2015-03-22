@@ -1,16 +1,20 @@
 package gl.giskaland;
 
 import android.database.sqlite.SQLiteException;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -18,6 +22,15 @@ import java.util.List;
 
 
 public class SpellingGame extends ActionBarActivity {
+
+    //******************************
+    // for the popUp window
+    PopupWindow popUp;
+    LinearLayout layout;
+    TextView tv;
+    RadioGroup.LayoutParams params;
+    boolean POPupINACTIVE = true;
+    //******************************
 
     // to make sure we only get one of each letter level 1
     String[] SpellingOut = new String[11];
@@ -56,7 +69,7 @@ public class SpellingGame extends ActionBarActivity {
     ImageButton button10;
     /**
      * on opening the activity
-     * @param savedInstanceState
+     * @param savedInstanceState v
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +84,8 @@ public class SpellingGame extends ActionBarActivity {
         if(lvl == 3)setContentView(R.layout.activity_spelling_game_tree);
 
         initDbManager();
-
+        // make the popup
+        PopUp();
         makeRandom(); // start the game
     }
 
@@ -92,6 +106,23 @@ public class SpellingGame extends ActionBarActivity {
 
         initScores();
         showScores();
+    }
+
+    /**
+     *
+     */
+    public void PopUp(){
+        popUp = new PopupWindow(this);
+        layout = new LinearLayout(this);
+        tv = new TextView(this);
+        params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT,
+                RadioGroup.LayoutParams.WRAP_CONTENT);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        tv.setText("RANGT svar !!");
+        tv.setTextSize(48.0F);
+        tv.setTextColor(0xFFFFFFFF);
+        layout.addView(tv, params);
+        popUp.setContentView(layout);
     }
 
     /**
@@ -207,23 +238,34 @@ public class SpellingGame extends ActionBarActivity {
         SpellingOutBool[randomOut] = true;
         // set one of four to the correct value
 
-        setRandom(button1);
-        setRandom(button4);
-        setRandom(button2);
-        setRandom(button3);
-
         switch (randomOut) {
             case 1:
                 setAnswer(button1);
+
+                setRandom(button2);
+                setRandom(button3);
+                setRandom(button4);
                 break;
             case 2:
                 setAnswer(button2);
+
+                setRandom(button1);
+                setRandom(button3);
+                setRandom(button4);
                 break;
             case 3:
                 setAnswer(button3);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button4);
                 break;
             case 4:
                 setAnswer(button4);
+
+                setRandom(button1);
+                setRandom(button2);
+                setRandom(button3);
                 break;
         }
     }
@@ -384,7 +426,7 @@ public class SpellingGame extends ActionBarActivity {
     }
     /**
      *  set the rigth answer to one of the buttons
-     * @param view
+     * @param view v
      */
     public void setAnswer(ImageView view){
         //get the id of the button
@@ -397,7 +439,7 @@ public class SpellingGame extends ActionBarActivity {
 
     /**
      *  set a random wrong answer to one of the buttons
-     * @param view
+     * @param view v
      */
     public void setRandom(ImageView view){
         String letter = getRandomLetter();
@@ -428,35 +470,37 @@ public class SpellingGame extends ActionBarActivity {
      * @param letter the letter to be set
      */
     public void setValue(String ID, String letter){
-        if(ID.equals("SpellingOut1")) {
-            SpellingOut[1] = letter;
-        }
-        else if (ID.equals("SpellingOut2")){
-            SpellingOut[2] = letter;
-        }
-        else if (ID.equals("SpellingOut3")){
-            SpellingOut[3] = letter;
-        }
-        else if (ID.equals("SpellingOut4")){
-            SpellingOut[4] = letter;
-        }
-        else if (ID.equals("SpellingOut5")){
-            SpellingOut[5] = letter;
-        }
-        else if (ID.equals("SpellingOut6")){
-            SpellingOut[6] = letter;
-        }
-        else if (ID.equals("SpellingOut7")){
-            SpellingOut[7] = letter;
-        }
-        else if (ID.equals("SpellingOut8")){
-            SpellingOut[8] = letter;
-        }
-        else if (ID.equals("SpellingOut9")){
-            SpellingOut[9] = letter;
-        }
-        else if (ID.equals("SpellingOut10")){
-            SpellingOut[10] = letter;
+        switch (ID) {
+            case "SpellingOut1":
+                SpellingOut[1] = letter;
+                break;
+            case "SpellingOut2":
+                SpellingOut[2] = letter;
+                break;
+            case "SpellingOut3":
+                SpellingOut[3] = letter;
+                break;
+            case "SpellingOut4":
+                SpellingOut[4] = letter;
+                break;
+            case "SpellingOut5":
+                SpellingOut[5] = letter;
+                break;
+            case "SpellingOut6":
+                SpellingOut[6] = letter;
+                break;
+            case "SpellingOut7":
+                SpellingOut[7] = letter;
+                break;
+            case "SpellingOut8":
+                SpellingOut[8] = letter;
+                break;
+            case "SpellingOut9":
+                SpellingOut[9] = letter;
+                break;
+            case "SpellingOut10":
+                SpellingOut[10] = letter;
+                break;
         }
     }
 
@@ -473,7 +517,8 @@ public class SpellingGame extends ActionBarActivity {
         // all the letters
         String alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10sh_11si_12sii_13sj_14sk_15sl_16sm_17sn_18so_19soo_20sou_21sp_22sr_23ss_24st_25sth_26su_27suu_28sv_29sx_30sy_31syy_32";
         // tke one of the letters
-        String letter = alphabet.substring(	alphabet.indexOf(randomLetter) + 2,alphabet.indexOf(nestnum) - 1);
+        String letter;
+        letter = alphabet.substring(	alphabet.indexOf(randomLetter) + 2,alphabet.indexOf(nestnum) - 1);
         //System.out.println(letter);
         return letter;
     }
@@ -485,14 +530,15 @@ public class SpellingGame extends ActionBarActivity {
      */
     public String getID(View view){
         String viewId = view.getResources().getResourceName(view.getId());
-        String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
+        String ID;
+        ID = viewId.substring(viewId.lastIndexOf('/') + 1);
         return ID;
     }
 
 
     /**
      * set a random image to the view
-     * @param view
+     * @param view g
      */
     public void setRandomnumIMG(ImageView view){
         int numberOFimages = 7;
@@ -608,7 +654,8 @@ public class SpellingGame extends ActionBarActivity {
      */
     public String[] getScore(){
         List<String> allSpellingScores = dbManager.getData("SpellingScores", 0, 7);
-        String[] score = {
+        String[] score;
+        score = new String[]{
                 allSpellingScores.get((lvl * 2) - 1),   // Tmp score
                 allSpellingScores.get(lvl * 2)    // Total score
         };
@@ -648,7 +695,31 @@ public class SpellingGame extends ActionBarActivity {
         }
         else {
             saveScore(-1);
-            // make button diffrent
+            // make button different
+
+            new CountDownTimer(2000,1000){
+                /**
+                 *
+                 * @param millisUntilFinished timi eftir
+                 */
+                @Override
+                public void onTick(long millisUntilFinished){
+                    if (POPupINACTIVE) {
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+
+                /**
+                 *
+                 */
+                @Override
+                public void onFinish(){
+                    popUp.dismiss();
+                    POPupINACTIVE = true;
+                }
+            }.start();
 
         }
         showScores();

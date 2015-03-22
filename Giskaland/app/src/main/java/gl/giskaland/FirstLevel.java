@@ -24,9 +24,6 @@ public class FirstLevel extends ActionBarActivity {
         ButtonWhatLetter = (Button) findViewById(R.id.buttonWhatLetter);
         ButtonWhatLetter.setOnClickListener(What_Letter_ClickListener);
 
-        Button ButtonReturn;
-        ButtonReturn = (Button) findViewById(R.id.buttonReturn);
-        ButtonReturn.setOnClickListener(Return_ClickListener);
         //*******************************************************************
     }
 
@@ -82,29 +79,6 @@ public class FirstLevel extends ActionBarActivity {
         intent.putExtras(b);
         startActivity(intent);
         finish();
-    };
-
-    /** Return Button
-     *
-     */
-    View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
-        /**
-         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
-         * @param v view
-         */
-        @Override
-        public void onClick(View v) {
-
-            Return();
-        }
-    };
-
-    /**
-     * Return to start
-     */
-    private void Return(){
-        startActivity(new Intent(this, Upphafsglugginn.class));
-
     };
 
     @Override

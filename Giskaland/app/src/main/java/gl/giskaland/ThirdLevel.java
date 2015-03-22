@@ -29,10 +29,6 @@ public class ThirdLevel extends ActionBarActivity {
         ButtonBrainPuzzle = (Button) findViewById(R.id.buttonBrainPuzzlelv3);
         ButtonBrainPuzzle.setOnClickListener(BrainPuzzleLv3ClickListener);
 
-        Button ButtonReturn;
-        ButtonReturn = (Button) findViewById(R.id.buttonReturn);
-        ButtonReturn.setOnClickListener(Return_ClickListener);
-
         //**************************************************************************
     }
 
@@ -113,28 +109,6 @@ public class ThirdLevel extends ActionBarActivity {
         intent.putExtras(b);
         startActivity(intent);
         finish();
-    };
-
-    /** Return button
-     *
-     */
-    View.OnClickListener Return_ClickListener  = new View.OnClickListener() {
-        /**
-         * ef smellt er a takkann er kallad a fallid til að opna
-         * @param v view
-         */
-        @Override
-        public void onClick(View v) {
-            Return();
-        }
-    };
-
-    /**
-     * Return to start
-     */
-    private void Return(){
-        startActivity(new Intent(this, Upphafsglugginn.class));
-
     };
 
     @Override

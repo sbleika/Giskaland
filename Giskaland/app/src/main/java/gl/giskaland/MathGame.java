@@ -1,6 +1,7 @@
 package gl.giskaland;
 
 import android.database.sqlite.SQLiteException;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +33,6 @@ public class MathGame extends ActionBarActivity {
     LinearLayout layout;
     TextView tv;
     RadioGroup.LayoutParams params;
-    Button but;
     boolean POPupINACTIVE = true;
     //******************************
 
@@ -90,7 +90,7 @@ public class MathGame extends ActionBarActivity {
 
         System.out.println("PAST THE initDbManager()");
 
-        // amke the popup
+        // make the popup
         PopUp();
         // Set up buttons for level 3
         if(lvl == 3)SetUpButtons();
@@ -174,14 +174,6 @@ public class MathGame extends ActionBarActivity {
         popUp = new PopupWindow(this);
         layout = new LinearLayout(this);
         tv = new TextView(this);
-        but = new Button(this);
-        but.setText("Reyna aftur");
-        but.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                popUp.dismiss();
-                POPupINACTIVE = true;
-            }
-        });
         params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT,
                 RadioGroup.LayoutParams.WRAP_CONTENT);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -189,7 +181,6 @@ public class MathGame extends ActionBarActivity {
         tv.setTextSize(48.0F);
         tv.setTextColor(0xFFFFFFFF);
         layout.addView(tv, params);
-        layout.addView(but, params);
         popUp.setContentView(layout);
     }
 
@@ -629,7 +620,8 @@ public class MathGame extends ActionBarActivity {
     //               the tmp score and the total score.
     public String[] getScore(){
         List<String> allSpellingScores = dbManager.getData("MathScores", 0, 7);
-        String[] score = {
+        String[] score;
+        score = new String[]{
                 allSpellingScores.get((lvl * 2) - 1),   // Tmp score
                 allSpellingScores.get(lvl * 2)    // Total score
         };
@@ -662,11 +654,29 @@ public class MathGame extends ActionBarActivity {
         }
         else {
             saveScore(-1);
-            if (POPupINACTIVE) {
-                popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                popUp.update(0, 0, 850, 133);
-                POPupINACTIVE = false;
-            }
+            new CountDownTimer(2000,1000){
+                /**
+                 * breytum bakgrunni a takkanum a medan vid teljum nidur
+                 * @param millisUntilFinished timi eftir
+                 */
+                @Override
+                public void onTick(long millisUntilFinished){
+                    if (POPupINACTIVE) {
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+
+                /**
+                 * breytum bakgrunni a takkanum i upprunalegt astandi tegar 3 sekundur eru lidnar
+                 */
+                @Override
+                public void onFinish(){
+                    popUp.dismiss();
+                    POPupINACTIVE = true;
+                }
+            }.start();
         }
         showScores(lvl);
     }
@@ -689,11 +699,29 @@ public class MathGame extends ActionBarActivity {
             }
             else {
                 saveScore(-1);
-                if (POPupINACTIVE) {
-                    popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                    popUp.update(0, 0, 850, 133);
-                    POPupINACTIVE = false;
-                }
+                new CountDownTimer(2000,1000){
+                    /**
+                     * breytum bakgrunni a takkanum a medan vid teljum nidur
+                     * @param millisUntilFinished timi eftir
+                     */
+                    @Override
+                    public void onTick(long millisUntilFinished){
+                        if (POPupINACTIVE) {
+                            popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                            popUp.update(0, 0, 850, 133);
+                            POPupINACTIVE = false;
+                        }
+                    }
+
+                    /**
+                     * breytum bakgrunni a takkanum i upprunalegt astandi tegar 3 sekundur eru lidnar
+                     */
+                    @Override
+                    public void onFinish(){
+                        popUp.dismiss();
+                        POPupINACTIVE = true;
+                    }
+                }.start();
                 ClearText();
             }
             showScores(lvl);
