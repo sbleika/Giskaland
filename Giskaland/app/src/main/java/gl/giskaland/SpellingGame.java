@@ -697,7 +697,7 @@ public class SpellingGame extends ActionBarActivity {
             saveScore(-1);
             // make button different
 
-            new CountDownTimer(2000,1000){
+            new CountDownTimer(1500,1000){
                 /**
                  *
                  * @param millisUntilFinished timi eftir

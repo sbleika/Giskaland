@@ -654,7 +654,7 @@ public class MathGame extends ActionBarActivity {
         }
         else {
             saveScore(-1);
-            new CountDownTimer(2000,1000){
+            new CountDownTimer(1500,1000){
                 /**
                  * breytum bakgrunni a takkanum a medan vid teljum nidur
                  * @param millisUntilFinished timi eftir
@@ -699,7 +699,7 @@ public class MathGame extends ActionBarActivity {
             }
             else {
                 saveScore(-1);
-                new CountDownTimer(2000,1000){
+                new CountDownTimer(1500,1000){
                     /**
                      * breytum bakgrunni a takkanum a medan vid teljum nidur
                      * @param millisUntilFinished timi eftir
