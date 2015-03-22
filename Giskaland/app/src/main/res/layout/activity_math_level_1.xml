@@ -13,25 +13,23 @@
         android:id="@+id/IMG"
         android:src="@drawable/img_2_ring_3"
         android:background="@android:color/transparent"
-        android:layout_marginTop="137dp"
-        android:layout_marginLeft="156dp"
-        android:layout_marginStart="156dp"
-        android:layout_below="@+id/TextMathLevel1score"
-        android:layout_alignLeft="@+id/IBout2"
-        android:layout_alignStart="@+id/IBout2" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="200dp"
+        android:layout_marginTop="100dp"/>
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IBout1"
         android:src="@drawable/nine"
-        android:layout_marginBottom="86dp"
         android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/TextMathLevel1score"
-        android:layout_toEndOf="@+id/TextMathLevel1score"
-        android:layout_marginLeft="92dp"
-        android:layout_marginStart="92dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="120dp"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -39,11 +37,10 @@
         android:id="@+id/IBout2"
         android:src="@drawable/seven"
         android:background="@android:color/transparent"
-        android:layout_marginRight="207dp"
-        android:layout_marginEnd="207dp"
-        android:layout_alignTop="@+id/IBout1"
-        android:layout_toLeftOf="@+id/IBout3"
-        android:layout_toStartOf="@+id/IBout3" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/IMG"
+        android:layout_alignStart="@+id/IMG"
+        android:layout_marginBottom="40dp"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -52,10 +49,8 @@
         android:src="@drawable/six"
         android:background="@android:color/transparent"
         android:layout_alignTop="@+id/IBout4"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="446dp"
-        android:layout_marginEnd="446dp" />
+        android:layout_alignRight="@+id/IMG"
+        android:layout_alignEnd="@+id/IMG" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -63,11 +58,11 @@
         android:id="@+id/IBout4"
         android:src="@drawable/five"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/IBout2"
-        android:layout_toRightOf="@+id/IMG"
-        android:layout_toEndOf="@+id/IMG"
-        android:layout_marginLeft="98dp"
-        android:layout_marginStart="98dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="110dp"
+        android:layout_marginBottom="40dp"/>
 
     <TextView
         android:layout_width="wrap_content"

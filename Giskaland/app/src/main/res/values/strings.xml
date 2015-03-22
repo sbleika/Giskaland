@@ -48,5 +48,6 @@
 
     <string name="Mathlvl3Placeholder">Svara</string>
     <string name="title_activity_quiz_game">QuizGame</string>
+    <string name="title_activity_spelling_game_tree">spelling_game_tree</string>
 
 </resources>

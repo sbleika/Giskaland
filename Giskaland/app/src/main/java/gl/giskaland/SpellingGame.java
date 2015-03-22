@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -37,6 +38,8 @@ public class SpellingGame extends ActionBarActivity {
 
     int lvl;
 
+    boolean buttonNotPressed = true;
+
     // DbManager for usage inside this activity
     DbManager dbManager;
 
@@ -65,6 +68,7 @@ public class SpellingGame extends ActionBarActivity {
 
         if(lvl == 1)setContentView(R.layout.activity_spelling_game);
         if(lvl == 2)setContentView(R.layout.activity_spelling_game_two);
+        if(lvl == 3)setContentView(R.layout.activity_spelling_game_tree);
 
         initDbManager();
 
@@ -144,7 +148,9 @@ public class SpellingGame extends ActionBarActivity {
 
         TextView IMGtext;
         IMGtext = (TextView) findViewById(R.id.OutPutText);
-        IMGtext.setText("Hvernig skrifaru...");
+        IMGtext.setText("Hvernig skrifar þú...");
+        IMGtext.setTextSize(80);
+        buttonNotPressed = true;
 
         // set up the buttons
         //********************************************************************
@@ -171,6 +177,10 @@ public class SpellingGame extends ActionBarActivity {
 
         ImageView IMG;
         IMG = (ImageView) findViewById(R.id.imageOFitem);
+
+        Button newphoto;
+        newphoto = (Button) findViewById(R.id.newphoto);
+        newphoto.setOnClickListener(newphotolistner);
         //********************************************************************
 
         // set the image to a random image
@@ -523,7 +533,6 @@ public class SpellingGame extends ActionBarActivity {
 
     public void PutUp(){
         Append();
-
         NextLetterForOptions();
     }
 
@@ -532,10 +541,9 @@ public class SpellingGame extends ActionBarActivity {
         TextView Output;
         Output = (TextView)findViewById(R.id.OutPutText);
         System.out.println(Output.getText());
-        if(Output.getText().equals("Hvernig skrifaru...")){
+        if(buttonNotPressed){
             Output.setText(IMGvalueLetter.substring(1,2));
-        }
-        else{
+        }else{
             if(IMGvalueLetter.length() > 2){
                 System.out.println(IMGvalueLetter.substring(1,3));
                 if(IMGvalueLetter.substring(1,3).equals("aa")){
@@ -565,10 +573,10 @@ public class SpellingGame extends ActionBarActivity {
                 else if (IMGvalueLetter.substring(1,3).equals("yy")){
                     Output.append("ý");
                 }
-
             }
             else Output.append(IMGvalueLetter.substring(1,2));
         }
+        buttonNotPressed = false;
     }
 
     public void NextLetterForOptions(){
@@ -631,18 +639,17 @@ public class SpellingGame extends ActionBarActivity {
      */
     public void handleScore(int index, View view) {
         if (SpellingOutBool[index]) {
-
             if(lvl == 1)makeRandom();
             if(lvl == 2){
                 PutUp();
                 setTheOptionsLevel2();
             }
             saveScore(2);
-
         }
         else {
             saveScore(-1);
             // make button diffrent
+
         }
         showScores();
     }
@@ -689,6 +696,19 @@ public class SpellingGame extends ActionBarActivity {
                     handleScore(10, view);
                     break;
             }
+        }
+    };
+
+    /**
+     * OnClickListener for newphoto button
+     */
+    View.OnClickListener newphotolistner = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+            setUpLevelTwo();
         }
     };
 
