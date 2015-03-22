@@ -754,7 +754,10 @@ public class SpellingGame extends ActionBarActivity {
                     // fix if we close the game before we dismiss the popup we get error
                 }
             }.start();
+            int resID = getResources().getIdentifier("red" , "drawable", "gl.giskaland");
+            System.out.println(view.getBackground());
 
+            view.setBackgroundResource(resID);
         }
         showScores();
     }
