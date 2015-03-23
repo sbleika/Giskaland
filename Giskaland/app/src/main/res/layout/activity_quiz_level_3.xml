@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context="gl.giskaland.QuizGame"
-    android:background="@drawable/bak1"
+    android:background="@drawable/spellbak"
     >
 
 
@@ -18,39 +18,57 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="66dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text=""
             android:id="@+id/QuestionTextLvl3"
+            android:layout_weight="0.10"
+            android:layout_gravity="center_vertical|left" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="296dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="300dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello, world."
+            android:id="@+id/optaButton"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/optbButton"
             android:layout_gravity="center_vertical"
-            android:layout_weight="0.79" />
+            android:layout_marginTop="20dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello, world."
-        android:id="@+id/optaButton"
-        android:layout_gravity="bottom" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello, world."
+            android:id="@+id/optdButton"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/optbButton"
-        android:layout_gravity="bottom" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/optcButton"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
 
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/optcButton"
-        android:layout_gravity="bottom" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello, world."
-        android:id="@+id/optdButton"
-        android:layout_gravity="bottom" />
+    </LinearLayout>
 
 </LinearLayout>

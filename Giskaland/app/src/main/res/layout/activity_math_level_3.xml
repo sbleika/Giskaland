@@ -196,4 +196,15 @@
         android:layout_alignParentEnd="true"
         android:textSize="25sp"
         android:background="@android:color/transparent"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/gata"
+        android:layout_toRightOf="@+id/zerobutton_0"
+        android:layout_above="@+id/answerView"
+        android:layout_toLeftOf="@+id/fivebutton_5"
+        android:layout_toStartOf="@+id/fivebutton_5"
+        android:layout_alignTop="@+id/num1button" />
 </RelativeLayout>

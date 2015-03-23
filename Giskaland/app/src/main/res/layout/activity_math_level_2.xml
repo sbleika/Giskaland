@@ -65,7 +65,9 @@
         android:background="@android:color/transparent"
         android:layout_alignTop="@+id/IBout1"
         android:layout_toLeftOf="@+id/IBnum1"
-        android:layout_toStartOf="@+id/IBnum1" />
+        android:layout_toStartOf="@+id/IBnum1"
+        android:layout_marginRight="142dp"
+        android:layout_marginEnd="142dp" />
 
     <ImageButton
         android:layout_width="wrap_content"

@@ -13,11 +13,12 @@
         android:id="@+id/IMG"
         android:src="@drawable/img_2_ring_3"
         android:background="@android:color/transparent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="200dp"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginRight="107dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="107dp"
+        android:layout_below="@+id/TextMathLevel1score"
+        android:layout_toLeftOf="@+id/IBout4"
+        android:layout_toStartOf="@+id/IBout4" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -37,10 +38,11 @@
         android:id="@+id/IBout2"
         android:src="@drawable/seven"
         android:background="@android:color/transparent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/IMG"
-        android:layout_alignStart="@+id/IMG"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginRight="138dp"
+        android:layout_marginEnd="138dp"
+        android:layout_alignTop="@+id/IBout3"
+        android:layout_toLeftOf="@+id/IMG"
+        android:layout_toStartOf="@+id/IMG" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -48,9 +50,11 @@
         android:id="@+id/IBout3"
         android:src="@drawable/six"
         android:background="@android:color/transparent"
+        android:layout_marginLeft="116dp"
+        android:layout_marginStart="116dp"
         android:layout_alignTop="@+id/IBout4"
-        android:layout_alignRight="@+id/IMG"
-        android:layout_alignEnd="@+id/IMG" />
+        android:layout_alignLeft="@+id/IMG"
+        android:layout_alignStart="@+id/IMG" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -58,11 +62,11 @@
         android:id="@+id/IBout4"
         android:src="@drawable/five"
         android:background="@android:color/transparent"
-        android:layout_alignParentBottom="true"
+        android:layout_marginRight="138dp"
+        android:layout_alignTop="@+id/IBout1"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="110dp"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginEnd="138dp" />
 
     <TextView
         android:layout_width="wrap_content"
