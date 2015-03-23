@@ -14,7 +14,9 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingRight="20dp"
+        android:paddingLeft="50dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -23,7 +25,9 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/SpellingOut1"
-        android:layout_toEndOf="@+id/SpellingOut1" />
+        android:layout_toEndOf="@+id/SpellingOut1"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -32,7 +36,9 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/SpellingOut2"
-        android:layout_toEndOf="@+id/SpellingOut2" />
+        android:layout_toEndOf="@+id/SpellingOut2"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -41,7 +47,9 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/SpellingOut3"
-        android:layout_toEndOf="@+id/SpellingOut3" />
+        android:layout_toEndOf="@+id/SpellingOut3"
+        android:paddingLeft="20dp"
+        android:paddingRight="2dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -50,7 +58,9 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/SpellingOut4"
-        android:layout_toEndOf="@+id/SpellingOut4" />
+        android:layout_toEndOf="@+id/SpellingOut4"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -59,7 +69,9 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/SpellingOut5"
-        android:layout_toEndOf="@+id/SpellingOut5" />
+        android:layout_toEndOf="@+id/SpellingOut5"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -68,7 +80,8 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/SpellingOut6"
-        android:layout_toEndOf="@+id/SpellingOut6" />
+        android:layout_toEndOf="@+id/SpellingOut6"
+        android:paddingLeft="20dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -77,7 +90,9 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/SpellingOut7"
-        android:layout_toEndOf="@+id/SpellingOut7" />
+        android:layout_toEndOf="@+id/SpellingOut7"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -86,7 +101,9 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/SpellingOut8"
-        android:layout_toEndOf="@+id/SpellingOut8" />
+        android:layout_toEndOf="@+id/SpellingOut8"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -95,7 +112,9 @@
         android:src="@drawable/sa"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/SpellingOut9"
-        android:layout_toEndOf="@+id/SpellingOut9" />
+        android:layout_toEndOf="@+id/SpellingOut9"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -103,8 +122,7 @@
         android:id="@+id/imageOFitem"
         android:src="@drawable/api"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/SpellingOut5"
-        android:layout_toEndOf="@+id/SpellingOut5" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
