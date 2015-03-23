@@ -20,13 +20,13 @@ public class ThirdLevel extends ActionBarActivity {
         // set up OnClickListeners
         ImageButton ButtonMath;
         ImageButton ButtonSpelling;
-        Button ButtonBrainPuzzle;
+        ImageButton ButtonBrainPuzzle;
 
         ButtonMath = (ImageButton) findViewById(R.id.buttonMathLevel3);
         ButtonMath.setOnClickListener(Math_level_3_ClickListener);
         ButtonSpelling = (ImageButton) findViewById(R.id.buttonSpellThePicLevel3);
         ButtonSpelling.setOnClickListener(SpellThePicLevel3_ClickListener);
-        ButtonBrainPuzzle = (Button) findViewById(R.id.buttonBrainPuzzlelv3);
+        ButtonBrainPuzzle = (ImageButton) findViewById(R.id.buttonBrainPuzzlelv3);
         ButtonBrainPuzzle.setOnClickListener(BrainPuzzleLv3ClickListener);
 
         //**************************************************************************

@@ -20,13 +20,13 @@ public class SecondLevel extends ActionBarActivity {
         // set up onclicklistners
         ImageButton ButtonMath;
         ImageButton ButtonSpelling;
-        Button ButtonBrainPuzzle;
+        ImageButton ButtonBrainPuzzle;
 
         ButtonMath = (ImageButton) findViewById(R.id.buttonMathLevel2);
         ButtonMath.setOnClickListener(Math_level_2_ClickListener);
         ButtonSpelling = (ImageButton) findViewById(R.id.buttonSpellThePicLevel2);
         ButtonSpelling.setOnClickListener(SpellThePicLevel2_ClickListener);
-        ButtonBrainPuzzle = (Button) findViewById(R.id.buttonBrainPuzzle);
+        ButtonBrainPuzzle = (ImageButton) findViewById(R.id.buttonBrainPuzzle);
         ButtonBrainPuzzle.setOnClickListener(BrainPuzzleClickListener);
 
         //**********************************************************************

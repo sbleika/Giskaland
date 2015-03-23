@@ -44,11 +44,13 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonBrainPuzzle"
         android:text="@string/gameBrainPuzzle"
-        style="@style/button_style_two"
+        style="@style/button_style"
         android:layout_below="@+id/buttonSpellThePicLevel2"
+        android:background="@android:color/transparent"
+        android:src="@drawable/gettunu"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content" />
 
