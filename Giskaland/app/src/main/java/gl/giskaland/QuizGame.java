@@ -135,7 +135,7 @@ public class QuizGame extends ActionBarActivity {
 
     public int randomIndex() {
         Random rand = new Random();
-        int max = nrQuestions;
+        int max = nrQuestions - 1;
         int min = 0;
         int randNum = rand.nextInt((max - min) + 1) + min;
         return randNum;
