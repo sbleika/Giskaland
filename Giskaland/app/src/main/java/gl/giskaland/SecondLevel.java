@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 public class SecondLevel extends ActionBarActivity {
@@ -17,13 +18,13 @@ public class SecondLevel extends ActionBarActivity {
         setContentView(R.layout.activity_second_level);
         //**********************************************************************
         // set up onclicklistners
-        Button ButtonMath;
-        Button ButtonSpelling;
+        ImageButton ButtonMath;
+        ImageButton ButtonSpelling;
         Button ButtonBrainPuzzle;
 
-        ButtonMath = (Button) findViewById(R.id.buttonMathLevel2);
+        ButtonMath = (ImageButton) findViewById(R.id.buttonMathLevel2);
         ButtonMath.setOnClickListener(Math_level_2_ClickListener);
-        ButtonSpelling = (Button) findViewById(R.id.buttonSpellThePicLevel2);
+        ButtonSpelling = (ImageButton) findViewById(R.id.buttonSpellThePicLevel2);
         ButtonSpelling.setOnClickListener(SpellThePicLevel2_ClickListener);
         ButtonBrainPuzzle = (Button) findViewById(R.id.buttonBrainPuzzle);
         ButtonBrainPuzzle.setOnClickListener(BrainPuzzleClickListener);

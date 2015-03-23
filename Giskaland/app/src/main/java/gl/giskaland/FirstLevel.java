@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 public class FirstLevel extends ActionBarActivity {
@@ -16,12 +17,12 @@ public class FirstLevel extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firstlevel);
         //******************************************************************
-        Button ButtonMathLevel1;
-        Button ButtonWhatLetter;
+        ImageButton ButtonMathLevel1;
+        ImageButton ButtonWhatLetter;
 
-        ButtonMathLevel1 = (Button) findViewById(R.id.buttonMathLevel1);
+        ButtonMathLevel1 = (ImageButton) findViewById(R.id.buttonMathLevel1);
         ButtonMathLevel1.setOnClickListener(Math_level_1_ClickListener);
-        ButtonWhatLetter = (Button) findViewById(R.id.buttonWhatLetter);
+        ButtonWhatLetter = (ImageButton) findViewById(R.id.buttonWhatLetter);
         ButtonWhatLetter.setOnClickListener(What_Letter_ClickListener);
 
         //*******************************************************************

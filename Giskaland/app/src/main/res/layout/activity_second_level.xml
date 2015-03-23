@@ -21,20 +21,28 @@
 
     <!-- Some games, example, no onclick -->
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonMathLevel2"
         android:text="@string/gameMath"
-        style="@style/button_style_two"
+        style="@style/button_style"
+        android:background="@android:color/transparent"
+        android:layout_above="@+id/buttonMathLevel2"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/stae"
+        android:paddingTop="80dp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonSpellThePicLevel2"
         android:text="@string/SpellThePic"
-        style="@style/button_style_two"
+        style="@style/button_style"
+        android:background="@android:color/transparent"
         android:layout_below="@+id/buttonMathLevel2"
         android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content" />
+        android:layout_width="wrap_content"
+        android:src="@drawable/staf"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp" />
 
     <Button
         android:id="@+id/buttonBrainPuzzle"
