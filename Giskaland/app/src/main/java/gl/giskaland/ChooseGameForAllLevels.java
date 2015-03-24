@@ -6,63 +6,72 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 
-public class SecondLevel extends ActionBarActivity {
-
+public class ChooseGameForAllLevels extends ActionBarActivity {
+    int lvl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second_level);
-        //**********************************************************************
-        // set up onclicklistners
+        // Get the lvl
+        Bundle b = getIntent().getExtras();
+        lvl = b.getInt("key");
+
+        if(lvl == 1)
+            setContentView(R.layout.activity_firstlevel);
+        else if (lvl == 2)
+            setContentView(R.layout.activity_second_level);
+        else if (lvl == 3)
+            setContentView(R.layout.activity_third_level);
+        //******************************************************************
         ImageButton ButtonMath;
         ImageButton ButtonSpelling;
         ImageButton ButtonBrainPuzzle;
 
-        ButtonMath = (ImageButton) findViewById(R.id.buttonMathLevel2);
-        ButtonMath.setOnClickListener(Math_level_2_ClickListener);
-        ButtonSpelling = (ImageButton) findViewById(R.id.buttonSpellThePicLevel2);
-        ButtonSpelling.setOnClickListener(SpellThePicLevel2_ClickListener);
-        ButtonBrainPuzzle = (ImageButton) findViewById(R.id.buttonBrainPuzzle);
-        ButtonBrainPuzzle.setOnClickListener(BrainPuzzleClickListener);
-
-        //**********************************************************************
-
+        ButtonMath = (ImageButton) findViewById(R.id.buttonMath);
+        ButtonMath.setOnClickListener(Math_ClickListener);
+        ButtonSpelling = (ImageButton) findViewById(R.id.buttonSpellThePic);
+        ButtonSpelling.setOnClickListener(SpellThePic_ClickListener);
+        if(lvl != 1) {
+            ButtonBrainPuzzle = (ImageButton) findViewById(R.id.buttonBrainPuzzle);
+            ButtonBrainPuzzle.setOnClickListener(BrainPuzzleClickListener);
+        }
+        //*******************************************************************
     }
 
     /**
      * math level 2 listener
      */
-    View.OnClickListener Math_level_2_ClickListener  = new View.OnClickListener() {
+    View.OnClickListener Math_ClickListener  = new View.OnClickListener() {
         /**
          * ef smellt er a
          * @param v view
          */
         @Override
         public void onClick(View v) {
-            Math_Level_2();
+            Math();
         }
     };
 
     /**
      * opens activity
      */
-    private void Math_Level_2(){
+    private void Math(){
         Intent intent = new Intent(this, MathGame.class);
         Bundle b = new Bundle();
-        b.putInt("key", 2); // Indicating level 2
+        if(lvl == 1)b.putInt("key", 1); // Indicating level 1
+        if(lvl == 2)b.putInt("key", 2); // Indicating level 2
+        if(lvl == 3)b.putInt("key", 3); // Indicating level 3
         intent.putExtras(b);
         startActivity(intent);
         finish();
-    };
+    }
 
     /**
      * spelling game
      */
-    View.OnClickListener SpellThePicLevel2_ClickListener  = new View.OnClickListener() {
+    View.OnClickListener SpellThePic_ClickListener  = new View.OnClickListener() {
         /**
          * ef smellt er a
          * @param v view
@@ -70,21 +79,23 @@ public class SecondLevel extends ActionBarActivity {
         @Override
         public void onClick(View v) {
 
-            SpellThePicLevel2();
+            SpellThePic();
         }
     };
 
     /**
      * open the activity for spelling game
      */
-    private void SpellThePicLevel2(){
+    private void SpellThePic(){
         Intent intent = new Intent(this, SpellingGame.class);
         Bundle b = new Bundle();
-        b.putInt("key", 2); // Indicating level 2
+        if(lvl == 1)b.putInt("key", 1); // Indicating level 1
+        if(lvl == 2)b.putInt("key", 2); // Indicating level 2
+        if(lvl == 3)b.putInt("key", 3); // Indicating level 3
         intent.putExtras(b);
         startActivity(intent);
         finish();
-    };
+    }
 
     /**
      * brain puzzle listener
@@ -106,19 +117,19 @@ public class SecondLevel extends ActionBarActivity {
     private void BrainPuzzle(){
         Intent intent = new Intent(this, QuizGame.class);
         Bundle b = new Bundle();
-        b.putInt("key", 2); // Indicating level 2
+        if(lvl == 1)b.putInt("key", 1); // Indicating level 1
+        if(lvl == 2)b.putInt("key", 2); // Indicating level 2
+        if(lvl == 3)b.putInt("key", 3); // Indicating level 3
         intent.putExtras(b);
         startActivity(intent);
         finish();
-    };
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_second_level, menu);
+        getMenuInflater().inflate(R.menu.menu_firstlevel, menu);
         return true;
-
-
     }
 
     @Override

@@ -11,8 +11,7 @@ import android.widget.ImageButton;
 //import android.support.v7.app.ActionBar;
 
 public class Upphafsglugginn extends ActionBarActivity {
-
-
+    int lvl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +22,11 @@ public class Upphafsglugginn extends ActionBarActivity {
         ImageButton SecondButton;
         ImageButton ThirdButton;
         FirstButton = (ImageButton) findViewById(R.id.buttonFirstLevel);
-        FirstButton.setOnClickListener(gotoFirstClickListener);
+        FirstButton.setOnClickListener(gotoChooseGameForOne);
         SecondButton = (ImageButton) findViewById(R.id.buttonSecondLevel);
-        SecondButton.setOnClickListener(gotoSecondClickListener);
+        SecondButton.setOnClickListener(gotoChooseGameForTwo);
         ThirdButton = (ImageButton) findViewById(R.id.buttonThirdLevel);
-        ThirdButton.setOnClickListener(gotoThirdClickListener);
+        ThirdButton.setOnClickListener(gotoChooseGameForTree);
 
         //*****************************************************************
     }
@@ -36,79 +35,67 @@ public class Upphafsglugginn extends ActionBarActivity {
      *
      *
      */
-    View.OnClickListener gotoFirstClickListener  = new View.OnClickListener() {
+    View.OnClickListener gotoChooseGameForOne  = new View.OnClickListener() {
         /**
          * ef smellt er a nemandi takkan er kallad a fallid firstbutton()
          * @param v view
          */
         @Override
         public void onClick(View v) {
-
-            firstbutton();
+            lvl = 1;
+            ChooseGameForAllLevels();
+        }
+    };
+    /** Button for first age group
+     *
+     *
+     */
+    View.OnClickListener gotoChooseGameForTwo  = new View.OnClickListener() {
+        /**
+         * ef smellt er a nemandi takkan er kallad a fallid firstbutton()
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+            lvl = 2;
+            ChooseGameForAllLevels();
+        }
+    };
+    /** Button for first age group
+     *
+     *
+     */
+    View.OnClickListener gotoChooseGameForTree  = new View.OnClickListener() {
+        /**
+         * ef smellt er a nemandi takkan er kallad a fallid firstbutton()
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+            lvl = 3;
+            ChooseGameForAllLevels();
         }
     };
 
     /**
      * opens new activity for first age group
      */
-    private void firstbutton(){
-        startActivity(new Intent(this, FirstLevel.class));
-
-    };
-
-    /** Button for second age group
-     *
-     */
-    View.OnClickListener gotoSecondClickListener  = new View.OnClickListener() {
-        /**
-         * ef smellt er a nemandi takkan er kallad a fallid secondbutton()
-         * @param v view
-         */
-        @Override
-        public void onClick(View v) {
-
-            secondbutton();
-        }
-    };
-
-    /**
-     * opens activity for second age group
-     */
-    private void secondbutton(){
-        startActivity(new Intent(this, SecondLevel.class));
-
-    };
-
-    /** Button for third age group
-     *
-     */
-    View.OnClickListener gotoThirdClickListener  = new View.OnClickListener() {
-        /**
-         * ef smellt er a nemandi takkan er kallad a fallid thirdbutton()
-         * @param v view
-         */
-        @Override
-        public void onClick(View v) {
-
-            thirdbutton();
-        }
-    };
-
-    /**
-     * opens activity for third age group
-     */
-    private void thirdbutton(){
-        startActivity(new Intent(this, ThirdLevel.class));
-
-    };
+    private void ChooseGameForAllLevels(){
+        Intent intent = new Intent(this, ChooseGameForAllLevels.class);
+        Bundle b = new Bundle();
+        if(lvl == 1)b.putInt("key", 1); // Indicating level 1
+        if(lvl == 2)b.putInt("key", 2); // Indicating level 2
+        if(lvl == 3)b.putInt("key", 3); // Indicating level 3
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_upphafsglugginn, menu);
         return true;
-
-
     }
 
     @Override
@@ -122,7 +109,6 @@ public class Upphafsglugginn extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

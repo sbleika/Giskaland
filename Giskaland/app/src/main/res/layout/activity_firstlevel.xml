@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:background="@drawable/bak1"
-    tools:context="gl.giskaland.FirstLevel">
+    tools:context="gl.giskaland.ChooseGameForAllLevels">
 
     <!-- Temporary text view -->
     <TextView
@@ -22,22 +22,21 @@
     <!-- Some games, example, no onclick -->
 
     <ImageButton
-        android:id="@+id/buttonMathLevel1"
+        android:id="@+id/buttonMath"
         android:text="@string/gameMath"
         style="@style/button_style"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
-        android:layout_above="@+id/buttonMathLevel1"
         android:src="@drawable/stae"
         android:paddingBottom="20dp"
         android:paddingTop="80dp" />
 
     <ImageButton
-        android:id="@+id/buttonWhatLetter"
+        android:id="@+id/buttonSpellThePic"
         android:text="@string/SpellThePic"
         style="@style/button_style"
-        android:layout_below="@+id/buttonMathLevel1"
+        android:layout_below="@+id/buttonMath"
         android:background="@android:color/transparent"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"

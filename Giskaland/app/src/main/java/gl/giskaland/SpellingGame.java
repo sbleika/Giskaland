@@ -537,6 +537,8 @@ public class SpellingGame extends ActionBarActivity {
         String nestnum = Integer.toString(randomNum + 1);
         String alphabet;
         // all the letters
+
+        //todo setja inni gagnagrunn til ad tetta se ekki hradkodad i kodan
         if(NotEnglish){
             alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10sh_11si_12sii_13sj_14sk_15sl_16sm_17sn_18so_19soo_20sou_21sp_22sr_23ss_24st_25sth_26su_27suu_28sv_29sx_30sy_31syy_32";
             //alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10 sh_11 si_12 sii_13 sj_14 sk_15 sl_16 sm_17 sn_18 so_19 soo_20 sou_21 sp_22 sr_23 ss_24 st_25 sth_26 su_27 suu_28 sv_29 sx_30 sy_31 syy_32";
@@ -579,9 +581,10 @@ public class SpellingGame extends ActionBarActivity {
         //make it string and one number higher
         String randomLetter = Integer.toString(randomNum);
         String nextNUMafter = Integer.toString(randomNum + 1);
-        String imagies = "-1";
+        String imagies;
         // all the images that are avalible
         if(NotEnglish){
+            //todo setja inni gagnagrunn til ad tetta se ekki hradkodad i kodan
             imagies = "1 api_2 letid0yyr_3 ugla_4 kisa_5 hundur_6 myndav0eel_7 m0ourg0aes_8";
         }else{
             imagies = "1 monkey_2 sloth_3 owl_4 cat_5 dog_6 camera_7 penguin_8";
