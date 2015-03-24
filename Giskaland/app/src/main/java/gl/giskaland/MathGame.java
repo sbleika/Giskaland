@@ -88,8 +88,6 @@ public class MathGame extends ActionBarActivity {
         initDbManager();
         showScores(lvl);
 
-        System.out.println("PAST THE initDbManager()");
-
         // make the popup
         PopUp();
         // Set up buttons for level 3
@@ -147,7 +145,7 @@ public class MathGame extends ActionBarActivity {
     }
 
     /**
-     *
+     * Setup the dbManager for this activity.
      */
     public void initDbManager() {
         dbManager = new DbManager(this);

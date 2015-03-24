@@ -2,7 +2,6 @@ package gl.giskaland;
 
 import android.app.ProgressDialog;
 import android.database.sqlite.SQLiteException;
-import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,37 +15,52 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-
+/**
+ * Created by tumsgis
+ *
+ * QuizGame.
+ * A QuizGame for levels 2 and 3.
+ */
 public class QuizGame extends ActionBarActivity {
 
-    // to know what level we are working with
-    int lvl;
-
+    int lvl; // The lvl we're currently in.
     DbManager dbManager;
     List<List<String>> allQuestions;
     int nrQuestions;
-
     Button optaButton, optbButton, optcButton, optdButton;
-
     int correctOptionIndex; //3, 4, 5, 6 (which could be mapped to a, b, c, d)
 
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_level_3);
+        setContentView(R.layout.activity_quiz_game);
 
         Bundle b = getIntent().getExtras();
         lvl = b.getInt("key");
 
         initDbManager();
         showScores(lvl);
+
+        // Fetch all the questions for ease of access later on.
         allQuestions = dbManager.getAllQuestions();
         nrQuestions = allQuestions.size();
 
         newQuestion();
     }
 
+    /**
+     * A new random question is generated from the question bank.
+     * The question itself is displayed in a TextView and the options
+     * are displayed on buttons.
+     */
     public void newQuestion() {
+
+        //
         ProgressDialog pDialog = ProgressDialog.show(
                 QuizGame.this, "Giskaland", "Sækir nýja spurningu...", true
                 );
@@ -89,6 +103,9 @@ public class QuizGame extends ActionBarActivity {
         pDialog.dismiss();
     }
 
+    /**
+     * Event listeners are activated for the answering options buttons.
+     */
     public void setupButtons() {
         optaButton.setOnClickListener(evaluateGuess);
         optbButton.setOnClickListener(evaluateGuess);
@@ -96,6 +113,9 @@ public class QuizGame extends ActionBarActivity {
         optdButton.setOnClickListener(evaluateGuess);
     }
 
+    /**
+     * Button events handled -> Guesses evaluated.
+     */
     Button.OnClickListener evaluateGuess = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -122,17 +142,25 @@ public class QuizGame extends ActionBarActivity {
 
             // Checking if correct the correct option has been chosen.
             if (optIndex == correctOptionIndex) {
+                // Update the score
                 saveScore(2);
                 showScores(lvl);
+                // Then generate a new question
                 newQuestion();
             }
             else {
+                // Update the score.
                 saveScore(-1);
                 showScores(lvl);
             }
         }
     };
 
+    /**
+     * Generate a random number (integer).
+     * @return A random integer x, where
+     *         0 <= x <= nrQuestions - 1
+     */
     public int randomIndex() {
         Random rand = new Random();
         int max = nrQuestions - 1;
@@ -141,6 +169,9 @@ public class QuizGame extends ActionBarActivity {
         return randNum;
     }
 
+    /**
+     * Setup the dbManager for this activity.
+     */
     public void initDbManager() {
         dbManager = new DbManager(this);
 
@@ -159,12 +190,20 @@ public class QuizGame extends ActionBarActivity {
         initScores();
     }
 
+    /**
+     * Update the current and total score in the database,
+     * relative to the change.
+     * @param change The change in score. Change is an integer.
+     */
     public void saveScore(int change){
         dbManager.updateScore("QuizScores", 0, lvl, change, false);
     }
 
-    // Return value : An array of string of length 2 containing
+    /**
+     * Fetch the current and total score.
+     * @return   An array of string of length 2 containing
     //               the tmp score and the total score.
+     */
     public String[] getScore(){
         List<String> allSpellingScores = dbManager.getData("QuizScores", 0, 7);
         String[] score = {
@@ -174,10 +213,17 @@ public class QuizGame extends ActionBarActivity {
         return score;
     }
 
+    /**
+     * Set the current score to 0.
+     */
     public void initScores() {
         dbManager.updateScore("QuizScores", 0, lvl, 0, true);
     }
 
+    /**
+     * Display the current and total score in a TextView.
+     * @param lvl The current difficulty level.
+     */
     public void showScores(int lvl) {
         String[] newScores = getScore();
 
