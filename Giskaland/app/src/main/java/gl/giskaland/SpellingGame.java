@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -48,16 +47,17 @@ public class SpellingGame extends ActionBarActivity {
 
     // the last outcome in the game before
     int LASTans;
-
+    // WHAT LEVEL ARE WE ON
     int lvl;
-
+    // are we playing in icelantic or englih
     boolean NotEnglish = true;
+    // to clear the text if we press in level 2 and 3
     boolean buttonNotPressed = true;
 
     // DbManager for usage inside this activity
     DbManager dbManager;
 
-
+    // the buttons
     ImageButton button1;
     ImageButton button2;
     ImageButton button3;
@@ -90,6 +90,9 @@ public class SpellingGame extends ActionBarActivity {
         makeRandom(); // start the game
     }
 
+    /**
+     * Setup the dbManager for this activity.
+     */
     public void initDbManager() {
         dbManager = new DbManager(this);
 
@@ -113,7 +116,7 @@ public class SpellingGame extends ActionBarActivity {
     }
 
     /**
-     *
+     * set up the popup window
      */
     public void PopUp(){
         popUp = new PopupWindow(this);
@@ -141,6 +144,9 @@ public class SpellingGame extends ActionBarActivity {
         }
     }
 
+    /**
+     * set up a random img and  random answer wrong and one right for level 1
+     */
     public void setUpLevelOne(){
         // reset all the global values
         //********************************************************************
@@ -174,6 +180,9 @@ public class SpellingGame extends ActionBarActivity {
         setTheOptionsLevel1();
     }
 
+    /**
+     * set up a random img and  random answer wrong and one right  for level 2 and 3
+     */
     public void setUpLevelTwo(){
         // reset variables
         for (int i = 0; i < SpellingOutBool.length; i++){
@@ -283,6 +292,9 @@ public class SpellingGame extends ActionBarActivity {
         }
     }
 
+    /**
+     * set new random numbers to the options and the correct answers
+     */
     public void setTheOptionsLevel2(){
         // load in buttons
         //********************************************************************
@@ -442,6 +454,7 @@ public class SpellingGame extends ActionBarActivity {
                 break;
         }
     }
+
     /**
      *  set the rigth answer to one of the buttons
      * @param view v
@@ -612,11 +625,17 @@ public class SpellingGame extends ActionBarActivity {
         view.setImageResource(resID);
     }
 
+    /**
+     * put up the letter we pressed
+     */
     public void PutUp(){
         Append();
         NextLetterForOptions();
     }
 
+    /**
+     * append the letter we pressed to the text
+     */
     public void Append(){
         // get textview
         TextView Output;
@@ -660,6 +679,9 @@ public class SpellingGame extends ActionBarActivity {
         buttonNotPressed = false;
     }
 
+    /**
+     * get the next letters
+     */
     public void NextLetterForOptions(){
         IMGvalueLetterNum++;
         if(IMGword.length() > IMGvalueLetterNum){
@@ -734,8 +756,8 @@ public class SpellingGame extends ActionBarActivity {
 
             new CountDownTimer(1500,1000){
                 /**
-                 *
-                 * @param millisUntilFinished timi eftir
+                 * make the popup window appear for some time
+                 * @param millisUntilFinished time left
                  */
                 @Override
                 public void onTick(long millisUntilFinished){
@@ -747,7 +769,7 @@ public class SpellingGame extends ActionBarActivity {
                 }
 
                 /**
-                 *
+                 * dismiss the popup window
                  */
                 @Override
                 public void onFinish(){
@@ -757,10 +779,6 @@ public class SpellingGame extends ActionBarActivity {
                     // fix if we close the game before we dismiss the popup we get error
                 }
             }.start();
-            int resID = getResources().getIdentifier("red" , "drawable", "gl.giskaland");
-            System.out.println(view.getBackground());
-
-            view.setBackgroundResource(resID);
         }
         showScores();
     }

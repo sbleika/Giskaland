@@ -7,8 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-//import android.app.ActionBar;
-//import android.support.v7.app.ActionBar;
 
 public class Upphafsglugginn extends ActionBarActivity {
     int lvl;
@@ -33,7 +31,6 @@ public class Upphafsglugginn extends ActionBarActivity {
 
     /** Button for first age group
      *
-     *
      */
     View.OnClickListener gotoChooseGameForOne  = new View.OnClickListener() {
         /**
@@ -46,7 +43,7 @@ public class Upphafsglugginn extends ActionBarActivity {
             ChooseGameForAllLevels();
         }
     };
-    /** Button for first age group
+    /** Button for second age group
      *
      *
      */
@@ -61,7 +58,7 @@ public class Upphafsglugginn extends ActionBarActivity {
             ChooseGameForAllLevels();
         }
     };
-    /** Button for first age group
+    /** Button for third age group
      *
      *
      */
@@ -78,7 +75,7 @@ public class Upphafsglugginn extends ActionBarActivity {
     };
 
     /**
-     * opens new activity for first age group
+     * opens new activity for the right age group
      */
     private void ChooseGameForAllLevels(){
         Intent intent = new Intent(this, ChooseGameForAllLevels.class);

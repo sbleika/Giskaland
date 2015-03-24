@@ -81,7 +81,7 @@ public class DbManager extends SQLiteOpenHelper {
             db.close();
         }
 
-        return db != null ? true : false;
+        return db != null;
     }
 
     /**
@@ -214,7 +214,9 @@ public class DbManager extends SQLiteOpenHelper {
             for (int i = 0; i < attr; i++)
                 data.add(String.valueOf(0));
         }
-        cursor.close();
+        if (cursor != null) {
+            cursor.close();
+        }
         db.close();
 
         return data;
@@ -244,6 +246,9 @@ public class DbManager extends SQLiteOpenHelper {
                     aQuestion.add(cursor.getString(i));   // get one question and it's answers
                 allQuestions.add(aQuestion);    // add that question to the allQuestions container
             } while (cursor.moveToNext());
+        }
+        if (cursor != null) {
+            cursor.close();
         }
         return allQuestions;
     }

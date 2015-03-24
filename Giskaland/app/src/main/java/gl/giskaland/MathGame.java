@@ -3,25 +3,22 @@ package gl.giskaland;
 import android.database.sqlite.SQLiteException;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
-        import android.os.Bundle;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-        import android.widget.ImageView;
-        import android.widget.LinearLayout;
-        import android.widget.PopupWindow;
-        import android.widget.RadioGroup;
-        import android.widget.TextView;
-
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import java.io.IOException;
-import java.lang.reflect.UndeclaredThrowableException;
 import java.util.List;
-
 
 public class MathGame extends ActionBarActivity {
     // to know what level we are working with
@@ -41,7 +38,7 @@ public class MathGame extends ActionBarActivity {
     int IBnum2value;
     // the right number of items for level 1
     int IMGvalue;
-
+    //the answer from last game to not get the same
     int LASTans;
     // to make sure we only get one of each
     int IBout1value;
@@ -59,16 +56,12 @@ public class MathGame extends ActionBarActivity {
     Boolean isIBout3 = false;
     Boolean isIBout4 = false;
 
-    String MyAns;
-
+    //the last number used in calculations
     int last_num;
 
     // DbManager for usage inside this activity
     DbManager dbManager;
-    /**
-     *
-     * @param savedInstanceState v
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +69,7 @@ public class MathGame extends ActionBarActivity {
         // Get the lvl
         Bundle b = getIntent().getExtras();
         lvl = b.getInt("key");
-
+        // get the right layout according to level
         if(lvl == 1)
             setContentView(R.layout.activity_math_level_1);
         else if (lvl == 2)
@@ -93,10 +86,12 @@ public class MathGame extends ActionBarActivity {
         // Set up buttons for level 3
         if(lvl == 3)SetUpButtons();
 
-
-        makeRandom(); // new numbers Restart
+        makeRandom(); // new numbers for the games
     }
 
+    /**
+     * set the buttons for math level 3
+     */
     public void SetUpButtons(){
         Button reset;
         reset = (Button) findViewById(R.id.Newbutton);
@@ -166,7 +161,7 @@ public class MathGame extends ActionBarActivity {
     }
 
     /**
-     *
+     * make the pop up window
      */
     public void PopUp(){
         popUp = new PopupWindow(this);
@@ -212,48 +207,38 @@ public class MathGame extends ActionBarActivity {
         if (lvl==1)SetUplevel1();
         if (lvl==2)SetUplevel2();
         if (lvl==3)SetUplevel3();
-
     }
 
     /**
-     *
+     * get a random image for the game and set the options
      */
-    public void SetUplevel3(){
-        ClearText();
+    public void SetUplevel1(){
         // set up the buttons
         //********************************************************************
-        ImageButton IBnum1;
-        IBnum1 = (ImageButton) findViewById(R.id.num1button);
-        ImageButton IBnum2;
-        IBnum2 = (ImageButton) findViewById(R.id.num2button);
-
-        ImageButton IBplus_min;
-        IBplus_min = (ImageButton) findViewById(R.id.OPbutton);
+        ImageButton IBout1;
+        IBout1 = (ImageButton) findViewById(R.id.IBout1);
+        IBout1.setOnClickListener(checkIfRightAnsout1);
+        ImageButton IBout2;
+        IBout2 = (ImageButton) findViewById(R.id.IBout2);
+        IBout2.setOnClickListener(checkIfRightAnsout2);
+        ImageButton IBout3;
+        IBout3 = (ImageButton) findViewById(R.id.IBout3);
+        IBout3.setOnClickListener(checkIfRightAnsout3);
+        ImageButton IBout4;
+        IBout4 = (ImageButton) findViewById(R.id.IBout4);
+        IBout4.setOnClickListener(checkIfRightAnsout4);
+        ImageButton IMG;
+        IMG = (ImageButton) findViewById(R.id.IMG);
         //********************************************************************
 
-        // set the operator to
-        //********************************************************************
-        int randomOP = (int) Math.ceil(Math.random()*2);
-        if (randomOP == 1) {
-            //multiply
-            IBplus_min.setImageResource(R.drawable.multiply);
-            Multiply = true;
-            Divide = false;
-        }
-        else if (randomOP == 2) {
-            //DIVIDE
-            IBplus_min.setImageResource(R.drawable.divide);
-            Multiply = false;
-            Divide = true;
-        }
-        //********************************************************************
-        // set random number from one to nine to the two numbers to calculate
-        setRandomnum1(IBnum1);
-        setRandomnum2LevelTree(IBnum2);
+        setRandomnumIMG(IMG);
+
+        // set random numbers to the four options
+        setTheOptions(IMGvalue);
     }
 
     /**
-     *
+     * set a random problem with plus or minus to solve and the options
      */
     public void SetUplevel2(){
         // set up the buttons
@@ -295,7 +280,7 @@ public class MathGame extends ActionBarActivity {
         // set random number from one to nine to the two numbers to calculate
         setRandomnum1(IBnum1);
         setRandomnum2LevelTwo(IBnum2);
-
+        // make the calculation
         int num = -1;
         if (Minus)num = IBnum1value - IBnum2value;
         if (Plus)num = IBnum1value + IBnum2value;
@@ -304,29 +289,42 @@ public class MathGame extends ActionBarActivity {
         setTheOptions(num);
     }
 
-    public void SetUplevel1(){
+    /**
+     * set a random problem with multiply or divide
+     */
+    public void SetUplevel3(){
+        ClearText();
         // set up the buttons
         //********************************************************************
-        ImageButton IBout1;
-        IBout1 = (ImageButton) findViewById(R.id.IBout1);
-        IBout1.setOnClickListener(checkIfRightAnsout1);
-        ImageButton IBout2;
-        IBout2 = (ImageButton) findViewById(R.id.IBout2);
-        IBout2.setOnClickListener(checkIfRightAnsout2);
-        ImageButton IBout3;
-        IBout3 = (ImageButton) findViewById(R.id.IBout3);
-        IBout3.setOnClickListener(checkIfRightAnsout3);
-        ImageButton IBout4;
-        IBout4 = (ImageButton) findViewById(R.id.IBout4);
-        IBout4.setOnClickListener(checkIfRightAnsout4);
-        ImageButton IMG;
-        IMG = (ImageButton) findViewById(R.id.IMG);
+        ImageButton IBnum1;
+        IBnum1 = (ImageButton) findViewById(R.id.num1button);
+        ImageButton IBnum2;
+        IBnum2 = (ImageButton) findViewById(R.id.num2button);
+
+        ImageButton IBplus_min;
+        IBplus_min = (ImageButton) findViewById(R.id.OPbutton);
         //********************************************************************
 
-        setRandomnumIMG(IMG);
-
-        // set random numbers to the four options
-        setTheOptions(IMGvalue);
+        // set the operator to
+        //********************************************************************
+        int randomOP = (int) Math.ceil(Math.random()*2);
+        if (randomOP == 1) {
+            //multiply
+            IBplus_min.setImageResource(R.drawable.multiply);
+            Multiply = true;
+            Divide = false;
+        }
+        else if (randomOP == 2) {
+            //DIVIDE
+            IBplus_min.setImageResource(R.drawable.divide);
+            Multiply = false;
+            Divide = true;
+        }
+        //********************************************************************
+        // set random number from one to nine to the first number to calculate
+        setRandomnum1(IBnum1);
+        // set random number that will work with the first number
+        setRandomnum2LevelTree(IBnum2);
     }
 
     /**
@@ -354,7 +352,6 @@ public class MathGame extends ActionBarActivity {
                 IBout4value = num;
                 break;
         }
-
         setIMG(num, view);
     }
 
@@ -425,7 +422,7 @@ public class MathGame extends ActionBarActivity {
     }
 
     /**
-     *pictures and correct answers for counting
+     * set a random image and correct answers for counting
      * @param view v
      */
     public void setRandomnumIMG(ImageView view){
@@ -456,7 +453,7 @@ public class MathGame extends ActionBarActivity {
     }
 
     /**
-     *
+     * set a random number to the bottun
      * @param view v
      */
     public void setRandom(ImageView view){
@@ -487,20 +484,21 @@ public class MathGame extends ActionBarActivity {
                 IBout4value = randomNum;
                 break;
         }
-
         setIMG(randomNum, view);
     }
 
     /**
-     *
+     * set a random number to the first option
      * @param view v
      */
     public void setRandomnum1(ImageView view){
         // random from 0 to 10
         int randomNum;
+        // number from 1 to 10 so we dont get zero
         if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)));
-
+        // number from zero to ten
         else randomNum = ((int) (Math.random()*11));
+        // we do not want the same as last time
         while (LASTans == randomNum){
             randomNum = ((int) (Math.random()*11));
             if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)));
@@ -513,9 +511,9 @@ public class MathGame extends ActionBarActivity {
     }
 
     /**
-     *
-     * @param randomNum v
-     * @return v
+     * calculate the answer from randomnum and ibnum1value
+     * @param randomNum a int from 0 to 9
+     * @return the answer
      */
     public int cal(int randomNum) {
         if(Minus)return IBnum1value - randomNum;//Minus
@@ -523,7 +521,7 @@ public class MathGame extends ActionBarActivity {
     }
 
     /**
-     *
+     * set the second number to a number that will work with the first number in level 2
      * @param view v
      */
     public void setRandomnum2LevelTwo(ImageView view){
@@ -543,8 +541,8 @@ public class MathGame extends ActionBarActivity {
         setIMG(randomNum, view);
     }
     /**
-     *
-     * @param view v
+     * get a random number to use as the second number in calculations for level 3
+     * @param view view for the button
      */
     public void setRandomnum2LevelTree(ImageView view) {
         int randomNum = -1;
@@ -556,25 +554,24 @@ public class MathGame extends ActionBarActivity {
             while ((IBnum1value * randomNum) == last_num) {
                 randomNum = ((int) (Math.random() * (IBnum1value + 1)));
             }
-
             last_num = (IBnum1value * randomNum);
         } else if (Divide) {
             // from 0 to 10-the nub-mber we are adding to
             randomNum = ((int) Math.ceil(Math.random() * (10)));
-            // we dont want the same outcome 2x in a row
-            while (((IBnum1value + randomNum) == last_num) || (IBnum1value % randomNum != 0)) {
+            // we dont want the same outcome 2x in a row and get a hole number
+            while (((IBnum1value / randomNum) == last_num) || (IBnum1value % randomNum != 0)) {
                 randomNum = ((int) Math.ceil(Math.random() * (10)));
             }
-            last_num = (IBnum1value + randomNum);
+            last_num = (IBnum1value / randomNum);
         }
         IBnum2value = randomNum;
         setIMG(randomNum, view);
     }
 
     /**
-     *
-     * @param randomNum v
-     * @param view v
+     * set a image to a button
+     * @param randomNum the number to set too the button
+     * @param view view for the button to be used
      */
     public void setIMG(int randomNum, ImageView view){
         if (randomNum == 0) {
@@ -612,12 +609,19 @@ public class MathGame extends ActionBarActivity {
         }
     }
 
+    /**
+     * add to the score
+     * @param change how much to add too the number
+     */
     public void saveScore(int change){
         dbManager.updateScore("MathScores", 0, lvl, change, false);
     }
 
-    // Return value : An array of string of length 2 containing
-    //               the tmp score and the total score.
+    /**
+     * to get the score from the DB
+     * @return An array of string of length 2 containing
+     *         the tmp score and the total score.
+     */
     public String[] getScore(){
         List<String> allSpellingScores = dbManager.getData("MathScores", 0, 7);
         String[] score;
@@ -628,10 +632,17 @@ public class MathGame extends ActionBarActivity {
         return score;
     }
 
+    /**
+     * init the score
+     */
     public void initScores() {
         dbManager.updateScore("MathScores", 0, lvl, 0, true);
     }
 
+    /**
+     * to show the score
+     * @param lvl what level are we on
+     */
     public void showScores(int lvl) {
         String[] newScores = getScore();
 
@@ -645,6 +656,10 @@ public class MathGame extends ActionBarActivity {
         scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
     }
 
+    /**
+     * check if we have the right answer and handle the aftermath
+     * @param index the number of the button
+     */
     public void handleScore(int index) {
         Boolean[] allMathOut = {isIBout1, isIBout2, isIBout3, isIBout4};
 
@@ -656,8 +671,8 @@ public class MathGame extends ActionBarActivity {
             saveScore(-1);
             new CountDownTimer(1500,1000){
                 /**
-                 * breytum bakgrunni a takkanum a medan vid teljum nidur
-                 * @param millisUntilFinished timi eftir
+                 * make he popup window appear
+                 * @param millisUntilFinished time left
                  */
                 @Override
                 public void onTick(long millisUntilFinished){
@@ -669,7 +684,7 @@ public class MathGame extends ActionBarActivity {
                 }
 
                 /**
-                 * breytum bakgrunni a takkanum i upprunalegt astandi tegar 3 sekundur eru lidnar
+                 * make the popup window disappear
                  */
                 @Override
                 public void onFinish(){
@@ -681,11 +696,11 @@ public class MathGame extends ActionBarActivity {
         showScores(lvl);
     }
     /**
-     *
+     * listener for the answer button
      */
     View.OnClickListener AnswerQ = new View.OnClickListener() {
         /**
-         *
+         * check if the anwser is rigth
          */
         @Override
         public void onClick(View view) {
@@ -701,7 +716,7 @@ public class MathGame extends ActionBarActivity {
                 saveScore(-1);
                 new CountDownTimer(1500,1000){
                     /**
-                     * breytum bakgrunni a takkanum a medan vid teljum nidur
+                     * make the popup appear for some time
                      * @param millisUntilFinished timi eftir
                      */
                     @Override
@@ -714,7 +729,7 @@ public class MathGame extends ActionBarActivity {
                     }
 
                     /**
-                     * breytum bakgrunni a takkanum i upprunalegt astandi tegar 3 sekundur eru lidnar
+                     * make the popup window disappear
                      */
                     @Override
                     public void onFinish(){
@@ -729,25 +744,23 @@ public class MathGame extends ActionBarActivity {
         }
     };
     /**
-     *
+     * if we click the rest button
      */
     View.OnClickListener rest = new View.OnClickListener() {
         /**
-         *
+         * reset the game
          */
         @Override
         public void onClick(View view) {
-
             makeRandom();
-            System.out.println("newwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
         }
     };
     /**
-     *
+     * if we press the clear button
      */
     View.OnClickListener clearnum = new View.OnClickListener() {
         /**
-         *
+         * clear the answer text
          */
         @Override
         public void onClick(View view) {
@@ -755,6 +768,9 @@ public class MathGame extends ActionBarActivity {
         }
     };
 
+    /**
+     * clear the answer text
+     */
     public void ClearText(){
         EditText editText;
         editText = (EditText) findViewById(R.id.answerView);
@@ -764,11 +780,11 @@ public class MathGame extends ActionBarActivity {
         System.out.println("clear");
     }
     /**
-     *
+     * handle if we press a number button
      */
     View.OnClickListener Numlistner = new View.OnClickListener() {
         /**
-         *
+         * set the answer text with what we pressed
          */
         @Override
         public void onClick(View view) {
@@ -778,7 +794,7 @@ public class MathGame extends ActionBarActivity {
             String viewId = view.getResources().getResourceName(view.getId());
             String ID = viewId.substring(viewId.lastIndexOf('_') + 1);
 
-            MyAns = editText.getText().toString();
+            String MyAns = editText.getText().toString();
             if(MyAns.equals("0")){
                 editText.setText(ID);
             }else if (Integer.parseInt(MyAns)<200 && MyAns.length()<3){
@@ -787,58 +803,36 @@ public class MathGame extends ActionBarActivity {
             System.out.println(ID);
         }
     };
-    /**
-     *
-     */
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // listers for the level one and two answers buttons
     View.OnClickListener checkIfRightAnsout1 = new View.OnClickListener() {
-        /**
-         *
-         */
         @Override
         public void onClick(View view) {
             handleScore(0);
         }
     };
 
-    /**
-     *
-     */
     View.OnClickListener checkIfRightAnsout2 = new View.OnClickListener() {
-        /**
-         *
-         */
         @Override
         public void onClick(View view) {
             handleScore(1);
         }
     };
 
-    /**
-     *
-     */
     View.OnClickListener checkIfRightAnsout3 = new View.OnClickListener() {
-        /**
-         *
-         */
         @Override
         public void onClick(View view) {
             handleScore(2);
         }
     };
 
-    /**
-     *
-     */
     View.OnClickListener checkIfRightAnsout4 = new View.OnClickListener() {
-        /**
-         *
-         */
         @Override
         public void onClick(View view) {
             handleScore(3);
         }
     };
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

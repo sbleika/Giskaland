@@ -25,6 +25,7 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
         else if (lvl == 3)
             setContentView(R.layout.activity_third_level);
         //******************************************************************
+        // set up the buttons
         ImageButton ButtonMath;
         ImageButton ButtonSpelling;
         ImageButton ButtonBrainPuzzle;
@@ -33,6 +34,7 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
         ButtonMath.setOnClickListener(Math_ClickListener);
         ButtonSpelling = (ImageButton) findViewById(R.id.buttonSpellThePic);
         ButtonSpelling.setOnClickListener(SpellThePic_ClickListener);
+        // we dont have this button in level one
         if(lvl != 1) {
             ButtonBrainPuzzle = (ImageButton) findViewById(R.id.buttonBrainPuzzle);
             ButtonBrainPuzzle.setOnClickListener(BrainPuzzleClickListener);
@@ -41,7 +43,7 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
     }
 
     /**
-     * math level 2 listener
+     * mathbutton listener
      */
     View.OnClickListener Math_ClickListener  = new View.OnClickListener() {
         /**
@@ -55,7 +57,7 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
     };
 
     /**
-     * opens activity
+     * opens math activity
      */
     private void Math(){
         Intent intent = new Intent(this, MathGame.class);
@@ -68,7 +70,7 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
     }
 
     /**
-     * spelling game
+     * spelling game button listener
      */
     View.OnClickListener SpellThePic_ClickListener  = new View.OnClickListener() {
         /**
@@ -96,7 +98,7 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
     }
 
     /**
-     * brain puzzle listener
+     * brain puzzle button listener
      */
     View.OnClickListener BrainPuzzleClickListener  = new View.OnClickListener() {
         /**
@@ -110,7 +112,7 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
     };
 
     /**
-     * open activity
+     * open quiz game activity
      */
     private void BrainPuzzle(){
         Intent intent = new Intent(this, QuizGame.class);

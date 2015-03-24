@@ -30,11 +30,6 @@ public class QuizGame extends ActionBarActivity {
     Button optaButton, optbButton, optcButton, optdButton;
     int correctOptionIndex; //3, 4, 5, 6 (which could be mapped to a, b, c, d)
 
-
-    /**
-     *
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
