@@ -88,7 +88,6 @@ public class Upphafsglugginn extends ActionBarActivity {
         if(lvl == 3)b.putInt("key", 3); // Indicating level 3
         intent.putExtras(b);
         startActivity(intent);
-        finish();
     }
 
     @Override
