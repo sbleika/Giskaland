@@ -419,7 +419,8 @@ public class MathGame extends ActionBarActivity {
      */
     public String getID(View view){
         String viewId = view.getResources().getResourceName(view.getId());
-        String ID = viewId.substring(viewId.lastIndexOf('/') + 1);
+        String ID;
+        ID = viewId.substring(viewId.lastIndexOf('/') + 1);
         return ID;
     }
 
@@ -434,6 +435,7 @@ public class MathGame extends ActionBarActivity {
             IMGnum = ((int) Math.ceil(Math.random()*4));
         }
         last_num = IMGnum;
+        //todo setja inni gagnagrunn til ad tetta se ekki hradkodad i kodan
         if (IMGnum == 1) {
             view.setImageResource(R.drawable.img_1_line_2);
             IMGvalue = 2;
@@ -840,7 +842,7 @@ public class MathGame extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_math__level_2, menu);
+        getMenuInflater().inflate(R.menu.menu_math_level_1, menu);
         return true;
     }
 

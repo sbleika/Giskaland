@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:background="@drawable/bak1"
-    tools:context="gl.giskaland.FirstLevel">
+    tools:context="gl.giskaland.ChooseGameForAllLevels">
 
     <!-- Temporary text view -->
     <TextView
@@ -22,33 +22,33 @@
     <!-- Some games, example, no onclick -->
 
     <ImageButton
-        android:id="@+id/buttonMathLevel3"
+        android:id="@+id/buttonMath"
         android:text="@string/gameMath"
         style="@style/button_style"
         android:background="@android:color/transparent"
-        android:layout_above="@+id/buttonMathLevel3"
+        android:layout_above="@+id/buttonMath"
         android:src="@drawable/stae"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:paddingTop="80dp" />
 
     <ImageButton
-        android:id="@+id/buttonSpellThePicLevel3"
+        android:id="@+id/buttonSpellThePic"
         android:text="@string/SpellThePicEnglish"
         style="@style/button_style"
         android:background="@android:color/transparent"
         android:src="@drawable/enska"
-        android:layout_below="@+id/buttonMathLevel3"
+        android:layout_below="@+id/buttonMath"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:paddingTop="20dp"
         android:paddingBottom="20dp" />
 
     <ImageButton
-        android:id="@+id/buttonBrainPuzzlelv3"
+        android:id="@+id/buttonBrainPuzzle"
         android:text="@string/gameBrainPuzzle"
         style="@style/button_style"
-        android:layout_below="@+id/buttonSpellThePicLevel3"
+        android:layout_below="@+id/buttonSpellThePic"
         android:background="@android:color/transparent"
         android:src="@drawable/gettunu"
         android:layout_centerHorizontal="true"
