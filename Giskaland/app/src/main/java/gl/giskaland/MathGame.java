@@ -496,6 +496,7 @@ public class MathGame extends ActionBarActivity {
         int randomNum;
         // number from 1 to 10 so we dont get zero
         if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)));
+        //todo make the numbers go much higher (dont use button use textview)
         // number from zero to ten
         else randomNum = ((int) (Math.random()*11));
         // we do not want the same as last time
