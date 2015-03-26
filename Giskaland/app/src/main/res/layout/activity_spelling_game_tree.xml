@@ -73,49 +73,6 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/SpellingOut7"
-        android:src="@drawable/sa"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/SpellingOut6"
-        android:layout_toEndOf="@+id/SpellingOut6"
-        android:paddingLeft="20dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/SpellingOut8"
-        android:src="@drawable/sa"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/SpellingOut7"
-        android:layout_toEndOf="@+id/SpellingOut7"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/SpellingOut9"
-        android:src="@drawable/sa"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/SpellingOut8"
-        android:layout_toEndOf="@+id/SpellingOut8"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/SpellingOut10"
-        android:src="@drawable/sa"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/SpellingOut9"
-        android:layout_toEndOf="@+id/SpellingOut9"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,9 +97,7 @@
         android:text="New Text"
         android:id="@+id/OutPutText"
         android:layout_marginBottom="50dp"
-        android:layout_above="@+id/imageOFitem"
-        android:layout_toLeftOf="@+id/SpellingOut8"
-        android:layout_toStartOf="@+id/SpellingOut8" />
+        android:layout_above="@+id/imageOFitem" />
 
     <Button
         android:layout_width="wrap_content"
