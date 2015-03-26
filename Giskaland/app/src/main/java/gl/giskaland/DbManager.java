@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -253,6 +254,81 @@ public class DbManager extends SQLiteOpenHelper {
         return allQuestions;
     }
 
+    /**
+     * Fetch the current and total score.
+     * @param lvl The lvl to fetch the scores from.
+     * @param tableName The name of the table from this database,
+     *                  to fetch the scores from.
+     * @return   An array of string of length 2 containing
+    //               the tmp score and the total score.
+     */
+    public String[] getScore(int lvl, String tableName){
+        List<String> allSpellingScores = getData(tableName, 0, 7);
+        String[] score = {
+                allSpellingScores.get((lvl * 2) - 1),   // Tmp score
+                allSpellingScores.get(lvl * 2)    // Total score
+        };
+        return score;
+    }
+
+    /**
+     * Display the current and total score in a TextView.
+     * @param lvl The current difficulty level.
+     * @param tableName The name of the table from this database,
+     *                  to fetch the scores from.
+     * @param scoreView The TextView to display the scores in.
+     */
+    public void showScores(int lvl, String tableName, TextView scoreView) {
+        String[] newScores = getScore(lvl, tableName);
+        scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
+    }
+
+    /**
+     * Set the current score to 0.
+     * @param lvl The current difficulty level.
+     * @param tableName The name of the table from this database,
+     *                  to fetch the scores from.
+     */
+    public void initScores(int lvl, String tableName) {
+        updateScore(tableName, 0, lvl, 0, true);
+    }
+
+    /**
+     * Update the current and total score in the database,
+     * relative to the change.
+     * @param lvl The current difficulty level.
+     * @param tableName The name of the table from this database,
+     *                  to fetch the scores from.
+     * @param change The change in score. Change is an integer.
+     */
+    public void saveScore(int lvl, String tableName, int change){
+        updateScore(tableName, 0, lvl, change, false);
+    }
+
+
+    /**
+     * Setup the dbManager for the calling activity.
+     * @param lvl The current difficulty level.
+     * @param tableName The name of the table from this database,
+     *                  to fetch the scores from.
+     */
+    public void initDbManager(int lvl, String tableName) {
+
+        try {
+            this.createDatabase();
+        } catch (IOException ioe) {
+            Log.e("initDbManager()", ioe.getMessage());
+        }
+
+        try {
+            this.openDatabase();
+        } catch (SQLiteException sqle) {
+            Log.e("initDbManager()", sqle.getMessage());
+        }
+
+        initScores(lvl, tableName);
+
+    }
     /**
      * Close this database.
      */
