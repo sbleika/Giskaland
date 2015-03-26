@@ -29,7 +29,7 @@ public class DbManager extends SQLiteOpenHelper {
     private SQLiteDatabase myDb;
     private final Context myContext;
 
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 19;
 
     /**
      *  Constructor for the DbManager.
@@ -302,7 +302,9 @@ public class DbManager extends SQLiteOpenHelper {
      * @param change The change in score. Change is an integer.
      */
     public void saveScore(int lvl, String tableName, int change){
+        System.out.println("1ST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         updateScore(tableName, 0, lvl, change, false);
+        System.out.println("2ND ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
 
@@ -364,7 +366,25 @@ public class DbManager extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < newVersion) {   // upgrade to version 2 of database
             // TODO: prevent users from losing their scores!
-            onCreate(db);
+            try {
+                copyDatabase();
+
+                try {
+                    this.createDatabase();
+                } catch (IOException ioe) {
+                    Log.e("initDbManager()", ioe.getMessage());
+                }
+                try {
+                    this.openDatabase();
+                } catch (SQLiteException sqle) {
+                    Log.e("initDbManager()", sqle.getMessage());
+                }
+
+                //zsaveScore(2, "QuizScores", 2);
+
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
     }
 }
