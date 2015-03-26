@@ -116,42 +116,8 @@
         android:textSize="100sp"
         android:textIsSelectable="true"
         android:layout_above="@+id/Answerbutton"
-        android:layout_alignLeft="@+id/num1button"
-        android:layout_alignStart="@+id/num1button" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/OPbutton"
-        android:src="@drawable/multiply"
-        android:background="@android:color/transparent"
-        android:layout_below="@+id/TextMathLevel3score"
-        android:layout_alignRight="@+id/answerView"
-        android:layout_alignEnd="@+id/answerView"
-        android:layout_marginRight="97dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginTop="175dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/num1button"
-        android:src="@drawable/nine"
-        android:scaleType="fitXY"
-        android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/OPbutton"
         android:layout_centerHorizontal="true" />
 
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/num2button"
-        android:src="@drawable/nine"
-        android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/OPbutton"
-        android:layout_toRightOf="@+id/answerView"
-        android:layout_toEndOf="@+id/answerView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -206,5 +172,14 @@
         android:layout_above="@+id/answerView"
         android:layout_toLeftOf="@+id/fivebutton_5"
         android:layout_toStartOf="@+id/fivebutton_5"
-        android:layout_alignTop="@+id/num1button" />
+        android:layout_below="@+id/TextMathLevel3score" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/QuestionText"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

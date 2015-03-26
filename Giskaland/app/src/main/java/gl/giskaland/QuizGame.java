@@ -29,6 +29,7 @@ public class QuizGame extends ActionBarActivity {
     int nrQuestions;
     Button optaButton, optbButton, optcButton, optdButton;
     int correctOptionIndex; //3, 4, 5, 6 (which could be mapped to a, b, c, d)
+    String tableName = "QuizScores"; // table name from the database.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,10 @@ public class QuizGame extends ActionBarActivity {
         Bundle b = getIntent().getExtras();
         lvl = b.getInt("key");
 
-        initDbManager();
-        showScores(lvl);
+        dbManager = new DbManager(this);
+        dbManager.initDbManager(lvl, tableName);
+
+        dbManager.showScores(lvl, tableName, (TextView)findViewById(R.id.TextQuizLevel3Score));
 
         // Fetch all the questions for ease of access later on.
         allQuestions = dbManager.getAllQuestions();
@@ -138,15 +141,15 @@ public class QuizGame extends ActionBarActivity {
             // Checking if correct the correct option has been chosen.
             if (optIndex == correctOptionIndex) {
                 // Update the score
-                saveScore(2);
-                showScores(lvl);
+                dbManager.saveScore(lvl, tableName, 2);
+                dbManager.showScores(lvl, tableName, (TextView) findViewById(R.id.TextQuizLevel3Score));
                 // Then generate a new question
                 newQuestion();
             }
             else {
                 // Update the score.
-                saveScore(-1);
-                showScores(lvl);
+                dbManager.saveScore(lvl, tableName, -1);
+                dbManager.showScores(lvl, tableName, (TextView) findViewById(R.id.TextQuizLevel3Score));
             }
         }
     };
@@ -162,69 +165,6 @@ public class QuizGame extends ActionBarActivity {
         int min = 0;
         int randNum = rand.nextInt((max - min) + 1) + min;
         return randNum;
-    }
-
-    /**
-     * Setup the dbManager for this activity.
-     */
-    public void initDbManager() {
-        dbManager = new DbManager(this);
-
-        try {
-            dbManager.createDatabase();
-        } catch (IOException ioe) {
-            Log.e("initDbManager()", ioe.getMessage());
-        }
-
-        try {
-            dbManager.openDatabase();
-        } catch (SQLiteException sqle) {
-            Log.e("initDbManager()", sqle.getMessage());
-        }
-
-        initScores();
-    }
-
-    /**
-     * Update the current and total score in the database,
-     * relative to the change.
-     * @param change The change in score. Change is an integer.
-     */
-    public void saveScore(int change){
-        dbManager.updateScore("QuizScores", 0, lvl, change, false);
-    }
-
-    /**
-     * Fetch the current and total score.
-     * @return   An array of string of length 2 containing
-    //               the tmp score and the total score.
-     */
-    public String[] getScore(){
-        List<String> allSpellingScores = dbManager.getData("QuizScores", 0, 7);
-        String[] score = {
-                allSpellingScores.get((lvl * 2) - 1),   // Tmp score
-                allSpellingScores.get(lvl * 2)    // Total score
-        };
-        return score;
-    }
-
-    /**
-     * Set the current score to 0.
-     */
-    public void initScores() {
-        dbManager.updateScore("QuizScores", 0, lvl, 0, true);
-    }
-
-    /**
-     * Display the current and total score in a TextView.
-     * @param lvl The current difficulty level.
-     */
-    public void showScores(int lvl) {
-        String[] newScores = getScore();
-
-        TextView scoreView = (TextView)findViewById(R.id.TextQuizLevel3Score);
-
-        scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
     }
 
     @Override

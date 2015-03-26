@@ -18,6 +18,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MathGame extends ActionBarActivity {
@@ -62,6 +63,10 @@ public class MathGame extends ActionBarActivity {
     // DbManager for usage inside this activity
     DbManager dbManager;
 
+    String tableName = "MathScores";
+
+    TextView scoreView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +82,18 @@ public class MathGame extends ActionBarActivity {
         else if (lvl == 3)
             setContentView(R.layout.activity_math_level_3);
 
+        System.out.println("HEREEEEEEEEEEE");
 
-        initDbManager();
-        showScores(lvl);
+        scoreView = (TextView)findViewById(R.id.TextMathLevel1score);
+        if (lvl == 2)
+            scoreView = (TextView)findViewById(R.id.TextMathLevel2score);
+        else if (lvl == 3)
+            scoreView = (TextView)findViewById(R.id.TextMathLevel3score);
+
+        dbManager = new DbManager(this);
+        dbManager.initDbManager(lvl, tableName);
+
+        dbManager.showScores(lvl, tableName, scoreView);
 
         // make the popup
         PopUp();
@@ -137,27 +151,6 @@ public class MathGame extends ActionBarActivity {
         nine.setOnClickListener(Numlistner);
 
         //********************************************************************
-    }
-
-    /**
-     * Setup the dbManager for this activity.
-     */
-    public void initDbManager() {
-        dbManager = new DbManager(this);
-
-        try {
-            dbManager.createDatabase();
-        } catch (IOException ioe) {
-            Log.e("initDbManager()", ioe.getMessage());
-        }
-
-        try {
-            dbManager.openDatabase();
-        } catch (SQLiteException sqle) {
-            Log.e("initDbManager()", sqle.getMessage());
-        }
-
-        initScores();
     }
 
     /**
@@ -278,7 +271,7 @@ public class MathGame extends ActionBarActivity {
         }
         //********************************************************************
         // set random number from one to nine to the two numbers to calculate
-        setRandomnum1(IBnum1);
+        setRandomnum1(IBnum1, null);
         setRandomnum2LevelTwo(IBnum2);
         // make the calculation
         int num = -1;
@@ -293,38 +286,34 @@ public class MathGame extends ActionBarActivity {
      * set a random problem with multiply or divide
      */
     public void SetUplevel3(){
+        TextView quiz;
+        quiz = (TextView) findViewById(R.id.QuestionText);
+        quiz.setTextSize(100);
+        quiz.setText(" ");
         ClearText();
-        // set up the buttons
-        //********************************************************************
-        ImageButton IBnum1;
-        IBnum1 = (ImageButton) findViewById(R.id.num1button);
-        ImageButton IBnum2;
-        IBnum2 = (ImageButton) findViewById(R.id.num2button);
 
-        ImageButton IBplus_min;
-        IBplus_min = (ImageButton) findViewById(R.id.OPbutton);
-        //********************************************************************
+        // set random number from one to nine to the first number to calculate
+        setRandomnum1(null, quiz);
 
         // set the operator to
         //********************************************************************
         int randomOP = (int) Math.ceil(Math.random()*2);
         if (randomOP == 1) {
             //multiply
-            IBplus_min.setImageResource(R.drawable.multiply);
+            quiz.append(" * ");
             Multiply = true;
             Divide = false;
         }
         else if (randomOP == 2) {
             //DIVIDE
-            IBplus_min.setImageResource(R.drawable.divide);
+            quiz.append(" / ");
             Multiply = false;
             Divide = true;
         }
         //********************************************************************
-        // set random number from one to nine to the first number to calculate
-        setRandomnum1(IBnum1);
+
         // set random number that will work with the first number
-        setRandomnum2LevelTree(IBnum2);
+        setRandomnum2LevelTree(quiz);
     }
 
     /**
@@ -449,7 +438,6 @@ public class MathGame extends ActionBarActivity {
             view.setImageResource(R.drawable.img_4_hex_6);
             IMGvalue = 6;
         }
-
     }
 
     /**
@@ -490,8 +478,9 @@ public class MathGame extends ActionBarActivity {
     /**
      * set a random number to the first option
      * @param view v
+     * @param quiz q
      */
-    public void setRandomnum1(ImageView view){
+    public void setRandomnum1(ImageButton view, TextView quiz){
         // random from 0 to 10
         int randomNum;
         // number from 1 to 10 so we dont get zero
@@ -508,7 +497,8 @@ public class MathGame extends ActionBarActivity {
         LASTans = randomNum;
         IBnum1value = randomNum;
 
-        setIMG(randomNum, view);
+        if(lvl == 3) quiz.append(Integer.toString(randomNum));
+        if(lvl == 2) setIMG(randomNum, view);
     }
 
     /**
@@ -543,9 +533,9 @@ public class MathGame extends ActionBarActivity {
     }
     /**
      * get a random number to use as the second number in calculations for level 3
-     * @param view view for the button
+     * @param quiz view for the button
      */
-    public void setRandomnum2LevelTree(ImageView view) {
+    public void setRandomnum2LevelTree(TextView quiz) {
         int randomNum = -1;
         //
         if (Multiply) {
@@ -566,7 +556,7 @@ public class MathGame extends ActionBarActivity {
             last_num = (IBnum1value / randomNum);
         }
         IBnum2value = randomNum;
-        setIMG(randomNum, view);
+        quiz.append(Integer.toString(randomNum));
     }
 
     /**
@@ -610,52 +600,6 @@ public class MathGame extends ActionBarActivity {
         }
     }
 
-    /**
-     * add to the score
-     * @param change how much to add too the number
-     */
-    public void saveScore(int change){
-        dbManager.updateScore("MathScores", 0, lvl, change, false);
-    }
-
-    /**
-     * to get the score from the DB
-     * @return An array of string of length 2 containing
-     *         the tmp score and the total score.
-     */
-    public String[] getScore(){
-        List<String> allSpellingScores = dbManager.getData("MathScores", 0, 7);
-        String[] score;
-        score = new String[]{
-                allSpellingScores.get((lvl * 2) - 1),   // Tmp score
-                allSpellingScores.get(lvl * 2)    // Total score
-        };
-        return score;
-    }
-
-    /**
-     * init the score
-     */
-    public void initScores() {
-        dbManager.updateScore("MathScores", 0, lvl, 0, true);
-    }
-
-    /**
-     * to show the score
-     * @param lvl what level are we on
-     */
-    public void showScores(int lvl) {
-        String[] newScores = getScore();
-
-        // Default value
-        TextView scoreView = (TextView)findViewById(R.id.TextMathLevel1score);
-        if (lvl == 2)
-            scoreView = (TextView)findViewById(R.id.TextMathLevel2score);
-        else if (lvl == 3)
-            scoreView = (TextView)findViewById(R.id.TextMathLevel3score);
-
-        scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
-    }
 
     /**
      * check if we have the right answer and handle the aftermath
@@ -666,10 +610,10 @@ public class MathGame extends ActionBarActivity {
 
         if (allMathOut[index]) {
             makeRandom();
-            saveScore(2);
+            dbManager.saveScore(lvl, tableName, 2);
         }
         else {
-            saveScore(-1);
+            dbManager.saveScore(lvl, tableName, -1);
             new CountDownTimer(1500,1000){
                 /**
                  * make he popup window appear
@@ -694,7 +638,7 @@ public class MathGame extends ActionBarActivity {
                 }
             }.start();
         }
-        showScores(lvl);
+        dbManager.showScores(lvl, tableName, scoreView);
     }
     /**
      * listener for the answer button
@@ -711,10 +655,10 @@ public class MathGame extends ActionBarActivity {
             int Ans = Integer.parseInt(editText.getText().toString());
             if(Ans == IBnum1value*IBnum2value || Ans == IBnum1value/IBnum2value){
                 makeRandom();
-                saveScore(2);
+                dbManager.saveScore(lvl, tableName, 2);
             }
             else {
-                saveScore(-1);
+                dbManager.saveScore(lvl, tableName, -1);
                 new CountDownTimer(1500,1000){
                     /**
                      * make the popup appear for some time
@@ -740,7 +684,7 @@ public class MathGame extends ActionBarActivity {
                 }.start();
                 ClearText();
             }
-            showScores(lvl);
+            dbManager.showScores(lvl, tableName, scoreView);
             System.out.println("answer");
         }
     };
@@ -775,6 +719,7 @@ public class MathGame extends ActionBarActivity {
     public void ClearText(){
         EditText editText;
         editText = (EditText) findViewById(R.id.answerView);
+
 
         editText.setText("0");
 
