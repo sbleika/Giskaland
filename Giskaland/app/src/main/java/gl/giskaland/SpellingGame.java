@@ -65,6 +65,10 @@ public class SpellingGame extends ActionBarActivity {
     ImageButton button5;
     ImageButton button6;
 
+    String tableName = "SpellingScores";
+
+    TextView scoreView;
+
     /**
      * on opening the activity
      * @param savedInstanceState v
@@ -81,35 +85,17 @@ public class SpellingGame extends ActionBarActivity {
         if(lvl == 2)setContentView(R.layout.activity_spelling_game_two);
         if(lvl == 3)setContentView(R.layout.activity_spelling_game_tree);
 
-        initDbManager();
+        scoreView = (TextView)findViewById(R.id.TextSpellingLevel1Score);
+        if (lvl == 2) scoreView = (TextView)findViewById(R.id.TextSpellingLevel2Score);
+
+        dbManager = new DbManager(this);
+        dbManager.initDbManager(lvl, tableName);
+
+        dbManager.showScores(lvl, tableName, scoreView);
+
         // make the popup
         PopUp();
         makeRandom(); // start the game
-    }
-
-    /**
-     * Setup the dbManager for this activity.
-     */
-    public void initDbManager() {
-        dbManager = new DbManager(this);
-
-        try {
-            dbManager.createDatabase();
-        } catch (IOException ioe) {
-            Log.e("initDbManager()", ioe.getMessage());
-        }
-
-        try {
-            dbManager.openDatabase();
-        } catch (SQLiteException sqle) {
-            Log.e("initDbManager()", sqle.getMessage());
-        }
-
-        //todo
-        //close the db somewhere
-
-        initScores();
-        showScores();
     }
 
     /**
@@ -589,48 +575,6 @@ public class SpellingGame extends ActionBarActivity {
     }
 
     /**
-     * update the score in the DB
-     * @param change the chnge we want to do to the number
-     */
-    public void saveScore(int change){
-        dbManager.updateScore("SpellingScores", 0, lvl, change, false);
-    }
-
-    /**
-     * to get the score from the DB
-     * @return An array of string of length 2 containing
-     *         the tmp score and the total score.
-     *
-     */
-    public String[] getScore(){
-        List<String> allSpellingScores = dbManager.getData("SpellingScores", 0, 7);
-        String[] score;
-        score = new String[]{
-                allSpellingScores.get((lvl * 2) - 1),   // Tmp score
-                allSpellingScores.get(lvl * 2)    // Total score
-        };
-        return score;
-    }
-
-    /**
-     * init the score
-     */
-    public void initScores() {
-        dbManager.updateScore("SpellingScores", 0, lvl, 0, true);
-    }
-
-    /**
-     * Show the score on the screen
-     */
-    public void showScores() {
-        String[] newScores = getScore();
-        TextView scoreView;
-        if(lvl==1)scoreView = (TextView)findViewById(R.id.TextSpellingLevel1Score);
-        else scoreView = (TextView)findViewById(R.id.TextSpellingLevel2Score);
-        scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
-    }
-
-    /**
      * check if we have the right Answer
      * @param index the button we are checking
      */
@@ -641,10 +585,10 @@ public class SpellingGame extends ActionBarActivity {
                 PutUp();
                 setTheOptionsLevel2();
             }
-            saveScore(2);
+            dbManager.saveScore(lvl, tableName, 2);
         }
         else {
-            saveScore(-1);
+            dbManager.saveScore(lvl, tableName, -1);
             // make button different
 
             new CountDownTimer(1500,1000){
@@ -673,7 +617,7 @@ public class SpellingGame extends ActionBarActivity {
                 }
             }.start();
         }
-        showScores();
+        dbManager.showScores(lvl, tableName, scoreView);
     }
 
     /**
