@@ -271,7 +271,7 @@ public class MathGame extends ActionBarActivity {
         }
         //********************************************************************
         // set random number from one to nine to the two numbers to calculate
-        setRandomnum1(IBnum1);
+        setRandomnum1(IBnum1, null);
         setRandomnum2LevelTwo(IBnum2);
         // make the calculation
         int num = -1;
@@ -286,38 +286,34 @@ public class MathGame extends ActionBarActivity {
      * set a random problem with multiply or divide
      */
     public void SetUplevel3(){
+        TextView quiz;
+        quiz = (TextView) findViewById(R.id.QuestionText);
+        quiz.setTextSize(100);
+        quiz.setText(" ");
         ClearText();
-        // set up the buttons
-        //********************************************************************
-        ImageButton IBnum1;
-        IBnum1 = (ImageButton) findViewById(R.id.num1button);
-        ImageButton IBnum2;
-        IBnum2 = (ImageButton) findViewById(R.id.num2button);
 
-        ImageButton IBplus_min;
-        IBplus_min = (ImageButton) findViewById(R.id.OPbutton);
-        //********************************************************************
+        // set random number from one to nine to the first number to calculate
+        setRandomnum1(null, quiz);
 
         // set the operator to
         //********************************************************************
         int randomOP = (int) Math.ceil(Math.random()*2);
         if (randomOP == 1) {
             //multiply
-            IBplus_min.setImageResource(R.drawable.multiply);
+            quiz.append(" * ");
             Multiply = true;
             Divide = false;
         }
         else if (randomOP == 2) {
             //DIVIDE
-            IBplus_min.setImageResource(R.drawable.divide);
+            quiz.append(" / ");
             Multiply = false;
             Divide = true;
         }
         //********************************************************************
-        // set random number from one to nine to the first number to calculate
-        setRandomnum1(IBnum1);
+
         // set random number that will work with the first number
-        setRandomnum2LevelTree(IBnum2);
+        setRandomnum2LevelTree(quiz);
     }
 
     /**
@@ -442,7 +438,6 @@ public class MathGame extends ActionBarActivity {
             view.setImageResource(R.drawable.img_4_hex_6);
             IMGvalue = 6;
         }
-
     }
 
     /**
@@ -483,8 +478,9 @@ public class MathGame extends ActionBarActivity {
     /**
      * set a random number to the first option
      * @param view v
+     * @param quiz q
      */
-    public void setRandomnum1(ImageView view){
+    public void setRandomnum1(ImageButton view, TextView quiz){
         // random from 0 to 10
         int randomNum;
         // number from 1 to 10 so we dont get zero
@@ -501,7 +497,8 @@ public class MathGame extends ActionBarActivity {
         LASTans = randomNum;
         IBnum1value = randomNum;
 
-        setIMG(randomNum, view);
+        if(lvl == 3) quiz.append(Integer.toString(randomNum));
+        if(lvl == 2) setIMG(randomNum, view);
     }
 
     /**
@@ -536,9 +533,9 @@ public class MathGame extends ActionBarActivity {
     }
     /**
      * get a random number to use as the second number in calculations for level 3
-     * @param view view for the button
+     * @param quiz view for the button
      */
-    public void setRandomnum2LevelTree(ImageView view) {
+    public void setRandomnum2LevelTree(TextView quiz) {
         int randomNum = -1;
         //
         if (Multiply) {
@@ -559,7 +556,7 @@ public class MathGame extends ActionBarActivity {
             last_num = (IBnum1value / randomNum);
         }
         IBnum2value = randomNum;
-        setIMG(randomNum, view);
+        quiz.append(Integer.toString(randomNum));
     }
 
     /**
@@ -722,6 +719,7 @@ public class MathGame extends ActionBarActivity {
     public void ClearText(){
         EditText editText;
         editText = (EditText) findViewById(R.id.answerView);
+
 
         editText.setText("0");
 
