@@ -1,6 +1,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"
     android:background="@drawable/bakles"
@@ -32,11 +33,12 @@
                     android:id="@+id/SpellingOut1"
                     android:src="@drawable/sa"
                     android:background="@android:color/transparent"
-                    android:layout_marginLeft="157dp"
-                    android:layout_marginStart="157dp"
-                    android:layout_alignTop="@+id/SpellingOut2"
+                    android:layout_marginLeft="162dp"
+                    android:layout_marginStart="100dp"
+                    android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@+id/TextSpellingLevel1Score"
-                    android:layout_toEndOf="@+id/TextSpellingLevel1Score" />
+                    android:layout_toEndOf="@+id/TextSpellingLevel1Score"
+                    android:layout_marginBottom="68dp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -44,10 +46,9 @@
                     android:id="@+id/SpellingOut2"
                     android:src="@drawable/sb"
                     android:background="@android:color/transparent"
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignTop="@+id/SpellingOut1"
                     android:layout_toLeftOf="@+id/IMGspelling"
-                    android:layout_toStartOf="@+id/IMGspelling"
-                    android:layout_marginBottom="40dp"/>
+                    android:layout_toStartOf="@+id/IMGspelling" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -65,10 +66,10 @@
                     android:id="@+id/SpellingOut4"
                     android:src="@drawable/sf"
                     android:background="@android:color/transparent"
-                    android:layout_marginRight="176dp"
+                    android:layout_marginRight="187dp"
+                    android:layout_marginEnd="187dp"
                     android:layout_alignTop="@+id/SpellingOut3"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="176dp" />
+                    android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
