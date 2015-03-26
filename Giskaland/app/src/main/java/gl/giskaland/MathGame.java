@@ -18,6 +18,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MathGame extends ActionBarActivity {
@@ -62,6 +63,10 @@ public class MathGame extends ActionBarActivity {
     // DbManager for usage inside this activity
     DbManager dbManager;
 
+    String tableName = "MathScores";
+
+    TextView scoreView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +82,18 @@ public class MathGame extends ActionBarActivity {
         else if (lvl == 3)
             setContentView(R.layout.activity_math_level_3);
 
+        System.out.println("HEREEEEEEEEEEE");
 
-        initDbManager();
-        showScores(lvl);
+        scoreView = (TextView)findViewById(R.id.TextMathLevel1score);
+        if (lvl == 2)
+            scoreView = (TextView)findViewById(R.id.TextMathLevel2score);
+        else if (lvl == 3)
+            scoreView = (TextView)findViewById(R.id.TextMathLevel3score);
+
+        dbManager = new DbManager(this);
+        dbManager.initDbManager(lvl, tableName);
+
+        dbManager.showScores(lvl, tableName, scoreView);
 
         // make the popup
         PopUp();
@@ -137,27 +151,6 @@ public class MathGame extends ActionBarActivity {
         nine.setOnClickListener(Numlistner);
 
         //********************************************************************
-    }
-
-    /**
-     * Setup the dbManager for this activity.
-     */
-    public void initDbManager() {
-        dbManager = new DbManager(this);
-
-        try {
-            dbManager.createDatabase();
-        } catch (IOException ioe) {
-            Log.e("initDbManager()", ioe.getMessage());
-        }
-
-        try {
-            dbManager.openDatabase();
-        } catch (SQLiteException sqle) {
-            Log.e("initDbManager()", sqle.getMessage());
-        }
-
-        initScores();
     }
 
     /**
@@ -610,52 +603,6 @@ public class MathGame extends ActionBarActivity {
         }
     }
 
-    /**
-     * add to the score
-     * @param change how much to add too the number
-     */
-    public void saveScore(int change){
-        dbManager.updateScore("MathScores", 0, lvl, change, false);
-    }
-
-    /**
-     * to get the score from the DB
-     * @return An array of string of length 2 containing
-     *         the tmp score and the total score.
-     */
-    public String[] getScore(){
-        List<String> allSpellingScores = dbManager.getData("MathScores", 0, 7);
-        String[] score;
-        score = new String[]{
-                allSpellingScores.get((lvl * 2) - 1),   // Tmp score
-                allSpellingScores.get(lvl * 2)    // Total score
-        };
-        return score;
-    }
-
-    /**
-     * init the score
-     */
-    public void initScores() {
-        dbManager.updateScore("MathScores", 0, lvl, 0, true);
-    }
-
-    /**
-     * to show the score
-     * @param lvl what level are we on
-     */
-    public void showScores(int lvl) {
-        String[] newScores = getScore();
-
-        // Default value
-        TextView scoreView = (TextView)findViewById(R.id.TextMathLevel1score);
-        if (lvl == 2)
-            scoreView = (TextView)findViewById(R.id.TextMathLevel2score);
-        else if (lvl == 3)
-            scoreView = (TextView)findViewById(R.id.TextMathLevel3score);
-
-        scoreView.setText("Stig : " + newScores[0] + "\t Heildarstig : " + newScores[1]);
-    }
 
     /**
      * check if we have the right answer and handle the aftermath
@@ -666,10 +613,10 @@ public class MathGame extends ActionBarActivity {
 
         if (allMathOut[index]) {
             makeRandom();
-            saveScore(2);
+            dbManager.saveScore(lvl, tableName, 2);
         }
         else {
-            saveScore(-1);
+            dbManager.saveScore(lvl, tableName, -1);
             new CountDownTimer(1500,1000){
                 /**
                  * make he popup window appear
@@ -694,7 +641,7 @@ public class MathGame extends ActionBarActivity {
                 }
             }.start();
         }
-        showScores(lvl);
+        dbManager.showScores(lvl, tableName, scoreView);
     }
     /**
      * listener for the answer button
@@ -711,10 +658,10 @@ public class MathGame extends ActionBarActivity {
             int Ans = Integer.parseInt(editText.getText().toString());
             if(Ans == IBnum1value*IBnum2value || Ans == IBnum1value/IBnum2value){
                 makeRandom();
-                saveScore(2);
+                dbManager.saveScore(lvl, tableName, 2);
             }
             else {
-                saveScore(-1);
+                dbManager.saveScore(lvl, tableName, -1);
                 new CountDownTimer(1500,1000){
                     /**
                      * make the popup appear for some time
@@ -740,7 +687,7 @@ public class MathGame extends ActionBarActivity {
                 }.start();
                 ClearText();
             }
-            showScores(lvl);
+            dbManager.showScores(lvl, tableName, scoreView);
             System.out.println("answer");
         }
     };
