@@ -521,39 +521,39 @@ public class SpellingGame extends ActionBarActivity {
         Output = (TextView)findViewById(R.id.OutPutText);
         System.out.println(Output.getText());
         if(buttonNotPressed){
-            Output.setText(IMGvalueLetter.substring(1,2));
+            Output.setText((IMGvalueLetter.substring(1,2)).toUpperCase());
         }else{
             if(IMGvalueLetter.length() > 2){
                 System.out.println(IMGvalueLetter.substring(1,3));
                 if(IMGvalueLetter.substring(1,3).equals("aa")){
-                    Output.append("á");
+                    Output.append("Á");
                 }
                 else if (IMGvalueLetter.substring(1,3).equals("ae")){
-                    Output.append("æ");
+                    Output.append("Æ");
                 }
                 else if (IMGvalueLetter.substring(1,3).equals("dd")){
-                    Output.append("ð");
+                    Output.append("Ð");
                 }
                 else if (IMGvalueLetter.substring(1,3).equals("ee")){
-                    Output.append("é");
+                    Output.append("É");
                 }
                 else if (IMGvalueLetter.substring(1,3).equals("ii")){
-                    Output.append("í");
+                    Output.append("Í");
                 }
                 else if (IMGvalueLetter.substring(1,3).equals("oo")){
-                    Output.append("ó");
+                    Output.append("Ó");
                 }
                 else if (IMGvalueLetter.substring(1,3).equals("ou")){
-                    Output.append("ö");
+                    Output.append("Ö");
                 }
                 else if (IMGvalueLetter.substring(1,3).equals("uu")){
-                    Output.append("ú");
+                    Output.append("Ú");
                 }
                 else if (IMGvalueLetter.substring(1,3).equals("yy")){
-                    Output.append("ý");
+                    Output.append("Ý");
                 }
             }
-            else Output.append(IMGvalueLetter.substring(1,2));
+            else Output.append((IMGvalueLetter.substring(1,2)).toUpperCase());
         }
         buttonNotPressed = false;
     }
