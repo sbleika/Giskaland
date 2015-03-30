@@ -227,6 +227,10 @@ public class SpellingGame extends ActionBarActivity {
         button2 = (ImageButton) findViewById(R.id.SpellingOut2);
         button3 = (ImageButton) findViewById(R.id.SpellingOut3);
         button4 = (ImageButton) findViewById(R.id.SpellingOut4);
+        button1.setBackgroundResource(android.R.drawable.btn_default);
+        button2.setBackgroundResource(android.R.drawable.btn_default);
+        button3.setBackgroundResource(android.R.drawable.btn_default);
+        button4.setBackgroundResource(android.R.drawable.btn_default);
         //********************************************************************
 
         // random number from 1 to 4
@@ -279,6 +283,13 @@ public class SpellingGame extends ActionBarActivity {
         button4 = (ImageButton) findViewById(R.id.SpellingOut4);
         button5 = (ImageButton) findViewById(R.id.SpellingOut5);
         button6 = (ImageButton) findViewById(R.id.SpellingOut6);
+        button1 = (ImageButton) findViewById(R.id.SpellingOut1);
+        button1.setBackgroundResource(android.R.drawable.btn_default);
+        button2.setBackgroundResource(android.R.drawable.btn_default);
+        button3.setBackgroundResource(android.R.drawable.btn_default);
+        button4.setBackgroundResource(android.R.drawable.btn_default);
+        button5.setBackgroundResource(android.R.drawable.btn_default);
+        button6.setBackgroundResource(android.R.drawable.btn_default);
         //********************************************************************
 
         // reset variables
@@ -578,19 +589,51 @@ public class SpellingGame extends ActionBarActivity {
      * check if we have the right Answer
      * @param index the button we are checking
      */
-    public void handleScore(int index, View view) {
+    public void handleScore(int index, View v) {
+
         if (SpellingOutBool[index]) {
-            if(lvl == 1)makeRandom();
-            if(lvl == 2 || lvl == 3){
-                PutUp();
-                setTheOptionsLevel2();
-            }
-            dbManager.saveScore(lvl, tableName, 2);
+            v.setBackgroundResource(R.drawable.greenback);
+
+            new CountDownTimer(2000,1000){
+                /**
+                 * make the popup window appear for some time
+                 * @param millisUntilFinished time left
+                 */
+                @Override
+                public void onTick(long millisUntilFinished){
+                    if (POPupINACTIVE) {
+                        tv.setText("Rétt svar !!");
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+
+                /**
+                 * dismiss the popup window
+                 */
+                @Override
+                public void onFinish(){
+                    popUp.dismiss();
+                    POPupINACTIVE = true;
+                    //todo
+                    // fix if we close the game before we dismiss the popup we get error
+
+                    if(lvl == 1)setUpLevelOne();
+                    if(lvl == 2 || lvl == 3){
+                        PutUp();
+                        setTheOptionsLevel2();
+                    }
+                    dbManager.saveScore(lvl, tableName, 2);
+                }
+            }.start();
+
+
         }
         else {
             dbManager.saveScore(lvl, tableName, -1);
             // make button different
-
+            v.setBackgroundResource(R.drawable.redback);
             new CountDownTimer(1500,1000){
                 /**
                  * make the popup window appear for some time
@@ -599,6 +642,7 @@ public class SpellingGame extends ActionBarActivity {
                 @Override
                 public void onTick(long millisUntilFinished){
                     if (POPupINACTIVE) {
+                        tv.setText("Rangt svar !!");
                         popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
                         popUp.update(0, 0, 850, 133);
                         POPupINACTIVE = false;
