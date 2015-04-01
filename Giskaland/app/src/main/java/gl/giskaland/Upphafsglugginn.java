@@ -1,6 +1,7 @@
 package gl.giskaland;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 
 public class Upphafsglugginn extends ActionBarActivity {
     int lvl;
+    boolean playing = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,15 +28,47 @@ public class Upphafsglugginn extends ActionBarActivity {
         ThirdButton = (ImageButton) findViewById(R.id.buttonThirdLevel);
         ThirdButton.setOnClickListener(gotoChooseGameForTree);
 
+        ImageButton Giski;
+        Giski = (ImageButton) findViewById(R.id.Giski);
+        Giski.setOnClickListener(giskiclicked);
         //*****************************************************************
     }
+
+
+
+    /** Buttonlistener for if Giski is clicked
+     *
+     */
+    View.OnClickListener giskiclicked  = new View.OnClickListener() {
+        /**
+         * ef smellt er a giska
+         * @param v view
+         */
+        @Override
+        public void onClick(View v) {
+            // 
+            ImageButton Giski;
+            Giski = (ImageButton)findViewById(R.id.Giski);
+            Giski.setImageResource(R.drawable.leikur);
+
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.hello);
+            if (playing) {
+                mp.stop();
+                playing = false;
+            } else {
+                mp.start();
+                playing = true;
+            }
+
+        }
+    };
 
     /** Button for first age group
      *
      */
     View.OnClickListener gotoChooseGameForOne  = new View.OnClickListener() {
         /**
-         * ef smellt er a nemandi takkan er kallad a fallid firstbutton()
+         *
          * @param v view
          */
         @Override

@@ -73,6 +73,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/score"
+        android:typeface="monospace"
         android:id="@+id/TextMathLevel1score"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

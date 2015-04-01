@@ -616,8 +616,6 @@ public class SpellingGame extends ActionBarActivity {
                 public void onFinish(){
                     popUp.dismiss();
                     POPupINACTIVE = true;
-                    //todo
-                    // fix if we close the game before we dismiss the popup we get error
 
                     if(lvl == 1)setUpLevelOne();
                     if(lvl == 2 || lvl == 3){
