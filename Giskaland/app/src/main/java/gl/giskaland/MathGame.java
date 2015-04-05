@@ -81,6 +81,7 @@ public class MathGame extends ActionBarActivity {
             setContentView(R.layout.activity_math_level_2);
         else if (lvl == 3)
             setContentView(R.layout.activity_math_level_3);
+        getSupportActionBar().hide();
 
         System.out.println("HEREEEEEEEEEEE");
 

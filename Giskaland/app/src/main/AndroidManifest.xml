@@ -23,22 +23,22 @@
 
         <activity
             android:name=".ChooseGameForAllLevels"
-            android:label="@string/title_activity_four_year"
+            android:label="@string/app_name"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".MathGame"
-            android:label="MathGame"
+            android:label="@string/title_activity_math"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".SpellingGame"
-            android:label="@string/title_activity_spelling_level_1"
+            android:label="@string/title_activity_spelling"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".QuizGame"
-            android:label="@string/title_activity_quiz__level_3"
+            android:label="@string/title_activity_quiz"
             android:screenOrientation="landscape" >
         </activity>
     </application>

@@ -97,9 +97,8 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/OutPutText"
-        android:layout_above="@+id/imageOFitem"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp" />
+        android:layout_below="@+id/TextSpellingLevel2Score"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"

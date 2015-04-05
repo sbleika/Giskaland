@@ -83,6 +83,7 @@ public class SpellingGame extends ActionBarActivity {
 
         if(lvl == 1)setContentView(R.layout.activity_spelling_game);
         else setContentView(R.layout.activity_spelling_game_two);
+        getSupportActionBar().hide();
 
         scoreView = (TextView)findViewById(R.id.TextSpellingLevel1Score);
         if (lvl == 2 || lvl == 3) scoreView = (TextView)findViewById(R.id.TextSpellingLevel2Score);
@@ -589,7 +590,6 @@ public class SpellingGame extends ActionBarActivity {
      * @param index the button we are checking
      */
     public void handleScore(int index, View v) {
-
         if (SpellingOutBool[index]) {
             v.setBackgroundResource(R.drawable.greenback);
 
@@ -622,13 +622,13 @@ public class SpellingGame extends ActionBarActivity {
                         setTheOptionsLevel2();
                     }
                     dbManager.saveScore(lvl, tableName, 2);
+                    dbManager.showScores(lvl, tableName, scoreView);
                 }
             }.start();
-
-
         }
         else {
             dbManager.saveScore(lvl, tableName, -1);
+            dbManager.showScores(lvl, tableName, scoreView);
             // make button different
             v.setBackgroundResource(R.drawable.redback);
             new CountDownTimer(1500,1000){
@@ -658,7 +658,6 @@ public class SpellingGame extends ActionBarActivity {
                 }
             }.start();
         }
-        dbManager.showScores(lvl, tableName, scoreView);
     }
 
     /**
@@ -703,6 +702,8 @@ public class SpellingGame extends ActionBarActivity {
          */
         @Override
         public void onClick(View view) {
+            dbManager.saveScore(lvl, tableName, -1);
+            dbManager.showScores(lvl, tableName, scoreView);
             setUpLevelTwo();
         }
     };

@@ -12,10 +12,12 @@ import android.widget.ImageButton;
 public class Upphafsglugginn extends ActionBarActivity {
     int lvl;
     boolean playing = false;
+    int playtmes = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upphafsglugginn);
+        getSupportActionBar().hide();
         //*****************************************************************
         // set up OnClickListeners for button
         ImageButton FirstButton;
@@ -55,11 +57,11 @@ public class Upphafsglugginn extends ActionBarActivity {
             if (playing) {
                 mp.stop();
                 playing = false;
-            } else {
+            } else if (playtmes <= 3)  {
                 mp.start();
                 playing = true;
+                playtmes++;
             }
-
         }
     };
 
