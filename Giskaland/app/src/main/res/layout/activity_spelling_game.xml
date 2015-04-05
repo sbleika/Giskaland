@@ -22,8 +22,6 @@
             android:id="@+id/IMGspelling"
             android:src="@drawable/api"
             android:background="@android:color/transparent"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="117dp"
             android:layout_below="@+id/TextSpellingLevel1Score"
             android:layout_centerHorizontal="true" />
 

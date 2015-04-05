@@ -15,26 +15,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="70sp"
-        android:layout_marginTop="188dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/buttonMath"
+        android:paddingBottom="20dp"/>
 
     <!-- Some games, example, no onclick -->
 
     <ImageButton
         android:id="@+id/buttonMath"
-        android:text="@string/gameMath"
         style="@style/button_style"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:background="@android:color/transparent"
         android:src="@drawable/stae"
-        android:paddingBottom="20dp"
-        android:paddingTop="80dp" />
+        android:paddingBottom="20dp" />
 
     <ImageButton
         android:id="@+id/buttonSpellThePic"
-        android:text="@string/SpellThePic"
         style="@style/button_style"
         android:layout_below="@+id/buttonMath"
         android:background="@android:color/transparent"

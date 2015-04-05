@@ -82,8 +82,7 @@ public class SpellingGame extends ActionBarActivity {
         lvl = b.getInt("key");
 
         if(lvl == 1)setContentView(R.layout.activity_spelling_game);
-        if(lvl == 2)setContentView(R.layout.activity_spelling_game_two);
-        if(lvl == 3)setContentView(R.layout.activity_spelling_game_tree);
+        else setContentView(R.layout.activity_spelling_game_two);
 
         scoreView = (TextView)findViewById(R.id.TextSpellingLevel1Score);
         if (lvl == 2 || lvl == 3) scoreView = (TextView)findViewById(R.id.TextSpellingLevel2Score);

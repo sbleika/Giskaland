@@ -15,43 +15,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="70sp"
-        android:layout_marginTop="188dp"
-        android:layout_alignParentTop="true"
+        android:paddingBottom="10dp"
+        android:layout_above="@+id/buttonMath"
         android:layout_centerHorizontal="true" />
 
     <!-- Some games, example, no onclick -->
 
     <ImageButton
         android:id="@+id/buttonMath"
-        android:text="@string/gameMath"
         style="@style/button_style"
         android:background="@android:color/transparent"
-        android:layout_above="@+id/buttonMath"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:src="@drawable/stae"
-        android:paddingTop="80dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/buttonSpellThePic"
+        android:paddingBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/buttonSpellThePic"
-        android:text="@string/SpellThePic"
+        android:src="@drawable/staf"
         style="@style/button_style"
         android:background="@android:color/transparent"
-        android:layout_below="@+id/buttonMath"
+        android:layout_above="@+id/buttonBrainPuzzle"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:src="@drawable/staf"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="10dp"
+        android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/buttonBrainPuzzle"
-        android:text="@string/gameBrainPuzzle"
-        style="@style/button_style"
-        android:layout_below="@+id/buttonSpellThePic"
-        android:background="@android:color/transparent"
         android:src="@drawable/gettunu"
+        style="@style/button_style"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
         android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content" />
+        android:paddingBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
