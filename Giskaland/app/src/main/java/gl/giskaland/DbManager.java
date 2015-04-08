@@ -380,7 +380,7 @@ public class DbManager extends SQLiteOpenHelper {
                     Log.e("initDbManager()", sqle.getMessage());
                 }
 
-                //zsaveScore(2, "QuizScores", 2);
+                //saveScore(2, "QuizScores", 2);
 
             } catch (IOException ioe) {
                 ioe.printStackTrace();
