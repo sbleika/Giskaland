@@ -81,6 +81,7 @@ public class MathGame extends ActionBarActivity {
             setContentView(R.layout.activity_math_level_2);
         else if (lvl == 3)
             setContentView(R.layout.activity_math_level_3);
+        getSupportActionBar().hide();
 
         System.out.println("HEREEEEEEEEEEE");
 
@@ -150,6 +151,16 @@ public class MathGame extends ActionBarActivity {
         nine = (ImageButton) findViewById(R.id.ninebutton_9);
         nine.setOnClickListener(Numlistner);
 
+        zero.setBackgroundResource(android.R.drawable.btn_default);
+        one.setBackgroundResource(android.R.drawable.btn_default);
+        two.setBackgroundResource(android.R.drawable.btn_default);
+        tree.setBackgroundResource(android.R.drawable.btn_default);
+        four.setBackgroundResource(android.R.drawable.btn_default);
+        five.setBackgroundResource(android.R.drawable.btn_default);
+        six.setBackgroundResource(android.R.drawable.btn_default);
+        seven.setBackgroundResource(android.R.drawable.btn_default);
+        eigth.setBackgroundResource(android.R.drawable.btn_default);
+        nine.setBackgroundResource(android.R.drawable.btn_default);
         //********************************************************************
     }
 
@@ -222,6 +233,11 @@ public class MathGame extends ActionBarActivity {
         IBout4.setOnClickListener(checkIfRightAnsout4);
         ImageButton IMG;
         IMG = (ImageButton) findViewById(R.id.IMG);
+
+        IBout1.setBackgroundResource(android.R.drawable.btn_default);
+        IBout2.setBackgroundResource(android.R.drawable.btn_default);
+        IBout3.setBackgroundResource(android.R.drawable.btn_default);
+        IBout4.setBackgroundResource(android.R.drawable.btn_default);
         //********************************************************************
 
         setRandomnumIMG(IMG);
@@ -236,10 +252,7 @@ public class MathGame extends ActionBarActivity {
     public void SetUplevel2(){
         // set up the buttons
         //********************************************************************
-        ImageButton IBnum1;
-        IBnum1 = (ImageButton) findViewById(R.id.IBnum1);
-        ImageButton IBnum2;
-        IBnum2 = (ImageButton) findViewById(R.id.IBnum2);
+
         ImageButton IBout1;
         IBout1 = (ImageButton) findViewById(R.id.IBout1);
         IBout1.setOnClickListener(checkIfRightAnsout1);
@@ -252,27 +265,37 @@ public class MathGame extends ActionBarActivity {
         ImageButton IBout4;
         IBout4 = (ImageButton) findViewById(R.id.IBout4);
         IBout4.setOnClickListener(checkIfRightAnsout4);
-        ImageButton IBplus_min;
-        IBplus_min = (ImageButton) findViewById(R.id.IMG);
+
+        IBout1.setBackgroundResource(android.R.drawable.btn_default);
+        IBout2.setBackgroundResource(android.R.drawable.btn_default);
+        IBout3.setBackgroundResource(android.R.drawable.btn_default);
+        IBout4.setBackgroundResource(android.R.drawable.btn_default);
         //********************************************************************
+
+        TextView quiz;
+        quiz = (TextView) findViewById(R.id.QuestionText);
+        quiz.setTextSize(100);
+        quiz.setText(" ");
+
+        // set random number from one to nine to the two numbers to calculate
+        setRandomnum1(quiz);
 
         // set the operator to plus or minus
         //********************************************************************
         double randomOP = (int) Math.ceil(Math.random()*2);
         if (randomOP == 1) {
-            IBplus_min.setImageResource(R.drawable.plus);
+            quiz.append(" + ");
             Plus = true;
             Minus = false;
         }
         else if (randomOP == 2) {
-            IBplus_min.setImageResource(R.drawable.minus);
+            quiz.append(" - ");
             Plus = false;
             Minus = true;
         }
         //********************************************************************
-        // set random number from one to nine to the two numbers to calculate
-        setRandomnum1(IBnum1, null);
-        setRandomnum2LevelTwo(IBnum2);
+
+        setRandomnum2LevelTwo(quiz);
         // make the calculation
         int num = -1;
         if (Minus)num = IBnum1value - IBnum2value;
@@ -293,7 +316,7 @@ public class MathGame extends ActionBarActivity {
         ClearText();
 
         // set random number from one to nine to the first number to calculate
-        setRandomnum1(null, quiz);
+        setRandomnum1(quiz);
 
         // set the operator to
         //********************************************************************
@@ -477,10 +500,9 @@ public class MathGame extends ActionBarActivity {
 
     /**
      * set a random number to the first option
-     * @param view v
-     * @param quiz q
+     * @param quiz v
      */
-    public void setRandomnum1(ImageButton view, TextView quiz){
+    public void setRandomnum1(TextView quiz){
         // random from 0 to 10
         int randomNum;
         // number from 1 to 10 so we dont get zero
@@ -497,8 +519,7 @@ public class MathGame extends ActionBarActivity {
         LASTans = randomNum;
         IBnum1value = randomNum;
 
-        if(lvl == 3) quiz.append(Integer.toString(randomNum));
-        if(lvl == 2) setIMG(randomNum, view);
+        quiz.append(Integer.toString(randomNum));
     }
 
     /**
@@ -513,9 +534,9 @@ public class MathGame extends ActionBarActivity {
 
     /**
      * set the second number to a number that will work with the first number in level 2
-     * @param view v
+     * @param quiz v
      */
-    public void setRandomnum2LevelTwo(ImageView view){
+    public void setRandomnum2LevelTwo(TextView quiz){
         int randomNum = -1;
         // the second number can not be larger than the first number if ew have minus
         // from 0 to the number we are subtracting from
@@ -529,7 +550,7 @@ public class MathGame extends ActionBarActivity {
         last_num = cal(randomNum);
 
         IBnum2value = randomNum;
-        setIMG(randomNum, view);
+        quiz.append(Integer.toString(randomNum));
     }
     /**
      * get a random number to use as the second number in calculations for level 3
@@ -605,14 +626,47 @@ public class MathGame extends ActionBarActivity {
      * check if we have the right answer and handle the aftermath
      * @param index the number of the button
      */
-    public void handleScore(int index) {
+    public void handleScore(int index, View v) {
         Boolean[] allMathOut = {isIBout1, isIBout2, isIBout3, isIBout4};
 
         if (allMathOut[index]) {
-            makeRandom();
+            v.setBackgroundResource(R.drawable.greenback);
+
+            new CountDownTimer(2000,1000){
+                /**
+                 * make the popup window appear for some time
+                 * @param millisUntilFinished time left
+                 */
+                @Override
+                public void onTick(long millisUntilFinished){
+                    if (POPupINACTIVE) {
+                        tv.setText("Rétt svar !!");
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+
+                /**
+                 * dismiss the popup window
+                 */
+                @Override
+                public void onFinish(){
+                    popUp.dismiss();
+                    POPupINACTIVE = true;
+                    //todo
+                    // fix if we close the game before we dismiss the popup we get error
+
+                    makeRandom();
+                }
+            }.start();
             dbManager.saveScore(lvl, tableName, 2);
         }
         else {
+            //TextView quiz;
+            //quiz = (TextView) findViewById(R.id.QuestionText);
+            //quiz.append(" = ");
+            v.setBackgroundResource(R.drawable.redback);
             dbManager.saveScore(lvl, tableName, -1);
             new CountDownTimer(1500,1000){
                 /**
@@ -622,6 +676,7 @@ public class MathGame extends ActionBarActivity {
                 @Override
                 public void onTick(long millisUntilFinished){
                     if (POPupINACTIVE) {
+                        tv.setText("Rangt svar !!");
                         popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
                         popUp.update(0, 0, 850, 133);
                         POPupINACTIVE = false;
@@ -654,7 +709,32 @@ public class MathGame extends ActionBarActivity {
 
             int Ans = Integer.parseInt(editText.getText().toString());
             if(Ans == IBnum1value*IBnum2value || Ans == IBnum1value/IBnum2value){
-                makeRandom();
+                new CountDownTimer(1500,1000){
+                    /**
+                     * make he popup window appear
+                     * @param millisUntilFinished time left
+                     */
+                    @Override
+                    public void onTick(long millisUntilFinished){
+                        if (POPupINACTIVE) {
+                            tv.setText("Rétt svar !!");
+                            popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                            popUp.update(0, 0, 850, 133);
+                            POPupINACTIVE = false;
+                        }
+                    }
+
+                    /**
+                     * make the popup window disappear
+                     */
+                    @Override
+                    public void onFinish(){
+                        popUp.dismiss();
+                        POPupINACTIVE = true;
+                        makeRandom();
+                    }
+                }.start();
+
                 dbManager.saveScore(lvl, tableName, 2);
             }
             else {
@@ -754,28 +834,28 @@ public class MathGame extends ActionBarActivity {
     View.OnClickListener checkIfRightAnsout1 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            handleScore(0);
+            handleScore(0, view);
         }
     };
 
     View.OnClickListener checkIfRightAnsout2 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            handleScore(1);
+            handleScore(1, view);
         }
     };
 
     View.OnClickListener checkIfRightAnsout3 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            handleScore(2);
+            handleScore(2, view);
         }
     };
 
     View.OnClickListener checkIfRightAnsout4 = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            handleScore(3);
+            handleScore(3, view);
         }
     };
     ///////////////////////////////////////////////////////////////////////////////////////////////

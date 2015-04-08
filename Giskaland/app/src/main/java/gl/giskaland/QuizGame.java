@@ -35,7 +35,7 @@ public class QuizGame extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_game);
-
+        getSupportActionBar().hide();
         Bundle b = getIntent().getExtras();
         lvl = b.getInt("key");
 

@@ -30,6 +30,10 @@
     <string name="title_activity_second_level">6-7 ára</string>
     <string name="title_activity_third_level">8-9 ára</string>
 
+    <string name="title_activity_math">Stærðfræði</string>
+    <string name="title_activity_spelling">Stafaleikur</string>
+    <string name="title_activity_quiz">Spurningaleikur</string>
+
     <string name="title_activity_math_level_1">Stærðfræði 4-5 ára</string>
     <string name="title_activity_math__level_2">Stærðfræði 6-7 ára</string>
     <string name="title_activity_math__level_3">Stærðfræði 8-9 ára</string>

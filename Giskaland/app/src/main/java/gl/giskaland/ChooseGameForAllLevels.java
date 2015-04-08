@@ -24,6 +24,8 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
             setContentView(R.layout.activity_second_level);
         else if (lvl == 3)
             setContentView(R.layout.activity_third_level);
+
+        getSupportActionBar().hide();
         //******************************************************************
         // set up the buttons
         ImageButton ButtonMath;
