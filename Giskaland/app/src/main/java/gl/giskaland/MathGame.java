@@ -21,7 +21,6 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MathGame extends ActionBarActivity {
     // to know what level we are working with
@@ -42,8 +41,7 @@ public class MathGame extends ActionBarActivity {
     // the right number of items for level 1
     int IMGvalue;
     //the answer from last game to not get the same
-    int LASTans = 0;
-    int NEXTans = 0;
+    int LASTans;
     // to make sure we only get one of each
     int IBout1value;
     int IBout2value;
@@ -65,9 +63,6 @@ public class MathGame extends ActionBarActivity {
 
     // DbManager for usage inside this activity
     DbManager dbManager;
-
-    List<List<String>> allQuestions;
-    int nrQuestions;
 
     String tableName = "MathScores";
 
@@ -98,10 +93,6 @@ public class MathGame extends ActionBarActivity {
         dbManager = new DbManager(this);
         //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
 
-        allQuestions = dbManager.getAllInfo(2, "MathImgs");
-
-        nrQuestions = allQuestions.size();
-
         dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);
 
@@ -112,19 +103,7 @@ public class MathGame extends ActionBarActivity {
 
         makeRandom(); // new numbers for the games
     }
-    /**
-     * Generate a random number (integer).
-     * @return A random integer x, where
-     *         0 <= x <= nrQuestions - 1
-     */
-    public int randomIndex() {
-        Random rand = new Random();
-        int max = nrQuestions - 1;
-        int min = 0;
-        int randNum;
-        randNum = rand.nextInt((max - min) + 1) + min;
-        return randNum;
-    }
+
     /**
      * set the buttons for math level 3
      */
@@ -459,22 +438,29 @@ public class MathGame extends ActionBarActivity {
      * @param view v
      */
     public void setRandomnumIMG(ImageView view){
-
-        while (NEXTans == LASTans) NEXTans = randomIndex();
-
-        List<String> aQuestion = allQuestions.get(NEXTans);
-
-        // number of items on image
-        IMGvalue = Integer.parseInt(aQuestion.get(1));
-        // Path of the img
-        String IMGname = aQuestion.get(0);
-
-        // make the view have the random image
-        int resID = getResources().getIdentifier(IMGname , "drawable", "gl.giskaland");
-
-        // set the letter to the button
-        view.setImageResource(resID);
-        LASTans = NEXTans;
+        // random from 1 to 4
+        int IMGnum = ((int) Math.ceil(Math.random()*4));
+        while(IMGnum == last_num){
+            IMGnum = ((int) Math.ceil(Math.random()*4));
+        }
+        last_num = IMGnum;
+        //todo setja inni gagnagrunn til ad tetta se ekki hradkodad i kodan
+        if (IMGnum == 1) {
+            view.setImageResource(R.drawable.img_1_line_2);
+            IMGvalue = 2;
+        }
+        else if (IMGnum == 2) {
+            view.setImageResource(R.drawable.img_2_ring_3);
+            IMGvalue = 3;
+        }
+        else if (IMGnum == 3) {
+            view.setImageResource(R.drawable.img_3_balls_5);
+            IMGvalue = 5;
+        }
+        else if (IMGnum == 4) {
+            view.setImageResource(R.drawable.img_4_hex_6);
+            IMGvalue = 6;
+        }
     }
 
     /**
@@ -610,7 +596,7 @@ public class MathGame extends ActionBarActivity {
             view.setImageResource(R.drawable.two);
         }
         else if (randomNum == 3) {
-            view.setImageResource(R.drawable.three);
+            view.setImageResource(R.drawable.tree);
         }
         else if (randomNum == 4) {
             view.setImageResource(R.drawable.four);
@@ -625,7 +611,7 @@ public class MathGame extends ActionBarActivity {
             view.setImageResource(R.drawable.seven);
         }
         else if (randomNum == 8) {
-            view.setImageResource(R.drawable.eight);
+            view.setImageResource(R.drawable.eigth);
         }
         else if (randomNum == 9) {
             view.setImageResource(R.drawable.nine);
@@ -668,7 +654,8 @@ public class MathGame extends ActionBarActivity {
                 public void onFinish(){
                     popUp.dismiss();
                     POPupINACTIVE = true;
-                    //todo fix if we close the game before we dismiss the popup we get error
+                    //todo
+                    // fix if we close the game before we dismiss the popup we get error
 
                     makeRandom();
                 }
