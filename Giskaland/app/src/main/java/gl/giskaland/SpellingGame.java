@@ -519,7 +519,6 @@ public class SpellingGame extends ActionBarActivity {
      * put up the letter we pressed
      */
     public void PutUp(){
-        Append();
         NextLetterForOptions();
     }
 
@@ -582,7 +581,34 @@ public class SpellingGame extends ActionBarActivity {
             }
             else IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum));
         }
-        else setUpLevelTwo();//you have won!!!!!!!!!!!!!!
+        else {
+            new CountDownTimer(4000,1000){
+                /**
+                 * make the popup window appear for some time
+                 * @param millisUntilFinished time left
+                 */
+                @Override
+                public void onTick(long millisUntilFinished){
+                    if (POPupINACTIVE) {
+                        tv.setText("þu skrifaðir " + IMGword + " rétt !!");
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+
+                /**
+                 * dismiss the popup window
+                 */
+                @Override
+                public void onFinish(){
+                    popUp.dismiss();
+                    POPupINACTIVE = true;
+                    setUpLevelTwo();//you have won!!!!!!!!!!!!!!
+                }
+            }.start();
+
+        }
     }
 
     /**
@@ -592,8 +618,8 @@ public class SpellingGame extends ActionBarActivity {
     public void handleScore(int index, View v) {
         if (SpellingOutBool[index]) {
             v.setBackgroundResource(R.drawable.greenback);
-
-            new CountDownTimer(2000,1000){
+            if (lvl > 1) Append();
+            new CountDownTimer(800,1000){
                 /**
                  * make the popup window appear for some time
                  * @param millisUntilFinished time left
