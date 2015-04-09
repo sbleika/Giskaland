@@ -1,5 +1,7 @@
 package gl.giskaland;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
@@ -89,14 +91,16 @@ public class SpellingGame extends ActionBarActivity {
         if (lvl == 2 || lvl == 3) scoreView = (TextView)findViewById(R.id.TextSpellingLevel2Score);
 
         dbManager = new DbManager(this);
-        dbManager.initDbManager(lvl, tableName);
+        //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
 
+        dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);
 
         // make the popup
         PopUp();
         makeRandom(); // start the game
     }
+
 
     /**
      * set up the popup window

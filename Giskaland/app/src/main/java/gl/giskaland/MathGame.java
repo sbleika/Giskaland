@@ -1,5 +1,6 @@
 package gl.giskaland;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
@@ -83,8 +84,6 @@ public class MathGame extends ActionBarActivity {
             setContentView(R.layout.activity_math_level_3);
         getSupportActionBar().hide();
 
-        System.out.println("HEREEEEEEEEEEE");
-
         scoreView = (TextView)findViewById(R.id.TextMathLevel1score);
         if (lvl == 2)
             scoreView = (TextView)findViewById(R.id.TextMathLevel2score);
@@ -92,8 +91,9 @@ public class MathGame extends ActionBarActivity {
             scoreView = (TextView)findViewById(R.id.TextMathLevel3score);
 
         dbManager = new DbManager(this);
-        dbManager.initDbManager(lvl, tableName);
+        //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
 
+        dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);
 
         // make the popup

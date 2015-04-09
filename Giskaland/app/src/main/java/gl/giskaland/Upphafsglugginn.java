@@ -16,6 +16,9 @@ public class Upphafsglugginn extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //updateDatabase();
+
         setContentView(R.layout.activity_upphafsglugginn);
         getSupportActionBar().hide();
         //*****************************************************************
@@ -109,6 +112,16 @@ public class Upphafsglugginn extends ActionBarActivity {
             ChooseGameForAllLevels();
         }
     };
+
+    private void updateDatabase() {
+        // Write contents  of the prev update to a file.
+
+
+
+        DbManager dbManager = new DbManager(this);
+
+        // Copy back the data from the backup file
+    }
 
     /**
      * opens new activity for the right age group
