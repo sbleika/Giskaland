@@ -44,6 +44,7 @@ public class SpellingGame extends ActionBarActivity {
     int IMGvalueLetterNum = 0;
     // ther word in the image
     String IMGword;
+    String IslOrd;
 
     // to know where the right answer is
     Boolean[] SpellingOutBool = new Boolean[7];
@@ -169,6 +170,7 @@ public class SpellingGame extends ActionBarActivity {
             SpellingOut[j] = "-1";
         }
         IMGvalueLetter = "-1";
+        IMGvalueLetterNum = 0;
 
         //********************************************************************
 
@@ -506,24 +508,21 @@ public class SpellingGame extends ActionBarActivity {
         List<String> aQuestion = allQuestions.get(NEXTans);
 
         // Path of the img
-        String letter = aQuestion.get(0);
-
+        IMGword = aQuestion.get(0);
+        IslOrd = aQuestion.get(1);
         // make the view have the random image
-        int resID = getResources().getIdentifier(letter , "drawable", "gl.giskaland");
+        int resID = getResources().getIdentifier(IMGword , "drawable", "gl.giskaland");
 
         // set the letter to the button
         view.setImageResource(resID);
 
         //set the fyrst letter of the thing on the image to IMGvalueletter
-        if(letter.substring(0,1).equals("_")) {
+        if(IMGword.substring(0,1).equals("_")) {
             System.out.println("serisl stafur kemur her jejjjjjjjjjjjjjjjjjjjjjj");
-            IMGvalueLetter = "s" + letter.charAt((IMGvalueLetterNum+1)) + letter.charAt((IMGvalueLetterNum + 2));
+            IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum+1)) + IMGword.charAt((IMGvalueLetterNum + 2));
             IMGvalueLetterNum = IMGvalueLetterNum + 2;
         }
-        else IMGvalueLetter = "s" + letter.charAt((IMGvalueLetterNum));
-
-        // get the word of the image
-        IMGword = letter;
+        else IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum));
 
         LASTans = NEXTans;
     }
@@ -550,7 +549,7 @@ public class SpellingGame extends ActionBarActivity {
             @Override
             public void onTick(long millisUntilFinished){
                 if (POPupINACTIVE) {
-                    tv.setText("Já " + IMGvalueLetter.substring(1,2).toUpperCase() + " er fyrsti stafurinn i " + IMGword.toUpperCase());
+                    tv.setText("Já " + IslOrd.substring(0,1).toUpperCase() + " er fyrsti stafurinn í " + IslOrd.toUpperCase());
                     popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
                     popUp.update(0, 0, 850, 133);
                     POPupINACTIVE = false;
@@ -666,7 +665,7 @@ public class SpellingGame extends ActionBarActivity {
                 @Override
                 public void onTick(long millisUntilFinished){
                     if (POPupINACTIVE) {
-                        tv.setText("þu skrifaðir " + IMGword.toUpperCase() + " rétt !!");
+                        tv.setText("þu skrifaðir " + IslOrd.toUpperCase() + " rétt !!");
                         popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
                         popUp.update(0, 0, 850, 133);
                         POPupINACTIVE = false;
