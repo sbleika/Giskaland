@@ -122,7 +122,8 @@ public class SpellingGame extends ActionBarActivity {
         Random rand = new Random();
         int max = nrQuestions - 1;
         int min = 0;
-        int randNum = rand.nextInt((max - min) + 1) + min;
+        int randNum;
+        randNum = rand.nextInt((max - min) + 1) + min;
         return randNum;
     }
 
@@ -637,6 +638,7 @@ public class SpellingGame extends ActionBarActivity {
         if (SpellingOutBool[index]) {
             v.setBackgroundResource(R.drawable.greenback);
             if (lvl > 1) Append();
+            //todo taka 0 af nafn mynd
             new CountDownTimer(800,1000){
                 /**
                  * make the popup window appear for some time
