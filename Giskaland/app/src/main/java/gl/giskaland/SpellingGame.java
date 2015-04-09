@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 
 public class SpellingGame extends ActionBarActivity {
@@ -48,7 +49,8 @@ public class SpellingGame extends ActionBarActivity {
     Boolean[] SpellingOutBool = new Boolean[7];
 
     // the last outcome in the game before
-    int LASTans;
+    int LASTans = 0;
+    int NEXTans = 0;
     // WHAT LEVEL ARE WE ON
     int lvl;
     // are we playing in icelantic or englih
@@ -58,6 +60,9 @@ public class SpellingGame extends ActionBarActivity {
 
     // DbManager for usage inside this activity
     DbManager dbManager;
+
+    List<List<String>> allQuestions;
+    int nrQuestions;
 
     // the buttons
     ImageButton button1;
@@ -96,9 +101,29 @@ public class SpellingGame extends ActionBarActivity {
         dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);
 
+        if (lvl == 3)
+            allQuestions = dbManager.getAllInfo(2, "SpellingImgsEn");
+        else
+            allQuestions = dbManager.getAllInfo(2, "SpellingImgsIce");
+
+        nrQuestions = allQuestions.size();
+
         // make the popup
         PopUp();
         makeRandom(); // start the game
+    }
+
+    /**
+     * Generate a random number (integer).
+     * @return A random integer x, where
+     *         0 <= x <= nrQuestions - 1
+     */
+    public int randomIndex() {
+        Random rand = new Random();
+        int max = nrQuestions - 1;
+        int min = 0;
+        int randNum = rand.nextInt((max - min) + 1) + min;
+        return randNum;
     }
 
 
@@ -476,37 +501,26 @@ public class SpellingGame extends ActionBarActivity {
      * @param view g
      */
     public void setRandomnumIMG(ImageView view){
-        int numberOFimages = 7;
-        // random image from 0 to 5
-        int randomNum = ((int) Math.ceil(Math.random()*numberOFimages));
-        // make sure we get new image
-        while (LASTans == randomNum){
-            randomNum = ((int) Math.ceil(Math.random()*numberOFimages));
-        }
-        //make it the lastans so we dont get it next time
-        LASTans = randomNum;
-        //make it string and one number higher
-        String randomLetter = Integer.toString(randomNum);
-        String nextNUMafter = Integer.toString(randomNum + 1);
-        String imagies;
-        // all the images that are avalible
-        if(NotEnglish){
-            //todo setja inni gagnagrunn til ad tetta se ekki hradkodad i kodan
-            imagies = "1 api_2 letid0yyr_3 ugla_4 kisa_5 hundur_6 myndav0eel_7 m0ourg0aes_8";
-        }else{
-            imagies = "1 monkey_2 sloth_3 owl_4 cat_5 dog_6 camera_7 penguin_8";
-        }
+        while (NEXTans == LASTans) NEXTans = randomIndex();
 
-        // take one of the names from imagies
-        String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nextNUMafter) - 1);
+        List<String> aQuestion = allQuestions.get(NEXTans);
+
+        // Path of the img
+        String letter = aQuestion.get(0);
+
         // make the view have the random image
         int resID = getResources().getIdentifier(letter , "drawable", "gl.giskaland");
+
         // set the letter to the button
         view.setImageResource(resID);
+
         //set the fyrst letter of the thing on the image to IMGvalueletter
         IMGvalueLetter = "s" + letter.substring(0,1);
+
         // get the word of the image
         IMGword = letter;
+
+        LASTans = NEXTans;
     }
 
     /**

@@ -38,9 +38,9 @@ public class QuizGame extends ActionBarActivity {
         lvl = b.getInt("key");
 
         dbManager = new DbManager(this);
-        //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
 
         dbManager.initDbManager(lvl, tableName);
+        //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
         dbManager.showScores(lvl, tableName, (TextView)findViewById(R.id.TextQuizLevel3Score));
 
         // Fetch all the questions for ease of access later on.
