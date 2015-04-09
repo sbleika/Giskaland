@@ -29,7 +29,7 @@ public class DbManager extends SQLiteOpenHelper {
     private SQLiteDatabase myDb;
     private final Context myContext;
 
-    private static final int DB_VERSION = 19;
+    private static final int DB_VERSION = 2;
 
     /**
      *  Constructor for the DbManager.
@@ -89,7 +89,7 @@ public class DbManager extends SQLiteOpenHelper {
      * Copy the database file from the /assets folder.
      * @throws IOException
      */
-    private void copyDatabase() throws IOException {
+    public void copyDatabase() throws IOException {
         InputStream myInput = myContext.getAssets().open(DB_NAME);
         String outFileName = DB_PATH + DB_NAME;
 
@@ -130,7 +130,6 @@ public class DbManager extends SQLiteOpenHelper {
         // Get the old score first
         int scoreAttr = 7;  // holds for all games
         List<String> scoreData = getData(table, id, scoreAttr);
-
         int oldTmpScore = Integer.parseInt(scoreData.get((lvl * 2) - 1));
         int oldTotalScore = Integer.parseInt(scoreData.get(lvl * 2));
 
@@ -302,9 +301,7 @@ public class DbManager extends SQLiteOpenHelper {
      * @param change The change in score. Change is an integer.
      */
     public void saveScore(int lvl, String tableName, int change){
-        System.out.println("1ST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         updateScore(tableName, 0, lvl, change, false);
-        System.out.println("2ND ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
 
@@ -364,27 +361,9 @@ public class DbManager extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < newVersion) {   // upgrade to version 2 of database
-            // TODO: prevent users from losing their scores!
-            try {
-                copyDatabase();
-
-                try {
-                    this.createDatabase();
-                } catch (IOException ioe) {
-                    Log.e("initDbManager()", ioe.getMessage());
-                }
-                try {
-                    this.openDatabase();
-                } catch (SQLiteException sqle) {
-                    Log.e("initDbManager()", sqle.getMessage());
-                }
-
-                //saveScore(2, "QuizScores", 2);
-
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
+        if (oldVersion < newVersion) {
+            //Globals.shouldUpgradeDb = true;
+            onCreate(db);
         }
     }
 }

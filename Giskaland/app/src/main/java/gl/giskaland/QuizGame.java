@@ -1,6 +1,7 @@
 package gl.giskaland;
 
 import android.app.ProgressDialog;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -40,8 +41,9 @@ public class QuizGame extends ActionBarActivity {
         lvl = b.getInt("key");
 
         dbManager = new DbManager(this);
-        dbManager.initDbManager(lvl, tableName);
+        //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
 
+        dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, (TextView)findViewById(R.id.TextQuizLevel3Score));
 
         // Fetch all the questions for ease of access later on.
@@ -50,6 +52,7 @@ public class QuizGame extends ActionBarActivity {
 
         newQuestion();
     }
+
 
     /**
      * A new random question is generated from the question bank.
