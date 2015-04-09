@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"
-    android:background="@drawable/bakles"
+    android:background="@drawable/bl1l"
     tools:context="gl.giskaland.SpellingGame"
     android:orientation="vertical">
 
@@ -22,7 +22,7 @@
             android:id="@+id/IMGspelling"
             android:src="@drawable/api"
             android:background="@android:color/transparent"
-            android:layout_below="@+id/TextSpellingLevel1Score"
+            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
                 <ImageButton
@@ -31,12 +31,11 @@
                     android:id="@+id/SpellingOut1"
                     android:src="@drawable/sa"
                     android:background="@android:color/transparent"
-                    android:layout_marginLeft="162dp"
-                    android:layout_marginStart="100dp"
+                    android:paddingRight="95dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/TextSpellingLevel1Score"
-                    android:layout_toEndOf="@+id/TextSpellingLevel1Score"
-                    android:layout_marginBottom="68dp" />
+                    android:layout_toLeftOf="@+id/IMGspelling"
+                    android:layout_toStartOf="@+id/IMGspelling"
+                    android:layout_marginBottom="31dp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -45,8 +44,9 @@
                     android:src="@drawable/sb"
                     android:background="@android:color/transparent"
                     android:layout_alignTop="@+id/SpellingOut1"
-                    android:layout_toLeftOf="@+id/IMGspelling"
-                    android:layout_toStartOf="@+id/IMGspelling" />
+                    android:layout_toRightOf="@+id/SpellingOut1"
+                    android:layout_toEndOf="@+id/SpellingOut1"
+                    android:paddingRight="95dp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -55,8 +55,9 @@
                     android:src="@drawable/sg"
                     android:background="@android:color/transparent"
                     android:layout_alignTop="@+id/SpellingOut2"
-                    android:layout_toRightOf="@+id/IMGspelling"
-                    android:layout_toEndOf="@+id/IMGspelling" />
+                    android:layout_toRightOf="@+id/SpellingOut2"
+                    android:layout_toEndOf="@+id/SpellingOut2"
+                    android:paddingRight="95dp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -64,10 +65,8 @@
                     android:id="@+id/SpellingOut4"
                     android:src="@drawable/sf"
                     android:background="@android:color/transparent"
-                    android:layout_marginRight="187dp"
-                    android:layout_marginEnd="187dp"
                     android:layout_alignTop="@+id/SpellingOut3"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_toRightOf="@+id/SpellingOut3"
+                    android:layout_toEndOf="@+id/SpellingOut3" />
 
 </RelativeLayout>

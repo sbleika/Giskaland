@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@drawable/bakstaet"
+    android:background="@drawable/bs"
     tools:context="gl.giskaland.MathGame">
 
 
@@ -56,7 +56,8 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/treebutton_3"
         android:layout_toEndOf="@+id/zerobutton_0"
-        android:background="@android:color/transparent" />
+        android:background="@android:color/transparent"
+        android:baselineAlignBottom="true" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,10 +126,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/score"
         android:id="@+id/TextMathLevel3score"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="27dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@android:color/transparent"/>
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -139,7 +141,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textSize="50sp"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/background_light"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -150,7 +152,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textSize="25sp"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/white"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -161,18 +163,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textSize="25sp"
-        android:background="@android:color/transparent"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:src="@drawable/gata"
-        android:layout_toRightOf="@+id/zerobutton_0"
-        android:layout_above="@+id/answerView"
-        android:layout_toLeftOf="@+id/fivebutton_5"
-        android:layout_toStartOf="@+id/fivebutton_5"
-        android:layout_below="@+id/TextMathLevel3score" />
+        android:background="@android:color/background_light"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -180,6 +171,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/QuestionText"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="169dp"
+        android:layout_marginRight="202dp"
+        android:layout_marginEnd="202dp"
+        android:layout_above="@+id/answerView"
+        android:layout_toLeftOf="@+id/Answerbutton"
+        android:layout_toStartOf="@+id/Answerbutton" />
 </RelativeLayout>
