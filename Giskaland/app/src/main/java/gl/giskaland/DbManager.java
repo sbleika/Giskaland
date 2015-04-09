@@ -360,7 +360,7 @@ public class DbManager extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < newVersion) {
+        if (oldVersion != newVersion) {
             //Globals.shouldUpgradeDb = true;
             onCreate(db);
         }
