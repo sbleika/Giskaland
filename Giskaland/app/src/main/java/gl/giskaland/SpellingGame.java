@@ -1,5 +1,7 @@
 package gl.giskaland;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
@@ -18,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 
 public class SpellingGame extends ActionBarActivity {
@@ -46,7 +49,8 @@ public class SpellingGame extends ActionBarActivity {
     Boolean[] SpellingOutBool = new Boolean[7];
 
     // the last outcome in the game before
-    int LASTans;
+    int LASTans = 0;
+    int NEXTans = 0;
     // WHAT LEVEL ARE WE ON
     int lvl;
     // are we playing in icelantic or englih
@@ -56,6 +60,9 @@ public class SpellingGame extends ActionBarActivity {
 
     // DbManager for usage inside this activity
     DbManager dbManager;
+
+    List<List<String>> allQuestions;
+    int nrQuestions;
 
     // the buttons
     ImageButton button1;
@@ -89,14 +96,36 @@ public class SpellingGame extends ActionBarActivity {
         if (lvl == 2 || lvl == 3) scoreView = (TextView)findViewById(R.id.TextSpellingLevel2Score);
 
         dbManager = new DbManager(this);
-        dbManager.initDbManager(lvl, tableName);
+        //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
 
+        dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);
+
+        if (lvl == 3)
+            allQuestions = dbManager.getAllInfo(2, "SpellingImgsEn");
+        else
+            allQuestions = dbManager.getAllInfo(2, "SpellingImgsIce");
+
+        nrQuestions = allQuestions.size();
 
         // make the popup
         PopUp();
         makeRandom(); // start the game
     }
+
+    /**
+     * Generate a random number (integer).
+     * @return A random integer x, where
+     *         0 <= x <= nrQuestions - 1
+     */
+    public int randomIndex() {
+        Random rand = new Random();
+        int max = nrQuestions - 1;
+        int min = 0;
+        int randNum = rand.nextInt((max - min) + 1) + min;
+        return randNum;
+    }
+
 
     /**
      * set up the popup window
@@ -472,37 +501,26 @@ public class SpellingGame extends ActionBarActivity {
      * @param view g
      */
     public void setRandomnumIMG(ImageView view){
-        int numberOFimages = 7;
-        // random image from 0 to 5
-        int randomNum = ((int) Math.ceil(Math.random()*numberOFimages));
-        // make sure we get new image
-        while (LASTans == randomNum){
-            randomNum = ((int) Math.ceil(Math.random()*numberOFimages));
-        }
-        //make it the lastans so we dont get it next time
-        LASTans = randomNum;
-        //make it string and one number higher
-        String randomLetter = Integer.toString(randomNum);
-        String nextNUMafter = Integer.toString(randomNum + 1);
-        String imagies;
-        // all the images that are avalible
-        if(NotEnglish){
-            //todo setja inni gagnagrunn til ad tetta se ekki hradkodad i kodan
-            imagies = "1 api_2 letid0yyr_3 ugla_4 kisa_5 hundur_6 myndav0eel_7 m0ourg0aes_8";
-        }else{
-            imagies = "1 monkey_2 sloth_3 owl_4 cat_5 dog_6 camera_7 penguin_8";
-        }
+        while (NEXTans == LASTans) NEXTans = randomIndex();
 
-        // take one of the names from imagies
-        String letter = imagies.substring(imagies.indexOf(randomLetter) + 2, imagies.indexOf(nextNUMafter) - 1);
+        List<String> aQuestion = allQuestions.get(NEXTans);
+
+        // Path of the img
+        String letter = aQuestion.get(0);
+
         // make the view have the random image
         int resID = getResources().getIdentifier(letter , "drawable", "gl.giskaland");
+
         // set the letter to the button
         view.setImageResource(resID);
+
         //set the fyrst letter of the thing on the image to IMGvalueletter
         IMGvalueLetter = "s" + letter.substring(0,1);
+
         // get the word of the image
         IMGword = letter;
+
+        LASTans = NEXTans;
     }
 
     /**
@@ -519,7 +537,6 @@ public class SpellingGame extends ActionBarActivity {
      * put up the letter we pressed
      */
     public void PutUp(){
-        Append();
         NextLetterForOptions();
     }
 
@@ -582,7 +599,34 @@ public class SpellingGame extends ActionBarActivity {
             }
             else IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum));
         }
-        else setUpLevelTwo();//you have won!!!!!!!!!!!!!!
+        else {
+            new CountDownTimer(4000,1000){
+                /**
+                 * make the popup window appear for some time
+                 * @param millisUntilFinished time left
+                 */
+                @Override
+                public void onTick(long millisUntilFinished){
+                    if (POPupINACTIVE) {
+                        tv.setText("þu skrifaðir " + IMGword + " rétt !!");
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+
+                /**
+                 * dismiss the popup window
+                 */
+                @Override
+                public void onFinish(){
+                    popUp.dismiss();
+                    POPupINACTIVE = true;
+                    setUpLevelTwo();//you have won!!!!!!!!!!!!!!
+                }
+            }.start();
+
+        }
     }
 
     /**
@@ -592,8 +636,8 @@ public class SpellingGame extends ActionBarActivity {
     public void handleScore(int index, View v) {
         if (SpellingOutBool[index]) {
             v.setBackgroundResource(R.drawable.greenback);
-
-            new CountDownTimer(2000,1000){
+            if (lvl > 1) Append();
+            new CountDownTimer(800,1000){
                 /**
                  * make the popup window appear for some time
                  * @param millisUntilFinished time left

@@ -29,7 +29,7 @@ public class DbManager extends SQLiteOpenHelper {
     private SQLiteDatabase myDb;
     private final Context myContext;
 
-    private static final int DB_VERSION = 19;
+    private static final int DB_VERSION = 4;
 
     /**
      *  Constructor for the DbManager.
@@ -89,7 +89,7 @@ public class DbManager extends SQLiteOpenHelper {
      * Copy the database file from the /assets folder.
      * @throws IOException
      */
-    private void copyDatabase() throws IOException {
+    public void copyDatabase() throws IOException {
         InputStream myInput = myContext.getAssets().open(DB_NAME);
         String outFileName = DB_PATH + DB_NAME;
 
@@ -130,7 +130,6 @@ public class DbManager extends SQLiteOpenHelper {
         // Get the old score first
         int scoreAttr = 7;  // holds for all games
         List<String> scoreData = getData(table, id, scoreAttr);
-
         int oldTmpScore = Integer.parseInt(scoreData.get((lvl * 2) - 1));
         int oldTotalScore = Integer.parseInt(scoreData.get(lvl * 2));
 
@@ -229,13 +228,12 @@ public class DbManager extends SQLiteOpenHelper {
      *         from the Questions table from the database,
      *         returned as a list of lists of strings.
      */
-    public List<List<String>> getAllQuestions () {
-        List<List<String>> allQuestions = new ArrayList<List<String>>();
+    public List<List<String>> getAllInfo(int attr, String table) {
+        List<List<String>> allInfo = new ArrayList<List<String>>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
-        int attr = 7;   // nr of attributes in the Questions table.
         try {
-            cursor = db.rawQuery("SELECT * FROM Questions", null);
+            cursor = db.rawQuery("SELECT * FROM " + table, null);
         } catch (SQLiteException sqle) {
             Log.e("DbManager,getAllQ", sqle.getMessage());
         }
@@ -245,13 +243,13 @@ public class DbManager extends SQLiteOpenHelper {
                 List<String> aQuestion = new ArrayList<String>();
                 for (int i = 0; i < attr; i++)
                     aQuestion.add(cursor.getString(i));   // get one question and it's answers
-                allQuestions.add(aQuestion);    // add that question to the allQuestions container
+                allInfo.add(aQuestion);    // add that question to the allQuestions container
             } while (cursor.moveToNext());
         }
         if (cursor != null) {
             cursor.close();
         }
-        return allQuestions;
+        return allInfo;
     }
 
     /**
@@ -302,9 +300,7 @@ public class DbManager extends SQLiteOpenHelper {
      * @param change The change in score. Change is an integer.
      */
     public void saveScore(int lvl, String tableName, int change){
-        System.out.println("1ST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         updateScore(tableName, 0, lvl, change, false);
-        System.out.println("2ND ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
 
@@ -364,27 +360,9 @@ public class DbManager extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < newVersion) {   // upgrade to version 2 of database
-            // TODO: prevent users from losing their scores!
-            try {
-                copyDatabase();
-
-                try {
-                    this.createDatabase();
-                } catch (IOException ioe) {
-                    Log.e("initDbManager()", ioe.getMessage());
-                }
-                try {
-                    this.openDatabase();
-                } catch (SQLiteException sqle) {
-                    Log.e("initDbManager()", sqle.getMessage());
-                }
-
-                //zsaveScore(2, "QuizScores", 2);
-
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
+        if (oldVersion != newVersion) {
+            //Globals.shouldUpgradeDb = true;
+            onCreate(db);
         }
     }
 }
