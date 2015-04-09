@@ -596,7 +596,7 @@ public class MathGame extends ActionBarActivity {
             view.setImageResource(R.drawable.two);
         }
         else if (randomNum == 3) {
-            view.setImageResource(R.drawable.tree);
+            view.setImageResource(R.drawable.three);
         }
         else if (randomNum == 4) {
             view.setImageResource(R.drawable.four);
@@ -611,7 +611,7 @@ public class MathGame extends ActionBarActivity {
             view.setImageResource(R.drawable.seven);
         }
         else if (randomNum == 8) {
-            view.setImageResource(R.drawable.eigth);
+            view.setImageResource(R.drawable.eight);
         }
         else if (randomNum == 9) {
             view.setImageResource(R.drawable.nine);
