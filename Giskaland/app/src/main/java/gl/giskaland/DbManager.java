@@ -29,7 +29,7 @@ public class DbManager extends SQLiteOpenHelper {
     private SQLiteDatabase myDb;
     private final Context myContext;
 
-    private static final int DB_VERSION = 6;
+    private static final int DB_VERSION = 10;
 
     /**
      *  Constructor for the DbManager.
