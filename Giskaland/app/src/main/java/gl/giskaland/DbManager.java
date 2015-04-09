@@ -228,13 +228,12 @@ public class DbManager extends SQLiteOpenHelper {
      *         from the Questions table from the database,
      *         returned as a list of lists of strings.
      */
-    public List<List<String>> getAllQuestions () {
-        List<List<String>> allQuestions = new ArrayList<List<String>>();
+    public List<List<String>> getAllInfo(int attr, String table) {
+        List<List<String>> allInfo = new ArrayList<List<String>>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
-        int attr = 7;   // nr of attributes in the Questions table.
         try {
-            cursor = db.rawQuery("SELECT * FROM Questions", null);
+            cursor = db.rawQuery("SELECT * FROM " + table, null);
         } catch (SQLiteException sqle) {
             Log.e("DbManager,getAllQ", sqle.getMessage());
         }
@@ -244,13 +243,13 @@ public class DbManager extends SQLiteOpenHelper {
                 List<String> aQuestion = new ArrayList<String>();
                 for (int i = 0; i < attr; i++)
                     aQuestion.add(cursor.getString(i));   // get one question and it's answers
-                allQuestions.add(aQuestion);    // add that question to the allQuestions container
+                allInfo.add(aQuestion);    // add that question to the allQuestions container
             } while (cursor.moveToNext());
         }
         if (cursor != null) {
             cursor.close();
         }
-        return allQuestions;
+        return allInfo;
     }
 
     /**
