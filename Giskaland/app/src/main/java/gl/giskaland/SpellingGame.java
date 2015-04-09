@@ -515,7 +515,12 @@ public class SpellingGame extends ActionBarActivity {
         view.setImageResource(resID);
 
         //set the fyrst letter of the thing on the image to IMGvalueletter
-        IMGvalueLetter = "s" + letter.substring(0,1);
+        if(letter.substring(0,1).equals("_")) {
+            System.out.println("serisl stafur kemur her jejjjjjjjjjjjjjjjjjjjjjj");
+            IMGvalueLetter = "s" + letter.charAt((IMGvalueLetterNum+1)) + letter.charAt((IMGvalueLetterNum + 2));
+            IMGvalueLetterNum = IMGvalueLetterNum + 2;
+        }
+        else IMGvalueLetter = "s" + letter.charAt((IMGvalueLetterNum));
 
         // get the word of the image
         IMGword = letter;
@@ -534,10 +539,34 @@ public class SpellingGame extends ActionBarActivity {
     }
 
     /**
-     * put up the letter we pressed
+     *
      */
     public void PutUp(){
-        NextLetterForOptions();
+        new CountDownTimer(4000,1000){
+            /**
+             * make the popup window appear for some time
+             * @param millisUntilFinished time left
+             */
+            @Override
+            public void onTick(long millisUntilFinished){
+                if (POPupINACTIVE) {
+                    tv.setText("Já " + IMGvalueLetter.substring(1,2).toUpperCase() + " er fyrsti stafurinn i " + IMGword.toUpperCase());
+                    popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                    popUp.update(0, 0, 850, 133);
+                    POPupINACTIVE = false;
+                }
+            }
+
+            /**
+             * dismiss the popup window
+             */
+            @Override
+            public void onFinish(){
+                popUp.dismiss();
+                POPupINACTIVE = true;
+                setUpLevelOne();//you have won!!!!!!!!!!!!!!
+            }
+        }.start();
     }
 
     /**
@@ -549,7 +578,34 @@ public class SpellingGame extends ActionBarActivity {
         Output = (TextView)findViewById(R.id.OutPutText);
         System.out.println(Output.getText());
         if(buttonNotPressed){
-            Output.setText((IMGvalueLetter.substring(1,2)).toUpperCase());
+            if(IMGvalueLetter.length() > 2){
+                System.out.println(IMGvalueLetter.substring(1,3));
+                if(IMGvalueLetter.substring(1,3).equals("aa")){
+                    Output.setText("Á");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("ae")){
+                    Output.setText("Æ");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("ee")){
+                    Output.setText("É");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("ii")){
+                    Output.setText("Í");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("oo")){
+                    Output.setText("Ó");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("ou")){
+                    Output.setText("Ö");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("uu")){
+                    Output.setText("Ú");
+                }
+                else if (IMGvalueLetter.substring(1,3).equals("yy")){
+                    Output.setText("Ý");
+                }
+            }
+            else Output.setText((IMGvalueLetter.substring(1,2)).toUpperCase());
         }else{
             if(IMGvalueLetter.length() > 2){
                 System.out.println(IMGvalueLetter.substring(1,3));
@@ -592,12 +648,14 @@ public class SpellingGame extends ActionBarActivity {
     public void NextLetterForOptions(){
         IMGvalueLetterNum++;
         if(IMGword.length() > IMGvalueLetterNum){
-            if(IMGword.charAt(IMGvalueLetterNum) == '0') {
+            if(IMGword.charAt(IMGvalueLetterNum) == '_') {
                 System.out.println("serisl stafur kemur her jejjjjjjjjjjjjjjjjjjjjjj");
                 IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum+1)) + IMGword.charAt((IMGvalueLetterNum + 2));
                 IMGvalueLetterNum = IMGvalueLetterNum + 2;
             }
             else IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum));
+
+
         }
         else {
             new CountDownTimer(4000,1000){
@@ -608,7 +666,7 @@ public class SpellingGame extends ActionBarActivity {
                 @Override
                 public void onTick(long millisUntilFinished){
                     if (POPupINACTIVE) {
-                        tv.setText("þu skrifaðir " + IMGword + " rétt !!");
+                        tv.setText("þu skrifaðir " + IMGword.toUpperCase() + " rétt !!");
                         popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
                         popUp.update(0, 0, 850, 133);
                         POPupINACTIVE = false;
@@ -637,70 +695,25 @@ public class SpellingGame extends ActionBarActivity {
         if (SpellingOutBool[index]) {
             v.setBackgroundResource(R.drawable.greenback);
             if (lvl > 1) Append();
-            new CountDownTimer(800,1000){
-                /**
-                 * make the popup window appear for some time
-                 * @param millisUntilFinished time left
-                 */
-                @Override
-                public void onTick(long millisUntilFinished){
-                    if (POPupINACTIVE) {
-                        tv.setText("Rétt svar !!");
-                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                        popUp.update(0, 0, 850, 133);
-                        POPupINACTIVE = false;
-                    }
-                }
+            try {
+                Thread.sleep(1000);                 //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+             if(lvl == 1)PutUp();
+             if(lvl == 2 || lvl == 3){
+                NextLetterForOptions();
+                setTheOptionsLevel2();
+              }
+              dbManager.saveScore(lvl, tableName, 2);
+              dbManager.showScores(lvl, tableName, scoreView);
 
-                /**
-                 * dismiss the popup window
-                 */
-                @Override
-                public void onFinish(){
-                    popUp.dismiss();
-                    POPupINACTIVE = true;
-
-                    if(lvl == 1)setUpLevelOne();
-                    if(lvl == 2 || lvl == 3){
-                        PutUp();
-                        setTheOptionsLevel2();
-                    }
-                    dbManager.saveScore(lvl, tableName, 2);
-                    dbManager.showScores(lvl, tableName, scoreView);
-                }
-            }.start();
         }
         else {
             dbManager.saveScore(lvl, tableName, -1);
             dbManager.showScores(lvl, tableName, scoreView);
             // make button different
             v.setBackgroundResource(R.drawable.redback);
-            new CountDownTimer(1500,1000){
-                /**
-                 * make the popup window appear for some time
-                 * @param millisUntilFinished time left
-                 */
-                @Override
-                public void onTick(long millisUntilFinished){
-                    if (POPupINACTIVE) {
-                        tv.setText("Rangt svar !!");
-                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                        popUp.update(0, 0, 850, 133);
-                        POPupINACTIVE = false;
-                    }
-                }
-
-                /**
-                 * dismiss the popup window
-                 */
-                @Override
-                public void onFinish(){
-                    popUp.dismiss();
-                    POPupINACTIVE = true;
-                    //todo
-                    // fix if we close the game before we dismiss the popup we get error
-                }
-            }.start();
         }
     }
 

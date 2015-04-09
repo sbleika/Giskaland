@@ -21,6 +21,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MathGame extends ActionBarActivity {
     // to know what level we are working with
@@ -41,7 +42,8 @@ public class MathGame extends ActionBarActivity {
     // the right number of items for level 1
     int IMGvalue;
     //the answer from last game to not get the same
-    int LASTans;
+    int LASTans = 0;
+    int NEXTans = 0;
     // to make sure we only get one of each
     int IBout1value;
     int IBout2value;
@@ -63,6 +65,9 @@ public class MathGame extends ActionBarActivity {
 
     // DbManager for usage inside this activity
     DbManager dbManager;
+
+    List<List<String>> allQuestions;
+    int nrQuestions;
 
     String tableName = "MathScores";
 
@@ -93,6 +98,9 @@ public class MathGame extends ActionBarActivity {
         dbManager = new DbManager(this);
         //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
 
+        allQuestions = dbManager.getAllInfo(2, "MathImgs");
+
+        nrQuestions = allQuestions.size();
         dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);
 
@@ -163,7 +171,19 @@ public class MathGame extends ActionBarActivity {
         nine.setBackgroundResource(android.R.drawable.btn_default);
         //********************************************************************
     }
-
+    /**
+     * Generate a random number (integer).
+     * @return A random integer x, where
+     *         0 <= x <= nrQuestions - 1
+     */
+    public int randomIndex() {
+        Random rand = new Random();
+        int max = nrQuestions - 1;
+        int min = 0;
+        int randNum;
+        randNum = rand.nextInt((max - min) + 1) + min;
+        return randNum;
+    }
     /**
      * make the pop up window
      */
@@ -438,29 +458,21 @@ public class MathGame extends ActionBarActivity {
      * @param view v
      */
     public void setRandomnumIMG(ImageView view){
-        // random from 1 to 4
-        int IMGnum = ((int) Math.ceil(Math.random()*4));
-        while(IMGnum == last_num){
-            IMGnum = ((int) Math.ceil(Math.random()*4));
-        }
-        last_num = IMGnum;
-        //todo setja inni gagnagrunn til ad tetta se ekki hradkodad i kodan
-        if (IMGnum == 1) {
-            view.setImageResource(R.drawable.img_1_line_2);
-            IMGvalue = 2;
-        }
-        else if (IMGnum == 2) {
-            view.setImageResource(R.drawable.img_2_ring_3);
-            IMGvalue = 3;
-        }
-        else if (IMGnum == 3) {
-            view.setImageResource(R.drawable.img_3_balls_5);
-            IMGvalue = 5;
-        }
-        else if (IMGnum == 4) {
-            view.setImageResource(R.drawable.img_4_hex_6);
-            IMGvalue = 6;
-        }
+        while (NEXTans == LASTans) NEXTans = randomIndex();
+
+        List<String> aQuestion = allQuestions.get(NEXTans);
+
+        // number of items on image
+        IMGvalue = Integer.parseInt(aQuestion.get(1));
+        // Path of the img
+        String IMGname = aQuestion.get(0);
+
+        // make the view have the random image
+        int resID = getResources().getIdentifier(IMGname , "drawable", "gl.giskaland");
+
+        // set the letter to the button
+        view.setImageResource(resID);
+        LASTans = NEXTans;
     }
 
     /**
@@ -632,66 +644,18 @@ public class MathGame extends ActionBarActivity {
         if (allMathOut[index]) {
             v.setBackgroundResource(R.drawable.greenback);
 
-            new CountDownTimer(2000,1000){
-                /**
-                 * make the popup window appear for some time
-                 * @param millisUntilFinished time left
-                 */
-                @Override
-                public void onTick(long millisUntilFinished){
-                    if (POPupINACTIVE) {
-                        tv.setText("Rétt svar !!");
-                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                        popUp.update(0, 0, 850, 133);
-                        POPupINACTIVE = false;
-                    }
-                }
+            try {
+                Thread.sleep(1000);                 //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            makeRandom();
 
-                /**
-                 * dismiss the popup window
-                 */
-                @Override
-                public void onFinish(){
-                    popUp.dismiss();
-                    POPupINACTIVE = true;
-                    //todo
-                    // fix if we close the game before we dismiss the popup we get error
-
-                    makeRandom();
-                }
-            }.start();
             dbManager.saveScore(lvl, tableName, 2);
         }
         else {
-            //TextView quiz;
-            //quiz = (TextView) findViewById(R.id.QuestionText);
-            //quiz.append(" = ");
             v.setBackgroundResource(R.drawable.redback);
             dbManager.saveScore(lvl, tableName, -1);
-            new CountDownTimer(1500,1000){
-                /**
-                 * make he popup window appear
-                 * @param millisUntilFinished time left
-                 */
-                @Override
-                public void onTick(long millisUntilFinished){
-                    if (POPupINACTIVE) {
-                        tv.setText("Rangt svar !!");
-                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                        popUp.update(0, 0, 850, 133);
-                        POPupINACTIVE = false;
-                    }
-                }
-
-                /**
-                 * make the popup window disappear
-                 */
-                @Override
-                public void onFinish(){
-                    popUp.dismiss();
-                    POPupINACTIVE = true;
-                }
-            }.start();
         }
         dbManager.showScores(lvl, tableName, scoreView);
     }
@@ -747,6 +711,7 @@ public class MathGame extends ActionBarActivity {
                     @Override
                     public void onTick(long millisUntilFinished){
                         if (POPupINACTIVE) {
+                            tv.setText("Rangt svar !!");
                             popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
                             popUp.update(0, 0, 850, 133);
                             POPupINACTIVE = false;
