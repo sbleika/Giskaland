@@ -26,19 +26,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/IBout1"
         android:src="@drawable/nine"
-        android:background="@android:color/background_light"
+        android:background="@android:color/transparent"
         android:layout_marginBottom="115dp"
         android:paddingRight="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/IMG"
-        android:layout_alignStart="@+id/IMG" />
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IBout2"
         android:src="@drawable/seven"
-        android:background="@android:color/background_light"
+        android:background="@android:color/transparent"
         android:layout_alignTop="@+id/IBout3"
         android:layout_toRightOf="@+id/IBout1"
         android:layout_toEndOf="@+id/IBout1"
@@ -49,7 +48,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/IBout3"
         android:src="@drawable/six"
-        android:background="@android:color/background_light"
+        android:background="@android:color/transparent"
         android:layout_alignTop="@+id/IBout1"
         android:layout_toRightOf="@+id/IBout2"
         android:layout_toEndOf="@+id/IBout2"
@@ -60,10 +59,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/IBout4"
         android:src="@drawable/five"
-        android:background="@android:color/background_light"
+        android:background="@android:color/transparent"
         android:layout_alignTop="@+id/IBout1"
         android:layout_toRightOf="@+id/IBout3"
-        android:layout_toEndOf="@+id/IBout3" />
+        android:layout_toEndOf="@+id/IBout3"
+        android:adjustViewBounds="true" />
 
     <TextView
         android:layout_width="wrap_content"
