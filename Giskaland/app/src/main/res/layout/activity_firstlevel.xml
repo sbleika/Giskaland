@@ -24,20 +24,21 @@
     <ImageButton
         android:id="@+id/buttonMath"
         style="@style/button_style"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:background="@android:color/transparent"
         android:src="@drawable/stae"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="20dp"
+        android:layout_above="@+id/buttonSpellThePic"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:id="@+id/buttonSpellThePic"
         style="@style/button_style"
-        android:layout_below="@+id/buttonMath"
         android:background="@android:color/transparent"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:src="@drawable/staf"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp" />
 
 </RelativeLayout>
