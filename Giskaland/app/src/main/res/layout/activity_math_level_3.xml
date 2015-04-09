@@ -171,9 +171,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/QuestionText"
-        android:layout_marginBottom="169dp"
-        android:layout_marginRight="202dp"
-        android:layout_marginEnd="202dp"
         android:layout_above="@+id/answerView"
         android:layout_toLeftOf="@+id/Answerbutton"
         android:layout_toStartOf="@+id/Answerbutton" />
