@@ -25,12 +25,7 @@ public class Globals extends Application {
         List<String> mathScores = dbManager.getData("MathScores", 0, 7);
         List<String> spellingScores = dbManager.getData("SpellingScores", 0, 7);
 
-        try {
-            dbManager.copyDatabase();
-        }
-        catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+        System.out.println("GETTING HEREEEEEEE");
 
         // Make sure the scores will find their place in the updated database.
         quizScoreValues.put("lvl2Total", quizScores.get(4));
