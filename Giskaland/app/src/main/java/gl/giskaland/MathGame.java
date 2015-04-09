@@ -644,12 +644,32 @@ public class MathGame extends ActionBarActivity {
         if (allMathOut[index]) {
             v.setBackgroundResource(R.drawable.greenback);
 
-            try {
-                Thread.sleep(1000);                 //1000 milliseconds is one second.
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            makeRandom();
+            new CountDownTimer(4000,1000){
+                /**
+                 * make the popup window appear for some time
+                 * @param millisUntilFinished time left
+                 */
+                @Override
+                public void onTick(long millisUntilFinished){
+                    if (POPupINACTIVE) {
+                        tv.setText("Já það er rétt hjá þér");
+                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                        popUp.update(0, 0, 850, 133);
+                        POPupINACTIVE = false;
+                    }
+                }
+
+                /**
+                 * dismiss the popup window
+                 */
+                @Override
+                public void onFinish(){
+                    popUp.dismiss();
+                    POPupINACTIVE = true;
+                    makeRandom();//you have won!!!!!!!!!!!!!!
+                }
+            }.start();
+
 
             dbManager.saveScore(lvl, tableName, 2);
         }
