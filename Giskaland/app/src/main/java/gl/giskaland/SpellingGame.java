@@ -97,7 +97,6 @@ public class SpellingGame extends ActionBarActivity {
         if (lvl == 2 || lvl == 3) scoreView = (TextView)findViewById(R.id.TextSpellingLevel2Score);
 
         dbManager = new DbManager(this);
-        //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
 
         dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);

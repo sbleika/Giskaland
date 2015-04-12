@@ -16,8 +16,18 @@
         android:layout_height="wrap_content"
         android:textSize="70sp"
         android:paddingBottom="10dp"
-        android:layout_above="@+id/buttonMath"
+        android:layout_above="@+id/difficultyLevel3"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/difficultyLevel3"
+        android:text="@string/thirdLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="70sp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/buttonMath"
+        android:paddingBottom="20dp"/>
 
     <!-- Some games, example, no onclick -->
 

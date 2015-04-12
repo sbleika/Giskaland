@@ -98,7 +98,6 @@ public class MathGame extends ActionBarActivity {
             scoreView = (TextView)findViewById(R.id.TextMathLevel3score);
 
         dbManager = new DbManager(this);
-        //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
 
         allQuestions = dbManager.getAllInfo(2, "MathImgs");
 

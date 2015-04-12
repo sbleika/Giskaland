@@ -16,6 +16,16 @@
         android:layout_height="wrap_content"
         android:textSize="70sp"
         android:layout_centerHorizontal="true"
+        android:layout_above="@+id/difficultyLevel1"
+        android:paddingBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/difficultyLevel1"
+        android:text="@string/firstLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="70sp"
+        android:layout_centerHorizontal="true"
         android:layout_above="@+id/buttonMath"
         android:paddingBottom="20dp"/>
 

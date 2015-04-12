@@ -168,6 +168,9 @@ public class DbManager extends SQLiteOpenHelper {
         } catch (SQLiteException sqle) {
             Log.e("dbManager,insertRow()", sqle.getMessage());
         }
+        finally {
+            db.close();
+        }
     }
 
     /**
@@ -182,6 +185,9 @@ public class DbManager extends SQLiteOpenHelper {
             db.execSQL(sql);
         } catch (SQLiteException sqle) {
             Log.e("DbManager, removeRow()", sqle.getMessage());
+        }
+        finally {
+            db.close();
         }
     }
 
@@ -249,6 +255,8 @@ public class DbManager extends SQLiteOpenHelper {
         if (cursor != null) {
             cursor.close();
         }
+        db.close();
+
         return allInfo;
     }
 
@@ -361,7 +369,6 @@ public class DbManager extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion != newVersion) {
-            //Globals.shouldUpgradeDb = true;
             onCreate(db);
         }
     }
