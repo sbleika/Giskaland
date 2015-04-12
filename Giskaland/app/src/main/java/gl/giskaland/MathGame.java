@@ -1,13 +1,9 @@
 package gl.giskaland;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.os.CountDownTimer;
+
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,16 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MathGame extends ActionBarActivity {
     // to know what level we are working with
@@ -272,9 +261,6 @@ public class MathGame extends ActionBarActivity {
         IBout3.setBackgroundResource(android.R.drawable.btn_default);
         IBout4.setBackgroundResource(android.R.drawable.btn_default);
 
-        TextView RightAnswerText;
-        RightAnswerText = (TextView) findViewById(R.id.RightAnswerText);
-        RightAnswerText.setVisibility(View.INVISIBLE);
         //********************************************************************
 
         TextView quiz;

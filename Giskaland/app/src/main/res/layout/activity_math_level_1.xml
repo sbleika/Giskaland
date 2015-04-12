@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/IMG"
-        android:src="@drawable/img_2_ring_3"
+        android:src="@drawable/ten_1"
         android:background="@android:color/transparent"
         android:layout_marginTop="93dp"
         android:layout_marginRight="283dp"
@@ -78,13 +78,5 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="28dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/RightAnswerText"
-        android:visibility="invisible"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
