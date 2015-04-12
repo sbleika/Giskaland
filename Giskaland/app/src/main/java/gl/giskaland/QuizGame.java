@@ -53,6 +53,10 @@ public class QuizGame extends ActionBarActivity {
         nrQuestions = allQuestions.size();
 
         newQuestion();
+
+        Button newphoto;
+        newphoto = (Button) findViewById(R.id.newphoto);
+        newphoto.setOnClickListener(newphotolistner);
     }
 
 
@@ -197,6 +201,21 @@ public class QuizGame extends ActionBarActivity {
     public int randomIndex() {
         return (int)(Math.random()*nrQuestions);
     }
+
+    /**
+     * OnClickListener for newphoto button
+     */
+    View.OnClickListener newphotolistner = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+            dbManager.saveScore(lvl, tableName, -1);
+            dbManager.showScores(lvl, tableName, (TextView) findViewById(R.id.TextQuizLevel3Score));
+            newQuestion();
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

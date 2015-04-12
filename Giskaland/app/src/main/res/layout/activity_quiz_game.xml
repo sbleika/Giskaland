@@ -28,6 +28,14 @@
             android:layout_weight="0.06"
             android:textStyle="bold" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newquiz"
+        android:src="@drawable/enska"
+        android:layout_gravity="bottom" />
+
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
