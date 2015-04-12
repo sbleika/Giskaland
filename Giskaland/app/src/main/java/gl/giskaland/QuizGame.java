@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,8 +55,8 @@ public class QuizGame extends ActionBarActivity {
 
         newQuestion();
 
-        Button newphoto;
-        newphoto = (Button) findViewById(R.id.newphoto);
+        ImageButton newphoto;
+        newphoto = (ImageButton) findViewById(R.id.newquiz);
         newphoto.setOnClickListener(newphotolistner);
     }
 
