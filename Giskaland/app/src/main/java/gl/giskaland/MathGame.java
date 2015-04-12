@@ -61,7 +61,7 @@ public class MathGame extends ActionBarActivity {
     DbManager dbManager;
 
     List<List<String>> allQuestions;
-    int nrQuestions;
+    int nrQuestions = 0;
 
     String tableName = "MathScores";
 
@@ -172,12 +172,7 @@ public class MathGame extends ActionBarActivity {
      *         0 <= x <= nrQuestions - 1
      */
     public int randomIndex() {
-        Random rand = new Random();
-        int max = nrQuestions - 1;
-        int min = 0;
-        int randNum;
-        randNum = rand.nextInt((max - min) + 1) + min;
-        return randNum;
+        return (int)(Math.random()*nrQuestions);
     }
 
     /**
@@ -573,7 +568,7 @@ public class MathGame extends ActionBarActivity {
             // from 0 to 10-the nub-mber we are adding to
             randomNum = ((int) Math.ceil(Math.random() * (10)));
             // we dont want the same outcome 2x in a row and get a hole number
-            while (((IBnum1value / randomNum) == last_num) || (IBnum1value % randomNum != 0)) {
+            while (((IBnum1value / randomNum) == last_num) || (IBnum1value % randomNum != 0) || ((IBnum1value / randomNum) > 10)) {
                 randomNum = ((int) Math.ceil(Math.random() * (10)));
             }
             last_num = (IBnum1value / randomNum);

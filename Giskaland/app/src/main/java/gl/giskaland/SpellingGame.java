@@ -113,11 +113,7 @@ public class SpellingGame extends ActionBarActivity {
      *         0 <= x <= nrQuestions - 1
      */
     public int randomIndex() {
-        Random rand = new Random();
-        int max = nrQuestions - 1;
-        int min = 0;
-        int randNum = rand.nextInt((max - min) + 1) + min;
-        return randNum;
+        return (int)(Math.random()*nrQuestions);
     }
 
     /**
