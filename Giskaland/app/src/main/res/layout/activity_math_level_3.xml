@@ -15,7 +15,7 @@
         android:src="@drawable/zero"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentStart="false"
         android:background="@android:color/transparent"/>
 
     <ImageButton
@@ -25,7 +25,7 @@
         android:src="@drawable/one"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/zerobutton_0"
-        android:layout_toEndOf="@+id/zerobutton_0"
+        android:layout_toEndOf="@id/zerobutton_0"
         android:background="@android:color/transparent"/>
 
     <ImageButton
@@ -35,7 +35,7 @@
         android:src="@drawable/two"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/onebutton_1"
-        android:layout_toEndOf="@+id/zerobutton_0"
+        android:layout_toEndOf="@id/onebutton_1"
         android:background="@android:color/transparent"/>
 
     <ImageButton
@@ -45,7 +45,7 @@
         android:src="@drawable/three"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/twobutton_2"
-        android:layout_toEndOf="@+id/zerobutton_0"
+        android:layout_toEndOf="@id/twobutton_2"
         android:background="@android:color/transparent"/>
 
     <ImageButton
@@ -55,7 +55,7 @@
         android:src="@drawable/four"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/treebutton_3"
-        android:layout_toEndOf="@+id/zerobutton_0"
+        android:layout_toEndOf="@id/treebutton_3"
         android:background="@android:color/transparent"
         android:baselineAlignBottom="true" />
     <ImageButton
@@ -65,7 +65,7 @@
         android:src="@drawable/five"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/fourbutton_4"
-        android:layout_toEndOf="@+id/zerobutton_0"
+        android:layout_toEndOf="@id/fourbutton_4"
         android:background="@android:color/transparent"/>
 
     <ImageButton
@@ -73,40 +73,40 @@
         android:layout_height="wrap_content"
         android:id="@+id/sixbutton_6"
         android:src="@drawable/six"
+        android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/fivebutton_5"
-        android:layout_toEndOf="@+id/zerobutton_0"
-        android:background="@android:color/transparent"/>
+        android:layout_toEndOf="@+id/fivebutton_5" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sevenbutton_7"
         android:src="@drawable/seven"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/sixbutton_6"
-        android:layout_toEndOf="@+id/zerobutton_0"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/sixbutton_6"
+        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@id/sixbutton_6" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/eigthbutton_8"
         android:src="@drawable/eight"
-        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/sevenbutton_7"
         android:layout_toRightOf="@+id/sevenbutton_7"
-        android:layout_toEndOf="@+id/zerobutton_0"
-        android:background="@android:color/transparent"/>
+        android:layout_toEndOf="@+id/sevenbutton_7" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ninebutton_9"
         android:src="@drawable/nine"
-        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/eigthbutton_8"
         android:layout_toRightOf="@+id/eigthbutton_8"
-        android:layout_toEndOf="@+id/zerobutton_0"
-        android:background="@android:color/transparent"/>
+        android:layout_toEndOf="@+id/eigthbutton_8" />
 
     <EditText
         android:layout_width="300dp"
@@ -171,7 +171,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/QuestionText"
-        android:layout_above="@+id/answerView"
-        android:layout_toLeftOf="@+id/Answerbutton"
-        android:layout_toStartOf="@+id/Answerbutton" />
+        android:layout_marginTop="136dp"
+        android:layout_below="@+id/TextMathLevel3score"
+        android:layout_toRightOf="@+id/sevenbutton_7"
+        android:layout_toEndOf="@+id/sevenbutton_7" />
 </RelativeLayout>

@@ -72,6 +72,8 @@ public class MathGame extends ActionBarActivity {
     String tableName = "MathScores";
 
     TextView scoreView;
+    TextView quiz;
+    String Answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -228,6 +230,8 @@ public class MathGame extends ActionBarActivity {
         Divide = false;
         //********************************************************************
 
+
+
         if (lvl==1)SetUplevel1();
         if (lvl==2)SetUplevel2();
         if (lvl==3)SetUplevel3();
@@ -253,11 +257,19 @@ public class MathGame extends ActionBarActivity {
         IBout4.setOnClickListener(checkIfRightAnsout4);
         ImageButton IMG;
         IMG = (ImageButton) findViewById(R.id.IMG);
+        IBout1.setEnabled(true);
+        IBout2.setEnabled(true);
+        IBout3.setEnabled(true);
+        IBout4.setEnabled(true);
 
         IBout1.setBackgroundResource(android.R.drawable.btn_default);
         IBout2.setBackgroundResource(android.R.drawable.btn_default);
         IBout3.setBackgroundResource(android.R.drawable.btn_default);
         IBout4.setBackgroundResource(android.R.drawable.btn_default);
+
+        TextView RightAnswerText;
+        RightAnswerText = (TextView) findViewById(R.id.RightAnswerText);
+        RightAnswerText.setVisibility(View.INVISIBLE);
         //********************************************************************
 
         setRandomnumIMG(IMG);
@@ -285,11 +297,19 @@ public class MathGame extends ActionBarActivity {
         ImageButton IBout4;
         IBout4 = (ImageButton) findViewById(R.id.IBout4);
         IBout4.setOnClickListener(checkIfRightAnsout4);
+        IBout1.setEnabled(true);
+        IBout2.setEnabled(true);
+        IBout3.setEnabled(true);
+        IBout4.setEnabled(true);
 
         IBout1.setBackgroundResource(android.R.drawable.btn_default);
         IBout2.setBackgroundResource(android.R.drawable.btn_default);
         IBout3.setBackgroundResource(android.R.drawable.btn_default);
         IBout4.setBackgroundResource(android.R.drawable.btn_default);
+
+        TextView RightAnswerText;
+        RightAnswerText = (TextView) findViewById(R.id.RightAnswerText);
+        RightAnswerText.setVisibility(View.INVISIBLE);
         //********************************************************************
 
         TextView quiz;
@@ -320,6 +340,7 @@ public class MathGame extends ActionBarActivity {
         int num = -1;
         if (Minus)num = IBnum1value - IBnum2value;
         if (Plus)num = IBnum1value + IBnum2value;
+        Answer = String.valueOf(num);
 
         // set random numbers to the 4 options
         setTheOptions(num);
@@ -329,7 +350,6 @@ public class MathGame extends ActionBarActivity {
      * set a random problem with multiply or divide
      */
     public void SetUplevel3(){
-        TextView quiz;
         quiz = (TextView) findViewById(R.id.QuestionText);
         quiz.setTextSize(100);
         quiz.setText(" ");
@@ -519,7 +539,7 @@ public class MathGame extends ActionBarActivity {
         int randomNum;
         // number from 1 to 10 so we dont get zero
         if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)));
-        //todo make the numbers go much higher (dont use button use textview)
+        //todo make the numbers go much higher
         // number from zero to ten
         else randomNum = ((int) (Math.random()*11));
         // we do not want the same as last time
@@ -643,6 +663,25 @@ public class MathGame extends ActionBarActivity {
 
         if (allMathOut[index]) {
             v.setBackgroundResource(R.drawable.greenback);
+            ImageButton IBout1;
+            IBout1 = (ImageButton) findViewById(R.id.IBout1);
+            ImageButton IBout2;
+            IBout2 = (ImageButton) findViewById(R.id.IBout2);
+            ImageButton IBout3;
+            IBout3 = (ImageButton) findViewById(R.id.IBout3);
+            ImageButton IBout4;
+            IBout4 = (ImageButton) findViewById(R.id.IBout4);
+            IBout1.setEnabled(false);
+            IBout2.setEnabled(false);
+            IBout3.setEnabled(false);
+            IBout4.setEnabled(false);
+            quiz = (TextView) findViewById(R.id.QuestionText);
+            TextView RightAnswerText;
+            RightAnswerText = (TextView) findViewById(R.id.RightAnswerText);
+            if(lvl>1)
+                RightAnswerText.setText("Já " + quiz.getText() + " er " + Answer + "!!");
+            else
+                RightAnswerText.setText("Já það er rétt hjá þér!!");
 
             new CountDownTimer(4000,1000){
                 /**
@@ -652,9 +691,12 @@ public class MathGame extends ActionBarActivity {
                 @Override
                 public void onTick(long millisUntilFinished){
                     if (POPupINACTIVE) {
-                        tv.setText("Já það er rétt hjá þér");
+                        if(lvl>1)tv.setText("Já " + quiz.getText() + " er " + Answer + "!!");
+                        else tv.setText("Já það er rétt hjá þér!!");
+                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
                         popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                        popUp.update(0, 0, 850, 133);
+                        if(lvl>1)popUp.update(0, 0, 390, 100);
+                        else popUp.update(0, 0, 490, 100);
                         POPupINACTIVE = false;
                     }
                 }
@@ -669,7 +711,6 @@ public class MathGame extends ActionBarActivity {
                     makeRandom();//you have won!!!!!!!!!!!!!!
                 }
             }.start();
-
 
             dbManager.saveScore(lvl, tableName, 2);
         }
@@ -703,7 +744,7 @@ public class MathGame extends ActionBarActivity {
                         if (POPupINACTIVE) {
                             tv.setText("Rétt svar !!");
                             popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                            popUp.update(0, 0, 850, 133);
+                            popUp.update(0, 0, 250, 100);
                             POPupINACTIVE = false;
                         }
                     }
@@ -715,10 +756,9 @@ public class MathGame extends ActionBarActivity {
                     public void onFinish(){
                         popUp.dismiss();
                         POPupINACTIVE = true;
-                        makeRandom();
                     }
                 }.start();
-
+                makeRandom();
                 dbManager.saveScore(lvl, tableName, 2);
             }
             else {

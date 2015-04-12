@@ -184,6 +184,11 @@ public class SpellingGame extends ActionBarActivity {
         button3.setOnClickListener(checkIfRightAnsout);
         button4 = (ImageButton) findViewById(R.id.SpellingOut4);
         button4.setOnClickListener(checkIfRightAnsout);
+        // make the buttons clickable
+        button1.setEnabled(true);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+        button4.setEnabled(true);
         ImageButton IMG;
         IMG = (ImageButton) findViewById(R.id.IMGspelling);
         //********************************************************************
@@ -233,6 +238,13 @@ public class SpellingGame extends ActionBarActivity {
         button5.setOnClickListener(checkIfRightAnsout);
         button6 = (ImageButton) findViewById(R.id.SpellingOut6);
         button6.setOnClickListener(checkIfRightAnsout);
+        // make the buttons clickable
+        button1.setEnabled(true);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+        button4.setEnabled(true);
+        button5.setEnabled(true);
+        button6.setEnabled(true);
 
         ImageView IMG;
         IMG = (ImageView) findViewById(R.id.imageOFitem);
@@ -538,37 +550,6 @@ public class SpellingGame extends ActionBarActivity {
     }
 
     /**
-     *
-     */
-    public void PutUp(){
-        new CountDownTimer(4000,1000){
-            /**
-             * make the popup window appear for some time
-             * @param millisUntilFinished time left
-             */
-            @Override
-            public void onTick(long millisUntilFinished){
-                if (POPupINACTIVE) {
-                    tv.setText("Já " + IslOrd.substring(0,1).toUpperCase() + " er fyrsti stafurinn í " + IslOrd.toUpperCase());
-                    popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                    popUp.update(0, 0, 850, 133);
-                    POPupINACTIVE = false;
-                }
-            }
-
-            /**
-             * dismiss the popup window
-             */
-            @Override
-            public void onFinish(){
-                popUp.dismiss();
-                POPupINACTIVE = true;
-                setUpLevelOne();//you have won!!!!!!!!!!!!!!
-            }
-        }.start();
-    }
-
-    /**
      * append the letter we pressed to the text
      */
     public void Append(){
@@ -657,7 +638,13 @@ public class SpellingGame extends ActionBarActivity {
 
         }
         else {
-            new CountDownTimer(4000,1000){
+            button1.setEnabled(false);
+            button2.setEnabled(false);
+            button3.setEnabled(false);
+            button4.setEnabled(false);
+            button5.setEnabled(false);
+            button6.setEnabled(false);
+            new CountDownTimer(3000,1000){
                 /**
                  * make the popup window appear for some time
                  * @param millisUntilFinished time left
@@ -682,8 +669,46 @@ public class SpellingGame extends ActionBarActivity {
                     setUpLevelTwo();//you have won!!!!!!!!!!!!!!
                 }
             }.start();
-
         }
+    }
+
+    /**
+     *
+     */
+    public void PutUp(){
+        button1 = (ImageButton) findViewById(R.id.SpellingOut1);
+        button2 = (ImageButton) findViewById(R.id.SpellingOut2);
+        button3 = (ImageButton) findViewById(R.id.SpellingOut3);
+        button4 = (ImageButton) findViewById(R.id.SpellingOut4);
+        button1.setEnabled(false);
+        button2.setEnabled(false);
+        button3.setEnabled(false);
+        button4.setEnabled(false);
+        new CountDownTimer(3000,1000){
+            /**
+             * make the popup window appear for some time
+             * @param millisUntilFinished time left
+             */
+            @Override
+            public void onTick(long millisUntilFinished){
+                if (POPupINACTIVE) {
+                    tv.setText("Já " + IslOrd.substring(0,1).toUpperCase() + " er fyrsti stafurinn í " + IslOrd.toUpperCase());
+                    popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
+                    popUp.update(0, 0, 850, 133);
+                    POPupINACTIVE = false;
+                }
+            }
+
+            /**
+             * dismiss the popup window
+             */
+            @Override
+            public void onFinish(){
+                popUp.dismiss();
+                POPupINACTIVE = true;
+                setUpLevelOne();//you have won!!!!!!!!!!!!!!
+            }
+        }.start();
     }
 
     /**
