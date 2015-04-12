@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
+import android.media.MediaPlayer;
 
 public class MathGame extends ActionBarActivity {
     // to know what level we are working with
@@ -672,7 +673,10 @@ public class MathGame extends ActionBarActivity {
 
                 toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
                 toast.show();
-
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.totallyvalleygirl);
+                {
+                    mp.start();
+                }
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable(){
                     @Override
@@ -763,7 +767,10 @@ public class MathGame extends ActionBarActivity {
 
                     toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
                     toast.show();
-
+                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.totallyvalleygirl);
+                    {
+                        mp.start();
+                    }
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable(){
                         @Override
