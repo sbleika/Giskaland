@@ -201,13 +201,9 @@ public class MathGame extends ActionBarActivity {
         isIBout4 = false;
         // reset all the global values for level 3
         //********************************************************************
-        IBnum1value = -1;
-        IBnum2value = -1;
         Multiply = false;
         Divide = false;
         //********************************************************************
-
-
 
         if (lvl==1)SetUplevel1();
         if (lvl==2)SetUplevel2();
@@ -329,28 +325,28 @@ public class MathGame extends ActionBarActivity {
         quiz.setText(" ");
         ClearText();
 
-        // set random number from one to nine to the first number to calculate
-        setRandomnum1(quiz);
-
         // set the operator to
         //********************************************************************
         int randomOP = (int) Math.ceil(Math.random()*2);
         if (randomOP == 1) {
             //multiply
-            quiz.append(" * ");
             Multiply = true;
             Divide = false;
         }
         else if (randomOP == 2) {
             //DIVIDE
-            quiz.append(" / ");
             Multiply = false;
             Divide = true;
         }
         //********************************************************************
+        // set random number from one to nine to the first number to calculate
+        setRandomnum1(quiz);
+
+        if(Multiply)quiz.append(" * ");
+        if(Divide)  quiz.append(" / ");
 
         // set random number that will work with the first number
-        setRandomnum2LevelTree(quiz);
+        setRandomnum2LevelThree(quiz);
     }
 
     /**
@@ -512,14 +508,14 @@ public class MathGame extends ActionBarActivity {
         // random from 0 to 10
         int randomNum;
         // number from 1 to 10 so we dont get zero
-        if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)));
-        //todo make the numbers go much higher
+        if(Divide)randomNum = ((int) Math.ceil(Math.random() * (100)));
+        // todo make the numbers go much higher
         // number from zero to ten
         else randomNum = ((int) (Math.random()*11));
         // we do not want the same as last time
         while (LASTans == randomNum){
             randomNum = ((int) (Math.random()*11));
-            if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)));
+            if(Divide)randomNum = ((int) Math.ceil(Math.random() * (100)));
         }
         //make it the lastans so we dont get it next time
         LASTans = randomNum;
@@ -562,7 +558,7 @@ public class MathGame extends ActionBarActivity {
      * get a random number to use as the second number in calculations for level 3
      * @param quiz view for the button
      */
-    public void setRandomnum2LevelTree(TextView quiz) {
+    public void setRandomnum2LevelThree(TextView quiz) {
         int randomNum = -1;
         //
         if (Multiply) {
