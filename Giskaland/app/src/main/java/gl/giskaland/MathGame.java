@@ -315,6 +315,7 @@ public class MathGame extends ActionBarActivity {
      * set a random problem with multiply or divide
      */
     public void SetUplevel3(){
+        SetUpButtons();
         quiz = (TextView) findViewById(R.id.QuestionText);
         quiz.setTextSize(100);
         quiz.setText(" ");
@@ -502,15 +503,16 @@ public class MathGame extends ActionBarActivity {
     public void setRandomnum1(TextView quiz){
         // random from 0 to 10
         int randomNum;
-        // number from 1 to 10 so we dont get zero
-        if(Divide)randomNum = ((int) Math.ceil(Math.random() * (100)));
+
+        // number from 1 to 100 and the answer from a quiz is alwes from 1 to 10
+        if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)))*((int) Math.ceil(Math.random() * (9)));
         // todo make the numbers go much higher
         // number from zero to ten
         else randomNum = ((int) (Math.random()*11));
         // we do not want the same as last time
         while (LASTans == randomNum){
             randomNum = ((int) (Math.random()*11));
-            if(Divide)randomNum = ((int) Math.ceil(Math.random() * (100)));
+            if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)))*((int) Math.ceil(Math.random() * (9)));
         }
         //make it the lastans so we dont get it next time
         LASTans = randomNum;
@@ -555,20 +557,19 @@ public class MathGame extends ActionBarActivity {
      */
     public void setRandomnum2LevelThree(TextView quiz) {
         int randomNum = -1;
-        //
         if (Multiply) {
             //
-            randomNum = ((int) (Math.random() * (11)));
+            randomNum = ((int) Math.ceil(Math.random() * (10)));
             // we dont want the same outcome 2x in a row
             while ((IBnum1value * randomNum) == last_num) {
-                randomNum = ((int) (Math.random() * (IBnum1value + 1)));
+                randomNum = ((int) Math.ceil(Math.random() * (IBnum1value + 1)));
             }
             last_num = (IBnum1value * randomNum);
         } else if (Divide) {
             // from 0 to 10-the nub-mber we are adding to
             randomNum = ((int) Math.ceil(Math.random() * (10)));
             // we dont want the same outcome 2x in a row and get a hole number
-            while (((IBnum1value / randomNum) == last_num) || (IBnum1value % randomNum != 0) || ((IBnum1value / randomNum) > 10)) {
+            while (((IBnum1value / randomNum) == last_num) || (IBnum1value % randomNum != 0) || ((IBnum1value / randomNum) > 9)) {
                 randomNum = ((int) Math.ceil(Math.random() * (10)));
             }
             last_num = (IBnum1value / randomNum);
@@ -769,7 +770,24 @@ public class MathGame extends ActionBarActivity {
             String MyAns = editText.getText().toString();
             if(MyAns.equals("0")){
                 editText.setText(ID);
-            }else if (Integer.parseInt(MyAns)<200 && MyAns.length()<3){
+
+                if(Integer.parseInt(ID)  == IBnum1value*IBnum2value || Integer.parseInt(ID) == IBnum1value/IBnum2value){
+                    view.setBackgroundResource(R.drawable.greenback);
+                    RightAnswerText = "Já það er rétt hjá þér!!";
+
+                    toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable(){
+                        @Override
+                        public void run(){
+                            makeRandom();// you have won
+                        }
+                    }, 3000);
+                    dbManager.saveScore(lvl, tableName, 2);
+                }
+            }else if (MyAns.length()<3){
                 editText.append(ID);
             }
             System.out.println(ID);
