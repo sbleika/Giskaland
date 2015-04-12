@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,21 +19,14 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
 
 public class SpellingGame extends ActionBarActivity {
-
-    //******************************
-    // for the popUp window
-    PopupWindow popUp;
-    LinearLayout layout;
-    TextView tv;
-    RadioGroup.LayoutParams params;
-    boolean POPupINACTIVE = true;
-    //******************************
 
     // to make sure we only get one of each letter level 1
     String[] SpellingOut = new String[7];
@@ -76,6 +70,8 @@ public class SpellingGame extends ActionBarActivity {
     String tableName = "SpellingScores";
 
     TextView scoreView;
+    String RightAnswerText;
+    Toast toast;
 
     /**
      * on opening the activity
@@ -108,8 +104,6 @@ public class SpellingGame extends ActionBarActivity {
 
         nrQuestions = allQuestions.size();
 
-        // make the popup
-        PopUp();
         makeRandom(); // start the game
     }
 
@@ -124,24 +118,6 @@ public class SpellingGame extends ActionBarActivity {
         int min = 0;
         int randNum = rand.nextInt((max - min) + 1) + min;
         return randNum;
-    }
-
-
-    /**
-     * set up the popup window
-     */
-    public void PopUp(){
-        popUp = new PopupWindow(this);
-        layout = new LinearLayout(this);
-        tv = new TextView(this);
-        params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT,
-                RadioGroup.LayoutParams.WRAP_CONTENT);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        tv.setText("RANGT svar !!");
-        tv.setTextSize(48.0F);
-        tv.setTextColor(0xFFFFFFFF);
-        layout.addView(tv, params);
-        popUp.setContentView(layout);
     }
 
     /**
@@ -643,31 +619,20 @@ public class SpellingGame extends ActionBarActivity {
             button4.setEnabled(false);
             button5.setEnabled(false);
             button6.setEnabled(false);
-            new CountDownTimer(3000,1000){
-                /**
-                 * make the popup window appear for some time
-                 * @param millisUntilFinished time left
-                 */
-                @Override
-                public void onTick(long millisUntilFinished){
-                    if (POPupINACTIVE) {
-                        tv.setText("þu skrifaðir " + IslOrd.toUpperCase() + " rétt !!");
-                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                        popUp.update(0, 0, 850, 133);
-                        POPupINACTIVE = false;
-                    }
-                }
 
-                /**
-                 * dismiss the popup window
-                 */
+            RightAnswerText = "þu skrifaðir " + IslOrd.toUpperCase() + " rétt !!";
+
+            toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
+            toast.show();
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable(){
                 @Override
-                public void onFinish(){
-                    popUp.dismiss();
-                    POPupINACTIVE = true;
-                    setUpLevelTwo();//you have won!!!!!!!!!!!!!!
+                public void run(){
+                    makeRandom();// you have won
                 }
-            }.start();
+            }, 3000);
+
         }
     }
 
@@ -683,31 +648,18 @@ public class SpellingGame extends ActionBarActivity {
         button2.setEnabled(false);
         button3.setEnabled(false);
         button4.setEnabled(false);
-        new CountDownTimer(3000,1000){
-            /**
-             * make the popup window appear for some time
-             * @param millisUntilFinished time left
-             */
-            @Override
-            public void onTick(long millisUntilFinished){
-                if (POPupINACTIVE) {
-                    tv.setText("Já " + IslOrd.substring(0,1).toUpperCase() + " er fyrsti stafurinn í " + IslOrd.toUpperCase());
-                    popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                    popUp.update(0, 0, 850, 133);
-                    POPupINACTIVE = false;
-                }
-            }
+        RightAnswerText = ("Já " + IslOrd.substring(0,1).toUpperCase() + " er fyrsti stafurinn í " + IslOrd.toUpperCase());
 
-            /**
-             * dismiss the popup window
-             */
+        toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
+        toast.show();
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable(){
             @Override
-            public void onFinish(){
-                popUp.dismiss();
-                POPupINACTIVE = true;
+            public void run(){
                 setUpLevelOne();//you have won!!!!!!!!!!!!!!
             }
-        }.start();
+        }, 3000);
     }
 
     /**
@@ -718,11 +670,7 @@ public class SpellingGame extends ActionBarActivity {
         if (SpellingOutBool[index]) {
             v.setBackgroundResource(R.drawable.greenback);
             if (lvl > 1) Append();
-            try {
-                Thread.sleep(1000);                 //1000 milliseconds is one second.
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
+
              if(lvl == 1)PutUp();
              if(lvl == 2 || lvl == 3){
                 NextLetterForOptions();

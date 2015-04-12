@@ -3,6 +3,7 @@ package gl.giskaland;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +29,6 @@ import java.util.Random;
 public class MathGame extends ActionBarActivity {
     // to know what level we are working with
     int lvl;
-
-    //******************************
-    // for the popUp window
-    PopupWindow popUp;
-    LinearLayout layout;
-    TextView tv;
-    RadioGroup.LayoutParams params;
-    boolean POPupINACTIVE = true;
-    //******************************
 
     // the numbers that we are working with
     int IBnum1value;
@@ -74,6 +68,8 @@ public class MathGame extends ActionBarActivity {
     TextView scoreView;
     TextView quiz;
     String Answer;
+    String RightAnswerText;
+    Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +101,6 @@ public class MathGame extends ActionBarActivity {
         dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);
 
-        // make the popup
-        PopUp();
         // Set up buttons for level 3
         if(lvl == 3)SetUpButtons();
 
@@ -185,22 +179,6 @@ public class MathGame extends ActionBarActivity {
         randNum = rand.nextInt((max - min) + 1) + min;
         return randNum;
     }
-    /**
-     * make the pop up window
-     */
-    public void PopUp(){
-        popUp = new PopupWindow(this);
-        layout = new LinearLayout(this);
-        tv = new TextView(this);
-        params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT,
-                RadioGroup.LayoutParams.WRAP_CONTENT);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        tv.setText("RANGT svar !!");
-        tv.setTextSize(48.0F);
-        tv.setTextColor(0xFFFFFFFF);
-        layout.addView(tv, params);
-        popUp.setContentView(layout);
-    }
 
     /**
      * put new numbers to the buttons
@@ -266,9 +244,6 @@ public class MathGame extends ActionBarActivity {
         IBout3.setBackgroundResource(android.R.drawable.btn_default);
         IBout4.setBackgroundResource(android.R.drawable.btn_default);
 
-        TextView RightAnswerText;
-        RightAnswerText = (TextView) findViewById(R.id.RightAnswerText);
-        RightAnswerText.setVisibility(View.INVISIBLE);
         //********************************************************************
 
         setRandomnumIMG(IMG);
@@ -675,41 +650,22 @@ public class MathGame extends ActionBarActivity {
             IBout3.setEnabled(false);
             IBout4.setEnabled(false);
             quiz = (TextView) findViewById(R.id.QuestionText);
-            TextView RightAnswerText;
-            RightAnswerText = (TextView) findViewById(R.id.RightAnswerText);
+
             if(lvl>1)
-                RightAnswerText.setText("Já " + quiz.getText() + " er " + Answer + "!!");
+                RightAnswerText = "Já " + quiz.getText() + " er " + Answer + "!!";
             else
-                RightAnswerText.setText("Já það er rétt hjá þér!!");
+                RightAnswerText = "Já það er rétt hjá þér!!";
 
-            new CountDownTimer(4000,1000){
-                /**
-                 * make the popup window appear for some time
-                 * @param millisUntilFinished time left
-                 */
-                @Override
-                public void onTick(long millisUntilFinished){
-                    if (POPupINACTIVE) {
-                        if(lvl>1)tv.setText("Já " + quiz.getText() + " er " + Answer + "!!");
-                        else tv.setText("Já það er rétt hjá þér!!");
-                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
-                        popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                        if(lvl>1)popUp.update(0, 0, 390, 100);
-                        else popUp.update(0, 0, 490, 100);
-                        POPupINACTIVE = false;
-                    }
-                }
+            toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
+            toast.show();
 
-                /**
-                 * dismiss the popup window
-                 */
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable(){
                 @Override
-                public void onFinish(){
-                    popUp.dismiss();
-                    POPupINACTIVE = true;
-                    makeRandom();//you have won!!!!!!!!!!!!!!
+                public void run(){
+                    makeRandom();// you have won
                 }
-            }.start();
+            }, 3000);
 
             dbManager.saveScore(lvl, tableName, 2);
         }
@@ -719,6 +675,7 @@ public class MathGame extends ActionBarActivity {
         }
         dbManager.showScores(lvl, tableName, scoreView);
     }
+    
     /**
      * listener for the answer button
      */
@@ -733,60 +690,34 @@ public class MathGame extends ActionBarActivity {
 
             int Ans = Integer.parseInt(editText.getText().toString());
             if(Ans == IBnum1value*IBnum2value || Ans == IBnum1value/IBnum2value){
-                new CountDownTimer(1500,1000){
-                    /**
-                     * make he popup window appear
-                     * @param millisUntilFinished time left
-                     */
-                    @Override
-                    public void onTick(long millisUntilFinished){
-                        if (POPupINACTIVE) {
-                            tv.setText("Rétt svar !!");
-                            popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                            popUp.update(0, 0, 250, 100);
-                            POPupINACTIVE = false;
-                        }
-                    }
+                RightAnswerText = "Já það er rétt hjá þér!!";
 
-                    /**
-                     * make the popup window disappear
-                     */
+                toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
+                toast.show();
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable(){
                     @Override
-                    public void onFinish(){
-                        popUp.dismiss();
-                        POPupINACTIVE = true;
+                    public void run(){
+                        makeRandom();// you have won
                     }
-                }.start();
-                makeRandom();
+                }, 3000);
                 dbManager.saveScore(lvl, tableName, 2);
             }
             else {
                 dbManager.saveScore(lvl, tableName, -1);
-                new CountDownTimer(1500,1000){
-                    /**
-                     * make the popup appear for some time
-                     * @param millisUntilFinished timi eftir
-                     */
-                    @Override
-                    public void onTick(long millisUntilFinished){
-                        if (POPupINACTIVE) {
-                            tv.setText("Rangt svar !!");
-                            popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-                            popUp.update(0, 0, 850, 133);
-                            POPupINACTIVE = false;
-                        }
-                    }
+                RightAnswerText = "Nei ekki rétt hjá þér!!";
 
-                    /**
-                     * make the popup window disappear
-                     */
+                Toast.makeText(getApplicationContext(), RightAnswerText,
+                        Toast.LENGTH_SHORT).show();
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable(){
                     @Override
-                    public void onFinish(){
-                        popUp.dismiss();
-                        POPupINACTIVE = true;
+                    public void run(){
+                        ClearText();
                     }
-                }.start();
-                ClearText();
+                }, 3000);
             }
             dbManager.showScores(lvl, tableName, scoreView);
             System.out.println("answer");
