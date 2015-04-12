@@ -75,6 +75,11 @@ public class QuizGame extends ActionBarActivity {
 
         List<String> aQuestion = allQuestions.get(ind);
 
+        //while (Integer.parseInt(aQuestion.get(0)) != lvl){
+         //   while(ind == lastQuestionIndex)
+          //      ind = randomIndex();
+          //  aQuestion = allQuestions.get(ind);
+        //}
         // String handlers for the question and it's answer options.
         String question = aQuestion.get(1);
         String correctOpt = aQuestion.get(2);
@@ -191,11 +196,7 @@ public class QuizGame extends ActionBarActivity {
      *         0 <= x <= nrQuestions - 1
      */
     public int randomIndex() {
-        Random rand = new Random();
-        int max = nrQuestions - 1;
-        int min = 0;
-        int randNum = rand.nextInt((max - min) + 1) + min;
-        return randNum;
+        return (int)(Math.random()*nrQuestions);
     }
 
     @Override
