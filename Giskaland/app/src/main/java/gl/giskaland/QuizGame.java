@@ -1,6 +1,7 @@
 package gl.giskaland;
 
 import android.app.ProgressDialog;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Random;
@@ -28,6 +30,10 @@ public class QuizGame extends ActionBarActivity {
     Button optaButton, optbButton, optcButton, optdButton;
     int correctOptionIndex; //3, 4, 5, 6 (which could be mapped to a, b, c, d)
     String tableName = "QuizScores"; // table name from the database.
+    Toast toast;
+    String RightAnswerText = "Já það er rétt hjá þér!!";
+
+    int lastQuestionIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +69,10 @@ public class QuizGame extends ActionBarActivity {
                 QuizGame.this, "Giskaland", "Sækir nýja spurningu...", true
                 );
 
-        int ind = randomIndex();
+        int ind = 0;
+        while(ind == lastQuestionIndex)
+            ind = randomIndex();
+
         List<String> aQuestion = allQuestions.get(ind);
 
         // String handlers for the question and it's answer options.
@@ -89,6 +98,11 @@ public class QuizGame extends ActionBarActivity {
         optcButton.setText(optc);
         optdButton.setText(optd);
 
+        optaButton.setBackgroundResource(android.R.drawable.btn_default);
+        optbButton.setBackgroundResource(android.R.drawable.btn_default);
+        optcButton.setBackgroundResource(android.R.drawable.btn_default);
+        optdButton.setBackgroundResource(android.R.drawable.btn_default);
+
         try {
             correctOptionIndex = aQuestion.lastIndexOf(correctOpt);
         } catch (Exception e) {
@@ -109,6 +123,9 @@ public class QuizGame extends ActionBarActivity {
         optbButton.setOnClickListener(evaluateGuess);
         optcButton.setOnClickListener(evaluateGuess);
         optdButton.setOnClickListener(evaluateGuess);
+
+        optaButton.setEnabled(true); optbButton.setEnabled(true);
+        optcButton.setEnabled(true); optdButton.setEnabled(true);
     }
 
     /**
@@ -140,13 +157,27 @@ public class QuizGame extends ActionBarActivity {
 
             // Checking if correct the correct option has been chosen.
             if (optIndex == correctOptionIndex) {
+                view.setBackgroundResource(R.drawable.greenback);
+                toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
+                toast.show();
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable(){
+                    @Override
+                    public void run(){
+                        newQuestion();
+                    }
+                }, 3000);
                 // Update the score
                 dbManager.saveScore(lvl, tableName, 2);
                 dbManager.showScores(lvl, tableName, (TextView) findViewById(R.id.TextQuizLevel3Score));
-                // Then generate a new question
-                newQuestion();
+
+                // Disable all the answering options buttons.
+                optaButton.setEnabled(false); optbButton.setEnabled(false);
+                optcButton.setEnabled(false); optdButton.setEnabled(false);
             }
             else {
+                view.setBackgroundResource(R.drawable.redback);
                 // Update the score.
                 dbManager.saveScore(lvl, tableName, -1);
                 dbManager.showScores(lvl, tableName, (TextView) findViewById(R.id.TextQuizLevel3Score));
