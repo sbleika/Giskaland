@@ -1,6 +1,7 @@
 package gl.giskaland;
 
 
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -604,7 +605,10 @@ public class SpellingGame extends ActionBarActivity {
 
             toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
             toast.show();
-
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.yeah);
+            {
+                mp.start();
+            }
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable(){
                 @Override
