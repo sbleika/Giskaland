@@ -85,7 +85,6 @@
         android:src="@drawable/seven"
         android:background="@android:color/transparent"
         android:layout_alignTop="@+id/sixbutton_6"
-        android:layout_centerHorizontal="true"
         android:layout_toEndOf="@id/sixbutton_6" />
 
     <ImageButton
@@ -172,7 +171,8 @@
         android:text="Large Text"
         android:id="@+id/QuestionText"
         android:layout_marginTop="136dp"
+        android:paddingLeft="250dp"
+        android:layout_centerInParent="true"
         android:layout_below="@+id/TextMathLevel3score"
-        android:layout_toRightOf="@+id/sevenbutton_7"
-        android:layout_toEndOf="@+id/sevenbutton_7" />
+        />
 </RelativeLayout>

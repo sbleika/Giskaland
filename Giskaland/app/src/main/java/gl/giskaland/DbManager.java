@@ -229,9 +229,11 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     /**
-     * Specifically for the Questions table.
+     * Get all the data from a specific table in the database,
+     * where attr is the number of attributes the corresponding
+     * table has.
      * @return All the data (all questions and answers)
-     *         from the Questions table from the database,
+     *         from tha table table from the database,
      *         returned as a list of lists of strings.
      */
     public List<List<String>> getAllInfo(int attr, String table) {
