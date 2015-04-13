@@ -180,7 +180,7 @@ public class QuizGame extends ActionBarActivity {
                     public void run(){
                         newQuestion();
                     }
-                }, 3000);
+                }, 2300);
                 // Update the score
                 dbManager.saveScore(lvl, tableName, 2);
                 dbManager.showScores(lvl, tableName, (TextView) findViewById(R.id.TextQuizLevel3Score));
