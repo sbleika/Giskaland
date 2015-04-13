@@ -1,6 +1,7 @@
 package gl.giskaland;
 
 import android.app.ProgressDialog;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -169,7 +170,9 @@ public class QuizGame extends ActionBarActivity {
                 view.setBackgroundResource(R.drawable.greenback);
                 toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
                 toast.show();
-
+                {
+                    mp.start();
+                }
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable(){
                     @Override
