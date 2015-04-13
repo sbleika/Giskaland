@@ -84,8 +84,10 @@
         android:id="@+id/sevenbutton_7"
         android:src="@drawable/seven"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/sixbutton_6"
-        android:layout_toEndOf="@id/sixbutton_6" />
+
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/sixbutton_6"
+        android:layout_toEndOf="@+id/sixbutton_6" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -93,7 +95,8 @@
         android:id="@+id/eigthbutton_8"
         android:src="@drawable/eight"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/sevenbutton_7"
+
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/sevenbutton_7"
         android:layout_toEndOf="@+id/sevenbutton_7" />
 
@@ -103,7 +106,8 @@
         android:id="@+id/ninebutton_9"
         android:src="@drawable/nine"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/eigthbutton_8"
+
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/eigthbutton_8"
         android:layout_toEndOf="@+id/eigthbutton_8" />
 
