@@ -1,6 +1,7 @@
 package gl.giskaland;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -54,6 +55,10 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
          */
         @Override
         public void onClick(View v) {
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.click);
+            {
+                mp.start();
+            }
             Math();
         }
     };
@@ -81,7 +86,10 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
          */
         @Override
         public void onClick(View v) {
-
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.click);
+            {
+                mp.start();
+            }
             SpellThePic();
         }
     };
@@ -109,6 +117,10 @@ public class ChooseGameForAllLevels extends ActionBarActivity {
          */
         @Override
         public void onClick(View v) {
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.click);
+            {
+                mp.start();
+            }
             BrainPuzzle();
         }
     };
