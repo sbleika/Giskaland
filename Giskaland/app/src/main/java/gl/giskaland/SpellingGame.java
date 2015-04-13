@@ -1,43 +1,32 @@
 package gl.giskaland;
 
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.os.CountDownTimer;
+
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 
 public class SpellingGame extends ActionBarActivity {
 
-    // to make sure we only get one of each letter level 1
+    // to make sure we only get one of each letter level 1 and level 2
     String[] SpellingOut = new String[7];
-    // to make sure we only get one of each letter in level 2
-    //String[] Spelling2 = new String[10];
-    // the fyrst letter in the answer
+    // the first letter in the answer
     String IMGvalueLetter = "1";
     // to know what letter we had last in level 2
     int IMGvalueLetterNum = 0;
     // ther word in the image
     String IMGword;
+    // the word in Icelandic
     String IslOrd;
 
     // to know where the right answer is
@@ -45,10 +34,11 @@ public class SpellingGame extends ActionBarActivity {
 
     // the last outcome in the game before
     int LASTans = 0;
+    // the next one
     int NEXTans = 0;
     // WHAT LEVEL ARE WE ON
     int lvl;
-    // are we playing in icelantic or englih
+    // are we playing in icelandic or english
     boolean NotEnglish = true;
     // to clear the text if we press in level 2 and 3
     boolean buttonNotPressed = true;
@@ -60,17 +50,12 @@ public class SpellingGame extends ActionBarActivity {
     int nrQuestions;
 
     // the buttons
-    ImageButton button1;
-    ImageButton button2;
-    ImageButton button3;
-    ImageButton button4;
-    ImageButton button5;
-    ImageButton button6;
+    ImageButton button1, button2, button3, button4, button5, button6;
 
     String tableName = "SpellingScores";
 
     TextView scoreView;
-    String RightAnswerText;
+    // the output text to let us know if we won
     Toast toast;
 
     /**
@@ -87,6 +72,7 @@ public class SpellingGame extends ActionBarActivity {
 
         if(lvl == 1)setContentView(R.layout.activity_spelling_game);
         else setContentView(R.layout.activity_spelling_game_two);
+        // hide the action bar
         getSupportActionBar().hide();
 
         scoreView = (TextView)findViewById(R.id.TextSpellingLevel1Score);
@@ -455,12 +441,11 @@ public class SpellingGame extends ActionBarActivity {
         String alphabet;
         // all the letters
 
-        //todo setja inni gagnagrunn til ad tetta se ekki hradkodad i kodan
         if(NotEnglish){
             alphabet = "0 sa_1 saa_2 sae_3 sb_4 sd_5 sdd_6 se_7 see_8 sf_9 sg_10sh_11si_12sii_13sj_14sk_15sl_16sm_17sn_18so_19soo_20sou_21sp_22sr_23ss_24st_25sth_26su_27suu_28sv_29sx_30sy_31syy_32";
         }else {
             alphabet = "0 sa_1 sb_2 sd_3 se_4 sf_5 sg_6 sh_7 si_8 sj_9 sk_10sl_11sm_12sn_13so_14sp_15sr_16ss_17st_18su_19sv_20sx_21sy_22sw_23sc24";
-            // c
+            //
         }
         // tke one of the letters
         String letter;
@@ -616,11 +601,14 @@ public class SpellingGame extends ActionBarActivity {
             button5.setEnabled(false);
             button6.setEnabled(false);
 
-            RightAnswerText = "þu skrifaðir " + IslOrd.toUpperCase() + " rétt !!";
+            String RightAnswerText = "þu skrifaðir " + IslOrd.toUpperCase() + " rétt !!";
 
             toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
             toast.show();
-
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.yeah);
+            {
+                mp.start();
+            }
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable(){
                 @Override
@@ -644,7 +632,7 @@ public class SpellingGame extends ActionBarActivity {
         button2.setEnabled(false);
         button3.setEnabled(false);
         button4.setEnabled(false);
-        RightAnswerText = ("Já " + IslOrd.substring(0,1).toUpperCase() + " er fyrsti stafurinn í " + IslOrd.toUpperCase());
+        String RightAnswerText = ("Já " + IslOrd.substring(0,1).toUpperCase() + " er fyrsti stafurinn í " + IslOrd.toUpperCase());
 
         toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
         toast.show();

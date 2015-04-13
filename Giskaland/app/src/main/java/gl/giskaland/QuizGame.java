@@ -1,6 +1,7 @@
 package gl.giskaland;
 
 import android.app.ProgressDialog;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,11 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by tumsgis
@@ -54,6 +55,10 @@ public class QuizGame extends ActionBarActivity {
         nrQuestions = allQuestions.size();
 
         newQuestion();
+
+        ImageButton newphoto;
+        newphoto = (ImageButton) findViewById(R.id.newquiz);
+        newphoto.setOnClickListener(newphotolistner);
     }
 
 
@@ -165,7 +170,10 @@ public class QuizGame extends ActionBarActivity {
                 view.setBackgroundResource(R.drawable.greenback);
                 toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
                 toast.show();
-
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.totallyvalleygirl);
+                {
+                    mp.start();
+                }
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable(){
                     @Override
@@ -198,6 +206,21 @@ public class QuizGame extends ActionBarActivity {
     public int randomIndex() {
         return (int)(Math.random()*nrQuestions);
     }
+
+    /**
+     * OnClickListener for newphoto button
+     */
+    View.OnClickListener newphotolistner = new View.OnClickListener() {
+        /**
+         *
+         */
+        @Override
+        public void onClick(View view) {
+            dbManager.saveScore(lvl, tableName, -1);
+            dbManager.showScores(lvl, tableName, (TextView) findViewById(R.id.TextQuizLevel3Score));
+            newQuestion();
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
