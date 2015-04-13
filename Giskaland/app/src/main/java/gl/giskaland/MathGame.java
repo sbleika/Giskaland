@@ -663,7 +663,7 @@ public class MathGame extends ActionBarActivity {
                 public void run(){
                     makeRandom();// you have won
                 }
-            }, 3000);
+            }, 2300);
 
             dbManager.saveScore(lvl, tableName, 2);
         }
@@ -702,7 +702,7 @@ public class MathGame extends ActionBarActivity {
                     public void run(){
                         makeRandom();// you have won
                     }
-                }, 3000);
+                }, 2300);
                 dbManager.saveScore(lvl, tableName, 2);
             }
             else {
@@ -718,7 +718,7 @@ public class MathGame extends ActionBarActivity {
                     public void run(){
                         ClearText();
                     }
-                }, 3000);
+                }, 2300);
             }
             dbManager.showScores(lvl, tableName, scoreView);
             System.out.println("answer");
@@ -843,7 +843,7 @@ public class MathGame extends ActionBarActivity {
                         public void run(){
                             makeRandom();// you have won
                         }
-                    }, 3000);
+                    }, 2300);
                     dbManager.saveScore(lvl, tableName, 2);
                 }
             }else if (MyAns.length()<3){

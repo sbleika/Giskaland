@@ -615,7 +615,7 @@ public class SpellingGame extends ActionBarActivity {
                 public void run(){
                     makeRandom();// you have won
                 }
-            }, 3000);
+            }, 2300);
 
         }
     }
@@ -643,7 +643,7 @@ public class SpellingGame extends ActionBarActivity {
             public void run(){
                 setUpLevelOne();//you have won!!!!!!!!!!!!!!
             }
-        }, 3000);
+        }, 2300);
     }
 
     /**
