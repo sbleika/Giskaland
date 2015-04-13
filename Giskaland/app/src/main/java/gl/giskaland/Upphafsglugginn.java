@@ -78,6 +78,10 @@ public class Upphafsglugginn extends ActionBarActivity {
          */
         @Override
         public void onClick(View v) {
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.click);
+            {
+                mp.start();
+            }
             lvl = 1;
             ChooseGameForAllLevels();
         }
@@ -93,6 +97,10 @@ public class Upphafsglugginn extends ActionBarActivity {
          */
         @Override
         public void onClick(View v) {
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.click);
+            {
+                mp.start();
+            }
             lvl = 2;
             ChooseGameForAllLevels();
         }
@@ -108,6 +116,10 @@ public class Upphafsglugginn extends ActionBarActivity {
          */
         @Override
         public void onClick(View v) {
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.click);
+            {
+                mp.start();
+            }
             lvl = 3;
             ChooseGameForAllLevels();
         }
