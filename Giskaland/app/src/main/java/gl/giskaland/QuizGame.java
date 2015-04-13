@@ -47,7 +47,6 @@ public class QuizGame extends ActionBarActivity {
         dbManager = new DbManager(this);
 
         dbManager.initDbManager(lvl, tableName);
-        //if (Globals.shouldUpgradeDb) Globals.handleUpgrade(dbManager);
         dbManager.showScores(lvl, tableName, (TextView)findViewById(R.id.TextQuizLevel3Score));
 
         // Fetch all the questions for ease of access later on.
@@ -79,12 +78,18 @@ public class QuizGame extends ActionBarActivity {
             ind = randomIndex();
 
         List<String> aQuestion = allQuestions.get(ind);
+        lastQuestionIndex = ind;
+        //System.out.println(Integer.parseInt(aQuestion.get(0)) == lvl);
 
-        //while (Integer.parseInt(aQuestion.get(0)) != lvl){
-         //   while(ind == lastQuestionIndex)
-          //      ind = randomIndex();
-          //  aQuestion = allQuestions.get(ind);
-        //}
+        /*
+        while (Integer.parseInt(aQuestion.get(0)) != lvl){
+            while(ind == lastQuestionIndex)
+                ind = randomIndex();
+        }
+        aQuestion = allQuestions.get(ind);
+        */
+        lastQuestionIndex = ind;
+
         // String handlers for the question and it's answer options.
         String question = aQuestion.get(1);
         String correctOpt = aQuestion.get(2);
@@ -170,10 +175,10 @@ public class QuizGame extends ActionBarActivity {
                 view.setBackgroundResource(R.drawable.greenback);
                 toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
                 toast.show();
-                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.yeah);
+                /*MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.yeah);
                 {
                     mp.start();
-                }
+                }*/
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable(){
                     @Override
