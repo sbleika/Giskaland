@@ -18,8 +18,12 @@
     <string name="gameTwo">Leikur 2</string>
 
     <string name="gameMath">Stærðfræði</string>
+    <string name="MathLevel3direction">Reiknaðu margföldun eða deilingu og settu inn rétt svar og smelltu á Reikna</string>
+    <string name="MathLevel2direction">Reiknaðu plús eða mínus og smelltu á rétt svar</string>
+    <string name="MathLevel1direction">Teldu hluti og veldu rétt tölustaf</string>
     <string name="gameBrainPuzzle">Spurningarleikurinn</string>
     <string name="SpellThePic">Hvernig á að skrifa</string>
+    <string name="Firstletter">Hvað er fyrsti stafurinn</string>
     <string name="SpellThePicEnglish">Hvernig á að skrifa á ensku</string>
     <string name="WhatLetter">Stafaleikurinn</string>
 

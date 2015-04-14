@@ -179,4 +179,16 @@
         android:layout_centerInParent="true"
         android:layout_below="@+id/TextMathLevel3score"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/MathLevel3direction"
+        android:id="@+id/textView"
+        android:layout_above="@+id/Clearbutton"
+        android:layout_alignTop="@+id/answerView"
+        android:layout_toLeftOf="@+id/fourbutton_4"
+        android:layout_toRightOf="@+id/TextMathLevel3score"
+        android:layout_toEndOf="@+id/TextMathLevel3score" />
 </RelativeLayout>

@@ -78,5 +78,15 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="28dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/MathLevel1direction"
+        android:id="@+id/textView3"
+        android:layout_above="@+id/IBout1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>

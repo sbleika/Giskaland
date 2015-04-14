@@ -69,4 +69,14 @@
                     android:layout_toRightOf="@+id/SpellingOut3"
                     android:layout_toEndOf="@+id/SpellingOut3" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/Firstletter"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/IMGspelling"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
