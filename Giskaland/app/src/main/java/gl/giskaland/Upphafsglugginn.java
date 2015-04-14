@@ -125,16 +125,6 @@ public class Upphafsglugginn extends ActionBarActivity {
         }
     };
 
-    private void updateDatabase() {
-        // Write contents  of the prev update to a file.
-
-
-
-        DbManager dbManager = new DbManager(this);
-
-        // Copy back the data from the backup file
-    }
-
     /**
      * opens new activity for the right age group
      */

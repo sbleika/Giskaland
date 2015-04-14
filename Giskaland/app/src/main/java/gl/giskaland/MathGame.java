@@ -1,6 +1,5 @@
 package gl.giskaland;
 
-
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -50,6 +49,7 @@ public class MathGame extends ActionBarActivity {
     // DbManager for usage inside this activity
     DbManager dbManager;
 
+    // the name of the images fer level 1
     List<List<String>> allQuestions;
     int nrQuestions = 0;
 
@@ -61,6 +61,10 @@ public class MathGame extends ActionBarActivity {
     String RightAnswerText;
     Toast toast;
 
+    /**
+     * on opening the activity
+     * @param savedInstanceState s
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,10 +88,10 @@ public class MathGame extends ActionBarActivity {
             scoreView = (TextView)findViewById(R.id.TextMathLevel3score);
 
         dbManager = new DbManager(this);
-
+        // get all the images for level 1
         allQuestions = dbManager.getAllInfo(2, "MathImgs");
-
         nrQuestions = allQuestions.size();
+
         dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);
 
@@ -181,7 +185,7 @@ public class MathGame extends ActionBarActivity {
     }
 
     /**
-     * put new numbers to the buttons
+     * make the games
      */
     public void makeRandom(){
         // reset all the global values level 1 and 2
@@ -241,7 +245,7 @@ public class MathGame extends ActionBarActivity {
         IBout4.setBackgroundResource(android.R.drawable.btn_default);
 
         //********************************************************************
-
+        // set a random img to be used
         setRandomnumIMG(IMG);
 
         // set random numbers to the four options
@@ -570,7 +574,7 @@ public class MathGame extends ActionBarActivity {
         } else if (Divide) {
             // from 0 to 10-the nub-mber we are adding to
             randomNum = ((int) Math.ceil(Math.random() * (10)));
-            // we dont want the same outcome 2x in a row and get a hole number
+            // we dont want the same outcome 2x in a row and get a hole number and te answer is only one digit
             while (((IBnum1value / randomNum) == last_num) || (IBnum1value % randomNum != 0) || ((IBnum1value / randomNum) > 9)) {
                 randomNum = ((int) Math.ceil(Math.random() * (10)));
             }
@@ -685,7 +689,7 @@ public class MathGame extends ActionBarActivity {
         public void onClick(View view) {
             EditText editText;
             editText = (EditText) findViewById(R.id.answerView);
-
+            // the asnwer from the user
             int Ans = Integer.parseInt(editText.getText().toString());
             if(((Ans == IBnum1value*IBnum2value)&& Multiply) || ((Ans == IBnum1value/IBnum2value) && Divide)){
                 RightAnswerText = "Já það er rétt hjá þér!!";
@@ -756,12 +760,14 @@ public class MathGame extends ActionBarActivity {
         EditText editText;
         editText = (EditText) findViewById(R.id.answerView);
 
-
         editText.setText("0");
 
         System.out.println("clear");
     }
 
+    /**
+     * disable the buttons
+     */
     public void disablebuttons(){
         ImageButton zero;
         zero = (ImageButton) findViewById(R.id.zerobutton_0);
@@ -806,6 +812,7 @@ public class MathGame extends ActionBarActivity {
         Answer.setEnabled(false);
         reset.setEnabled(false);
     }
+
     /**
      * handle if we press a number button
      */
