@@ -687,7 +687,7 @@ public class MathGame extends ActionBarActivity {
             editText = (EditText) findViewById(R.id.answerView);
 
             int Ans = Integer.parseInt(editText.getText().toString());
-            if(Ans == IBnum1value*IBnum2value || Ans == IBnum1value/IBnum2value){
+            if(((Ans == IBnum1value*IBnum2value)&& Multiply) || ((Ans == IBnum1value/IBnum2value) && Divide)){
                 RightAnswerText = "Já það er rétt hjá þér!!";
 
                 toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
@@ -824,7 +824,8 @@ public class MathGame extends ActionBarActivity {
             String MyAns = editText.getText().toString();
             if(MyAns.equals("0")){
                 editText.setText(ID);
-                if(Integer.parseInt(ID)  == IBnum1value*IBnum2value || Integer.parseInt(ID) == IBnum1value/IBnum2value){
+                int Ans = Integer.parseInt(ID);
+                if(((Ans == IBnum1value*IBnum2value)&& Multiply) || ((Ans == IBnum1value/IBnum2value) && Divide)){
                     view.setBackgroundResource(R.drawable.greenback);
                     disablebuttons();
                     RightAnswerText = "Já það er rétt hjá þér!!";
