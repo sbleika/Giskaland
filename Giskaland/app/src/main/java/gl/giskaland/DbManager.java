@@ -370,6 +370,7 @@ public class DbManager extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        /*
         if (oldVersion != newVersion) {
             try {
                 copyDatabase();
@@ -389,5 +390,6 @@ public class DbManager extends SQLiteOpenHelper {
                 ioe.printStackTrace();
             }
         }
+        */
     }
 }
