@@ -175,17 +175,17 @@ public class QuizGame extends ActionBarActivity {
                 view.setBackgroundResource(R.drawable.greenback);
                 toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
                 toast.show();
-                /*MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.yeah);
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.yeah);
                 {
                     mp.start();
-                }*/
+                }
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable(){
                     @Override
                     public void run(){
                         newQuestion();
                     }
-                }, 3000);
+                }, 2300);
                 // Update the score
                 dbManager.saveScore(lvl, tableName, 2);
                 dbManager.showScores(lvl, tableName, (TextView) findViewById(R.id.TextQuizLevel3Score));

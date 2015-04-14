@@ -154,6 +154,21 @@ public class MathGame extends ActionBarActivity {
         seven.setBackgroundResource(android.R.drawable.btn_default);
         eigth.setBackgroundResource(android.R.drawable.btn_default);
         nine.setBackgroundResource(android.R.drawable.btn_default);
+
+        one.setEnabled(true);
+        two.setEnabled(true);
+        tree.setEnabled(true);
+        four.setEnabled(true);
+        five.setEnabled(true);
+        six.setEnabled(true);
+        seven.setEnabled(true);
+        eigth.setEnabled(true);
+        nine.setEnabled(true);
+        zero.setEnabled(true);
+
+        clear.setEnabled(true);
+        Answer.setEnabled(true);
+        reset.setEnabled(true);
         //********************************************************************
     }
     /**
@@ -493,7 +508,7 @@ public class MathGame extends ActionBarActivity {
 
         // number from 1 to 100 and the answer from a quiz is alwes from 1 to 10
         if(Divide)randomNum = ((int) Math.ceil(Math.random() * (10)))*((int) Math.ceil(Math.random() * (9)));
-        // todo make the numbers go much higher
+
         // number from zero to ten
         else randomNum = ((int) (Math.random()*11));
         // we do not want the same as last time
@@ -648,7 +663,7 @@ public class MathGame extends ActionBarActivity {
                 public void run(){
                     makeRandom();// you have won
                 }
-            }, 3000);
+            }, 2300);
 
             dbManager.saveScore(lvl, tableName, 2);
         }
@@ -687,7 +702,7 @@ public class MathGame extends ActionBarActivity {
                     public void run(){
                         makeRandom();// you have won
                     }
-                }, 3000);
+                }, 2300);
                 dbManager.saveScore(lvl, tableName, 2);
             }
             else {
@@ -703,7 +718,7 @@ public class MathGame extends ActionBarActivity {
                     public void run(){
                         ClearText();
                     }
-                }, 3000);
+                }, 2300);
             }
             dbManager.showScores(lvl, tableName, scoreView);
             System.out.println("answer");
@@ -746,6 +761,51 @@ public class MathGame extends ActionBarActivity {
 
         System.out.println("clear");
     }
+
+    public void disablebuttons(){
+        ImageButton zero;
+        zero = (ImageButton) findViewById(R.id.zerobutton_0);
+        ImageButton one;
+        one = (ImageButton) findViewById(R.id.onebutton_1);
+        ImageButton two;
+        two = (ImageButton) findViewById(R.id.twobutton_2);
+        ImageButton tree;
+        tree = (ImageButton) findViewById(R.id.treebutton_3);
+        ImageButton four;
+        four = (ImageButton) findViewById(R.id.fourbutton_4);
+        ImageButton five;
+        five = (ImageButton) findViewById(R.id.fivebutton_5);
+        ImageButton six;
+        six = (ImageButton) findViewById(R.id.sixbutton_6);
+        ImageButton seven;
+        seven = (ImageButton) findViewById(R.id.sevenbutton_7);
+        ImageButton eigth;
+        eigth = (ImageButton) findViewById(R.id.eigthbutton_8);
+        ImageButton nine;
+        nine = (ImageButton) findViewById(R.id.ninebutton_9);
+
+        Button reset;
+        reset = (Button) findViewById(R.id.Newbutton);
+        Button clear;
+        clear = (Button) findViewById(R.id.Clearbutton);
+        Button Answer;
+        Answer = (Button) findViewById(R.id.Answerbutton);
+
+        one.setEnabled(false);
+        two.setEnabled(false);
+        tree.setEnabled(false);
+        four.setEnabled(false);
+        five.setEnabled(false);
+        six.setEnabled(false);
+        seven.setEnabled(false);
+        eigth.setEnabled(false);
+        nine.setEnabled(false);
+        zero.setEnabled(false);
+
+        clear.setEnabled(false);
+        Answer.setEnabled(false);
+        reset.setEnabled(false);
+    }
     /**
      * handle if we press a number button
      */
@@ -765,6 +825,8 @@ public class MathGame extends ActionBarActivity {
             if(MyAns.equals("0")){
                 editText.setText(ID);
 
+                disablebuttons();
+
                 if(Integer.parseInt(ID)  == IBnum1value*IBnum2value || Integer.parseInt(ID) == IBnum1value/IBnum2value){
                     view.setBackgroundResource(R.drawable.greenback);
                     RightAnswerText = "Já það er rétt hjá þér!!";
@@ -781,7 +843,7 @@ public class MathGame extends ActionBarActivity {
                         public void run(){
                             makeRandom();// you have won
                         }
-                    }, 3000);
+                    }, 2300);
                     dbManager.saveScore(lvl, tableName, 2);
                 }
             }else if (MyAns.length()<3){
