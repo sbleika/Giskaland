@@ -1,6 +1,5 @@
 package gl.giskaland;
 
-
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
-
 
 public class SpellingGame extends ActionBarActivity {
 
@@ -45,15 +43,16 @@ public class SpellingGame extends ActionBarActivity {
 
     // DbManager for usage inside this activity
     DbManager dbManager;
-
+    // to store the words from the db
     List<List<String>> allQuestions;
+    // number of quest
     int nrQuestions;
 
     // the buttons
     ImageButton button1, button2, button3, button4, button5, button6;
-
+    // the name of the db table with the score
     String tableName = "SpellingScores";
-
+    // to disp the score
     TextView scoreView;
     // the output text to let us know if we won
     Toast toast;
@@ -82,12 +81,12 @@ public class SpellingGame extends ActionBarActivity {
 
         dbManager.initDbManager(lvl, tableName);
         dbManager.showScores(lvl, tableName, scoreView);
-
+        // get the words for th game
         if (lvl == 3)
             allQuestions = dbManager.getAllInfo(2, "SpellingImgsEn");
         else
             allQuestions = dbManager.getAllInfo(2, "SpellingImgsIce");
-
+        // the number of
         nrQuestions = allQuestions.size();
 
         makeRandom(); // start the game
@@ -297,10 +296,10 @@ public class SpellingGame extends ActionBarActivity {
             SpellingOutBool[i]=false;
         }
 
-        // random number from 1 to 10
+        // random number from 1 to 6
         int randomOut = (int) Math.ceil(Math.random()*6);
 
-        // set one of 10 to the correct value
+        // set one of 6 to the correct value
         SpellingOutBool[randomOut] = true;
 
         switch (randomOut) {
@@ -368,7 +367,7 @@ public class SpellingGame extends ActionBarActivity {
     public void setAnswer(ImageView view){
         //get the id of the button
         String ID = getID(view);
-        //save the value of the answer to the rigth array place
+        //save the value of the answer to the right array place
         setValue(ID, IMGvalueLetter);
         //set the right image(the letter) to one of the buttons
         setIMG(IMGvalueLetter, view);
@@ -471,12 +470,14 @@ public class SpellingGame extends ActionBarActivity {
      * @param view g
      */
     public void setRandomnumIMG(ImageView view){
+        //so we dont get the same 2x in row
         while (NEXTans == LASTans) NEXTans = randomIndex();
-
+        // get the word to use
         List<String> aQuestion = allQuestions.get(NEXTans);
 
         // Path of the img
         IMGword = aQuestion.get(0);
+        // get the word to disp in screen if won
         IslOrd = aQuestion.get(1);
         // make the view have the random image
         int resID = getResources().getIdentifier(IMGword , "drawable", "gl.giskaland");
@@ -487,6 +488,7 @@ public class SpellingGame extends ActionBarActivity {
         //set the fyrst letter of the thing on the image to IMGvalueletter
         if(IMGword.substring(0,1).equals("_")) {
             System.out.println("serisl stafur kemur her jejjjjjjjjjjjjjjjjjjjjjj");
+            //get the next letter from the img name to use
             IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum+1)) + IMGword.charAt((IMGvalueLetterNum + 2));
             IMGvalueLetterNum = IMGvalueLetterNum + 2;
         }
@@ -513,7 +515,9 @@ public class SpellingGame extends ActionBarActivity {
         TextView Output;
         Output = (TextView)findViewById(R.id.OutPutText);
         System.out.println(Output.getText());
+        // check if we have to append or make a new string
         if(buttonNotPressed){
+            // it we have icelandic letters
             if(IMGvalueLetter.length() > 2){
                 System.out.println(IMGvalueLetter.substring(1,3));
                 if(IMGvalueLetter.substring(1,3).equals("aa")){
@@ -583,17 +587,18 @@ public class SpellingGame extends ActionBarActivity {
      */
     public void NextLetterForOptions(){
         IMGvalueLetterNum++;
+        //check if we have finished the word
         if(IMGword.length() > IMGvalueLetterNum){
+            // it we have icelandic letters
             if(IMGword.charAt(IMGvalueLetterNum) == '_') {
-                System.out.println("serisl stafur kemur her jejjjjjjjjjjjjjjjjjjjjjj");
                 IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum+1)) + IMGword.charAt((IMGvalueLetterNum + 2));
                 IMGvalueLetterNum = IMGvalueLetterNum + 2;
             }
             else IMGvalueLetter = "s" + IMGword.charAt((IMGvalueLetterNum));
-
-
         }
         else {
+            // the word has been spelled right
+            //make the buttons not work
             button1.setEnabled(false);
             button2.setEnabled(false);
             button3.setEnabled(false);
@@ -621,7 +626,7 @@ public class SpellingGame extends ActionBarActivity {
     }
 
     /**
-     *
+     * if we ave won the spelling game level 1
      */
     public void PutUp(){
         button1 = (ImageButton) findViewById(R.id.SpellingOut1);
@@ -636,7 +641,11 @@ public class SpellingGame extends ActionBarActivity {
 
         toast = Toast.makeText(getApplicationContext(), RightAnswerText, Toast.LENGTH_SHORT);
         toast.show();
-
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.yeah);
+        {
+            mp.start();
+        }
+        // make the game wait for 2300 millisec
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable(){
             @Override
@@ -654,15 +663,13 @@ public class SpellingGame extends ActionBarActivity {
         if (SpellingOutBool[index]) {
             v.setBackgroundResource(R.drawable.greenback);
             if (lvl > 1) Append();
-
-             if(lvl == 1)PutUp();
-             if(lvl == 2 || lvl == 3){
+            if(lvl == 1)PutUp();
+            if(lvl == 2 || lvl == 3){
                 NextLetterForOptions();
                 setTheOptionsLevel2();
               }
               dbManager.saveScore(lvl, tableName, 2);
               dbManager.showScores(lvl, tableName, scoreView);
-
         }
         else {
             dbManager.saveScore(lvl, tableName, -1);
@@ -673,12 +680,9 @@ public class SpellingGame extends ActionBarActivity {
     }
 
     /**
-     * OnClickListener for Answer buttons
+     * OnClickListener for if we click the options in level 2 and 1
      */
     View.OnClickListener checkIfRightAnsout = new View.OnClickListener() {
-        /**
-         *
-         */
         @Override
         public void onClick(View view) {
             String ID = getID(view);
@@ -709,9 +713,6 @@ public class SpellingGame extends ActionBarActivity {
      * OnClickListener for newphoto button
      */
     View.OnClickListener newphotolistner = new View.OnClickListener() {
-        /**
-         *
-         */
         @Override
         public void onClick(View view) {
             dbManager.saveScore(lvl, tableName, -1);

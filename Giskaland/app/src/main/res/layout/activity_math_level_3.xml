@@ -84,8 +84,10 @@
         android:id="@+id/sevenbutton_7"
         android:src="@drawable/seven"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/sixbutton_6"
-        android:layout_toEndOf="@id/sixbutton_6" />
+
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/sixbutton_6"
+        android:layout_toEndOf="@+id/sixbutton_6" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -93,7 +95,8 @@
         android:id="@+id/eigthbutton_8"
         android:src="@drawable/eight"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/sevenbutton_7"
+
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/sevenbutton_7"
         android:layout_toEndOf="@+id/sevenbutton_7" />
 
@@ -103,7 +106,8 @@
         android:id="@+id/ninebutton_9"
         android:src="@drawable/nine"
         android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/eigthbutton_8"
+
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/eigthbutton_8"
         android:layout_toEndOf="@+id/eigthbutton_8" />
 
@@ -175,4 +179,16 @@
         android:layout_centerInParent="true"
         android:layout_below="@+id/TextMathLevel3score"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/MathLevel3direction"
+        android:id="@+id/textView"
+        android:layout_above="@+id/Clearbutton"
+        android:layout_alignTop="@+id/answerView"
+        android:layout_toLeftOf="@+id/fourbutton_4"
+        android:layout_toRightOf="@+id/TextMathLevel3score"
+        android:layout_toEndOf="@+id/TextMathLevel3score" />
 </RelativeLayout>

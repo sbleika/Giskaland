@@ -29,7 +29,7 @@ public class DbManager extends SQLiteOpenHelper {
     private SQLiteDatabase myDb;
     private final Context myContext;
 
-    private static final int DB_VERSION = 50;
+    private static final int DB_VERSION = 61;
 
     /**
      *  Constructor for the DbManager.
@@ -370,22 +370,24 @@ public class DbManager extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        try {
-            copyDatabase();
-
+        if (oldVersion != newVersion) {
             try {
-                this.createDatabase();
+                copyDatabase();
+
+                try {
+                    this.createDatabase();
+                } catch (IOException ioe) {
+                    Log.e("initDbManager()", ioe.getMessage());
+                }
+                try {
+                    this.openDatabase();
+                } catch (SQLiteException sqle) {
+                    Log.e("initDbManager()", sqle.getMessage());
+                }
+
             } catch (IOException ioe) {
-                Log.e("initDbManager()", ioe.getMessage());
+                ioe.printStackTrace();
             }
-            try {
-                this.openDatabase();
-            } catch (SQLiteException sqle) {
-                Log.e("initDbManager()", sqle.getMessage());
-            }
-
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
         }
     }
 }
