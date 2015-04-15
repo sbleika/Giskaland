@@ -355,11 +355,6 @@ public class DbManager extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        try {
-            copyDatabase();
-        } catch (IOException ioe) {
-            Log.e("dbManager,onCreate()", ioe.getMessage());
-        }
     }
 
     /**
@@ -370,26 +365,5 @@ public class DbManager extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        /*
-        if (oldVersion != newVersion) {
-            try {
-                copyDatabase();
-
-                try {
-                    this.createDatabase();
-                } catch (IOException ioe) {
-                    Log.e("initDbManager()", ioe.getMessage());
-                }
-                try {
-                    this.openDatabase();
-                } catch (SQLiteException sqle) {
-                    Log.e("initDbManager()", sqle.getMessage());
-                }
-
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
-        }
-        */
     }
 }
